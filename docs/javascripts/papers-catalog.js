@@ -31,7 +31,7 @@
       year: 2,
       venue: 3,
       category: 4,
-      innovation: 5,
+      url: 5,
     };
 
     function applySort() {

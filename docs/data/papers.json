@@ -1,5 +1,18 @@
 [
   {
+    "title": "Don't Reject This: Key-Recovery Timing Attacks Due to Rejection-Sampling in HQC and BIKE",
+    "authors": "Qian Guo; Clemens Hlauschek; Thomas Johansson; Norman Lahr; Alexander Nilsson; Robin Leander Schröder",
+    "year": "2022",
+    "venue": "IACR Trans. Cryptogr. Hardw. Embed. Syst. (TCHES)",
+    "category": "side-channel-analysis, pqc-implementation",
+    "categories": [
+      "side-channel-analysis",
+      "pqc-implementation"
+    ],
+    "innovation": "FO rejection-sampling timing KR: HQC ~866k queries (~87% success); BIKE GJS via sampler timing ~5.8e7 queries",
+    "url": "https://doi.org/10.46586/tches.v2022.i3.223-263"
+  },
+  {
     "title": "Defeating Low-Cost Countermeasures against Side-Channel Attacks in Lattice-based Encryption (Kyber case study)",
     "authors": "Prasanna Ravi; Thales Paiva; Dirmanto Jap; Jan-Pieter D’Anvers; Shivam Bhasin",
     "year": "2024",
