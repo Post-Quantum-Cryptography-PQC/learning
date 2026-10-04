@@ -31,7 +31,6 @@
       year: 2,
       venue: 3,
       category: 4,
-      url: 5,
     };
 
     function applySort() {

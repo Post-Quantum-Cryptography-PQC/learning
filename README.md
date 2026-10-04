@@ -5,10 +5,11 @@
 
 **Repository:** [Post-Quantum-Cryptography-PQC/pqc-learning-public](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public)
 
-Public teaching curriculum for **post-quantum cryptography**: fundamentals, bridge explainers, concept cards, and curated track roadmaps. This repo is the Markdown / MkDocs **source module**. The live website is hosted from a separate Pages repo named [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) so the site URL stays at `/learning/`.
+Public teaching curriculum for **post-quantum cryptography**: fundamentals, bridge explainers, concept cards, curated track roadmaps, and an interactive paper map page. This repo is the Markdown / MkDocs **source module**. The live website is hosted from a separate Pages repo named [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) so the site URL stays at `/learning/`.
 
 - **Website**: https://post-quantum-cryptography-pqc.github.io/learning/
 - **Sibling (private)**: [pqc-learning-private](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private) — paper explainers and gap graphs
+- **Org profile / paper map**: [`.github`](https://github.com/Post-Quantum-Cryptography-PQC/.github)
 - **Parent lab**: [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) (consumes this tree as `learn/public` submodule)
 - **License**: CC BY 4.0 (see `LICENSE`)
 
@@ -26,9 +27,10 @@ Public teaching curriculum for **post-quantum cryptography**: fundamentals, brid
 | Area | What you get |
 |------|----------------|
 | Fundamentals | 12 starter pages (notation, modular arithmetic, soft lattices, …) |
-| Bridge | 13 story-first pages closing the gap to PQC vocabulary |
+| Bridge | 12 story-first pages closing the gap to PQC vocabulary (plus `bridge/README.md`) |
 | Concepts | 25 compact cards (LWE, KEM, NTT, ISD, …) |
 | Tracks | Roadmaps: `code-based-kems`, `lattice-lwe`, `rank-metric`, `pqc-hardware` |
+| Paper map | `docs/papers.md` + `docs/data/papers.json` (refreshed from the lab index) |
 | Site build | MkDocs Material + KaTeX (`mkdocs.yml`, `docs/`) |
 
 Paper explainers and research-gap YAML stay in **pqc-learning-private** and are not published on the public site.
@@ -53,7 +55,21 @@ mkdocs serve
 
 Open the local preview (typically http://127.0.0.1:8000/). Teaching pages live under `docs/`; start at [`docs/index.md`](docs/index.md).
 
+From the parent lab (shared preview config at the monorepo root):
+
+```bash
+cd pqc-lab
+git submodule update --init --recursive
+mkdocs serve
+```
+
 To publish the website, mirror this tree to the Pages host [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) (from the parent lab: `bash learn/sync_learning_repos.sh`). GitHub Pages for free organizations must run on that public host so the URL remains https://post-quantum-cryptography-pqc.github.io/learning/.
+
+Refresh the paper map from the lab after updating [`docs/PAPERS.md`](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab/blob/main/docs/PAPERS.md):
+
+```bash
+python3 learn/export_papers_catalog.py
+```
 
 ## Project layout
 
@@ -62,11 +78,15 @@ pqc-learning-public/
 ├── docs/                 # MkDocs docs_dir (edit teaching pages here)
 │   ├── index.md
 │   ├── glossary.md
+│   ├── papers.md         # interactive paper map (generated)
+│   ├── data/
+│   │   └── papers.json
 │   ├── fundamentals/
 │   ├── bridge/
 │   ├── concepts/
 │   ├── tracks/<id>/ROADMAP.md
-│   └── javascripts/katex.js
+│   ├── javascripts/      # katex.js, papers-catalog.js
+│   └── stylesheets/      # papers-catalog.css
 ├── mkdocs.yml
 ├── LICENSE
 └── README.md
@@ -78,9 +98,12 @@ pqc-learning-public/
 |------|------|
 | [pqc-learning-public](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public) | This module — public curriculum source |
 | [pqc-learning-private](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private) | Private paper explainers + `graph/` ledgers |
+| [`.github`](https://github.com/Post-Quantum-Cryptography-PQC/.github) | Org profile + interactive paper-map Pages |
 | [learning](https://github.com/Post-Quantum-Cryptography-PQC/learning) | Public Pages host for `/learning/` |
-| [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) | Lab monorepo; pins both learning modules as submodules |
+| [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) | Lab monorepo; pins learning modules as submodules |
 
 ## License
 
 This project is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [LICENSE](LICENSE).
+
+**Third-party assets** (publisher links in the paper map) remain under their respective terms. This module does not host paper PDFs.
