@@ -7,7 +7,8 @@ A guided path from **fundamentals** through **bridge** pages and **concept** car
 into curated **tracks**. Written so newcomers can follow with patience — no prior
 crypto course assumed.
 
-**Lookup:** [Glossary (plain English)](glossary.md) — jump here whenever a word feels fuzzy.
+**Lookup:** [Glossary (plain English)](glossary.md) — jump here whenever a word feels fuzzy.  
+**Paper map:** [Browse indexed papers](papers.md) — search / filter / sort; titles link to publisher URLs.
 
 ## Who this is for
 

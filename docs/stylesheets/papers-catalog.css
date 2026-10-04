@@ -1,0 +1,73 @@
+/* Paper map catalog controls */
+.papers-catalog {
+  margin-top: 1rem;
+}
+
+.papers-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.papers-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.papers-controls input[type="search"],
+.papers-controls select {
+  min-width: 14rem;
+  max-width: 100%;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--md-default-fg-color--lightest, #ccc);
+  border-radius: 0.25rem;
+  background: var(--md-default-bg-color, #fff);
+  color: var(--md-default-fg-color, inherit);
+  font-weight: 400;
+}
+
+.papers-count {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.8;
+  align-self: center;
+}
+
+.papers-table-wrap {
+  overflow-x: auto;
+}
+
+.papers-table {
+  width: 100%;
+  font-size: 0.82rem;
+}
+
+.papers-table th button.papers-sort {
+  all: unset;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline dotted;
+}
+
+.papers-table th[aria-sort="ascending"] button.papers-sort::after {
+  content: " ↑";
+}
+
+.papers-table th[aria-sort="descending"] button.papers-sort::after {
+  content: " ↓";
+}
+
+.papers-table td:first-child {
+  min-width: 14rem;
+  font-weight: 600;
+}
+
+.papers-table td:nth-child(6) {
+  min-width: 12rem;
+}
