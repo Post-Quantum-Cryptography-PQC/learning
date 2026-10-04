@@ -1,0 +1,106 @@
+site_name: PQC Learn
+site_description: Fundamentals to research papers in post-quantum cryptography
+site_url: https://post-quantum-cryptography-pqc.github.io/learning/
+repo_url: https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public
+repo_name: pqc-learning-public
+edit_uri: edit/main/docs/
+
+# Website HTML is built by CI on the `learning` Pages host (not committed here).
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.action.edit
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+
+nav:
+  - Home: index.md
+  - Fundamentals:
+      - Reading math notation: fundamentals/reading-math-notation.md
+      - Why cryptography?: fundamentals/why-cryptography.md
+      - Modular arithmetic: fundamentals/modular-arithmetic.md
+      - Bits, XOR, randomness: fundamentals/bits-xor-randomness.md
+      - Probability (gentle): fundamentals/probability-gentle.md
+      - Hard problems: fundamentals/hard-problems.md
+      - Public-key picture: fundamentals/public-key-picture.md
+      - Vectors and matrices: fundamentals/vectors-matrices.md
+      - Polynomials (gentle): fundamentals/polynomials-gentle.md
+      - Quantum threat: fundamentals/quantum-threat.md
+  - Bridge:
+      - How to use bridge: bridge/README.md
+      - From bits to codes: bridge/from-bits-to-codes.md
+      - Noisy channel story: bridge/noisy-channel-story.md
+      - Generator and parity-check: bridge/generator-and-parity-check.md
+      - Decoding as a puzzle: bridge/decoding-as-a-puzzle.md
+      - McEliece in plain words: bridge/mceliece-in-plain-words.md
+      - From KEM API to noise: bridge/from-kem-api-to-noise.md
+      - Finite fields beyond F2: bridge/finite-fields-beyond-f2.md
+      - Security bits and work: bridge/security-bits-and-work.md
+      - From Hamming to rank: bridge/from-hamming-to-rank.md
+      - Noisy linear equations (LWE): bridge/noisy-linear-equations-lwe.md
+      - Clocks, registers, latency: bridge/clocks-registers-latency.md
+      - Area–time–power honesty: bridge/area-time-power-honesty.md
+  - Concepts:
+      - Error-correcting codes: concepts/error-correcting-codes.md
+      - Linear codes: concepts/linear-codes.md
+      - Syndrome decoding: concepts/syndrome-decoding.md
+      - Quasi-cyclic codes: concepts/quasi-cyclic-codes.md
+      - KEM: concepts/kem.md
+      - DFR: concepts/dfr.md
+      - Independence heuristics: concepts/independence-heuristics.md
+      - KL divergence: concepts/kl-divergence.md
+      - LWE: concepts/lwe.md
+      - Module-LWE: concepts/module-lwe.md
+      - Modular multiplier: concepts/modular-multiplier.md
+      - Poly-mul engines: concepts/poly-mul-engines.md
+      - NTT butterfly: concepts/ntt-butterfly.md
+      - NTT parallel memory: concepts/ntt-parallel-memory.md
+      - KEM accelerator anatomy: concepts/kem-accelerator-anatomy.md
+  - Tracks:
+      - Code-based KEMs: tracks/code-based-kems/ROADMAP.md
+      - Lattice / LWE: tracks/lattice-lwe/ROADMAP.md
+      - Rank metric: tracks/rank-metric/ROADMAP.md
+      - PQC hardware: tracks/pqc-hardware/ROADMAP.md
+
+exclude_docs: |
+  /README.md
