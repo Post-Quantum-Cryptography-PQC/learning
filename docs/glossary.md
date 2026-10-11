@@ -1,7 +1,7 @@
 # Glossary (plain English)
 
 **Prereqs:** none (lookup anytime)  
-**Next:** [How to read the math](fundamentals/reading-math-notation.md) · [Index](index.md)
+**Next:** [Orientation](orientation/README.md) · [How to read the math](fundamentals/reading-math-notation.md) · [Index](index.md)
 
 A quick dictionary for this curriculum. Each entry is one or two sentences plus a link to the teaching page. Skip freely; come back when a word feels fuzzy.
 
@@ -64,6 +64,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Modular arithmetic** | Clock / leftover wrap-around math | [Modular arithmetic](fundamentals/modular-arithmetic.md) |
 | **Modular multiplier** | HW/SW unit for $a\cdot b \bmod q$ | [Modular multiplier](concepts/modular-multiplier.md) |
 | **Module-LWE** | LWE with polynomial / module packaging (ML-KEM-shaped) | [Module-LWE](concepts/module-lwe.md) |
+| **Motivation (PQC)** | Why migrate: quantum break of RSA/ECC + long-lived recorded traffic | [Motivation](orientation/motivation.md) |
 | **Niederreiter** | Syndrome / parity-check packaging twin of McEliece | [Niederreiter](concepts/niederreiter.md) |
 | **NTT / INTT** | Number-theoretic (inverse) transform — modular FFT for poly mul | [NTT butterfly](concepts/ntt-butterfly.md) |
 
@@ -81,6 +82,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Reaction attack** | Learn secrets from decrypt success/fail bits | [QC-MDPC reaction explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md) |
 | **Redundancy** | Extra symbols so noise can be corrected | [From bits to codes](bridge/from-bits-to-codes.md) |
 | **Security bits** | Attack-work slogan (e.g. $\sim 2^{128}$), not DFR | [Security bits](bridge/security-bits-and-work.md) |
+| **SNDL** | Store now, decrypt later — record ciphertext today, break keys when quantum arrives | [Motivation](orientation/motivation.md) |
 | **Sparse** | Low Hamming weight (few ones) | [Hamming metric](concepts/hamming-metric.md) |
 | **Syndrome** | $He^\top$ — fingerprint of the error under checks $H$ | [Syndrome decoding](concepts/syndrome-decoding.md) |
 | **Syndrome decoding** | Find sparse $e$ matching a published syndrome | [Syndrome decoding](concepts/syndrome-decoding.md) |
@@ -111,6 +113,7 @@ More symbol practice: [How to read the math](fundamentals/reading-math-notation.
 
 ## Next steps
 
+- [Orientation](orientation/README.md)  
 - [Index](index.md)  
 - [Code-based roadmap](tracks/code-based-kems/ROADMAP.md)  
 - [Lattice / LWE roadmap](tracks/lattice-lwe/ROADMAP.md)  

@@ -139,7 +139,7 @@ Write those two questions on a sticky note if you read papers.
 
 ## Next steps
 
-- Return to [index](../index.md) and enter [Concepts](../index.md#3-concepts)  
+- Return to [index](../index.md) and enter [Concepts](../index.md#4-concepts)  
 - [Code-based roadmap](../tracks/code-based-kems/ROADMAP.md)  
 - Concept: [Information-set decoding](../concepts/information-set-decoding.md)  
 - Paper skills later: read limitations sections with the two sticky-note questions in mind  

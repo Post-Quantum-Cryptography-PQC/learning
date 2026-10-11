@@ -58,6 +58,12 @@ extra_javascript:
 nav:
   - Home: index.md
   - Paper map: papers.md
+  - Orientation:
+      - Start here: orientation/README.md
+      - Motivation: orientation/motivation.md
+      - History: orientation/history.md
+      - Problems: orientation/problems.md
+      - Challenges: orientation/challenges.md
   - Fundamentals:
       - Reading math notation: fundamentals/reading-math-notation.md
       - Why cryptography?: fundamentals/why-cryptography.md

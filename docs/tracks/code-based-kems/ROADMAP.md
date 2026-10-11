@@ -1,6 +1,6 @@
 # Track: Code-based KEMs
 
-**Prereqs:** [Fundamentals](../../index.md#1-fundamentals) · [Bridge](../../bridge/README.md)  
+**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) · [Bridge](../../bridge/README.md)  
 **Next:** [McEliece–Niederreiter equivalence](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md) · [Gaps](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml)
 
 Primary curated path for this lab’s learning curriculum. Goal: take a motivated beginner from fundamentals through **TIT** code-based papers, then optional ePrint leaves.

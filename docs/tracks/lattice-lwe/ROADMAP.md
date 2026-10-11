@@ -1,6 +1,6 @@
 # Track: Lattice / LWE
 
-**Prereqs:** [Fundamentals](../../index.md#1-fundamentals) (through vectors + modular arithmetic) · [Lattices (gentle)](../../fundamentals/lattices-gentle.md)  
+**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) (through vectors + modular arithmetic) · [Lattices (gentle)](../../fundamentals/lattices-gentle.md)  
 **Next:** [Noisy linear equations (LWE story)](../../bridge/noisy-linear-equations-lwe.md) · [PQC hardware track](../pqc-hardware/ROADMAP.md) · [Code-based KEMs track](../code-based-kems/ROADMAP.md) · [index](../../index.md)
 
 Secondary curated path for lattice-based PQC (ML-KEM / LWE-shaped schemes). Goal: leave the integer-grid picture, meet noisy modular equations, then Module-LWE vocabulary — before optional paper / hardware leaves.

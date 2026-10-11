@@ -1,6 +1,6 @@
 # What is a hard problem?
 
-**Prereqs:** [Bits, XOR](bits-xor-randomness.md) · [Probability](probability-gentle.md)  
+**Prereqs:** [Orientation Problems](../orientation/problems.md) (recommended) · [Bits, XOR](bits-xor-randomness.md) · [Probability](probability-gentle.md)  
 **Next:** [Public-key crypto in one picture](public-key-picture.md)
 
 **Learning goals.** Explain “easy forward, hard backward,” why crypto cares about average cases, what parameters are for, tell reductions from heuristic cost estimates, and name RSA vs code-based vs lattice at slogan level.

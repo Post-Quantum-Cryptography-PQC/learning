@@ -1,6 +1,6 @@
 # Why quantum computers change crypto
 
-**Prereqs:** [Hard problems](hard-problems.md) · [Public-key picture](public-key-picture.md)  
+**Prereqs:** [Motivation](../orientation/motivation.md) · [History](../orientation/history.md) · [Hard problems](hard-problems.md) · [Public-key picture](public-key-picture.md)  
 **Next:** [Bridge overview](../bridge/README.md) · [Lattices (gentle)](lattices-gentle.md)
 
 **Learning goals.** Explain “store now, decrypt later,” what Shor vs Grover change in plain language, what post-quantum cryptography means, why you do **not** need a quantum computer to *use* PQC, and where code-based vs lattice families fit.
@@ -198,4 +198,4 @@ You now have motivation.
 
 - **Code-based next:** [Bridge overview](../bridge/README.md) · [Code-based KEMs roadmap](../tracks/code-based-kems/ROADMAP.md)  
 - **Lattice next:** [Lattices (gentle)](lattices-gentle.md) · [Lattice / LWE roadmap](../tracks/lattice-lwe/ROADMAP.md)  
-- Index: [learn/index.md](../index.md)  
+- Index: [share/index.md](../index.md)  

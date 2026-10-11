@@ -1,6 +1,6 @@
 # How to read the math in this curriculum
 
-**Prereqs:** none (start here if symbols feel scary)  
+**Prereqs:** [Orientation](../orientation/README.md) recommended (Motivation → Challenges) · or none if jumping straight to symbols  
 **Next:** [Why cryptography?](why-cryptography.md)
 
 **Learning goals.** Recognize common symbols ($=$, $\equiv$, $\oplus$, $\Pr$, vectors), know that you can skip a formula on first read and come back, and practice translating several lines of math into English — slowly, on purpose.

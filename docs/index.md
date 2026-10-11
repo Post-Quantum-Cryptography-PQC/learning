@@ -1,11 +1,11 @@
 # Post-Quantum Cryptography — Learning Path
 
 **Prereqs:** none (curriculum entry)  
-**Next:** [How to read the math](fundamentals/reading-math-notation.md) · or [Fundamentals list](#1-fundamentals)
+**Next:** [Motivation](orientation/motivation.md) · or [Orientation hub](orientation/README.md)
 
-A guided path from **fundamentals** through **bridge** pages and **concept** cards
-into curated **tracks**. Written so newcomers can follow with patience — no prior
-crypto course assumed.
+A guided path from **orientation** (why / history / problems / challenges) through
+**fundamentals**, **bridge** pages, and **concept** cards into curated **tracks**.
+Written so newcomers can follow with patience — no prior crypto course assumed.
 
 **Lookup:** [Glossary (plain English)](glossary.md) — jump here whenever a word feels fuzzy.  
 **Paper map:** [Browse indexed papers](papers.md) — search / filter / sort; titles link to publisher URLs.
@@ -14,30 +14,42 @@ crypto course assumed.
 
 | You are… | Start at |
 |----------|----------|
-| New to cryptography or the math notation | [Fundamentals](#1-fundamentals) (start with [reading math](fundamentals/reading-math-notation.md) if symbols feel scary) |
-| Finished fundamentals but concepts feel sudden | [Bridge](#2-bridge-close-the-gap) |
-| Comfortable with coding intuition | [Concepts](#3-concepts) |
-| Ready for a guided path | [Tracks](#4-tracks) |
-| Curious about chips / accelerators | [PQC hardware track](#4-tracks) |
+| Brand new — want the story before math | [Orientation](#1-orientation-start-here) (Motivation → History → Problems → Challenges) |
+| New to cryptography or the math notation | [Fundamentals](#2-fundamentals) (start with [reading math](fundamentals/reading-math-notation.md) if symbols feel scary) |
+| Finished fundamentals but concepts feel sudden | [Bridge](#3-bridge-close-the-gap) |
+| Comfortable with coding intuition | [Concepts](#4-concepts) |
+| Ready for a guided path | [Tracks](#5-tracks) |
+| Curious about chips / accelerators | [PQC hardware track](#5-tracks) |
 
-## 1. Fundamentals
+## 1. Orientation (start here)
+
+Share the *why* before the *how*. Four short pages, then Fundamentals.
+
+Hub: [orientation/README.md](orientation/README.md)
+
+1. [Motivation](orientation/motivation.md) — why change cryptography; store-now-decrypt-later  
+2. [History](orientation/history.md) — classical PKC → quantum threat → NIST PQC  
+3. [Problems](orientation/problems.md) — easy forward, hard backward; family slogans  
+4. [Challenges](orientation/challenges.md) — size, DFR, SCA, hybrids, moving cryptanalysis  
+
+## 2. Fundamentals
 
 Build mathematical and crypto intuition slowly. **No rush.** More pages and more wording are intentional.
 
 0. [How to read the math](fundamentals/reading-math-notation.md) — start here if symbols feel scary  
-1. [Why cryptography?](fundamentals/why-cryptography.md)  
+1. [Why cryptography?](fundamentals/why-cryptography.md) — deeper toys after Orientation Motivation  
 2. [Modular arithmetic](fundamentals/modular-arithmetic.md)  
 3. [Bits, XOR, and randomness](fundamentals/bits-xor-randomness.md)  
 4. [Probability (gentle)](fundamentals/probability-gentle.md)  
-5. [What is a hard problem?](fundamentals/hard-problems.md)  
+5. [What is a hard problem?](fundamentals/hard-problems.md) — deepen Orientation Problems  
 6. [Public-key crypto in one picture](fundamentals/public-key-picture.md)  
 7. [Vectors and matrices (gentle)](fundamentals/vectors-matrices.md)  
 8. [Polynomials (gentle) — Part A](fundamentals/polynomials-gentle.md) — add/multiply only; do the paper lab  
 8b. [Polynomial wrap-around — Part B](fundamentals/polynomials-wraparound.md) — before QC / HQC-shaped pages  
-9. [Why quantum computers change crypto](fundamentals/quantum-threat.md)  
+9. [Why quantum computers change crypto](fundamentals/quantum-threat.md) — deepen Orientation Motivation / History  
 10. [Lattices (gentle)](fundamentals/lattices-gentle.md) — for the lattice / LWE track  
 
-## 2. Bridge (close the gap)
+## 3. Bridge (close the gap)
 
 Longer, story-first pages between fundamentals and compact PQC concepts. **Do not skip** if concepts feel sudden. More wording is intentional so newcomers can follow with patience.
 
@@ -56,7 +68,7 @@ Start here: [bridge/README.md](bridge/README.md)
 11. [Clocks, registers, and latency](bridge/clocks-registers-latency.md) — for the PQC hardware track  
 12. [Area, time, power honesty](bridge/area-time-power-honesty.md) — reading HW comparison tables  
 
-## 3. Concepts
+## 4. Concepts
 
 PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over compression.
 
@@ -97,7 +109,7 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [NTT parallel memory](concepts/ntt-parallel-memory.md)  
 - [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md)  
 
-## 4. Tracks
+## 5. Tracks
 
 - **[Code-based KEMs](tracks/code-based-kems/ROADMAP.md)** — primary curated path (McEliece intuition → HQC/BIKE-shaped ideas → modelling & cryptanalysis)  
 - **[Lattice / LWE](tracks/lattice-lwe/ROADMAP.md)** — grids → LWE story → Module-LWE  

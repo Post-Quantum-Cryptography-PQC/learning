@@ -3,7 +3,7 @@
 **Prereqs:** none  
 **Next:** [index.md](index.md)
 
-Public teaching curriculum — fundamentals, bridge, concepts, tracks.
+Public teaching curriculum — orientation, fundamentals, bridge, concepts, tracks.
 
 See the repo root [README.md](../README.md) for clone / `mkdocs serve` instructions.
 

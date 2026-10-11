@@ -1,7 +1,7 @@
 # Bridge layer — how to use this section
 
-**Prereqs:** finish [Fundamentals](../index.md#1-fundamentals) (or the first six)  
-**Next:** work through the ordered list below, then [Concepts](../index.md#3-concepts)
+**Prereqs:** finish [Fundamentals](../index.md#2-fundamentals) (or the first six); [Orientation](../orientation/README.md) if you skipped the story  
+**Next:** work through the ordered list below, then [Concepts](../index.md#4-concepts)
 
 ## Why bridge exists
 

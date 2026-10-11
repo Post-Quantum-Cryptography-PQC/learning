@@ -1,6 +1,6 @@
 # Why cryptography?
 
-**Prereqs:** [How to read the math](reading-math-notation.md) (optional but recommended)  
+**Prereqs:** [Motivation](../orientation/motivation.md) (recommended) · [How to read the math](reading-math-notation.md) (optional)  
 **Next:** [Modular arithmetic](modular-arithmetic.md)
 
 **Learning goals.** After this page you can explain plaintext vs ciphertext, why keys matter more than secret recipes, name confidentiality vs authenticity, and tell symmetric from public-key at slogan level — slowly, with toys you can do on paper.

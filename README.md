@@ -10,7 +10,7 @@ Public teaching curriculum for **post-quantum cryptography**: fundamentals, brid
 - **Website**: https://post-quantum-cryptography-pqc.github.io/learning/
 - **Sibling (private)**: [pqc-learning-private](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private) — paper explainers and gap graphs
 - **Org profile / paper map**: [`.github`](https://github.com/Post-Quantum-Cryptography-PQC/.github)
-- **Parent lab**: [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) (consumes this tree as `learn/public` submodule)
+- **Parent lab**: [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) (consumes this tree as `share/public` submodule)
 - **License**: CC BY 4.0 (see `LICENSE`)
 
 ## Table of contents
@@ -26,6 +26,7 @@ Public teaching curriculum for **post-quantum cryptography**: fundamentals, brid
 
 | Area | What you get |
 |------|----------------|
+| Orientation | Motivation, history, problems, challenges (story before math) |
 | Fundamentals | 12 starter pages (notation, modular arithmetic, soft lattices, …) |
 | Bridge | 12 story-first pages closing the gap to PQC vocabulary (plus `bridge/README.md`) |
 | Concepts | 25 compact cards (LWE, KEM, NTT, ISD, …) |
@@ -63,12 +64,12 @@ git submodule update --init --recursive
 mkdocs serve
 ```
 
-To publish the website, mirror this tree to the Pages host [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) (from the parent lab: `bash learn/sync_learning_repos.sh`). GitHub Pages for free organizations must run on that public host so the URL remains https://post-quantum-cryptography-pqc.github.io/learning/.
+To publish the website, mirror this tree to the Pages host [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) (from the parent lab: `bash share/sync_learning_repos.sh`). GitHub Pages for free organizations must run on that public host so the URL remains https://post-quantum-cryptography-pqc.github.io/learning/.
 
 Refresh the paper map from the lab after updating [`docs/PAPERS.md`](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab/blob/main/docs/PAPERS.md):
 
 ```bash
-python3 learn/export_papers_catalog.py
+python3 share/export_papers_catalog.py
 ```
 
 ## Project layout

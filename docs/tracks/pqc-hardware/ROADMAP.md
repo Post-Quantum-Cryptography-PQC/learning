@@ -5,7 +5,7 @@
 
 Curated path from **digital intuition** to **reusable arithmetic / polynomial modules** to **KEM accelerator anatomy**. Theory lives on the [Lattice / LWE](../lattice-lwe/ROADMAP.md) track; this track teaches how those ideas show up as hardware blocks.
 
-**Lab split:** pedagogy is here under `learn/`. Faithful RTL, STA, and fairness audits stay under `projects/papers/` via `research-circuit-implementation` — not dumped into every concept card.
+**Lab split:** pedagogy is here under `share/`. Faithful RTL, STA, and fairness audits stay under `projects/papers/` via `research-circuit-implementation` — not dumped into every concept card.
 
 **IEEE flywheel:** new TCAS-II / circuit digests (`papers/.../analysis.md`) should expand **module** vocabulary here first; paper explainers hang as optional leaves after the matching concept exists.
 

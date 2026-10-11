@@ -1,6 +1,6 @@
 # Track: Rank metric
 
-**Prereqs:** [Fundamentals](../../index.md#1-fundamentals) · [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Linear codes](../../concepts/linear-codes.md)  
+**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) · [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Linear codes](../../concepts/linear-codes.md)  
 **Next:** [From Hamming to rank](../../bridge/from-hamming-to-rank.md) · [Code-based KEMs track](../code-based-kems/ROADMAP.md) · [index](../../index.md)
 
 Secondary curated path for rank-metric code-based PQC. Goal: leave the Hamming-only story with a clear metric change, then reach LRPC / rank syndrome decoding intuition before optional TIT leaves and lab WIP.
