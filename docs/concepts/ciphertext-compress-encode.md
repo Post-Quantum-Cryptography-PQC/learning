@@ -8,29 +8,14 @@
 
 ## The one idea
 
-Module-LWE objects are polynomials with coefficients mod $q$ (for Kyber-shaped schemes, $q$ is a few thousand).  
-Shipping every coefficient at full precision makes **public keys and ciphertexts large** [[2]](#ref-2).
+[[2]](#ref-2) opens with a primary drawback of lattice KEMs vs ECC: **larger public keys and ciphertexts**. A common compression method is dropping least-significant bits — but dropping too many raises the **decryption failure rate (DFR)**, which is a security concern [[2]](#ref-2).
 
-**Compress** = keep only a coarse sketch of each coefficient (fewer bits) [[1]](#ref-1) [[2]](#ref-2).  
-**Decompress** = inflate the sketch back to a value near the original [[1]](#ref-1).  
-**Encode** (here) often also means “turn message bits into $\mathbb{Z}_q$ symbols” or “pack bytes” — context matters [[2]](#ref-2).
+**Compress** / **Decompress** = that lossy coefficient sketch [[1]](#ref-1) [[2]](#ref-2).  
+**Encode** (in [[2]](#ref-2)’s ML-KEM sketch) = map message bits into $\mathbb{Z}_q$ before adding noise.
 
-Trade-off in one line [[2]](#ref-2):
+## Formulas from the papers
 
-> Fewer bits → smaller blobs → more rounding noise → higher risk of decryption failure ([DFR](dfr.md)).
-
-## Tiny compress toy
-
-Imagine $q=17$ and we keep only **2 bits** of sketch (values $0,1,2,3$).  
-Think of the circle $0..16$ cut into four bins; compress maps $x$ to a bin index; decompress returns a **center** of that bin.
-
-Moral (without memorizing Kyber tables):
-
-- Many different $x$ share one sketch.  
-- After decompress you are **close**, not exact [[1]](#ref-1).  
-- The scheme’s noise budget must absorb that extra fuzz **and** the LWE noise from [samplers](noise-samplers.md) [[2]](#ref-2).
-
-Kyber-family papers write essentially [[1]](#ref-1) [[2]](#ref-2):
+[[1]](#ref-1) and [[2]](#ref-2) both use the standard Kyber/ML-KEM maps (notation differs only slightly):
 
 $$
 \mathrm{Compress}_q(x,d)=\big\lfloor(2^d/q)\,x\big\rceil\bmod 2^d,
@@ -38,7 +23,10 @@ $$
 \mathrm{Decompress}_q(y,d)=\big\lfloor(q/2^d)\,y\big\rceil.
 $$
 
-Here $d$ is “how many bits we keep.” Larger $d$ → finer sketch → bigger ciphertext piece. ML-KEM uses concrete $(d_u,d_v)$ for the two ciphertext pieces [[2]](#ref-2).
+[[1]](#ref-1) states that after compress→decompress, $x'$ stays within about $B_q=\lfloor q/2^{d+1}\rceil$ of $x$ (centered mod $q$).  
+[[2]](#ref-2) likewise notes the (de)compression error is almost uniform in a small interval around $0$.
+
+**Teaching toy** (not a paper parameter): $q=17$, keep a 2-bit sketch — many $x$ share one bin; decompress returns a bin center; noise budgets must absorb that fuzz.
 
 ### Mid-page self-check
 
@@ -46,50 +34,56 @@ If I decrease $d$ (keep fewer bits), what happens to size and to failure risk?
 
 <details><summary>Answer</summary>
 
-Ciphertext/public material gets **smaller**; compression distortion grows, so **DFR risk tends to rise** unless something else compensates [[2]](#ref-2).
+[[2]](#ref-2): more aggressive dropping shrinks blobs but can make DFR noticeable / dangerous if taken too far.
 
 </details>
 
-## Where it sits in a KEM
+## ML-KEM parameters and encrypt sketch [[2]](#ref-2)
 
-Sketch of encaps (Module-LWE shaped) [[2]](#ref-2):
+[[2]](#ref-2) §3.1:
 
-1. Sample small secrets/errors ([noise samplers](noise-samplers.md)).  
-2. Form noisy polynomials / vectors.  
-3. **Encode** the message bits into large $\mathbb{Z}_q$ symbols (often bit $b\mapsto b\lceil q/2\rceil$).  
-4. **Compress** some polynomials to $d_u$ / $d_v$ bits and ship them as the ciphertext.
+- Public parameters include $k$, $\eta_1$, $\eta_2$, $d_u$, $d_v$.  
+- $\eta_1,\eta_2$ select centered-binomial widths for small coefficients.  
+- $d_u,d_v$ are the bit widths used to compress the two ciphertext pieces.  
 
-Decaps decompresses, cancels with the secret, and rounds back to message bits — if total noise stayed small enough [[2]](#ref-2).
+Encryption sketch in the same section:
 
-## Built-in compress vs extra ECC
+1. Sample small $\mathbf{r},\mathbf{e}_1,e_2$ from the $\mathcal{B}_\eta$ laws.  
+2. Form $\mathbf{u}$ and $z$ with Module-LWE-style arithmetic.  
+3. $\mathrm{Encode}(b)=b\lceil q/2\rceil$ for each message bit; set $v=\mathrm{Encode}(m)+z$.  
+4. $\mathbf{c}_u=\mathrm{Compress}(\mathbf{u},d_u)$, $c_v=\mathrm{Compress}(v,d_v)$.  
 
-| Tool | Job |
-|------|-----|
-| **Built-in Compress$_q$** [[1]](#ref-1) [[2]](#ref-2) | Drop precision inside the standard scheme |
-| **Extra ECC** (e.g. Minal / tailorable codes) [[2]](#ref-2) | Add coding so you can shrink further while chasing the same DFR targets |
+Decryption decompresses, cancels with the secret, and faces residual noise $\Delta m$ that determines failures [[2]](#ref-2).
 
-Both care about size vs failures. Extra ECC is **not** “just another name for Compress.” It is an additional coding layer [[2]](#ref-2); learn [error-correcting codes](error-correcting-codes.md) before those leaves.
+## Built-in compress vs Minal (extra ECC)
+
+| Tool | What [[2]](#ref-2) claims |
+|------|---------------------------|
+| Built-in Compress | Drop coefficient bits via $d_u,d_v$ |
+| **Minal codes** | A family of higher-dimensional ECC tailored to lattice noise; can yield ~4–8% shorter ciphertexts (or ~8% shorter public keys) while chasing ML-KEM DFR targets, without changing core $n,q$ so NTT stays usable |
+
+Extra ECC is **not** “another name for Compress” [[2]](#ref-2). Learn [error-correcting codes](error-correcting-codes.md) before those leaves.
 
 ## Hardware and masking hooks
 
-Accelerators include a **compress/encode** block next to NTT and hash ([anatomy](kem-accelerator-anatomy.md)).  
-Under [masking](masking-shares.md), Compress’s bit decisions need shared gadgets — a common research cliff in [[1]](#ref-1).
+[[1]](#ref-1) shows why Compress matters under SCA: masked CCA decapsulation needs **masked one-bit Compress** and masked comparison gadgets ([masking shares](masking-shares.md)).  
+Accelerator block diagrams in this curriculum place compress/encode next to NTT/hash ([anatomy](kem-accelerator-anatomy.md)) — that map is pedagogical; the Compress math itself is from [[1]](#ref-1) [[2]](#ref-2).
 
 ## Check yourself
 
-1. Why compress at all?  
+1. Write Compress/Decompress as in [[1]](#ref-1)/[[2]](#ref-2).  
 <details><summary>Answer</summary>
-To shrink public keys / ciphertexts by storing fewer bits per coefficient [[2]](#ref-2).
+$\lfloor(2^d/q)x\rceil\bmod 2^d$ and $\lfloor(q/2^d)y\rceil$.
 </details>
 
-2. What must still work after decompress + LWE noise?  
+2. What do $d_u,d_v$ control in [[2]](#ref-2)?  
 <details><summary>Answer</summary>
-Rounding back to the correct message with only rare failures (DFR story) [[2]](#ref-2).
+Bit widths for compressing the two ciphertext components.
 </details>
 
-3. True or false: adding Minal-style codes is identical to increasing $d$.  
+3. Do Minal codes require changing Kyber’s $n$ or $q$ according to [[2]](#ref-2)?  
 <details><summary>Answer</summary>
-False — extra ECC is a different mechanism from choosing compress bit-width $d$ [[2]](#ref-2).
+No — that paper emphasizes keeping core parameters so NTT multiplication remains.
 </details>
 
 ## Next steps
@@ -100,6 +94,6 @@ False — extra ECC is a different mechanism from choosing compress bit-width $d
 
 ## References
 
-<a id="ref-1"></a>[1] J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214).
+<a id="ref-1"></a>[1] J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 Compress/Decompress; §3.1 masked one-bit Compress)
 
-<a id="ref-2"></a>[2] T. B. Paiva, M. A. Simplicio Jr., S. M. Hafiz, B. Yildiz, E. L. Cominetti, and H. S. Ogawa, “Tailorable codes for lattice-based KEMs with applications to compact ML-KEM instantiations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2025, no. 3, pp. 139–163, 2025, doi: [10.46586/tches.v2025.i3.139-163](https://doi.org/10.46586/tches.v2025.i3.139-163).
+<a id="ref-2"></a>[2] T. B. Paiva, M. A. Simplicio Jr., S. M. Hafiz, B. Yildiz, E. L. Cominetti, and H. S. Ogawa, “Tailorable codes for lattice-based KEMs with applications to compact ML-KEM instantiations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2025, no. 3, pp. 139–163, 2025, doi: [10.46586/tches.v2025.i3.139-163](https://doi.org/10.46586/tches.v2025.i3.139-163). (§1 size/DFR; §2–§3 Compress/Encode/$d_u$/$d_v$; §4 Minal)

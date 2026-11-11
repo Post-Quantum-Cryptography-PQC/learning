@@ -8,29 +8,26 @@
 ## The one idea
 
 [LWE](../concepts/lwe.md) / Module-LWE security talks about an adversary who sees **public keys and ciphertexts**.  
-A lab adversary with an oscilloscope might also see **how the silicon behaves while computing** — power wiggles, EM whispers, timing hiccups [[1]](#ref-1).
-
-That extra information is a **side channel**.  
-Correct math + leaky implementation can still lose the key [[1]](#ref-1).
+[[1]](#ref-1) stresses that during migration to ML-KEM/Kyber one must also assess **physical** attacks — especially side-channel attacks (SCAs) and fault injection attacks (FIAs).
 
 **This page is a threat-model postcard**, not an attack tutorial.
 
 ## Two different “breaks”
 
-| Kind | Adversary sees… | Defended by… |
-|------|-----------------|--------------|
-| **Cryptanalysis** | Public math objects | Hard problems, parameters, proofs |
-| **Side-channel (SCA)** | Physical measurements of a run | Constant-time care, masking, hiding/shuffling, … [[1]](#ref-1) [[2]](#ref-2) |
+[[1]](#ref-1) separates:
 
-A cousin threat is **fault injection** (poke the chip mid-computation). Many SCA papers leave faults to separate work — keep the buckets distinct [[1]](#ref-1).
+| Kind | What [[1]](#ref-1) says | Typical defenses named there |
+|------|-------------------------|------------------------------|
+| **SCA** | Recover keys from **power consumption or electromagnetic emanations** | Hiding or masking |
+| **FIA** | Recover keys by **introducing faults** during operation | Error detection |
 
-### Everyday pictures
+Curriculum slogan: correct math + leaky implementation can still lose the key.
 
-- **Timing** — a secret-dependent branch takes longer.  
-- **Power** — current draw correlates with bit flips in a register [[1]](#ref-1).  
-- **EM** — related wiggles radiate off the package [[1]](#ref-1).
+### Everyday pictures (aligned with [[1]](#ref-1))
 
-You do not need lab setup details here — only the moral: **implementation is part of the security story**.
+- **Power** — consumption correlates with computation.  
+- **EM** — emanations off the device.  
+- **Timing** — not the focus of [[1]](#ref-1)’s Kyber FPGA eval, but constant-time claims appear elsewhere (e.g. [[3]](#ref-3)).
 
 ### Mid-page self-check
 
@@ -38,57 +35,64 @@ MLWE is believed hard. Does that alone make a Kyber FPGA safe on the lab bench?
 
 <details><summary>Answer</summary>
 
-No. Hardness of the math problem does not stop leakage from power/EM/timing of a concrete implementation [[1]](#ref-1).
+No. [[1]](#ref-1) treats SCA/FIA on implementations as a separate concern from choosing Kyber as a KEM.
 
 </details>
 
 ## Why Kyber decrypt gets special attention
 
-Decrypt uses the **long-term secret**. Rough sketch [[1]](#ref-1):
+[[1]](#ref-1) notes that secret-key leakage points concentrate in Kyber’s **decryption** path, which includes NTT, point-wise multiplication (PWM), INTT, subtraction, and compress.  
+Following the hardware leakage points they adopt (citing Zhao *et al.* inside [[1]](#ref-1)), three spots are:
 
-> take ciphertext pieces → NTT / multiply by secret → INTT → subtract → compress to message bits.
+1. **PWM**  
+2. **Modular reduction after PWM**  
+3. **Subtraction after INTT**  
 
-HW papers often highlight sensitive spots along that path — for example point-wise multiply (PWM), modular reduction after PWM, and subtraction after INTT [[1]](#ref-1). Pedagogy moral:
+They also shuffle INTT butterflies because INTT has been attacked in software settings [[1]](#ref-1).
 
-> Ask *which operations touch the secret*, not “is the whole chip equally risky?”
+Pedagogy moral: ask *which operations touch the secret*, not “is the whole chip equally risky?”
 
-## What “evaluation” means in those papers
+## What “evaluation” means in [[1]](#ref-1)
 
-You will see names like **CPA** (correlation-style power analysis) or **TVLA** (statistical leakage tests) [[1]](#ref-1).  
-Read them as: “Did our countermeasure make traces look less secret-dependent *in this experiment*?”  
-Trace counts are paper-specific — not a warranty for every board.
+[[1]](#ref-1) evaluates with:
 
-Formal share security often uses a **$t$-probing** model (up to $t$ intermediate probes) [[2]](#ref-2); treat that as the math cousin of lab traces.
+- **CPA** (correlation power analysis) on PWM (Hamming-distance style energy model on multiplier-output registers),  
+- **TVLA** (Welch $t$-test) on the decryption procedure,  
+- using **EM traces** on an Artix-7 board for Kyber768.
 
-## Two defender slogans (next cards)
+Read those results as evidence **in that experiment**, not a universal warranty.
 
-| Slogan | Idea | Next |
-|--------|------|------|
-| **Masking** [[2]](#ref-2) | Split secret values into random shares | [Masking shares](../concepts/masking-shares.md) |
-| **Hiding / shuffling** [[1]](#ref-1) | Randomize *when* or *in what order* ops run | Mentioned on HW track leaves |
+Separately, masked-software work argues about share security in the **$t$-probing** model and $t$-(S)NI gadget composition [[2]](#ref-2).
 
-Also: avoid secret-dependent branches and memory indices (**constant-time** discipline). Constant-time helps timing; it does **not** by itself stop all power/EM leakage — some designs explicitly leave DPA/fault countermeasures as future work [[3]](#ref-3).
+## Two defender slogans
+
+| Slogan | As discussed in the cited papers | Next |
+|--------|----------------------------------|------|
+| **Masking** | Split sensitive values into shares; [[1]](#ref-1) names masking as an SCA countermeasure; [[2]](#ref-2) builds full masked Kyber gadgets | [Masking shares](../concepts/masking-shares.md) |
+| **Hiding / shuffling** | Randomize order of leaky sub-operations; [[1]](#ref-1) is a HW shuffling design | HW track leaves |
+
+[[3]](#ref-3) states their RBLWE poly-mul/accelerator is **constant-time** (timing), but that **DPA and fault** countermeasures are **not** installed and are left as future work.
 
 ## Bridge to honest HW reading
 
-[Area–time–power tables](area-time-power-honesty.md) compare speed and area.  
-An unprotected design can look “better” on ATP while failing SCA checks [[1]](#ref-1). Read both stories.
+[[1]](#ref-1) reports their protected design increases ATP by about **8.7%** vs the unprotected baseline while improving SCA resistance in their CPA/TVLA tests.  
+[Area–time–power honesty](area-time-power-honesty.md): do not read ATP alone without the SCA story.
 
 ## Check yourself
 
-1. Name two side channels.  
+1. Name the two physical attack families [[1]](#ref-1) highlights beside math migration.  
 <details><summary>Answer</summary>
-Any two of timing, power, EM [[1]](#ref-1).
+SCA and FIA.
 </details>
 
-2. Masking vs shuffling — one phrase each.  
+2. Name the three decrypt leakage points listed in [[1]](#ref-1).  
 <details><summary>Answer</summary>
-Masking randomizes values via shares [[2]](#ref-2); shuffling/hiding randomizes order/timing of operations [[1]](#ref-1).
+PWM; modular reduction after PWM; subtraction after INTT.
 </details>
 
-3. True or false: “TVLA clean on our FPGA” equals a proof of IND-CCA.  
+3. What does [[3]](#ref-3) claim about DPA?  
 <details><summary>Answer</summary>
-False — experimental leakage evidence ≠ public-key security proof [[1]](#ref-1).
+Constant timing helps regular timing attacks; DPA/fault need countermeasures they did not include yet.
 </details>
 
 ## Next steps

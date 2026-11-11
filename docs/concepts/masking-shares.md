@@ -8,37 +8,36 @@
 
 ## The one idea
 
-From the [SCA bridge](../bridge/side-channel-threat-model.md): power/EM might correlate with a sensitive value $x$ sitting in a register.  
-**Masking** answers: never leave $x$ alone in the clear. Split it into random **shares** that only rebuild $x$ when combined [[1]](#ref-1).
+[[1]](#ref-1) introduces masking as splitting a sensitive variable into multiple shares and transforming the circuit so those shared values are processed securely (argued in the $t$-probing model).
 
-| Clear | Masked |
+| Clear | Masked (per [[1]](#ref-1)) |
 |-------|--------|
-| One register holds $x$ | Several registers hold random-looking pieces |
-| Leakage may track $x$ | Each piece alone should look like noise |
+| One value $x$ | An $n_s$-tuple of shares $x^{(\cdot)}$ |
+| Leakage may track $x$ | Security notions require tuples of intermediates not to reveal the secret |
 
-Masking hardens the **implementation**. It does **not** change Module-LWE itself [[1]](#ref-1).
+Masking hardens the **implementation**. It does **not** replace Module-LWE as the hardness assumption [[1]](#ref-1).
 
 ## Toy 1 — boolean shares (XOR world)
 
-Secret bit or bit-string $x$. Boolean sharing combines shares with XOR [[1]](#ref-1):
+[[1]](#ref-1) denotes a Boolean encoding $x^{(\cdot)B}$ of $x\in\mathbb{Z}_2^k$ by shares satisfying
 
-1. Pick a fresh random $x_1$ (same shape as $x$).  
-2. Set $x_2 = x \oplus x_1$.  
-3. Store $(x_1,x_2)$. Recover with $x = x_1 \oplus x_2$.
+$$
+x^{(0)B}\oplus\cdots\oplus x^{(n_s-1)B}=x.
+$$
 
-**Example:** $x=1$, pick $x_1=0$ → $x_2=1$.  
-Alone, $0$ and $1$ are just bits; together they rebuild $1$.
+**Two-share teaching toy:** pick random $x_1$, set $x_2=x\oplus x_1$, recover $x=x_1\oplus x_2$.  
+Example: $x=1$, $x_1=0$ → $x_2=1$.
 
 ## Toy 2 — arithmetic shares (mod $q$ world)
 
-Lattice coefficients live in $\mathbb{Z}_q$, so addition fits better than XOR. Arithmetic sharing sums shares mod $q$ [[1]](#ref-1):
+[[1]](#ref-1) denotes an arithmetic encoding $x^{(\cdot)A}$ of $x\in\mathbb{Z}_q$ by shares satisfying
 
-1. Pick random $x_1 \bmod q$.  
-2. Set $x_2 \equiv x - x_1 \pmod{q}$.  
-3. Recover $x \equiv x_1 + x_2 \pmod{q}$.
+$$
+x^{(0)A}+\cdots+x^{(n_s-1)A}\equiv x\pmod{q}.
+$$
 
-**Example:** $q=7$, $x=5$. Pick $x_1=2$ → $x_2\equiv 5-2=3$.  
-Check: $2+3=5$. Each of $2$ and $3$ alone is uninformative without the pair.
+**Two-share teaching toy:** pick random $x_1\bmod q$, set $x_2\equiv x-x_1\pmod{q}$.  
+Example: $q=7$, $x=5$, $x_1=2$ → $x_2=3$.
 
 ### Mid-page self-check
 
@@ -46,56 +45,56 @@ If I publish only one arithmetic share $x_1$, have I published $x$?
 
 <details><summary>Answer</summary>
 
-No. One share is designed to look random; you need (enough of) the other shares to rebuild $x$ [[1]](#ref-1).
+No. [[1]](#ref-1)’s sharing is built so individual shares alone are not the secret; you need the combine rule over the share tuple.
 
 </details>
 
 ## “Order” in one sentence
 
-**First-order** masking often means a two-share split.  
-**Higher-order** means more shares, aiming at adversaries who combine leakage from several places — and it costs more randomness and logic [[1]](#ref-1). You can treat “order” as a **cost dial**, not something to prove here. Security arguments often use $t$-probing / $t$-(S)NI gadget composition [[1]](#ref-1).
+[[1]](#ref-1) targets **first- and higher-order** masked Kyber: more shares / higher $t$ in the probing model, with $t$-NI / $t$-SNI used to reason about composing gadgets. Treat “order” as a **cost dial** here; the proofs live in that paper.
 
 ## Why Compress becomes a research topic
 
-Kyber needs $\mathrm{Compress}_q$ to turn coefficients into fewer bits (message bits or packed ciphertext) — see [compress / encode](ciphertext-compress-encode.md).  
-That decision is naturally **bit-ish**, while LWE math is **mod $q$**. Under masking you typically [[1]](#ref-1):
+[[1]](#ref-1) defines Kyber’s
 
-1. Keep coefficients in **arithmetic** shares while doing poly arithmetic.  
-2. Convert (**A2B**) when you need bit operations.  
-3. Compute a **masked** version of Compress / compare so intermediates stay shared.
+$$
+\mathrm{Compress}_q(x,d)=\big\lfloor(2^d/q)\,x\big\rceil\bmod 2^d
+$$
 
-If any step peeks at the clear secret, the masking story collapses. That is why [[1]](#ref-1) builds masked one-bit Compress and masked decompressed-comparison gadgets for FO decapsulation.
+(and matching $\mathrm{Decompress}_q$). For CCA decapsulation they must mask secret-derived modules, and they highlight **masked one-bit Compress** (arithmetic shares → A2B → bitsliced bit formula) and **masked decompressed comparison** [[1]](#ref-1).
+
+Teaching moral: Compress is bit-oriented while poly arithmetic is mod $q$, so masking needs conversions and dedicated gadgets — otherwise a clear intermediate reappears.
 
 ## Masking vs shuffling (do not merge)
+
+[[2]](#ref-2) treats **hiding/shuffling** as an SCA countermeasure that randomizes operation order, while [[1]](#ref-1) develops **masking** via shares:
 
 | | Masking [[1]](#ref-1) | Shuffling / hiding [[2]](#ref-2) |
 |--|---------|---------------------|
 | Randomizes | **Values** (shares) | **Order / timing** of ops |
-| Feels like | Split the cookie | Shuffle the recipe steps |
-
-Both are SCA countermeasures; different tools [[2]](#ref-2).
+| Example in corpus | Masked Kyber Compress/compare gadgets | HW Fisher–Yates-style shuffle of Kyber decrypt leakage points |
 
 ## Common confusions
 
 - Masking ≠ IND-CCA proof [[1]](#ref-1).  
-- “We masked the NTT” still needs the rest of FO/decapsulation to be careful [[1]](#ref-1).  
-- More shares ≠ automatically “unbreakable” — engineering and models matter (paper-level detail).
+- Masking the NTT alone is not enough if FO/decapsulation still leaks elsewhere [[1]](#ref-1).  
+- More shares ≠ automatically “unbreakable.”
 
 ## Check yourself
 
-1. Give boolean shares for $x=0$ with your choice of $x_1$.  
+1. Write the Boolean combine equation from [[1]](#ref-1).  
 <details><summary>Answer</summary>
-Any $x_1$; $x_2=0\oplus x_1=x_1$. Example $x_1=1$, $x_2=1$.
+XOR of all Boolean shares equals $x$.
 </details>
 
-2. For $q=5$, $x=4$, $x_1=3$, what is $x_2$?  
+2. Write the arithmetic combine equation from [[1]](#ref-1).  
 <details><summary>Answer</summary>
-$x_2\equiv 4-3=1\pmod{5}$.
+Sum of arithmetic shares $\equiv x\pmod{q}$.
 </details>
 
-3. Why convert arithmetic → boolean around Compress?  
+3. Name the two “green” modules [[1]](#ref-1) focuses on before full FO masking.  
 <details><summary>Answer</summary>
-Compress’s decision is bit-oriented; arithmetic shares suit $\mathbb{Z}_q$ add/mul first [[1]](#ref-1).
+Masked one-bit $\mathrm{Compress}_q$ and masked DecompressedComparison.
 </details>
 
 ## Next steps
