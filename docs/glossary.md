@@ -73,7 +73,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | Term | Plain meaning | See |
 |------|---------------|-----|
 | **Parity-check matrix $H$** | Checklist of linear constraints; syndrome fingerprint | [Generator and parity-check](bridge/generator-and-parity-check.md) |
-| <a id="pkc"></a>**PKC** | Public-key cryptography: strangers use your **published** key to encrypt to you (or check your signature); only you hold the matching **secret** key. *Classical* PKC here means RSA / Diffie–Hellman / ECC (pre-PQC) | [Public-key picture](fundamentals/public-key-picture.md) · [History](orientation/history.md) |
+| <a id="pkc"></a>**PKC** | Public-key cryptography: a related **public** key (share freely) and **private** key (keep secret). Depending on the scheme, the public side supports encryption, signature verification, or key agreement — e.g. RSA (encrypt / sign), Diffie–Hellman (shared secret only), ECC (ECDH / ECDSA, …). *Classical* PKC is this pre-PQC toolkit; Shor’s algorithm is a main reason to migrate | [Public-key picture](fundamentals/public-key-picture.md) · [History](orientation/history.md) · [Motivation](orientation/motivation.md) |
 | **Plaintext** | Readable message before encryption | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Poly-mul engine** | Schoolbook / Karatsuba / NTT organization for polynomial multiply | [Poly-mul engines](concepts/poly-mul-engines.md) |
 | **Public / secret key** | Publishable padlock vs private opener | [Public-key picture](fundamentals/public-key-picture.md) |
