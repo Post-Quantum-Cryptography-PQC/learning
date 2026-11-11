@@ -1,55 +1,62 @@
 # Track: Rank metric
 
-**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) · [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Linear codes](../../concepts/linear-codes.md)  
-**Next:** [From Hamming to rank](../../bridge/from-hamming-to-rank.md) · [Code-based KEMs track](../code-based-kems/ROADMAP.md) · [index](../../index.md)
+**Prereqs:** [Code-based KEMs](../code-based-kems/ROADMAP.md) Stage 1 (or [Linear codes](../../concepts/linear-codes.md) + [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md))  
+**Next:** [From Hamming to rank](../../bridge/from-hamming-to-rank.md) · [Code-based KEMs](../code-based-kems/ROADMAP.md) · [index](../../index.md)  
+**Tracks:** rank-metric
 
-Secondary curated path for rank-metric code-based PQC. Goal: leave the Hamming-only story with a clear metric change, then reach LRPC / rank syndrome decoding intuition before optional TIT leaves and lab WIP.
+## Who / outcomes
+
+After this track you can:
+
+- Say how **rank distance** differs from Hamming weight.  
+- Place LRPC and rank syndrome decoding next to the Hamming code-based path.  
+- Open curated extracts that touch MinRank / rank-shaped hardness (full LRPC TIT `paper.md` still pending).
 
 ## How to use
 
-1. Finish shared **Fundamentals** (especially vectors / matrices and polynomials).  
-2. On the main bridge, at least reach [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) and [Linear codes](../../concepts/linear-codes.md).  
-3. Walk this track’s **bridge + concepts** below.  
-4. Optional: TIT / ePrint explainers when added via `research-pqc-learn`.  
-5. Frontier: lab WIP under `projects/wip/` (ideal blockwise LRPC, related cryptanalysis) — research, not default curriculum.
+1. Enter from the **code-based** track after Hamming syndrome decoding feels solid — not from lattice / hash / MQ / isogeny.  
+2. Walk Stages 1–2.  
+3. Paper leaves are sparse until more `paper.md` extracts land for LRPC TIT digests.
 
-## Core path
-
-### A. Shared entry
+## Shared entry
 
 1. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md)  
 2. [Linear codes](../../concepts/linear-codes.md)  
-3. (Helpful) [Syndrome decoding](../../concepts/syndrome-decoding.md) — Hamming twin for contrast  
+3. [Syndrome decoding](../../concepts/syndrome-decoding.md) — Hamming twin for contrast  
+4. Helpful: [Vectors and matrices](../../fundamentals/vectors-matrices.md)
 
-### B. Rank bridge
+## Stages
 
-4. [From Hamming to rank](../../bridge/from-hamming-to-rank.md)  
+### Stage 1 — Metric change
 
-### C. Rank concepts
+1. [From Hamming to rank](../../bridge/from-hamming-to-rank.md)
 
-5. [Rank metric](../../concepts/rank-metric.md)  
-6. [LRPC codes](../../concepts/lrpc-codes.md)  
-7. [Rank syndrome decoding](../../concepts/rank-syndrome-decoding.md)  
+**Checkpoint:** Replace “number of nonzero positions” with what matrix idea?
 
-### D. Papers (optional leaves — no explainers required yet)
+### Stage 2 — Rank concepts
 
-Prefer digested `papers/tit-pqc/` rank / LRPC papers when expanding with `research-pqc-learn` (e.g. blockwise rank decoding). Keep them as leaves until must-prereqs above are solid.
+1. [Rank metric](../../concepts/rank-metric.md)  
+2. [LRPC codes](../../concepts/lrpc-codes.md)  
+3. [Rank syndrome decoding](../../concepts/rank-syndrome-decoding.md)
 
-### E. Frontier / gaps
+**Checkpoint:** What does “low-rank parity-check” buy the decoder that a random code would not?
 
-- Lab WIP: ideal blockwise LRPC / related projects under `projects/wip/`  
-- Research gaps ledger stays in [gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml) (scientific opens), not pedagogy holes  
+## Paper leaves
 
-## Mindmap (textual)
+| Title (short) | Extract | Status |
+|---------------|---------|--------|
+| MiRitH (MinRank in the head signatures) | `papers/tches-pqc/mirith-efficient-post-quantum-signatures-from-minrank-in-the-head/paper.md` | extract only |
 
-```
-shared fundamentals + F_q + linear codes
-                 ↓
-     bridge: Hamming distance → rank distance
-                 ↓
-     concepts: rank metric → LRPC → rank SD
-                 ↓
-     optional TIT leaves / lab WIP cryptanalysis
-```
+**Pending `paper.md` (do not list as leaves yet):** TIT LRPC digests under `papers/tit-pqc/blockwise-rank-decoding-problem-and-lrpc-codes-cryptosystems-with-smaller-sizes/` and `papers/tit-pqc/improved-decoding-algorithm-of-bd-lrpc-codes/` (analysis only). Run `research-paper-extract` before promoting.
 
-Return anytime to the Hamming [code-based KEMs](../code-based-kems/ROADMAP.md) track.
+## Course map (inspiration)
+
+| Source | Theme | This track |
+|--------|--------|------------|
+| Code-based Stage 1 | Hamming SD | Shared entry |
+| Rank bridge / concepts | Metric change | Stages 1–2 |
+
+## Cross-track forks
+
+- Return: [Code-based KEMs](../code-based-kems/ROADMAP.md)  
+- Not linked from lattice / hash / multivariate / isogeny (wrong metric family)

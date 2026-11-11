@@ -1,99 +1,86 @@
 # Track: Code-based KEMs
 
-**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) · [Bridge](../../bridge/README.md)  
-**Next:** [McEliece–Niederreiter equivalence](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md) · [Gaps](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml)
+**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) · [Bridge overview](../../bridge/README.md)  
+**Next:** [From bits to codes](../../bridge/from-bits-to-codes.md) · [Rank metric](../rank-metric/ROADMAP.md) · [Gaps](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml)  
+**Tracks:** code-based-kems
 
-Primary curated path for this lab’s learning curriculum. Goal: take a motivated beginner from fundamentals through **TIT** code-based papers, then optional ePrint leaves.
+## Who / outcomes
+
+After this track you can:
+
+- Tell the McEliece story from generator / parity-check intuition.  
+- Place QC-MDPC / HQC-shaped KEMs next to DFR and independence heuristics.  
+- Read curated TIT explainers with matching `paper.md` (or labeled private explainer) grounding.  
+- Fork to **rank metric** (Hamming → rank) or later **code HW** leaves on the hardware track.
 
 ## How to use
 
-1. Finish the **Fundamentals** block (or skim if you already know it).  
-2. Walk the **Bridge** block (long explainers — do not skip if new to coding theory).  
-3. Walk **Concepts** in order (compact vocabulary).  
-4. Read the **TIT** paper explainers in order (core path).  
-5. Optional: ePrint modelling leaf (2025/018).  
-6. Skim **Gaps** for open questions.  
-7. More leaves: `docs/PAPERS.md` with tag `code-based-cryptosystem` — prefer `papers/tit-pqc/` when adding explainers via `research-pqc-learn`.
+1. Shared entry (essentials only — full fundamentals list is on [Home](../../index.md)).  
+2. Stages 1–4 in order.  
+3. TIT / ePrint leaves after Stage 3.  
+4. Optional: [Rank metric](../rank-metric/ROADMAP.md); hardware family leaves later on [PQC hardware](../pqc-hardware/ROADMAP.md).
 
-## Core path
+## Shared entry
 
-### A. Fundamentals
+1. [Bits, XOR, randomness](../../fundamentals/bits-xor-randomness.md)  
+2. [Vectors and matrices](../../fundamentals/vectors-matrices.md)  
+3. [Polynomials — Part A](../../fundamentals/polynomials-gentle.md) · [Part B](../../fundamentals/polynomials-wraparound.md)  
+4. [Hard problems](../../fundamentals/hard-problems.md) · [Public-key picture](../../fundamentals/public-key-picture.md)  
+5. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Security bits](../../bridge/security-bits-and-work.md)
 
-0. [How to read the math](../../fundamentals/reading-math-notation.md)  
-1. [Why cryptography?](../../fundamentals/why-cryptography.md)  
-2. [Modular arithmetic](../../fundamentals/modular-arithmetic.md)  
-3. [Bits, XOR, and randomness](../../fundamentals/bits-xor-randomness.md)  
-4. [Probability (gentle)](../../fundamentals/probability-gentle.md)  
-5. [Hard problems](../../fundamentals/hard-problems.md)  
-6. [Public-key picture](../../fundamentals/public-key-picture.md)  
-7. [Vectors and matrices](../../fundamentals/vectors-matrices.md)  
-8. [Polynomials (gentle) — Part A](../../fundamentals/polynomials-gentle.md)  
-8b. [Polynomial wrap-around — Part B](../../fundamentals/polynomials-wraparound.md)  
-9. [Quantum threat](../../fundamentals/quantum-threat.md)  
+## Stages
 
-### B. Bridge (close the gap)
+### Stage 1 — Codes bridge (Intro ch. 11)
 
-10. [Bridge overview](../../bridge/README.md)  
-11. [From bits to codes](../../bridge/from-bits-to-codes.md)  
-12. [Noisy channel story](../../bridge/noisy-channel-story.md)  
-13. [Generator and parity-check](../../bridge/generator-and-parity-check.md)  
-14. [Decoding as a puzzle](../../bridge/decoding-as-a-puzzle.md)  
-15. [McEliece in plain words](../../bridge/mceliece-in-plain-words.md)  
-16. [From KEM API to noise](../../bridge/from-kem-api-to-noise.md)  
-17. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md)  
-18. [Security bits and attack work](../../bridge/security-bits-and-work.md)  
+1. [From bits to codes](../../bridge/from-bits-to-codes.md)  
+2. [Noisy channel story](../../bridge/noisy-channel-story.md)  
+3. [Generator and parity-check](../../bridge/generator-and-parity-check.md)  
+4. [Decoding as a puzzle](../../bridge/decoding-as-a-puzzle.md)  
+5. Concepts: [Error-correcting codes](../../concepts/error-correcting-codes.md) · [Hamming metric](../../concepts/hamming-metric.md) · [Linear codes](../../concepts/linear-codes.md) · [Syndrome decoding](../../concepts/syndrome-decoding.md)
 
-### C. Concepts
+**Checkpoint:** What is a syndrome, in one plain sentence?
 
-19. [Error-correcting codes](../../concepts/error-correcting-codes.md)  
-20. [Hamming metric](../../concepts/hamming-metric.md)  
-21. [Linear codes](../../concepts/linear-codes.md)  
-22. [Syndrome decoding](../../concepts/syndrome-decoding.md)  
-23. [Information-set decoding](../../concepts/information-set-decoding.md)  
-24. [Goppa and alternant](../../concepts/goppa-alternant.md)  
-25. [Niederreiter](../../concepts/niederreiter.md)  
-26. [Quasi-cyclic codes](../../concepts/quasi-cyclic-codes.md)  
-27. [MDPC and QC-MDPC](../../concepts/mdpc-qc-mdpc.md)  
-28. [Bit-flipping decoding](../../concepts/bit-flipping-decoding.md)  
-29. [KEM](../../concepts/kem.md)  
-30. [IND-CPA / IND-CCA](../../concepts/ind-cpa-cca.md)  
-31. [DFR](../../concepts/dfr.md)  
-32. [Independence heuristics](../../concepts/independence-heuristics.md)  
-33. [KL divergence](../../concepts/kl-divergence.md)  
+### Stage 2 — McEliece intuition (Intro ch. 12)
 
-### D. Papers — TIT core (beginner explainers)
+1. [McEliece in plain words](../../bridge/mceliece-in-plain-words.md)  
+2. [Goppa and alternant](../../concepts/goppa-alternant.md) · [Niederreiter](../../concepts/niederreiter.md) · [ISD](../../concepts/information-set-decoding.md)
 
-34. [TIT — McEliece ↔ Niederreiter equivalence](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
-35. [TIT — Ouroboros KEM family](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/ouroboros-an-efficient-and-provably-secure-kem-family/explainer.md)  
-36. [TIT — QC-MDPC reaction attack](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md)  
+**Checkpoint:** What is hidden in the public key vs what the legitimate owner still knows?
 
-### E. Papers — optional ePrint leaf
+### Stage 3 — QC-MDPC / KEM / DFR (Intro ch. 13–14)
 
-37. [ePrint 2025/018 — Independence assumption in QC code-based crypto](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md)  
+1. [From KEM API to noise](../../bridge/from-kem-api-to-noise.md)  
+2. [Quasi-cyclic codes](../../concepts/quasi-cyclic-codes.md) · [MDPC / QC-MDPC](../../concepts/mdpc-qc-mdpc.md) · [Bit-flipping](../../concepts/bit-flipping-decoding.md)  
+3. [KEM](../../concepts/kem.md) · [IND-CPA / CCA](../../concepts/ind-cpa-cca.md) · [DFR](../../concepts/dfr.md)  
+4. [Independence heuristics](../../concepts/independence-heuristics.md) · [KL divergence](../../concepts/kl-divergence.md)
 
-### F. Frontier / gaps
+**Checkpoint:** Why is decryption failure rate a security topic, not only a reliability topic?
 
-- [gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml)  
-- Lab WIP (research, not curriculum defaults): ideal blockwise LRPC / SSRS projects under `projects/wip/`
+### Stage 4 — Research leaves
 
-## Optional leaves (no explainer yet)
+Walk the paper table below (TIT core first).
 
-Prefer new explainers from `papers/tit-pqc/` (already digested). Add with `research-pqc-learn`.
+## Paper leaves
 
-## Mindmap (textual)
+| Title (short) | Extract / explainer | Status |
+|---------------|---------------------|--------|
+| McEliece ↔ Niederreiter equivalence | [Private explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md) · analysis at `papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/analysis.md` (`paper.md` not yet extracted) | private explainer |
+| Ouroboros KEM family | `papers/tit-pqc/ouroboros-an-efficient-and-provably-secure-kem-family/paper.md` · [explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/ouroboros-an-efficient-and-provably-secure-kem-family/explainer.md) | private explainer + extract |
+| QC-MDPC reaction attack | `papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/paper.md` · [explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md) | private explainer + extract |
+| High-rate McEliece distinguisher | `papers/tit-pqc/a-distinguisher-for-high-rate-mceliece-cryptosystems/paper.md` | extract only |
+| ePrint 2025/018 independence (QC) | [Private explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md) · `papers/eprint/2025-018/analysis.md` (`paper.md` not yet extracted) | private explainer |
 
-```
-fundamentals → bridge (codes, G/H, McEliece story, KEM↔noise)
-                              ↓
-                         concepts (compact)
-                              ↓
-                      quasi-cyclic + DFR + independence
-                              ↓
-     TIT: equivalence → Ouroboros → QC-MDPC reaction
-                              ↓
-              optional: 2025/018 audits independence (KL/TV)
-                              ↓
-                    open: modern ISD joint-W / CCA+DFR / unstructured ti
-```
+## Course map (PQC_HTML Intro — inspiration only)
 
-Machine-readable edges: [edges.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/edges.yaml).
+| Intro ch. | Theme | This track |
+|-----------|--------|------------|
+| 11 | Linear codes | Stage 1 |
+| 12 | McEliece | Stage 2 |
+| 13–14 | BIKE / HQC-shaped | Stage 3 |
+| — | TIT cryptanalysis | Stage 4 |
+
+## Cross-track forks
+
+- [Rank metric](../rank-metric/ROADMAP.md) — Hamming → rank (only from this family)  
+- [PQC hardware](../pqc-hardware/ROADMAP.md#family-hw-leaves-code-later) — code HW leaves deferred  
+- [Lattice / LWE](../lattice-lwe/ROADMAP.md) — parallel NIST KEM family

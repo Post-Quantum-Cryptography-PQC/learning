@@ -1,72 +1,89 @@
 # Track: Lattice / LWE
 
-**Prereqs:** [Fundamentals](../../index.md#2-fundamentals) (through vectors + modular arithmetic) · [Lattices (gentle)](../../fundamentals/lattices-gentle.md)  
-**Next:** [Noisy linear equations (LWE story)](../../bridge/noisy-linear-equations-lwe.md) · [PQC hardware track](../pqc-hardware/ROADMAP.md) · [Code-based KEMs track](../code-based-kems/ROADMAP.md) · [index](../../index.md)
+**Prereqs:** [Modular arithmetic](../../fundamentals/modular-arithmetic.md) · [Vectors](../../fundamentals/vectors-matrices.md) · [Probability](../../fundamentals/probability-gentle.md)  
+**Next:** [Lattices (gentle)](../../fundamentals/lattices-gentle.md) · [PQC hardware](../pqc-hardware/ROADMAP.md) · [index](../../index.md)  
+**Tracks:** lattice-lwe
 
-Secondary curated path for lattice-based PQC (ML-KEM / LWE-shaped schemes). Goal: leave the integer-grid picture, meet noisy modular equations, then Module-LWE vocabulary — before optional paper / hardware leaves.
+## Who / outcomes
+
+After this track you can:
+
+- Explain lattices and LWE as “noisy modular equations,” then Module-LWE as polynomial-vector LWE.  
+- Name what samplers, SHAKE/XOF, and Compress do in an ML-KEM-shaped story.  
+- Contrast KEM encaps with Dilithium’s Sign + rejection loop.  
+- Fork to the hardware track for NTT / SCA leaves grounded in `paper.md`.
 
 ## How to use
 
-1. Finish shared **Fundamentals** at least through [Modular arithmetic](../../fundamentals/modular-arithmetic.md), [Vectors](../../fundamentals/vectors-matrices.md), [Probability](../../fundamentals/probability-gentle.md), and [Hard problems](../../fundamentals/hard-problems.md).  
-2. Walk this track’s **lattice fundamental + LWE bridge + concepts** below.  
-3. Reuse shared concepts: [KEM](../../concepts/kem.md), [IND-CPA / CCA](../../concepts/ind-cpa-cca.md), [Security bits](../../bridge/security-bits-and-work.md).  
-4. Optional: TIT paper explainers when added via `research-pqc-learn`.  
-5. Hardware path: after Module-LWE, fork to [PQC hardware](../pqc-hardware/ROADMAP.md).  
-6. Code-based papers remain the densest TIT explainer path in this lab — use that track in parallel if you want research reading first.
+1. Shared entry below (skip what you already know).  
+2. Walk **Stages 1–4** in order; do each checkpoint.  
+3. Open **paper leaves** only after Stage 3 feels solid.  
+4. Hardware: Stage 5 → [PQC hardware](../pqc-hardware/ROADMAP.md) (lattice core).
 
-## Core path
-
-### A. Shared entry
+## Shared entry
 
 1. [Modular arithmetic](../../fundamentals/modular-arithmetic.md)  
 2. [Vectors and matrices](../../fundamentals/vectors-matrices.md)  
-3. [Polynomials (gentle) — Part A](../../fundamentals/polynomials-gentle.md) · [Part B wrap-around](../../fundamentals/polynomials-wraparound.md) — needed before Module-LWE  
-4. (Helpful) [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) — modulus / alphabet intuition  
+3. [Polynomials — Part A](../../fundamentals/polynomials-gentle.md) · [Part B wrap-around](../../fundamentals/polynomials-wraparound.md)  
+4. [Probability (gentle)](../../fundamentals/probability-gentle.md) · [Hard problems](../../fundamentals/hard-problems.md)  
+5. Helpful: [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Security bits](../../bridge/security-bits-and-work.md)
 
-### B. Lattice fundamental + bridge
+## Stages
 
-5. [Lattices (gentle)](../../fundamentals/lattices-gentle.md)  
-6. [Noisy linear equations (LWE story)](../../bridge/noisy-linear-equations-lwe.md)  
+### Stage 1 — Grids (Intro ch. 05)
 
-### C. Lattice concepts
+1. [Lattices (gentle)](../../fundamentals/lattices-gentle.md)
 
-7. [LWE](../../concepts/lwe.md)  
-8. [Module-LWE](../../concepts/module-lwe.md)  
-9. [Noise samplers](../../concepts/noise-samplers.md) · [Hash / XOF](../../concepts/hash-xof-keccak.md) · [Ciphertext compress / encode](../../concepts/ciphertext-compress-encode.md)  
-10. Shared: [KEM](../../concepts/kem.md) · [IND-CPA / CCA](../../concepts/ind-cpa-cca.md)  
-11. Optional API fork: [PQ signatures — Dilithium slogan](../../concepts/pq-signatures-dilithium.md) (before Dilithium HW / TCHES leaves)  
+**Checkpoint:** In one sentence, what makes a lattice different from “all of $\mathbb{Z}^n$”?
 
-### D. Hardware fork (modules → accelerator)
+### Stage 2 — Noisy equations → Module-LWE (Intro ch. 06)
 
-After Module-LWE feels solid, walk the curated HW path (digital intuition → modmul → poly/NTT → accelerator anatomy):
+1. [Noisy linear equations (LWE story)](../../bridge/noisy-linear-equations-lwe.md)  
+2. [LWE](../../concepts/lwe.md)  
+3. [Module-LWE](../../concepts/module-lwe.md)
 
-- Track: **[PQC hardware](../pqc-hardware/ROADMAP.md)**
+**Checkpoint:** What does the small error $e$ protect, and what breaks if $e=0$?
 
-Paper explainers for TCAS-II circuit digests hang there as optional leaves — not required to finish this theory track.
+### Stage 3 — ML-KEM vocabulary (Intro ch. 08)
 
-### E. Papers (optional leaves — no explainers required yet)
+1. [Noise samplers](../../concepts/noise-samplers.md)  
+2. [Hash / XOF (Keccak–SHAKE)](../../concepts/hash-xof-keccak.md)  
+3. [Ciphertext compress / encode](../../concepts/ciphertext-compress-encode.md)  
+4. [KEM](../../concepts/kem.md) · [IND-CPA / CCA](../../concepts/ind-cpa-cca.md)
 
-Prefer digested lattice-tagged rows in `docs/PAPERS.md` / `papers/tit-pqc/` when expanding with `research-pqc-learn`.
+**Checkpoint:** Name one reason Compress shrinks ciphertexts and one risk if you drop too many bits.
 
-### F. Frontier / gaps
+### Stage 4 — Signatures fork (Intro ch. 09)
 
-- Research gaps ledger: [gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml)  
-- Lab hardware WIP under `projects/papers/` is implementation, not default curriculum  
+1. [PQ signatures — Dilithium slogan](../../concepts/pq-signatures-dilithium.md)
 
-## Mindmap (textual)
+**Checkpoint:** How does Dilithium’s rejection loop differ from a one-shot KEM encaps?
 
-```
-shared fundamentals (mod q, vectors, polynomials)
-                 ↓
-     lattices-gentle (grid, SVP/CVP slogans)
-                 ↓
-     bridge: noisy linear equations (LWE story)
-                 ↓
-     concepts: LWE → Module-LWE → samplers / hash / compress → KEM/CCA
-                 ↓
-     optional Dilithium slogan · non-TIT paper.md leaves · TIT after extracts
-                 ↓
-     fork → pqc-hardware track
-```
+### Stage 5 — Hardware fork
 
-Return anytime to the [code-based KEMs](../code-based-kems/ROADMAP.md) track or the [PQC hardware](../pqc-hardware/ROADMAP.md) track.
+Walk the lattice **core** on [PQC hardware](../pqc-hardware/ROADMAP.md) (modmul → NTT → anatomy → SCA).
+
+## Paper leaves
+
+| Title (short) | Extract | Status |
+|---------------|---------|--------|
+| Masking Kyber (CBD, Compress, FO wrap) | `papers/tches-pqc/masking-kyber-first-and-higher-order-implementations/paper.md` | concept ready |
+| Tailorable codes / ML-KEM compress | `papers/tches-pqc/tailorable-codes-for-lattice-based-kems-with-applications-to-compact-ml-kem-instantiations/paper.md` | concept ready |
+| Dilithium lightweight HW (SHAKE, sampling, Sign) | `papers/tcas-i-pqc/lightweight-hardware-accelerator-for-post-quantum-digital-signature-crystals-dilithium/paper.md` | concept ready |
+| RBLWE instruction-set accelerator (binary sampler) | `papers/tvlsi-pqc/High-Performance Instruction-Set Hardware Accelerator for Ring-Binary-LWE-Based Lightweight PQC/paper.md` | concept ready |
+| Kyber reconfigurable poly-mul (TCAD) | `papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/paper.md` | private explainer + extract |
+
+## Course map (PQC_HTML Intro — inspiration only)
+
+| Intro ch. | Theme | This track |
+|-----------|--------|------------|
+| 05–06 | Lattice / LWE basics | Stages 1–2 |
+| 08 | Kyber / ML-KEM-shaped | Stage 3 |
+| 09 | Dilithium | Stage 4 |
+| — | Hardware | Stage 5 → HW track |
+
+## Cross-track forks
+
+- [Code-based KEMs](../code-based-kems/ROADMAP.md) — parallel family  
+- [PQC hardware](../pqc-hardware/ROADMAP.md) — lattice core + family HW leaves  
+- [Hash-based](../hash-based-signatures/ROADMAP.md) · [Multivariate](../multivariate/ROADMAP.md) · [Isogeny](../isogeny/ROADMAP.md)

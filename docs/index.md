@@ -118,9 +118,18 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 
 ## 5. Tracks
 
-- **[Code-based KEMs](tracks/code-based-kems/ROADMAP.md)** — primary curated path (McEliece intuition → HQC/BIKE-shaped ideas → modelling & cryptanalysis)  
-- **[Lattice / LWE](tracks/lattice-lwe/ROADMAP.md)** — grids → LWE story → Module-LWE  
-- **[Rank metric](tracks/rank-metric/ROADMAP.md)** — Hamming→rank bridge + LRPC / rank-SD concepts  
-- **[PQC hardware](tracks/pqc-hardware/ROADMAP.md)** — digital intuition → modmul → poly/NTT → KEM accelerator anatomy  
+Pick **one family** (or hardware) by goal. Each roadmap is staged like a short course; paper leaves cite in-repo `paper.md` extracts.
+
+| You want… | Track | After this path you can… | Start |
+|-----------|--------|--------------------------|--------|
+| ML-KEM / Module-LWE intuition | [Lattice / LWE](tracks/lattice-lwe/ROADMAP.md) | Read LWE → Module-LWE → samplers / compress / Dilithium slogan | [Lattices (gentle)](fundamentals/lattices-gentle.md) |
+| McEliece / QC-MDPC / HQC-shaped reading | [Code-based KEMs](tracks/code-based-kems/ROADMAP.md) | Walk codes → KEM/DFR → curated TIT leaves | [From bits to codes](bridge/from-bits-to-codes.md) |
+| Rank distance / LRPC (after Hamming) | [Rank metric](tracks/rank-metric/ROADMAP.md) | Contrast Hamming vs rank and name rank-SD / LRPC slogans | [From Hamming to rank](bridge/from-hamming-to-rank.md) |
+| SPHINCS+ / SLH-DSA-shaped reading | [Hash-based signatures](tracks/hash-based-signatures/ROADMAP.md) | Place hash-based sigs among PQC families; open curated extracts | [Bits, XOR, randomness](fundamentals/bits-xor-randomness.md) |
+| MQ / MAYO / UOV-shaped reading | [Multivariate](tracks/multivariate/ROADMAP.md) | Place multivariate signatures; open curated extracts | [Vectors and matrices](fundamentals/vectors-matrices.md) |
+| Isogeny / SIKE history (broken KEM context) | [Isogeny](tracks/isogeny/ROADMAP.md) | Explain why SIKE left the NIST path; open HW/SW extracts | [Modular arithmetic](fundamentals/modular-arithmetic.md) |
+| Chips, NTT, SCA / masking | [PQC hardware](tracks/pqc-hardware/ROADMAP.md) | Name accelerator blocks; read lattice-core + family HW leaves | [Clocks, registers, latency](bridge/clocks-registers-latency.md) |
+
+**Forks:** Rank opens only from the code-based path. Hardware is orthogonal — lattice is the core walk; hash / multivariate / isogeny (and later code) add family HW leaves on the same roadmap.
 
 Maintained by skill: `research-pqc-learn`.

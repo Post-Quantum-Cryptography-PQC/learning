@@ -115,6 +115,9 @@ nav:
       - Code-based KEMs: tracks/code-based-kems/ROADMAP.md
       - Lattice / LWE: tracks/lattice-lwe/ROADMAP.md
       - Rank metric: tracks/rank-metric/ROADMAP.md
+      - Hash-based signatures: tracks/hash-based-signatures/ROADMAP.md
+      - Multivariate: tracks/multivariate/ROADMAP.md
+      - Isogeny: tracks/isogeny/ROADMAP.md
       - PQC hardware: tracks/pqc-hardware/ROADMAP.md
 
 exclude_docs: |
