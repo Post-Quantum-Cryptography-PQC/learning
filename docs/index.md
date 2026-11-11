@@ -101,10 +101,10 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 
 - [Learning With Errors (LWE)](concepts/lwe.md)  
 - [Module-LWE (gentle)](concepts/module-lwe.md)  
-- [Noise samplers](concepts/noise-samplers.md)  
-- [Hash / XOF (Keccak–SHAKE slogan)](concepts/hash-xof-keccak.md)  
-- [Ciphertext compress / encode](concepts/ciphertext-compress-encode.md)  
-- [PQ signatures — Dilithium slogan](concepts/pq-signatures-dilithium.md)  
+- [Noise samplers](concepts/noise-samplers.md) — *what draws the small $e$ in LWE*  
+- [Hash / XOF (Keccak–SHAKE slogan)](concepts/hash-xof-keccak.md) — *seed → long bitstreams*  
+- [Ciphertext compress / encode](concepts/ciphertext-compress-encode.md) — *why ciphertexts drop bits*  
+- [PQ signatures — Dilithium slogan](concepts/pq-signatures-dilithium.md) — *Sign vs KEM + retry*  
 
 **PQC hardware (modules → accelerator)**
 
@@ -113,7 +113,8 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [NTT butterfly (gentle)](concepts/ntt-butterfly.md)  
 - [NTT parallel memory](concepts/ntt-parallel-memory.md)  
 - [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md)  
-- [Masking shares](concepts/masking-shares.md)  
+- [Masking shares](concepts/masking-shares.md) — *split secrets against side channels*  
+ 
 
 ## 5. Tracks
 

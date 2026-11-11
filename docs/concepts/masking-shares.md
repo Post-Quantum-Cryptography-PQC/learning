@@ -1,93 +1,109 @@
 # Masking shares
 
-**Prereqs:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · helpful: [Modular arithmetic](../fundamentals/modular-arithmetic.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md)  
-**Next:** [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Prereqs:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · helpful: [Modular arithmetic](../fundamentals/modular-arithmetic.md)  
+**Next:** [Ciphertext compress / encode](ciphertext-compress-encode.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** State arithmetic vs Boolean sharing as in the masked-Kyber extract, explain why one-bit $\mathrm{Compress}_q$ needs A2B + bit gadgets, and separate probing-order talk from “we broke MLWE.”
+**Learning goals.** Explain masking as “split the secret so each piece looks random,” do a tiny boolean and arithmetic share by hand, and see why Kyber’s Compress step needs special care under masking.
 
-**Sources (`paper.md` anchors):**
+## The one idea
 
-| Idea on this card | Extract |
-|-------------------|---------|
-| Arithmetic shares mod $q$; Boolean shares with XOR; $t$-probing; $t$-(S)NI | TCHES masked Kyber — §2 Side-Channel Notation (`papers/tches-pqc/masking-kyber-first-and-higher-order-implementations/paper.md`) |
-| Why CCA decapsulation must mask secret-derived modules | same — §3 intro + §3.3 Masked CCA Kyber Decapsulation |
-| Masked one-bit Compress: prime $q$, A2B, bitsliced binary search | same — §3.1 Higher-Order One-Bit Compression |
-| Masked comparison of decompressed values | same — §3.2 Higher-Order Masked Comparison |
-| Contrast: shuffling as hiding, not sharing | TCAS-II shuffling — §I (`.../a-hardware-friendly-shuffling-.../paper.md`) |
+From the [SCA bridge](../bridge/side-channel-threat-model.md): power/EM might correlate with a sensitive value $x$ sitting in a register.  
+**Masking** answers: never leave $x$ alone in the clear. Split it into random **shares** that only rebuild $x$ when combined.
 
-## Why this card exists
+| Clear | Masked |
+|-------|--------|
+| One register holds $x$ | Several registers hold random-looking pieces |
+| Leakage may track $x$ | Each piece alone should look like noise |
 
-Masked Kyber’s contribution list (§1/§3) is exactly the curriculum cliff: **arithmetically masked polynomials → Boolean-masked bits** for Compress, plus masked comparison inside FO decapsulation. This card teaches the share vocabulary those sections assume.
+Masking hardens the **implementation**. It does **not** change Module-LWE itself.
 
-## Shares as defined in §2
+## Toy 1 — boolean shares (XOR world)
 
-Sensitive $x$ becomes an $n_s$-tuple $x^{(\cdot)}$.
+Secret bit or bit-string $x$.
 
-| Encoding | Combine rule (extract) |
-|----------|-------------------------|
-| **Arithmetic** $x^{(\cdot)A}$ | $x^{(0)A}+\cdots+x^{(n_s-1)A}\equiv x\pmod{q}$ |
-| **Boolean** $x^{(\cdot)B}$ | $x^{(0)B}\oplus\cdots\oplus x^{(n_s-1)B}=x$ |
+1. Pick a fresh random $x_1$ (same shape as $x$).  
+2. Set $x_2 = x \oplus x_1$.  
+3. Store $(x_1,x_2)$. Recover with $x = x_1 \oplus x_2$.
 
-**Order slogan:** more shares → aimed at higher $t$ in the probing model; cost grows (the paper’s HO tables). $t$-NI / $t$-SNI notions argue about composing gadgets — know the names exist; proofs stay in the paper.
+**Example:** $x=1$, pick $x_1=0$ → $x_2=1$.  
+Alone, $0$ and $1$ are just bits; together they rebuild $1$.
+
+## Toy 2 — arithmetic shares (mod $q$ world)
+
+Lattice coefficients live in $\mathbb{Z}_q$, so addition fits better than XOR.
+
+1. Pick random $x_1 \bmod q$.  
+2. Set $x_2 \equiv x - x_1 \pmod{q}$.  
+3. Recover $x \equiv x_1 + x_2 \pmod{q}$.
+
+**Example:** $q=7$, $x=5$. Pick $x_1=2$ → $x_2\equiv 5-2=3$.  
+Check: $2+3=5$. Each of $2$ and $3$ alone is uninformative without the pair.
 
 ### Mid-page self-check
 
-Does masking replace IND-CCA proofs?
+If I publish only one arithmetic share $x_1$, have I published $x$?
 
 <details><summary>Answer</summary>
 
-No. §2–3 harden the **implementation** of CCA decapsulation against probes/traces; MLWE/FO math assumptions remain separate.
+No. One share is designed to look random; you need (enough of) the other shares to rebuild $x$.
 
 </details>
 
-## Why Compress is the hard green box (§3.1)
+## “Order” in one sentence
 
-Clear Compress (also on [compress card](ciphertext-compress-encode.md)):
+**First-order** masking often means a two-share split.  
+**Higher-order** means more shares, aiming at adversaries who combine leakage from several places — and it costs more randomness and logic. You can treat “order” as a **cost dial**, not something to prove here.
 
-$$
-\mathrm{Compress}_q(x,d)=\big\lfloor(2^d/q)\,x\big\rceil\bmod 2^d.
-$$
+## Why Compress becomes a research topic
 
-For $d=1$, this is a threshold on which half of $\mathbb{Z}_q$ the coefficient sits. With **prime** $q=3329$, you cannot treat “MSB of a power-of-two word” as the answer without care.
+Kyber needs $\mathrm{Compress}_q$ to turn coefficients into fewer bits (message bits or packed ciphertext) — see [compress / encode](ciphertext-compress-encode.md).  
+That decision is naturally **bit-ish**, while LWE math is **mod $q$**. Under masking you typically:
 
-Masked Kyber §3.1 moral (pedagogic rewrite):
+1. Keep coefficients in **arithmetic** shares while doing poly arithmetic.  
+2. Convert (**A2B**) when you need bit operations.  
+3. Compute a **masked** version of Compress / compare so intermediates stay shared.
 
-1. Start from **arithmetic** shares of the coefficient.  
-2. Convert **A2B** to Boolean bit shares.  
-3. Compute a **masked binary-search / bit formula** (their bitsliced SecAND/SecXOR network) so each coefficient becomes a Boolean-shared message bit.  
-4. Higher-order: same shape, more expensive share gadgets.
+If any step peeks at the clear secret, the masking story collapses. That is why papers invent “masked Compress” gadgets.
 
-§3.2: comparing an uncompressed masked polynomial to a compressed public ciphertext needs another dedicated masked gadget — again, because naive compare leaks.
+## Masking vs shuffling (do not merge)
 
-## Masking vs shuffling
+| | Masking | Shuffling / hiding |
+|--|---------|---------------------|
+| Randomizes | **Values** (shares) | **Order / timing** of ops |
+| Feels like | Split the cookie | Shuffle the recipe steps |
 
-| | Masking (TCHES) | Shuffling (TCAS-II) |
-|--|-----------------|---------------------|
-| Randomizes | **Values** (shares) | **Order** of PWM/INTT/… |
-| Typical cost | Randomness + share logic | Smaller area in that brief’s ATP story |
+Both are SCA countermeasures; different tools.
 
-Both answer the [SCA bridge](../bridge/side-channel-threat-model.md); they are not interchangeable.
+## Common confusions
+
+- Masking ≠ IND-CCA proof.  
+- “We masked the NTT” still needs the rest of FO/decapsulation to be careful.  
+- More shares ≠ automatically “unbreakable” — engineering and models matter (paper-level detail).
 
 ## Check yourself
 
-1. Write the arithmetic share equation from §2.  
+1. Give boolean shares for $x=0$ with your choice of $x_1$.  
 <details><summary>Answer</summary>
-Sum of $n_s$ shares $\equiv x\pmod{q}$.
+Any $x_1$; $x_2=0\oplus x_1=x_1$. Example $x_1=1$, $x_2=1$.
 </details>
 
-2. Why is one-bit Compress awkward under prime $q$?  
+2. For $q=5$, $x=4$, $x_1=3$, what is $x_2$?  
 <details><summary>Answer</summary>
-The decision boundary is not a simple power-of-two bit cut; §3.1 builds a dedicated masked bit test after A2B.
+$x_2\equiv 4-3=1\pmod{5}$.
 </details>
 
-3. Name the two “green” modules §3 highlights before full FO masking.  
+3. Why convert arithmetic → boolean around Compress?  
 <details><summary>Answer</summary>
-Masked one-bit Compress and masked DecompressedComparison.
+Compress’s decision is bit-oriented; arithmetic shares suit $\mathbb{Z}_q$ add/mul first.
 </details>
 
 ## Next steps
 
+- [Side-channel threat model](../bridge/side-channel-threat-model.md) (replay)  
 - [Ciphertext compress / encode](ciphertext-compress-encode.md)  
-- [Side-channel threat model](../bridge/side-channel-threat-model.md)  
-- Later private explainer: full masked-Kyber walkthrough of §3.1–3.3  
+- [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
+
+## Where this is grounded (optional)
+
+Masked Kyber TCHES `paper.md` §2 (share notations, probing) and §3.1–3.2 (masked Compress / compare); shuffling contrast in TCAS-II Kyber brief §I.

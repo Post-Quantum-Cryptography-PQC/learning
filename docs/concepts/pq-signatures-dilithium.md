@@ -4,71 +4,92 @@
 **Next:** [KEM](kem.md) (contrast) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Tracks: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
-**Learning goals.** Retell KeyGen/Sign/Verify from the TCAS-I Dilithium `paper.md`, including the Sign rejection loop and why §III.D SHAKE + §III.E sampling dominate HW cost discussions.
+**Learning goals.** Contrast a KEM with a signature in one table, walk Dilithium’s Sign loop in plain English (including “try again”), and see why HW papers sweat both NTT and SHAKE.
 
-**Sources (`paper.md` anchors):**
+## The one idea
 
-| Idea on this card | Extract |
-|-------------------|---------|
-| KeyGen / Sign / Verify algorithms | TCAS-I Dilithium — §II.B Protocol Description (`papers/tcas-i-pqc/lightweight-hardware-accelerator-for-post-quantum-digital-signature-crystals-dilithium/paper.md`) |
-| Shared KeyGen+Sign+Verify datapath; rejection vs storing $\mathbf{A}$ | same — §III.A–B Architecture / Memory |
-| SHAKE wrapper; sampling modules | same — §III.D–E |
-| Area×Time on Zynq / small LUT budget | same — Abstract + §IV |
+So far the lattice track emphasized **KEMs**: agree on a fresh shared secret ([KEM](kem.md)).  
+**Dilithium** (ML-DSA family) is a **signature** scheme: prove a message came from the secret-key holder.
 
-## Why this card exists
+It still uses module-lattice arithmetic and NTTs — so poly engines return — but the **API and control flow** are different.
 
-That extract is a **signature** accelerator, not a KEM. §II.B is the protocol postcard this curriculum needs before Dilithium HW leaves.
+| | KEM (e.g. ML-KEM) | Signature (Dilithium) |
+|--|-------------------|------------------------|
+| Goal | Shared secret | Authenticate a message |
+| Hot verbs | Encaps / Decaps | Sign / Verify |
+| May retry? | Usually not for the API call itself | Sign may **reject and restart** |
 
-## Protocol as written in §II.B
+## Sign in plain English
 
-1. **KeyGen:** seeds $\rho,\rho'$ → SHAKE expand matrix $\mathbf{A}$ and noise vectors $s_1,s_2$; set $t=\mathbf{A}s_1+s_2$; publish $pk$, keep $sk$.  
-2. **Sign$(sk,M)$:** sample masking vector $y$ (SHAKE-256); $w=\mathbf{A}y$; hash high-order bits $w_1$ with $M$ → challenge $c$; $z=cs_1+y$; also hints $h$. If checks fail → **rejection loop** (re-compute). Else output $(c,z,h)$.  
-3. **Verify:** recompute high bits from $\mathbf{A}z-ct_1$, re-hash with $M$, check challenge match and norm of $z$.
+Think of a non-interactive “prove you know the secret” chat, hashed into a signature (Fiat–Shamir style), with an abort valve:
 
-This is the Fiat–Shamir-with-aborts **shape** newcomers should hold: commit-like $w$ → hash challenge → respond → **abort/retry** if needed.
+1. **Sample** a masking vector $y$ (from SHAKE — [hash / XOF](hash-xof-keccak.md) + [samplers](noise-samplers.md)).  
+2. Compute $w = \mathbf{A}y$ (matrix–vector of polynomials; NTT territory).  
+3. Hash high bits of $w$ together with the message $M$ → challenge $c$.  
+4. Mix with the secret: roughly $z = c\cdot s_1 + y$ (scheme details omitted).  
+5. **Check** sizes / correctness.  
+   - Pass → output signature (challenge, $z$, hints, …).  
+   - Fail → **go back to step 1** (rejection loop).
+
+Verify recomputes what it can from the public key and signature, re-hashes, and checks matches and norms.
 
 ### Mid-page self-check
 
-Is Sign the same control flow as Kyber Encaps?
+Why is “rejection” not a bug?
 
 <details><summary>Answer</summary>
 
-No. Encaps agrees on a KEM shared secret; Sign authenticates a message and may reject/retry (§II.B).
+It is part of the design: discard signatures that would be too revealing or malformed, then try again with fresh masking.
 
 </details>
 
-## What the HW extract emphasizes
+## KeyGen / Verify (one glance)
 
-- §III.A: **one** combined architecture for KeyGen/Sign/Verify (small Zynq fit — Abstract’s ~13.9k LUT story).  
-- §III.B: Sign’s rejection loop drives the memory trade-off (store full $\mathbf{A}$ vs recompute).  
-- §III.D–E: SHAKE + sampling control are first-class modules — see [hash / XOF](hash-xof-keccak.md) and [samplers](noise-samplers.md).  
-- §III.F–H: Decompose/Power2Round, modular reduction, NTT — lattice arithmetic shared with KEM engines, different top FSM.
+- **KeyGen:** expand seeds → public matrix $\mathbf{A}$ and small secret vectors; publish a verification key; keep the signing key.  
+- **Verify:** use public objects + signature to rebuild a challenge-shaped value and accept/reject.
+
+You do not need every polynomial name on this card — hold the **Sign retry** picture.
+
+## What hardware papers optimize
+
+Lightweight Dilithium accelerators often:
+
+- **Share** one datapath across KeyGen / Sign / Verify to fit small FPGAs.  
+- Build a serious **SHAKE** unit because Sign is hash-heavy.  
+- Keep NTT / decompose helpers for the lattice arithmetic.  
+- Care about memory when Sign retries (recompute vs store large $\mathbf{A}$).
+
+Read ATP numbers with [area–time honesty](../bridge/area-time-power-honesty.md). SCA-aware Dilithium work needs the [side-channel](../bridge/side-channel-threat-model.md) vocabulary first.
 
 ## Common confusions
 
-- ML-KEM vs Dilithium/ML-DSA: KEM vs signature (this extract’s title is explicit).  
-- “Rejection sampling” here is the Sign loop / coefficient filters in §III.E — related toolkit to CBD, different API.  
-- Falcon is out of scope for this card (different `paper.md` cluster).
+- Dilithium is **not** “Kyber Encrypt renamed.”  
+- Rejection sampling here is about Sign checks — related toolkit to CBD, different purpose.  
+- Falcon is another PQ signature with a **different** math stack — not this card.
 
 ## Check yourself
 
-1. What triggers Dilithium’s rejection loop in §II.B?  
+1. KEM vs signature — one sentence each.  
 <details><summary>Answer</summary>
-Failed correctness/security checks on the candidate signature — then re-compute.
+KEM establishes a shared secret; a signature authenticates a message.
 </details>
 
-2. Why store full $\mathbf{A}$ in their Sign design (§III.B)?  
+2. What happens when Dilithium’s Sign checks fail?  
 <details><summary>Answer</summary>
-Multiple rejections make recomputing $\mathbf{A}$ expensive; they trade RAM for cycles.
+Reject and restart sampling / signing.
 </details>
 
-3. Name two modules §III.D–E dedicate to randomness/hashing.  
+3. Why might Sign be slow even with a fast NTT?  
 <details><summary>Answer</summary>
-Unified SHAKE wrapper; sampling modules that pull coefficients from it.
+SHAKE/hash work and possible retries can dominate.
 </details>
 
 ## Next steps
 
 - [Hash / XOF](hash-xof-keccak.md) · [Noise samplers](noise-samplers.md) · [Module-LWE](module-lwe.md)  
+- [KEM](kem.md) to contrast APIs  
 - [Side-channel threat model](../bridge/side-channel-threat-model.md) before SCA-Dilithium leaves  
-- Tracks: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)
+
+## Where this is grounded (optional)
+
+TCAS-I Dilithium accelerator `paper.md` §II.B (KeyGen/Sign/Verify + rejection) and §III (shared datapath, SHAKE, sampling).

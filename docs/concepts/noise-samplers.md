@@ -1,85 +1,152 @@
 # Noise samplers
 
-**Prereqs:** [Probability (gentle)](../fundamentals/probability-gentle.md) · [LWE](lwe.md) · helpful: [Module-LWE](module-lwe.md)  
-**Next:** [Ciphertext compress / encode](ciphertext-compress-encode.md) · [Hash / XOF](hash-xof-keccak.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md)  
+**Prereqs:** [Probability (gentle)](../fundamentals/probability-gentle.md) · [LWE](lwe.md) · helpful: [Module-LWE](module-lwe.md) · [Noisy linear equations](../bridge/noisy-linear-equations-lwe.md)  
+**Next:** [Hash / XOF](hash-xof-keccak.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
-**Learning goals.** Restate CBD sampling as written for Kyber-family schemes, contrast Dilithium’s XOF-fed rejection sampling, and spot a binary sampler block in a lightweight Ring-Binary-LWE accelerator — all from in-repo `paper.md` extracts.
+**Learning goals.** After this page you can (1) say in one sentence what a noise sampler *does*, (2) build a tiny CBD sample by hand, and (3) recognize that “sampler” in HW papers is the block that draws those small random coefficients.
 
-**Sources (`paper.md` anchors):**
+## The one idea
 
-| Idea on this card | Extract |
-|-------------------|---------|
-| CBD definition $a_i-b_i$ sums | TCHES masked Kyber — §2 Background (`papers/tches-pqc/masking-kyber-first-and-higher-order-implementations/paper.md`) |
-| ML-KEM $\mathcal{B}_{\eta}$ noise + compress bit widths | TCHES tailorable codes — §3.1 Parameters (`.../tailorable-codes-for-lattice-based-kems-.../paper.md`) |
-| Dilithium Sign: SHAKE → $y$, rejection loop | TCAS-I Dilithium accelerator — §II.B Protocol, §III.E Sampling (`.../lightweight-hardware-accelerator-...-dilithium/paper.md`) |
-| Binary sampler / `samp1`·`samp8` instructions | TVLSI RBLWE instruction-set accelerator — §III.G Binary Sampler, Table II (`.../High-Performance Instruction-Set.../paper.md`) |
-
-## Why this card exists
-
-Accelerator and masking papers assume you already know how coefficients get **small and random**. The extracts below spell that out; this card only retells it for newcomers (no large verbatim paste).
-
-## CBD — centered binomial (Kyber / ML-KEM line)
-
-From the masked-Kyber extract (§2): for positive integer $\eta$, sample $2\eta$ bits $\{(a_i,b_i)\}$ uniform in $\{0,1\}$ and output
+On the [LWE](lwe.md) card you met cloudy equations
 
 $$
-\sum_{i=0}^{\eta-1}(a_i - b_i).
+b \equiv \langle \mathbf{a}, \mathbf{s}\rangle + e \pmod{q}
 $$
 
-That is $\mathrm{CBD}_\eta$. The same extract notes a $\mathrm{CBD}$ routine that turns uniform bytes into polynomials with those coefficient laws. Tailorable-codes §3.1 names the ML-KEM parameters $\eta_1,\eta_2$ that pick which CBD widths feed KeyGen/Encrypt noise.
+with a **small** noise $e$.  
+Someone (software or a chip) must **actually pick** those small $e$ values — and often whole vectors or polynomials of them.
 
-**Newcomer moral:** noise is **small on purpose**; CBD is one concrete recipe used by Kyber-shaped KEMs.
+That “someone” is the **noise sampler**.
+
+| Without a sampler | With a sampler |
+|-------------------|----------------|
+| You know $e$ should be small | You have a concrete random recipe that outputs small $e$ |
+| Papers just write “$e\leftarrow\chi$” | Hardware has a named block that produces coefficients |
+
+**This page teaches the recipe idea**, not a full Kyber parameter sheet.
+
+## Why small random noise (30-second replay)
+
+From the [LWE bridge](../bridge/noisy-linear-equations-lwe.md):
+
+- **Too little / zero noise** → equations become ordinary linear algebra; secrets leak.  
+- **Too much noise** → even the legitimate owner cannot recover the message (failures).  
+- Schemes therefore sample from a distribution that **likes values near zero**.
+
+A sampler is how KeyGen / Encaps / Sign **implement** that distribution in real code or silicon.
+
+## Worked toy — centered binomial (CBD)
+
+Kyber-shaped KEMs often use a **centered binomial distribution** (CBD).  
+Plain English: flip a few fair coins, subtract two small counts, get a number near $0$.
+
+**Recipe for one coefficient** (parameter $\eta=2$ — a tiny teaching choice, not “the” Kyber $\eta$):
+
+1. Draw four fair bits: $a_0,a_1$ and $b_0,b_1$.  
+2. Output
+
+$$
+e = (a_0+a_1) - (b_0+b_1).
+$$
+
+Possible values of $e$ are in $\{-2,-1,0,1,2\}$, with $0$ most common.
+
+### Slow-motion example
+
+Bits: $a=(1,0)$, $b=(0,1)$.
+
+$$
+e = (1+0) - (0+1) = 1 - 1 = 0.
+$$
+
+Another draw: $a=(1,1)$, $b=(0,0)$ → $e=2-0=2$ (still small).  
+Another: $a=(0,0)$, $b=(1,1)$ → $e=0-2=-2$.
+
+General formula used in Kyber-family writeups:
+
+$$
+e = \sum_{i=0}^{\eta-1}(a_i - b_i),\qquad a_i,b_i\in\{0,1\}.
+$$
+
+Repeat for every coefficient of a polynomial → you have sampled a **noise polynomial**.
 
 ### Mid-page self-check
 
-Does CBD draw uniform coefficients in $\{0,\ldots,q-1\}$?
+Is CBD the same as “pick a uniform random number mod $q$”?
 
 <details><summary>Answer</summary>
 
-No. It draws **small** integers near $0$ (difference of bit counts). Uniform mod $q$ would not match the LWE “small $e$” story.
+No. Uniform mod $q$ is usually huge. CBD piles up a few $\pm 1$ coin flips so the result stays **near zero**.
 
 </details>
 
-## Dilithium — sampling modules + rejection (TCAS-I extract)
+## Where do the random bits come from?
 
-§II.B Sign: expand a masking vector $y$ with SHAKE-256, form $w=\mathbf{A}y$, hash high bits of $w$ with the message to get challenge $c$, set $z=cs_1+y$, then **re-compute in a rejection loop** if correctness/security checks fail.
+Often from a hash/XOF stream (SHAKE) expanded from a short seed — see [Hash / XOF](hash-xof-keccak.md).  
+Sometimes from a hardware TRNG.  
+The sampler’s job is: **bits → small coefficients** (plus accept/reject rules when needed).
 
-§III.E: four sampling logics (matrix $\mathbf{A}$, $s_1$/$s_2$, challenge $c$, masking $y$) all consume a SHAKE/XOF stream; the HW “sampler” is mostly **control that accepts/rejects coefficients** from that stream (Listing 1 in the extract shows rejection sampling for $s_1$/$s_2$).
+## Same job, other recipes (so papers do not confuse you)
 
-**Newcomer moral:** Dilithium Sign is hash-heavy and may **retry**; samplers are not only CBD.
+| Recipe you will see | What it draws | Typical home |
+|---------------------|---------------|--------------|
+| **CBD** | Small integers near $0$ | Kyber / ML-KEM noise |
+| **Rejection sampling** | Candidates from a stream; keep only ones that pass a size/check | Dilithium Sign (may **retry** a whole signature) |
+| **Binary sampler** | Bits / binary polynomials | Lightweight Ring-Binary-LWE schemes |
 
-## Binary sampler — RBLWE lightweight line (TVLSI extract)
+All three are “samplers.” The shared slogan:
 
-RBLWE-ENC uses **binary** secrets/errors (§II.A Table I). The accelerator’s §III.G **Binary Sampler** draws binary polynomials/errors from a TRNG into RAM; ISA opcodes `samp1` / `samp8` (Table II) expose that block. §II.C still frames the hot path as a **schoolbook-style** poly-mul reformulation — sampling is a separate building block beside the mul core.
+> Produce the **random small stuff** the scheme’s math assumes.
 
-**Newcomer moral:** “Sampler” can mean CBD, rejection-from-SHAKE, or binary TRNG bits — read which scheme you are in.
+You do **not** need every Dilithium loop on this page — only that Sign often **samples, checks, and sometimes restarts** ([Dilithium slogan](pq-signatures-dilithium.md)).
 
-## Bridge to other cards
+## Bridge to hardware
 
-- Bytes for CBD / Dilithium samples often come from [hash / XOF](hash-xof-keccak.md).  
-- After noise + arithmetic, Kyber **compresses** coefficients ([compress / encode](ciphertext-compress-encode.md)).  
-- Anatomy lists Sampler next to NTT/hash ([kem-accelerator-anatomy](kem-accelerator-anatomy.md)).
+[KEM accelerator anatomy](kem-accelerator-anatomy.md) draws a box labeled **Sampler** next to NTT and hash.  
+That box is exactly this idea: fill coefficient memories with CBD (or binary / rejected) noise before poly-mul runs.
+
+When you later read “sampling module” in an FPGA paper, ask:
+
+1. Which distribution? (CBD / binary / rejection)  
+2. Where do bits come from? (SHAKE / TRNG)  
+3. Is it one polynomial, or part of a Sign retry loop?
+
+## Common confusions
+
+- Sampler ≠ modular multiplier. Multipliers compute $ab\bmod q$; samplers **draw** random small values.  
+- “Uniform bytes from SHAKE” are only the **fuel**; CBD/rejection turns them into the right shape.  
+- Compressing ciphertext bits ([compress / encode](ciphertext-compress-encode.md)) is a later step — not sampling.
 
 ## Check yourself
 
-1. Write the CBD output formula from the masked-Kyber §2 extract in words.  
+1. In one sentence, what does a noise sampler do?  
 <details><summary>Answer</summary>
-Sum of $\eta$ terms $(a_i-b_i)$ with random bits $a_i,b_i$.
+It randomly produces the small noise (or noise polynomials) that LWE-shaped schemes need.
 </details>
 
-2. Where does the Dilithium TCAS-I extract put the rejection loop?  
+2. With $\eta=1$, bits $a_0=1$, $b_0=0$, what is $e$?  
 <details><summary>Answer</summary>
-In Sign (§II.B): if checks fail, re-compute the signature.
+$e=1-0=1$.
 </details>
 
-3. What does TVLSI §III.G’s binary sampler produce?  
+3. Why might Dilithium Sign “sample again”?  
 <details><summary>Answer</summary>
-Binary errors/polynomials (via TRNG), not CBD$_\eta$ over large $q$.
+Rejection: a candidate failed a size/correctness check, so the scheme retries.
+</details>
+
+4. Point to the anatomy box this card explains.  
+<details><summary>Answer</summary>
+The Sampler unit next to NTT / hash / compress.
 </details>
 
 ## Next steps
 
-- [Hash / XOF](hash-xof-keccak.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md)  
-- [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md)  
-- Tracks: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)
+- Practice more LWE toys: [LWE](lwe.md) · [noisy linear equations](../bridge/noisy-linear-equations-lwe.md)  
+- Follow the bit stream: [Hash / XOF](hash-xof-keccak.md)  
+- See the chip map: [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
+- Signatures that retry: [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md)  
+
+## Where this is grounded (optional)
+
+Ideas match in-repo `paper.md` extracts (CBD in masked Kyber §2; ML-KEM $\eta$ in tailorable-codes §3.1; Dilithium sampling/rejection in TCAS-I §II.B/§III.E; binary sampler in TVLSI RBLWE §III.G). This page teaches the idea first; those papers are later reading, not the lesson plan.

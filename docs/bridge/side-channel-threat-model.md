@@ -1,91 +1,100 @@
 # Side-channel threat model (gentle)
 
-**Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Public-key picture](../fundamentals/public-key-picture.md) · [Clocks, registers, and latency](clocks-registers-latency.md)  
+**Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Public-key picture](../fundamentals/public-key-picture.md) · helpful: [Clocks, registers, and latency](clocks-registers-latency.md)  
 **Next:** [Masking shares](../concepts/masking-shares.md) · [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) · [Area–time–power honesty](area-time-power-honesty.md)  
 
-**Learning goals.** Retell, from HW extracts, how SCA differs from math breaks; name Kyber decrypt leakage points and the CPA/TVLA evaluation slogans those papers use — without teaching attack recipes.
+**Learning goals.** Separate “the math looks hard” from “the chip might still leak,” name everyday side channels in plain words, and know why PQC HW papers add masking or shuffling.
 
-**Sources (`paper.md` anchors):**
+## The one idea
 
-| Idea on this card | Extract |
-|-------------------|---------|
-| SCA via power/EM; hiding vs masking; FIA as cousin | TCAS-II shuffling Kyber — §I Introduction (`papers/tcas-ii-pqc/a-hardware-friendly-shuffling-countermeasure-against-side-channel-attacks-for-kyber/paper.md`) |
-| Decrypt leakage points: PWM, post-PWM reduction, post-INTT subtraction; also INTT butterflies | same file — §II.B Kyber and Side-Channel Leakage Points |
-| CPA on PWM + TVLA on decrypt; Artix-7 EM traces | same file — §IV.A Evaluation on SCA Resistance |
-| $t$-probing model; arithmetic vs Boolean shares | TCHES masked Kyber — §2 Side-Channel Notation (`.../masking-kyber-.../paper.md`) |
-| Timing constant-time vs open DPA/fault gap | TVLSI RBLWE — §IV.C Discussion (`.../High-Performance Instruction-Set.../paper.md`) |
+[LWE](../concepts/lwe.md) / Module-LWE security talks about an adversary who sees **public keys and ciphertexts**.  
+A lab adversary with an oscilloscope might also see **how the silicon behaves while computing** — power wiggles, EM whispers, timing hiccups.
 
-## Why this page exists
+That extra information is a **side channel**.  
+Correct math + leaky implementation can still lose the key.
 
-TCAS-II §I states the migration worry plainly: efficient Kyber/ML-KEM HW is mature, but **physical** attacks still matter. This bridge is that sentence expanded for newcomers.
+**This page is a threat-model postcard**, not an attack tutorial.
 
-## Two threat families (from the extracts)
+## Two different “breaks”
 
-TCAS-II §I:
+| Kind | Adversary sees… | Defended by… |
+|------|-----------------|--------------|
+| **Cryptanalysis** | Public math objects | Hard problems, parameters, proofs |
+| **Side-channel (SCA)** | Physical measurements of a run | Constant-time care, masking, hiding/shuffling, … |
 
-- **SCA:** recover keys from **power or EM** while the device runs; defenders use **hiding** or **masking**.  
-- **FIA:** disturb the device (faults); needs detection — the shuffling brief leaves FIA largely to future work.
+A cousin threat is **fault injection** (poke the chip mid-computation). Many SCA papers leave faults to separate work — keep the buckets distinct.
 
-Masked Kyber §2 adds the **$t$-probing** math model used to argue about shared circuits (up to $t$ intermediate probes). Treat that as the formal cousin of “lab traces,” not something you must prove here.
+### Everyday pictures
 
-TVLSI §IV.C: their RBLWE core is **constant-time** (timing), but they **do not** claim DPA/fault resistance without countermeasures — a clean honesty line for readers of ATP-only tables.
+- **Timing** — a secret-dependent branch takes longer.  
+- **Power** — current draw correlates with bit flips in a register.  
+- **EM** — related wiggles radiate off the package.
+
+You do not need lab setup details here — only the moral: **implementation is part of the security story**.
 
 ### Mid-page self-check
 
-If MLWE is hard, is a Kyber FPGA automatically SCA-safe?
+MLWE is believed hard. Does that alone make a Kyber FPGA safe on the lab bench?
 
 <details><summary>Answer</summary>
 
-No. TCAS-II §I separates quantum/math migration from physical SCA/FIA on implementations.
+No. Hardness of the math problem does not stop leakage from power/EM/timing of a concrete implementation.
 
 </details>
 
-## Concrete Kyber decrypt leakage map (TCAS-II §II.B)
+## Why Kyber decrypt gets special attention
 
-Decrypt sketch in the extract:
+Decrypt uses the **long-term secret**. Rough sketch:
 
-$$
-m \leftarrow \mathrm{Compress}_q\big(v - \mathrm{INTT}(\hat{s}^T \circ \mathrm{NTT}(u)), 1\big).
-$$
+> take ciphertext pieces → NTT / multiply by secret → INTT → subtract → compress to message bits.
 
-Cited HW leakage points (after Zhao et al. in that paper):
+HW papers often highlight sensitive spots along that path (for example point-wise multiply, reductions, post-INTT subtract). Pedagogy moral:
 
-1. **PWM** (point-wise mul)  
-2. **Modular reduction after PWM**  
-3. **Subtraction after INTT**  
+> Ask *which operations touch the secret*, not “is the whole chip equally risky?”
 
-Plus: INTT butterflies shuffled because software attacks on INTT exist. Pedagogy moral: SCA papers name **which ops** touch the secret — not “the whole chip equally.”
+## What “evaluation” means in those papers
 
-## How those papers “evaluate” (slogans only)
+You will see names like **CPA** (correlation-style power analysis) or **TVLA** (statistical leakage tests).  
+Read them as: “Did our countermeasure make traces look less secret-dependent *in this experiment*?”  
+Trace counts are paper-specific — not a warranty for every board.
 
-§IV.A: **CPA** (correlation power analysis) on PWM register Hamming-distance models; **TVLA** ($t$-test) on the decrypt flow; EM traces on Artix-7. Numbers in that brief (e.g. unprotected failing early vs protected at $10^5$–$10^7$ traces) are **that paper’s experiment**, not a universal certificate.
+## Two defender slogans (next cards)
 
-## Bridge to countermeasures
+| Slogan | Idea | Next |
+|--------|------|------|
+| **Masking** | Split secret values into random shares | [Masking shares](../concepts/masking-shares.md) |
+| **Hiding / shuffling** | Randomize *when* or *in what order* ops run | Mentioned on HW track leaves |
 
-| Tool | Where the extract lives | Slogan |
-|------|-------------------------|--------|
-| **Shuffling / hiding** | TCAS-II whole brief | Randomize **order** of leaky sub-ops |
-| **Masking** | TCHES masked Kyber | Randomize **values** via shares — [masking shares](../concepts/masking-shares.md) |
+Also: avoid secret-dependent branches and memory indices (**constant-time** discipline). Constant-time helps timing; it does **not** by itself stop all power/EM leakage.
+
+## Bridge to honest HW reading
+
+[Area–time–power tables](area-time-power-honesty.md) compare speed and area.  
+An unprotected design can look “better” on ATP while failing SCA checks. Read both stories.
 
 ## Check yourself
 
-1. Name the three decrypt leakage points from TCAS-II §II.B.  
+1. Name two side channels.  
 <details><summary>Answer</summary>
-PWM; modular reduction after PWM; subtraction after INTT.
+Any two of timing, power, EM.
 </details>
 
-2. Hiding vs masking — one sentence each.  
+2. Masking vs shuffling — one phrase each.  
 <details><summary>Answer</summary>
-Hiding/shuffling randomizes operation order/timing; masking splits sensitive values into shares.
+Masking randomizes values via shares; shuffling/hiding randomizes order/timing of operations.
 </details>
 
-3. What does TVLSI §IV.C admit about DPA?  
+3. True or false: “TVLA clean on our FPGA” equals a proof of IND-CCA.  
 <details><summary>Answer</summary>
-Constant-time helps timing; advanced DPA/fault need extra countermeasures they did not install.
+False — experimental leakage evidence ≠ public-key security proof.
 </details>
 
 ## Next steps
 
-- [Masking shares](../concepts/masking-shares.md)  
-- [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md)  
-- Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)
+- [Masking shares](../concepts/masking-shares.md) — the share picture  
+- [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) — where leaky units sit  
+- Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+
+## Where this is grounded (optional)
+
+TCAS-II shuffling Kyber `paper.md` §I–II / §IV (SCA vs FIA; decrypt leakage points; CPA/TVLA); masked Kyber §2 (probing model); TVLSI RBLWE §IV.C (timing vs open DPA gap).
