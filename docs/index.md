@@ -129,6 +129,7 @@ Pick **one family** (or hardware) by goal. Each roadmap is staged like a short c
 | MQ / MAYO / UOV-shaped reading | [Multivariate](tracks/multivariate/ROADMAP.md) | Place multivariate signatures; open curated extracts | [Vectors and matrices](fundamentals/vectors-matrices.md) |
 | Isogeny / SIKE history (broken KEM context) | [Isogeny](tracks/isogeny/ROADMAP.md) | Explain why SIKE left the NIST path; open HW/SW extracts | [Modular arithmetic](fundamentals/modular-arithmetic.md) |
 | Chips, NTT, SCA / masking | [PQC hardware](tracks/pqc-hardware/ROADMAP.md) | Name accelerator blocks; read lattice-core + family HW leaves | [Clocks, registers, latency](bridge/clocks-registers-latency.md) |
+{: .pqc-path-table }
 
 **Forks:** Rank opens only from the code-based path. Hardware is orthogonal — lattice is the core walk; hash / multivariate / isogeny (and later code) add family HW leaves on the same roadmap.
 

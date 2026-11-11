@@ -13,14 +13,14 @@ theme:
   name: material
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: teal
+      accent: amber
       toggle:
         icon: material/brightness-7
         name: Dark mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: teal
+      accent: amber
       toggle:
         icon: material/brightness-4
         name: Light mode
@@ -28,8 +28,13 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - toc.follow
     - search.highlight
+    - search.suggest
     - content.action.edit
+    - content.code.copy
 
 plugins:
   - search
@@ -48,12 +53,14 @@ markdown_extensions:
 extra_css:
   - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
   - stylesheets/papers-catalog.css
+  - stylesheets/pqc-learn.css
 
 extra_javascript:
   - javascripts/katex.js
   - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
   - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/papers-catalog.js
+  - javascripts/pqc-learn.js
 
 nav:
   - Home: index.md

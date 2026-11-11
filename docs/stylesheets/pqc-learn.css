@@ -1,0 +1,331 @@
+/* PQC Learn — theme polish + interactive teaching UI
+   Works with Material for MkDocs; uses theme CSS variables. */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,600;0,700;1,600&display=swap");
+
+:root {
+  --pqc-teal: #0f766e;
+  --pqc-teal-deep: #115e59;
+  --pqc-ink: #134e4a;
+  --pqc-sand: #f0fdfa;
+  --pqc-amber: #d97706;
+  --pqc-radius: 0.65rem;
+  --pqc-shadow: 0 8px 24px rgba(15, 118, 110, 0.08);
+}
+
+/* Typography */
+.md-typeset,
+.md-nav,
+.md-header,
+.md-footer {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+/* Soft page atmosphere (not flat white / not purple glow) */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f7fbfa;
+  --md-code-bg-color: #e7f5f3;
+}
+
+[data-md-color-scheme="default"] .md-main {
+  background:
+    radial-gradient(1200px 480px at 8% -10%, rgba(15, 118, 110, 0.07), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(217, 119, 6, 0.05), transparent 50%),
+    var(--md-default-bg-color);
+}
+
+[data-md-color-scheme="slate"] .md-main {
+  background:
+    radial-gradient(1000px 420px at 0% 0%, rgba(45, 212, 191, 0.08), transparent 50%),
+    var(--md-default-bg-color);
+}
+
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--pqc-ink);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1 {
+  color: inherit;
+}
+
+/* Prereqs / Next meta lines */
+.md-typeset > p:has(strong:first-child) {
+  /* fallbacks when :has unsupported still fine */
+}
+
+.md-typeset p > strong:first-child {
+  color: var(--pqc-teal-deep);
+}
+
+[data-md-color-scheme="slate"] .md-typeset p > strong:first-child {
+  color: #5eead4;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: var(--pqc-radius);
+  box-shadow: var(--pqc-shadow);
+  overflow: hidden;
+  display: table;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--pqc-teal-deep);
+  color: #f0fdfa;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background: #134e4a;
+}
+
+.md-typeset table:not([class]) tr {
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background: rgba(15, 118, 110, 0.08);
+}
+
+/* Home track picker */
+.md-typeset table.pqc-path-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.md-typeset table.pqc-path-table tbody tr {
+  cursor: default;
+}
+
+.md-typeset table.pqc-path-table tbody tr:hover {
+  background: rgba(15, 118, 110, 0.1);
+  box-shadow: inset 3px 0 0 var(--pqc-amber);
+}
+
+.md-typeset table.pqc-path-table td:nth-child(2) a {
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.md-typeset table.pqc-path-table td:nth-child(2) a:hover {
+  border-bottom-color: var(--pqc-amber);
+  color: var(--pqc-teal-deep);
+}
+
+/* Self-check / details */
+.md-typeset details {
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  border-radius: var(--pqc-radius);
+  background: var(--pqc-sand);
+  box-shadow: none;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-md-color-scheme="slate"] .md-typeset details {
+  background: rgba(15, 118, 110, 0.12);
+  border-color: rgba(94, 234, 212, 0.25);
+}
+
+.md-typeset details:hover,
+.md-typeset details[open] {
+  border-color: var(--pqc-teal);
+  box-shadow: var(--pqc-shadow);
+}
+
+.md-typeset details > summary {
+  font-weight: 600;
+  color: var(--pqc-teal-deep);
+  cursor: pointer;
+}
+
+[data-md-color-scheme="slate"] .md-typeset details > summary {
+  color: #99f6e4;
+}
+
+.md-typeset details > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.4rem;
+  transition: transform 0.18s ease;
+  color: var(--pqc-amber);
+}
+
+.md-typeset details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+/* Display math */
+.md-typeset .arithmatex,
+.md-typeset span.katex-display {
+  overflow-x: auto;
+}
+
+.md-typeset .katex-display {
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: rgba(15, 118, 110, 0.05);
+  border-left: 3px solid var(--pqc-teal);
+  border-radius: 0 var(--pqc-radius) var(--pqc-radius) 0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .katex-display {
+  background: rgba(45, 212, 191, 0.06);
+  border-left-color: #2dd4bf;
+}
+
+/* Admonitions / notes */
+.md-typeset .admonition {
+  border-radius: var(--pqc-radius);
+}
+
+/* Reading progress chip */
+.pqc-progress {
+  position: sticky;
+  top: calc(var(--md-header-height, 2.8rem) + 0.5rem);
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 0 1rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  box-shadow: var(--pqc-shadow);
+  backdrop-filter: blur(8px);
+  font-size: 0.78rem;
+}
+
+[data-md-color-scheme="slate"] .pqc-progress {
+  background: rgba(30, 41, 40, 0.92);
+  border-color: rgba(94, 234, 212, 0.25);
+}
+
+.pqc-progress__bar {
+  flex: 1 1 6rem;
+  min-width: 5rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.15);
+  overflow: hidden;
+}
+
+.pqc-progress__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pqc-teal), var(--pqc-amber));
+  border-radius: inherit;
+  transition: width 0.35s ease;
+}
+
+.pqc-progress__label {
+  font-weight: 600;
+  color: var(--pqc-teal-deep);
+  white-space: nowrap;
+}
+
+[data-md-color-scheme="slate"] .pqc-progress__label {
+  color: #99f6e4;
+}
+
+.pqc-progress__reset {
+  all: unset;
+  cursor: pointer;
+  color: var(--pqc-amber);
+  font-weight: 600;
+  text-decoration: underline dotted;
+  padding: 0.1rem 0.25rem;
+}
+
+.pqc-progress__reset:hover,
+.pqc-progress__reset:focus-visible {
+  color: var(--pqc-teal-deep);
+}
+
+/* Checkpoint buttons on roadmaps */
+.pqc-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.35rem 0 1rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  background: #fff;
+  color: var(--pqc-teal-deep);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+}
+
+[data-md-color-scheme="slate"] .pqc-check {
+  background: rgba(15, 118, 110, 0.2);
+  color: #ccfbf1;
+}
+
+.pqc-check:hover {
+  border-color: var(--pqc-amber);
+  transform: translateY(-1px);
+}
+
+.pqc-check[aria-pressed="true"] {
+  background: var(--pqc-teal);
+  border-color: var(--pqc-teal);
+  color: #ecfeff;
+}
+
+.pqc-check[aria-pressed="true"]::before {
+  content: "✓ ";
+}
+
+/* Mark visited nav links */
+.md-nav__link.pqc-visited {
+  opacity: 0.72;
+}
+
+.md-nav__link.pqc-visited::after {
+  content: "·";
+  margin-left: 0.35rem;
+  color: var(--pqc-amber);
+  font-weight: 700;
+}
+
+/* Content fade-in on instant navigation */
+.md-content__inner {
+  animation: pqc-fade 0.28s ease;
+}
+
+@keyframes pqc-fade {
+  from { opacity: 0.35; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-content__inner,
+  .pqc-progress__fill,
+  .md-typeset details > summary::before,
+  .md-typeset table:not([class]) tr {
+    animation: none !important;
+    transition: none !important;
+  }
+}
