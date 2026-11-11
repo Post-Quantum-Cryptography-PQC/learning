@@ -67,6 +67,7 @@ Start here: [bridge/README.md](bridge/README.md)
 10. [Noisy linear equations (LWE story)](bridge/noisy-linear-equations-lwe.md) — for the lattice / LWE track  
 11. [Clocks, registers, and latency](bridge/clocks-registers-latency.md) — for the PQC hardware track  
 12. [Area, time, power honesty](bridge/area-time-power-honesty.md) — reading HW comparison tables  
+13. [Side-channel threat model (gentle)](bridge/side-channel-threat-model.md) — before masking / TCHES SCA leaves  
 
 ## 4. Concepts
 
@@ -100,6 +101,10 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 
 - [Learning With Errors (LWE)](concepts/lwe.md)  
 - [Module-LWE (gentle)](concepts/module-lwe.md)  
+- [Noise samplers](concepts/noise-samplers.md)  
+- [Hash / XOF (Keccak–SHAKE slogan)](concepts/hash-xof-keccak.md)  
+- [Ciphertext compress / encode](concepts/ciphertext-compress-encode.md)  
+- [PQ signatures — Dilithium slogan](concepts/pq-signatures-dilithium.md)  
 
 **PQC hardware (modules → accelerator)**
 
@@ -108,6 +113,7 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [NTT butterfly (gentle)](concepts/ntt-butterfly.md)  
 - [NTT parallel memory](concepts/ntt-parallel-memory.md)  
 - [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md)  
+- [Masking shares](concepts/masking-shares.md)  
 
 ## 5. Tracks
 

@@ -89,6 +89,7 @@ nav:
       - Noisy linear equations (LWE): bridge/noisy-linear-equations-lwe.md
       - Clocks, registers, latency: bridge/clocks-registers-latency.md
       - Area–time–power honesty: bridge/area-time-power-honesty.md
+      - Side-channel threat model: bridge/side-channel-threat-model.md
   - Concepts:
       - Error-correcting codes: concepts/error-correcting-codes.md
       - Linear codes: concepts/linear-codes.md
@@ -100,11 +101,16 @@ nav:
       - KL divergence: concepts/kl-divergence.md
       - LWE: concepts/lwe.md
       - Module-LWE: concepts/module-lwe.md
+      - Noise samplers: concepts/noise-samplers.md
+      - Hash / XOF (Keccak–SHAKE): concepts/hash-xof-keccak.md
+      - Ciphertext compress / encode: concepts/ciphertext-compress-encode.md
+      - PQ signatures (Dilithium slogan): concepts/pq-signatures-dilithium.md
       - Modular multiplier: concepts/modular-multiplier.md
       - Poly-mul engines: concepts/poly-mul-engines.md
       - NTT butterfly: concepts/ntt-butterfly.md
       - NTT parallel memory: concepts/ntt-parallel-memory.md
       - KEM accelerator anatomy: concepts/kem-accelerator-anatomy.md
+      - Masking shares: concepts/masking-shares.md
   - Tracks:
       - Code-based KEMs: tracks/code-based-kems/ROADMAP.md
       - Lattice / LWE: tracks/lattice-lwe/ROADMAP.md

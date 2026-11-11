@@ -1,7 +1,7 @@
 # KEM accelerator anatomy
 
-**Prereqs:** [NTT butterfly](ntt-butterfly.md) · [Polynomial multiply engines](poly-mul-engines.md) · [KEM](kem.md) · helpful: [Module-LWE](module-lwe.md)  
-**Next:** Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [index](../index.md)  
+**Prereqs:** [NTT butterfly](ntt-butterfly.md) · [Polynomial multiply engines](poly-mul-engines.md) · [KEM](kem.md) · [Noise samplers](noise-samplers.md) · [Hash / XOF](hash-xof-keccak.md) · helpful: [Module-LWE](module-lwe.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md)  
+**Next:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [index](../index.md)  
 **Tracks:** pqc-hardware
 
 **Learning goals.** Sketch what a lattice KEM accelerator must do for Encaps/Decaps, name the recurring units (NTT, PWM, sampling, hash), and separate leaf modules from system architecture (FSM, HW/SW split, configurable parameters).
@@ -28,9 +28,9 @@ Hardware may accelerate all three, or only the hot Encaps/Decaps inner loops, wi
 |------|------|
 | **NTT / INTT engine** | Fast poly transforms ([butterfly](ntt-butterfly.md)) |
 | **PWM / modmul lanes** | Pointwise coefficient products ([modmul](modular-multiplier.md)) |
-| **Sampler** | CBD / rejection / other noise sampling into coefficients |
-| **Hash / XOF (often Keccak)** | Seed expand, FO transform, shared-secret KDF |
-| **Compress / encode** | Pack polynomials into ciphertext / key bytes |
+| **Sampler** | CBD / rejection / other noise sampling into coefficients — see [noise samplers](noise-samplers.md) |
+| **Hash / XOF (often Keccak)** | Seed expand, FO transform, shared-secret KDF — see [hash / XOF](hash-xof-keccak.md) |
+| **Compress / encode** | Pack / compress polynomials into ciphertext / key bytes — see [compress / encode](ciphertext-compress-encode.md) |
 | **Memory + DMA** | Banks for polys, twiddles, intermediates |
 | **Control FSM** | Sequence Encaps/Decaps steps; maybe runtime parameter $k$ |
 
@@ -60,7 +60,7 @@ No — that is a leaf module. A KEM accelerator composes engines, memory, hashin
 
 - **Fixed ML-KEM-512-only** core vs **configurable $k$** (module rank) — more muxing, wider address maps.  
 - **HW/SW co-design:** CPU (e.g. Ibex-class) + tightly coupled accelerator for poly/hash; software owns protocol glue.  
-- **Security extras:** masking, shuffling — separate cautionary leaves (not core path here).
+- **Security extras:** masking, shuffling — learn the threat model first ([SCA bridge](../bridge/side-channel-threat-model.md), [masking shares](masking-shares.md)); shuffling / CIM remain optional leaves.
 
 ## How IEEE exploration should grow this card
 
@@ -104,9 +104,11 @@ Usually no — it is an engine leaf (NTT/CWM/INTT). Full KEM still needs samplin
 
 ## Next steps
 
+- [Noise samplers](noise-samplers.md) · [Hash / XOF](hash-xof-keccak.md) · [Compress / encode](ciphertext-compress-encode.md)  
+- [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Masking shares](masking-shares.md) · [Dilithium slogan](pq-signatures-dilithium.md)  
 - Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 - Theory: [Module-LWE](module-lwe.md) · [Lattice / LWE roadmap](../tracks/lattice-lwe/ROADMAP.md)  
 - [NTT parallel memory](ntt-parallel-memory.md)  
 - Paper leaf: [Reconfigurable Kyber poly-mul explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/explainer.md)  
 - Lab RTL (when you implement): `projects/papers/` via `research-circuit-implementation`  
-- Deferred leaves: explainer for the TCAS-II modmul brief; Super-K / CIM / SCA — see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml)  
+- Deferred leaves: TCAS-II modmul explainer; Super-K / CIM / shuffling depth — see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml)  

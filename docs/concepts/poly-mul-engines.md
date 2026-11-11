@@ -18,11 +18,11 @@ Every coefficient of $h$ is a sum of products of coefficients of $f$ and $g$ —
 
 ## Engine families (slogans)
 
-| Engine | Slogan | HW feel |
-|--------|--------|---------|
-| **Schoolbook** | All $n^2$ coefficient products (with wrap folding) | Simple control; many muls; fine for tiny $n$ demos |
-| **Karatsuba / Toom / TMVP / Winograd** | Divide-and-conquer or structured formulas; fewer muls, more adds | Attractive when mul is expensive; control + wiring grow |
-| **NTT-based** | Transform → pointwise mul → inverse transform | Dominant for ML-KEM-scale $n$; needs butterflies + twiddles + memory |
+| Engine | Slogan | HW feel | `paper.md` anchor |
+|--------|--------|---------|-------------------|
+| **Schoolbook (reformulated)** | Coefficient products + wrap; here packed into a register-chain ISA | Simple control; many adds/muls | TVLSI RBLWE — §II.C Algorithmic Formulation, §III.A Poly-mul core (`.../High-Performance Instruction-Set.../paper.md`): schoolbook-origin $D_s$ string, contrasts Karatsuba split in cited [20] |
+| **NTT + CWM** | NTT → binomial CWM → INTT | Dominant for Kyber $R_q=\mathbb{Z}_{3329}[X]/(X^{256}+1)$ | TCAD Kyber poly-mul — §II.B–C, §III Bi-Core (`.../reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/paper.md`): CWM is binomial over $\mathbb{Z}_q[X]/(X^2-\omega)$, not plain $a_i b_i$ |
+| **Karatsuba / Winograd-style** | Fewer muls via algebraic splitting | More control / post-combine | Mentioned as contrast in TVLSI §II.C vs [20]; other TCAS-II digests — deepen when those leaves are curated |
 
 **Pointwise multiply (PWM):** after NTT, multiply matching coefficients with your [modular multiplier](modular-multiplier.md) — often the easy middle step.
 
@@ -49,6 +49,17 @@ Hold three modes of one engine:
 | **INTT** | Inverse transform (often GS butterflies) |
 
 A “reconfigurable poly-mul accelerator” often means **one datapath** that switches among these modes (shared [modular multiplier](modular-multiplier.md), shared memory banks) rather than three separate ASICs. See [NTT parallel memory](ntt-parallel-memory.md) for how banks feed those modes.
+
+### How to read a “new poly-mul architecture” abstract
+
+Ask, in order:
+
+1. **Which engine family** (table above)?  
+2. **New leaf arithmetic**, or new **schedule / memory / instruction packing**?  
+3. Is the claim **one polynomial mul** (TCAD title), or full **Encaps / Sign**? ([accelerator anatomy](kem-accelerator-anatomy.md))
+
+**TVLSI §III.A moral:** schoolbook-origin core with mux+adder register chain; one instruction; $(n/64+1+2n)$ cycles — still not NTT.  
+**TCAD §II.C moral:** Kyber CWM costs multiple modular muls per binomial (extract: $5N/2$ muls for full CWM) — why Bi-Core reconfigures between BU and binomial modes (§III.B).
 
 ### Tiny schoolbook sketch ($n=2$, ignore wrap for a moment)
 

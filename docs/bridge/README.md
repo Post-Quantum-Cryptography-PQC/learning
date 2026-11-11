@@ -34,7 +34,8 @@ The jump can feel steep (codes, syndromes, DFR, independence, LWE). **Bridge** p
 **PQC hardware fork** (after modular arithmetic + bits; Module-LWE helpful before NTT/accelerator pages):
 
 11. [Clocks, registers, and latency](clocks-registers-latency.md)  
-12. [Area, time, power honesty](area-time-power-honesty.md) → [PQC hardware track](../tracks/pqc-hardware/ROADMAP.md)
+12. [Area, time, power honesty](area-time-power-honesty.md) → [PQC hardware track](../tracks/pqc-hardware/ROADMAP.md)  
+13. [Side-channel threat model (gentle)](side-channel-threat-model.md) → masking / TCHES SCA leaves
 
 Then enter Concepts starting at [Error-correcting codes](../concepts/error-correcting-codes.md) (code track), [LWE](../concepts/lwe.md) (lattice track), or [Modular multiplier](../concepts/modular-multiplier.md) (hardware track) — they should read as summaries of ideas you already met slowly.
 

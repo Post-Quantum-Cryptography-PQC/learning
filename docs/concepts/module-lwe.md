@@ -1,7 +1,7 @@
 # Module-LWE (gentle)
 
 **Prereqs:** [LWE](lwe.md) · [Polynomials Part A](../fundamentals/polynomials-gentle.md) · [Polynomial wrap-around](../fundamentals/polynomials-wraparound.md) · [Noisy linear equations (LWE story)](../bridge/noisy-linear-equations-lwe.md)  
-**Next:** [KEM](kem.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · HW fork: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [Noise samplers](noise-samplers.md) · [KEM](kem.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · HW fork: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** lattice-lwe · pqc-hardware (after theory)
 
 **Learning goals.** Explain Module-LWE as “LWE with polynomial / module packaging,” see why that shrinks keys versus plain LWE, and know that ML-KEM sits in this family — without implementing Kyber here.
@@ -80,6 +80,15 @@ and a public matrix mixes them with polynomial multiplication before small coeff
 
 If that sentence clicks, you are ready for ML-KEM talk at the API level ([KEM](kem.md)) without memorizing parameter sets.
 
+### Ring-LWE vs Module-LWE (one postcard)
+
+| Name | Secret shape slogan | How to hear it in papers |
+|------|---------------------|---------------------------|
+| **Ring-LWE / RBLWE** | Polynomial ring samples; RBLWE uses **binary** secrets/errors | TVLSI RBLWE extract — §II.A Table I (`papers/tvlsi-pqc/High-Performance Instruction-Set.../paper.md`) |
+| **Module-LWE** | Short **vector** of polynomials (module rank $k\ge 1$) | TCAD Kyber — §I Module-LWE / $k\in\{2,3,4\}$ (`.../reconfigurable-and-high-efficiency-...-kyber/paper.md`); tailorable codes §3.1 ML-KEM |
+
+Same noisy moral; Module-LWE is the ML-KEM packaging. RBLWE in the TVLSI extract is a **lightweight ring** cousin with binary noise — still [LWE](lwe.md) + [noise samplers](noise-samplers.md), then HW.
+
 ## Where it appears in PQC
 
 - ML-KEM keygen / encaps / decaps  
@@ -128,7 +137,8 @@ If that sentence clicks, you are ready for ML-KEM talk at the API level ([KEM](k
 
 ## Next steps
 
-- [KEM](kem.md) · [IND-CPA / CCA](ind-cpa-cca.md)  
+- [Noise samplers](noise-samplers.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md)  
+- [KEM](kem.md) · [IND-CPA / CCA](ind-cpa-cca.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md)  
 - Track: [Lattice / LWE ROADMAP](../tracks/lattice-lwe/ROADMAP.md)  
 - Replay: [LWE](lwe.md) · [Noisy linear equations](../bridge/noisy-linear-equations-lwe.md)  
 - Return to code track: [index](../index.md)  

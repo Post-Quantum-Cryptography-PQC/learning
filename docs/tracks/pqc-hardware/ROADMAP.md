@@ -36,14 +36,22 @@ Curated path from **digital intuition** to **reusable arithmetic / polynomial mo
 
 ### Tier 3 — Scheme datapath
 
-6. [KEM accelerator anatomy](../../concepts/kem-accelerator-anatomy.md)  
+6. [Noise samplers](../../concepts/noise-samplers.md) · [Hash / XOF](../../concepts/hash-xof-keccak.md) · [Ciphertext compress / encode](../../concepts/ciphertext-compress-encode.md)  
+7. [KEM accelerator anatomy](../../concepts/kem-accelerator-anatomy.md)  
+
+### Tier 3b — Side-channel vocabulary (before TCHES SCA leaves)
+
+8. [Side-channel threat model](../../bridge/side-channel-threat-model.md)  
+9. [Masking shares](../../concepts/masking-shares.md)  
+10. Optional: [PQ signatures — Dilithium slogan](../../concepts/pq-signatures-dilithium.md) before Dilithium accelerator leaves  
 
 ### Tier 4 — Optional leaves (not core)
 
 - [Reconfigurable Kyber poly-mul (TCAD 2023)](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/explainer.md) — Bi-Core NTT/INTT/CWM on Artix-7  
-- Paper explainers for other digested TCAS-II / TCAD rows — as accepted  
-- Super-scalar / dual-issue hash–poly processors, CIM-NTT, SCA shuffling — **deferred** (see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml))  
-- Code-based HW fork (MDPC bit-flip, HQC CLMUL) — later, off [code-based KEMs](../code-based-kems/ROADMAP.md)
+- Paper explainers for other digested TCAS-II / TCAD / TCHES rows with `paper.md` — as accepted  
+- Super-scalar / dual-issue hash–poly processors, CIM-NTT, deep shuffling schedules — **still deferred** (see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml))  
+- Code-based HW fork (MDPC bit-flip, HQC CLMUL) — later, off [code-based KEMs](../code-based-kems/ROADMAP.md)  
+- TIT-motivated theory cards — join Wave A **after** TIT `paper.md` extracts finish
 
 ## Mindmap (textual)
 
@@ -56,9 +64,11 @@ crypto fundamentals (mod q, bits, Module-LWE helpful)
                  ↓
      Tier 2: poly-mul engines → NTT butterfly → parallel memory
                  ↓
-     Tier 3: KEM accelerator anatomy
+     Tier 3: samplers / hash / compress → KEM accelerator anatomy
                  ↓
-     optional IEEE leaves (TCAD Kyber poly-mul, …) · lab RTL under projects/
+     Tier 3b: SCA threat model → masking shares (Dilithium slogan optional)
+                 ↓
+     optional IEEE / TCHES leaves (paper.md-backed) · lab RTL under projects/
 ```
 
 ## Related tracks

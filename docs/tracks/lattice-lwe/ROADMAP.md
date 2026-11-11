@@ -32,7 +32,9 @@ Secondary curated path for lattice-based PQC (ML-KEM / LWE-shaped schemes). Goal
 
 7. [LWE](../../concepts/lwe.md)  
 8. [Module-LWE](../../concepts/module-lwe.md)  
-9. Shared: [KEM](../../concepts/kem.md) · [IND-CPA / CCA](../../concepts/ind-cpa-cca.md)  
+9. [Noise samplers](../../concepts/noise-samplers.md) · [Hash / XOF](../../concepts/hash-xof-keccak.md) · [Ciphertext compress / encode](../../concepts/ciphertext-compress-encode.md)  
+10. Shared: [KEM](../../concepts/kem.md) · [IND-CPA / CCA](../../concepts/ind-cpa-cca.md)  
+11. Optional API fork: [PQ signatures — Dilithium slogan](../../concepts/pq-signatures-dilithium.md) (before Dilithium HW / TCHES leaves)  
 
 ### D. Hardware fork (modules → accelerator)
 
@@ -60,9 +62,11 @@ shared fundamentals (mod q, vectors, polynomials)
                  ↓
      bridge: noisy linear equations (LWE story)
                  ↓
-     concepts: LWE → Module-LWE → shared KEM/CCA
+     concepts: LWE → Module-LWE → samplers / hash / compress → KEM/CCA
                  ↓
-     optional TIT leaves · fork → pqc-hardware track
+     optional Dilithium slogan · non-TIT paper.md leaves · TIT after extracts
+                 ↓
+     fork → pqc-hardware track
 ```
 
 Return anytime to the [code-based KEMs](../code-based-kems/ROADMAP.md) track or the [PQC hardware](../pqc-hardware/ROADMAP.md) track.
