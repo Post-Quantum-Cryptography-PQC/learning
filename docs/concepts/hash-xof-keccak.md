@@ -11,7 +11,7 @@
 Lattice schemes need **lots of random-looking bits**: matrix entries, noise coins, challenges, shared-secret digests.  
 Storing all of that randomness would be huge. Instead they store a **short seed** and **stretch** it with a public function.
 
-That stretch tool is usually an **XOF** (extendable-output function). In ML-KEM / Dilithium land the XOF is often **SHAKE**, built from the **Keccak** sponge.
+That stretch tool is usually an **XOF** (extendable-output function). In ML-KEM / Dilithium land the XOF is often **SHAKE**, built from the **Keccak** sponge [[1]](#ref-1).
 
 | Tool | Picture | Output length |
 |------|---------|---------------|
@@ -21,9 +21,9 @@ That stretch tool is usually an **XOF** (extendable-output function). In ML-KEM 
 ## Story — seed in, polynomials out
 
 1. Alice picks a short random seed (a few dozen bytes).  
-2. SHAKE **absorbs** the seed (plus a domain label so “matrix expand” ≠ “noise expand”).  
+2. SHAKE **absorbs** the seed (plus a domain label so “matrix expand” ≠ “noise expand”) [[1]](#ref-1).  
 3. SHAKE **squeezes** thousands of output bits.  
-4. A [noise sampler](noise-samplers.md) or unpacker turns bits into coefficients.
+4. A [noise sampler](noise-samplers.md) or unpacker turns bits into coefficients [[1]](#ref-1).
 
 So: **XOF = fire hose of bits**; **sampler = shapes those bits into small noise**.
 
@@ -46,31 +46,31 @@ No. SHAKE outputs bits that look uniform. CBD / rejection / packing rules make t
 
 ## Why Dilithium HW talks about SHAKE so much
 
-Signing repeatedly:
+Signing repeatedly [[1]](#ref-1):
 
-- expands matrices / masks from seeds,  
+- expands matrices / masks from seeds (SHAKE-128 / SHAKE-256 variants),  
 - hashes message material into a **challenge**,  
 - may **retry** and ask for more XOF output.
 
-So a Dilithium accelerator often has a serious **SHAKE/Keccak unit** next to NTT. A chip can be fast at butterflies and still slow at Sign if the hash pipe starves.
+So a Dilithium accelerator often has a serious **SHAKE/Keccak unit** next to NTT [[1]](#ref-1). A chip can be fast at butterflies and still slow at Sign if the hash pipe starves.
 
-Hardware wrappers typically support at least:
+Hardware wrappers in [[1]](#ref-1) typically support at least:
 
 1. Absorb then squeeze  
 2. Squeeze more (extra bits after a rejection)  
-3. Sometimes expose the Keccak state so other blocks reuse it
+3. Read / expose the Keccak state so other blocks reuse it
 
 You only need those three slogans to read HW block diagrams.
 
 ## KEMs use hashes too
 
-Kyber/ML-KEM CCA transforms use hashes / KDFs around encapsulation (often called $G$, $H$, KDF in specs). Same moral: **public hash functions bind transcripts and derive keys** — separate from the LWE noise sampler, but same Keccak family appears often.
+Kyber/ML-KEM CCA transforms use hashes / KDFs around encapsulation (often called $G$, $H$, KDF in specs) [[2]](#ref-2). Same moral: **public hash functions bind transcripts and derive keys** — separate from the LWE noise sampler, but the same Keccak family appears often.
 
 ## Common confusions
 
 - SHAKE ≠ AES. Different job (stretch/fingerprint vs encrypt blocks).  
 - “Hash domain” vs “poly domain” on a chip = two factories ([accelerator anatomy](kem-accelerator-anatomy.md)).  
-- Faster NTT does not automatically mean faster Sign if SHAKE is the bottleneck.
+- Faster NTT does not automatically mean faster Sign if SHAKE is the bottleneck [[1]](#ref-1).
 
 ## Check yourself
 
@@ -81,7 +81,7 @@ Hash: fixed-length fingerprint. XOF: squeeze as many bits as you need from one i
 
 2. Why expand from a seed instead of storing a whole matrix?  
 <details><summary>Answer</summary>
-Seeds are short; XOF regenerates long public material when needed.
+Seeds are short; XOF regenerates long public material when needed [[1]](#ref-1).
 </details>
 
 3. Who turns SHAKE bits into CBD noise?  
@@ -95,7 +95,8 @@ The noise sampler (this curriculum’s previous/next card).
 - [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) — Sign’s hash-heavy flow  
 - [KEM accelerator anatomy](kem-accelerator-anatomy.md) — where the hash unit sits  
 
-## Where this is grounded (optional)
+## References
 
-1. N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599). (§II.B SHAKE roles; §III.D wrapper modes; §III.E sampling from Keccak)
-2. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 FO / KDF next to CCA decapsulation)
+<a id="ref-1"></a>[1] N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599).
+
+<a id="ref-2"></a>[2] J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214).

@@ -22,7 +22,7 @@ That “someone” is the **noise sampler**.
 | Without a sampler | With a sampler |
 |-------------------|----------------|
 | You know $e$ should be small | You have a concrete random recipe that outputs small $e$ |
-| Papers just write “$e\leftarrow\chi$” | Hardware has a named block that produces coefficients |
+| Papers just write “$e\leftarrow\chi$” | Hardware has a named block that produces coefficients [[3]](#ref-3) [[4]](#ref-4) |
 
 **This page teaches the recipe idea**, not a full Kyber parameter sheet.
 
@@ -38,10 +38,10 @@ A sampler is how KeyGen / Encaps / Sign **implement** that distribution in real 
 
 ## Worked toy — centered binomial (CBD)
 
-Kyber-shaped KEMs often use a **centered binomial distribution** (CBD).  
+Kyber-shaped KEMs often use a **centered binomial distribution** (CBD) [[1]](#ref-1) [[2]](#ref-2).  
 Plain English: flip a few fair coins, subtract two small counts, get a number near $0$.
 
-**Recipe for one coefficient** (parameter $\eta=2$ — a tiny teaching choice, not “the” Kyber $\eta$):
+**Recipe for one coefficient** (parameter $\eta=2$ — a tiny teaching choice, not “the” Kyber $\eta$ from [[2]](#ref-2)):
 
 1. Draw four fair bits: $a_0,a_1$ and $b_0,b_1$.  
 2. Output
@@ -63,12 +63,13 @@ $$
 Another draw: $a=(1,1)$, $b=(0,0)$ → $e=2-0=2$ (still small).  
 Another: $a=(0,0)$, $b=(1,1)$ → $e=0-2=-2$.
 
-General formula used in Kyber-family writeups:
+General formula used in Kyber-family writeups [[1]](#ref-1):
 
 $$
 e = \sum_{i=0}^{\eta-1}(a_i - b_i),\qquad a_i,b_i\in\{0,1\}.
 $$
 
+ML-KEM parameter sets pick concrete $\eta_1,\eta_2$ for which CBD widths feed KeyGen/Encrypt noise [[2]](#ref-2).  
 Repeat for every coefficient of a polynomial → you have sampled a **noise polynomial**.
 
 ### Mid-page self-check
@@ -83,28 +84,28 @@ No. Uniform mod $q$ is usually huge. CBD piles up a few $\pm 1$ coin flips so th
 
 ## Where do the random bits come from?
 
-Often from a hash/XOF stream (SHAKE) expanded from a short seed — see [Hash / XOF](hash-xof-keccak.md).  
-Sometimes from a hardware TRNG.  
+Often from a hash/XOF stream (SHAKE) expanded from a short seed — see [Hash / XOF](hash-xof-keccak.md) and Dilithium sampling modules that pull coefficients from a Keccak wrapper [[3]](#ref-3).  
+Sometimes from a hardware TRNG, as in a Ring-Binary-LWE instruction-set accelerator’s binary sampler [[4]](#ref-4).  
 The sampler’s job is: **bits → small coefficients** (plus accept/reject rules when needed).
 
 ## Same job, other recipes (so papers do not confuse you)
 
 | Recipe you will see | What it draws | Typical home |
 |---------------------|---------------|--------------|
-| **CBD** | Small integers near $0$ | Kyber / ML-KEM noise |
-| **Rejection sampling** | Candidates from a stream; keep only ones that pass a size/check | Dilithium Sign (may **retry** a whole signature) |
-| **Binary sampler** | Bits / binary polynomials | Lightweight Ring-Binary-LWE schemes |
+| **CBD** [[1]](#ref-1) [[2]](#ref-2) | Small integers near $0$ | Kyber / ML-KEM noise |
+| **Rejection sampling** [[3]](#ref-3) | Candidates from a stream; keep only ones that pass a size/check | Dilithium Sign (may **retry** a whole signature) |
+| **Binary sampler** [[4]](#ref-4) | Bits / binary polynomials | Lightweight Ring-Binary-LWE schemes |
 
 All three are “samplers.” The shared slogan:
 
 > Produce the **random small stuff** the scheme’s math assumes.
 
-You do **not** need every Dilithium loop on this page — only that Sign often **samples, checks, and sometimes restarts** ([Dilithium slogan](pq-signatures-dilithium.md)).
+You do **not** need every Dilithium loop on this page — only that Sign often **samples, checks, and sometimes restarts** [[3]](#ref-3) ([Dilithium slogan](pq-signatures-dilithium.md)).
 
 ## Bridge to hardware
 
 [KEM accelerator anatomy](kem-accelerator-anatomy.md) draws a box labeled **Sampler** next to NTT and hash.  
-That box is exactly this idea: fill coefficient memories with CBD (or binary / rejected) noise before poly-mul runs.
+That box is exactly this idea: fill coefficient memories with CBD (or binary / rejected) noise before poly-mul runs [[3]](#ref-3) [[4]](#ref-4).
 
 When you later read “sampling module” in an FPGA paper, ask:
 
@@ -115,7 +116,7 @@ When you later read “sampling module” in an FPGA paper, ask:
 ## Common confusions
 
 - Sampler ≠ modular multiplier. Multipliers compute $ab\bmod q$; samplers **draw** random small values.  
-- “Uniform bytes from SHAKE” are only the **fuel**; CBD/rejection turns them into the right shape.  
+- “Uniform bytes from SHAKE” are only the **fuel**; CBD/rejection turns them into the right shape [[1]](#ref-1) [[3]](#ref-3).  
 - Compressing ciphertext bits ([compress / encode](ciphertext-compress-encode.md)) is a later step — not sampling.
 
 ## Check yourself
@@ -132,7 +133,7 @@ $e=1-0=1$.
 
 3. Why might Dilithium Sign “sample again”?  
 <details><summary>Answer</summary>
-Rejection: a candidate failed a size/correctness check, so the scheme retries.
+Rejection: a candidate failed a size/correctness check, so the scheme retries [[3]](#ref-3).
 </details>
 
 4. Point to the anatomy box this card explains.  
@@ -147,11 +148,12 @@ The Sampler unit next to NTT / hash / compress.
 - See the chip map: [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
 - Signatures that retry: [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md)  
 
-## Where this is grounded (optional)
+## References
 
-Pedagogy first; the recipes above track these extracts (CBD / $\eta$ / Sign rejection / binary sampler):
+<a id="ref-1"></a>[1] J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214).
 
-1. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 CBD; in-repo `paper.md`)
-2. T. B. Paiva *et al.*, “Tailorable codes for lattice-based KEMs with applications to compact ML-KEM instantiations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2025, no. 3, pp. 139–163, 2025, doi: [10.46586/tches.v2025.i3.139-163](https://doi.org/10.46586/tches.v2025.i3.139-163). (§3.1 $\eta$ parameters)
-3. N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599). (§II.B, §III.E sampling / rejection)
-4. P. He, T. Bao, and J. Xie, “High-performance instruction-set hardware accelerator for ring-binary-LWE-based lightweight PQC,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 33, no. 5, pp. 1417–1421, May 2025, doi: [10.1109/TVLSI.2025.3538874](https://doi.org/10.1109/TVLSI.2025.3538874). (§III.G binary sampler)
+<a id="ref-2"></a>[2] T. B. Paiva *et al.*, “Tailorable codes for lattice-based KEMs with applications to compact ML-KEM instantiations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2025, no. 3, pp. 139–163, 2025, doi: [10.46586/tches.v2025.i3.139-163](https://doi.org/10.46586/tches.v2025.i3.139-163).
+
+<a id="ref-3"></a>[3] N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599).
+
+<a id="ref-4"></a>[4] P. He, T. Bao, and J. Xie, “High-performance instruction-set hardware accelerator for ring-binary-LWE-based lightweight PQC,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 33, no. 5, pp. 1417–1421, May 2025, doi: [10.1109/TVLSI.2025.3538874](https://doi.org/10.1109/TVLSI.2025.3538874).

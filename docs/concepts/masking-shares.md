@@ -9,18 +9,18 @@
 ## The one idea
 
 From the [SCA bridge](../bridge/side-channel-threat-model.md): power/EM might correlate with a sensitive value $x$ sitting in a register.  
-**Masking** answers: never leave $x$ alone in the clear. Split it into random **shares** that only rebuild $x$ when combined.
+**Masking** answers: never leave $x$ alone in the clear. Split it into random **shares** that only rebuild $x$ when combined [[1]](#ref-1).
 
 | Clear | Masked |
 |-------|--------|
 | One register holds $x$ | Several registers hold random-looking pieces |
 | Leakage may track $x$ | Each piece alone should look like noise |
 
-Masking hardens the **implementation**. It does **not** change Module-LWE itself.
+Masking hardens the **implementation**. It does **not** change Module-LWE itself [[1]](#ref-1).
 
 ## Toy 1 — boolean shares (XOR world)
 
-Secret bit or bit-string $x$.
+Secret bit or bit-string $x$. Boolean sharing combines shares with XOR [[1]](#ref-1):
 
 1. Pick a fresh random $x_1$ (same shape as $x$).  
 2. Set $x_2 = x \oplus x_1$.  
@@ -31,7 +31,7 @@ Alone, $0$ and $1$ are just bits; together they rebuild $1$.
 
 ## Toy 2 — arithmetic shares (mod $q$ world)
 
-Lattice coefficients live in $\mathbb{Z}_q$, so addition fits better than XOR.
+Lattice coefficients live in $\mathbb{Z}_q$, so addition fits better than XOR. Arithmetic sharing sums shares mod $q$ [[1]](#ref-1):
 
 1. Pick random $x_1 \bmod q$.  
 2. Set $x_2 \equiv x - x_1 \pmod{q}$.  
@@ -46,39 +46,39 @@ If I publish only one arithmetic share $x_1$, have I published $x$?
 
 <details><summary>Answer</summary>
 
-No. One share is designed to look random; you need (enough of) the other shares to rebuild $x$.
+No. One share is designed to look random; you need (enough of) the other shares to rebuild $x$ [[1]](#ref-1).
 
 </details>
 
 ## “Order” in one sentence
 
 **First-order** masking often means a two-share split.  
-**Higher-order** means more shares, aiming at adversaries who combine leakage from several places — and it costs more randomness and logic. You can treat “order” as a **cost dial**, not something to prove here.
+**Higher-order** means more shares, aiming at adversaries who combine leakage from several places — and it costs more randomness and logic [[1]](#ref-1). You can treat “order” as a **cost dial**, not something to prove here. Security arguments often use $t$-probing / $t$-(S)NI gadget composition [[1]](#ref-1).
 
 ## Why Compress becomes a research topic
 
 Kyber needs $\mathrm{Compress}_q$ to turn coefficients into fewer bits (message bits or packed ciphertext) — see [compress / encode](ciphertext-compress-encode.md).  
-That decision is naturally **bit-ish**, while LWE math is **mod $q$**. Under masking you typically:
+That decision is naturally **bit-ish**, while LWE math is **mod $q$**. Under masking you typically [[1]](#ref-1):
 
 1. Keep coefficients in **arithmetic** shares while doing poly arithmetic.  
 2. Convert (**A2B**) when you need bit operations.  
 3. Compute a **masked** version of Compress / compare so intermediates stay shared.
 
-If any step peeks at the clear secret, the masking story collapses. That is why papers invent “masked Compress” gadgets.
+If any step peeks at the clear secret, the masking story collapses. That is why [[1]](#ref-1) builds masked one-bit Compress and masked decompressed-comparison gadgets for FO decapsulation.
 
 ## Masking vs shuffling (do not merge)
 
-| | Masking | Shuffling / hiding |
+| | Masking [[1]](#ref-1) | Shuffling / hiding [[2]](#ref-2) |
 |--|---------|---------------------|
 | Randomizes | **Values** (shares) | **Order / timing** of ops |
 | Feels like | Split the cookie | Shuffle the recipe steps |
 
-Both are SCA countermeasures; different tools.
+Both are SCA countermeasures; different tools [[2]](#ref-2).
 
 ## Common confusions
 
-- Masking ≠ IND-CCA proof.  
-- “We masked the NTT” still needs the rest of FO/decapsulation to be careful.  
+- Masking ≠ IND-CCA proof [[1]](#ref-1).  
+- “We masked the NTT” still needs the rest of FO/decapsulation to be careful [[1]](#ref-1).  
 - More shares ≠ automatically “unbreakable” — engineering and models matter (paper-level detail).
 
 ## Check yourself
@@ -95,7 +95,7 @@ $x_2\equiv 4-3=1\pmod{5}$.
 
 3. Why convert arithmetic → boolean around Compress?  
 <details><summary>Answer</summary>
-Compress’s decision is bit-oriented; arithmetic shares suit $\mathbb{Z}_q$ add/mul first.
+Compress’s decision is bit-oriented; arithmetic shares suit $\mathbb{Z}_q$ add/mul first [[1]](#ref-1).
 </details>
 
 ## Next steps
@@ -104,7 +104,8 @@ Compress’s decision is bit-oriented; arithmetic shares suit $\mathbb{Z}_q$ add
 - [Ciphertext compress / encode](ciphertext-compress-encode.md)  
 - [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
 
-## Where this is grounded (optional)
+## References
 
-1. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 arithmetic/Boolean shares and probing; §3.1–3.2 masked Compress / compare)
-2. D. Xu, K. Wang, and J. Tian, “A hardware-friendly shuffling countermeasure against side-channel attacks for Kyber,” *IEEE Trans. Circuits Syst. II*, vol. 72, no. 3, pp. 504–508, Mar. 2025, doi: [10.1109/TCSII.2025.3528751](https://doi.org/10.1109/TCSII.2025.3528751). (§I hiding/shuffling vs masking)
+<a id="ref-1"></a>[1] J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214).
+
+<a id="ref-2"></a>[2] D. Xu, K. Wang, and J. Tian, “A hardware-friendly shuffling countermeasure against side-channel attacks for Kyber,” *IEEE Trans. Circuits Syst. II*, vol. 72, no. 3, pp. 504–508, Mar. 2025, doi: [10.1109/TCSII.2025.3528751](https://doi.org/10.1109/TCSII.2025.3528751).
