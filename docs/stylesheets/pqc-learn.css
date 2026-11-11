@@ -105,7 +105,7 @@
 
 [data-md-color-scheme="slate"] .md-typeset .katex-display {
   background: #0a0a0a !important;
-  border-left-color: #2dd4bf !important;
+  border-left-color: var(--pqc-amber) !important;
 }
 
 [data-md-color-scheme="slate"] .md-typeset details {
@@ -137,7 +137,7 @@
 }
 
 [data-md-color-scheme="slate"] .md-typeset p > strong:first-child {
-  color: #5eead4;
+  color: #fbbf24;
 }
 
 /* Tables */
@@ -223,7 +223,7 @@
 }
 
 [data-md-color-scheme="slate"] .md-typeset details > summary {
-  color: #99f6e4;
+  color: #fbbf24;
 }
 
 .md-typeset details > summary::before {
@@ -310,7 +310,7 @@
 }
 
 [data-md-color-scheme="slate"] .pqc-progress__label {
-  color: #99f6e4;
+  color: #fbbf24;
 }
 
 .pqc-progress__reset {
@@ -347,8 +347,8 @@
 
 [data-md-color-scheme="slate"] .pqc-check {
   background: #0a0a0a;
-  color: #ccfbf1;
-  border-color: rgba(94, 234, 212, 0.35);
+  color: #fde68a;
+  border-color: rgba(217, 119, 6, 0.55);
 }
 
 .pqc-check:hover {
