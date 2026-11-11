@@ -57,6 +57,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Glossary: glossary.md
   - Paper map: papers.md
   - Orientation:
       - Start here: orientation/README.md
@@ -94,13 +95,23 @@ nav:
       - Side-channel threat model: bridge/side-channel-threat-model.md
   - Concepts:
       - Error-correcting codes: concepts/error-correcting-codes.md
+      - Hamming metric: concepts/hamming-metric.md
       - Linear codes: concepts/linear-codes.md
       - Syndrome decoding: concepts/syndrome-decoding.md
+      - Information-set decoding: concepts/information-set-decoding.md
+      - Goppa and alternant: concepts/goppa-alternant.md
+      - Niederreiter: concepts/niederreiter.md
+      - MDPC and QC-MDPC: concepts/mdpc-qc-mdpc.md
+      - Bit-flipping decoding: concepts/bit-flipping-decoding.md
       - Quasi-cyclic codes: concepts/quasi-cyclic-codes.md
       - KEM: concepts/kem.md
+      - IND-CPA and IND-CCA: concepts/ind-cpa-cca.md
       - DFR: concepts/dfr.md
       - Independence heuristics: concepts/independence-heuristics.md
       - KL divergence: concepts/kl-divergence.md
+      - Rank metric: concepts/rank-metric.md
+      - LRPC codes: concepts/lrpc-codes.md
+      - Rank syndrome decoding: concepts/rank-syndrome-decoding.md
       - LWE: concepts/lwe.md
       - Module-LWE: concepts/module-lwe.md
       - Noise samplers: concepts/noise-samplers.md
