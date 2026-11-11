@@ -1,9 +1,9 @@
 # Public-key crypto in one picture
 
-**Prereqs:** [Why cryptography?](why-cryptography.md) · [Hard problems](hard-problems.md)  
+**Prereqs:** [Why cryptography?](why-cryptography.md) · [Hard problems](hard-problems.md) · [Crypto categories (mindmap)](../orientation/crypto-categories.md) (recommended)  
 **Next:** [Quantum threat](quantum-threat.md) · [Vectors](vectors-matrices.md)
 
-**Learning goals.** Explain public vs secret keys with the padlock story, walk Encaps/Decaps in plain English, say why real systems combine public-key crypto with AES-like tools, and separate correctness from security.
+**Learning goals.** Explain public vs secret keys with the padlock story, name the three classical PKC jobs plus KEM, walk Encaps/Decaps in plain English, say why real systems combine public-key crypto with AES-like tools, and separate correctness from security.
 
 ## Why this page exists
 
@@ -60,6 +60,26 @@ If $\mathsf{sk}$ leaks, the padlock is useless for secrecy going forward (and ma
 2. Receive a matching pair $(\mathsf{pk},\mathsf{sk})$.  
 3. Publish $\mathsf{pk}$. Store $\mathsf{sk}$ privately.  
 4. Never email $\mathsf{sk}$ to yourself “for backup” on an unsafe channel.
+
+## Three PKC jobs (+ KEM)
+
+Before the KEM walkthrough, keep these APIs separate ([full mindmap](../orientation/crypto-categories.md)):
+
+| Job | Public key role | Private key role | Output / goal |
+|-----|-----------------|------------------|---------------|
+| **Public-key encryption** | Encrypt a message | Decrypt ciphertext | Confidentiality of that message |
+| **Digital signature** | Verify a stamp | Create the stamp | Authenticity / integrity |
+| **Key agreement** (DH / ECDH, …) | Contribute to a shared secret | Contribute to the same secret | Session secret — *not* “encrypt this file” by itself |
+| **KEM** (modern packaging) | $\mathsf{Encaps}(\mathsf{pk})$ | $\mathsf{Decaps}(\mathsf{sk},\mathsf{ct})$ | Fresh session key $K$ under a clean API |
+
+RSA can support encryption and signatures; Diffie–Hellman is agreement-only; ECC often appears as ECDH and ECDSA. PQC standards emphasize **KEMs** and **signatures**.
+
+### Quick self-check
+
+Someone says “we used Diffie–Hellman to encrypt the PDF.” What went wrong in the wording?  
+<details><summary>Answer</summary>
+DH establishes a <strong>shared secret</strong> (key agreement). Encrypting the PDF would use that secret with <strong>symmetric</strong> crypto (or a different public-key encryption / KEM story) — DH itself is not the encrypt-PDF API.
+</details>
 
 ## KEM — the modern API (still English)
 
@@ -129,7 +149,7 @@ Correctness (honest failure) — unless the failure somehow helps Eve; that inte
 
 Public-key crypto also does **signatures**: only the secret-key owner can stamp a message; anyone with $\mathsf{pk}$ can verify the stamp.  
 That is authenticity, not confidentiality.  
-KEMs and signatures are sibling tools — do not mix their APIs in your head.
+KEMs and signatures are sibling tools — do not mix their APIs in your head. Map: [Crypto categories](../orientation/crypto-categories.md) · glossary: [Digital signature](../glossary.md#digital-signature).
 
 ## Bridge to PQC
 
@@ -174,6 +194,7 @@ This lab’s TIT paper explainers are currently densest on the **code-based** tr
 
 ## Next steps
 
+- [Crypto categories (mindmap)](../orientation/crypto-categories.md) — folder tree of goals / symmetric / PKC / PQC  
 - [Why quantum computers change crypto](quantum-threat.md)  
 - [Vectors and matrices](vectors-matrices.md) — math language inside many padlocks  
 - Concept later: [KEM](../concepts/kem.md)  

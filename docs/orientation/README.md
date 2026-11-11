@@ -1,7 +1,7 @@
 # Orientation — start here
 
 **Prereqs:** none (curriculum entry)  
-**Next:** [Motivation](motivation.md) → [History](history.md) → [Problems](problems.md) → [Challenges](challenges.md) → [How to read the math](../fundamentals/reading-math-notation.md)
+**Next:** [Motivation](motivation.md) → [History](history.md) → [Problems](problems.md) → [Challenges](challenges.md) → [Crypto categories](crypto-categories.md) → [How to read the math](../fundamentals/reading-math-notation.md)
 
 ## Why orientation exists
 
@@ -13,6 +13,7 @@ Before modular arithmetic and PQC vocabulary, it helps to share a **story**:
 | [History](history.md) | How did we get from classical PKC to NIST PQC? |
 | [Problems](problems.md) | What does “hard problem” mean for crypto? |
 | [Challenges](challenges.md) | What still makes PQC hard in practice? |
+| [Crypto categories](crypto-categories.md) | Mindmap: symmetric / PKC / KEM / signatures / PQC |
 
 These pages use ordinary English. Math comes next in **Fundamentals** — not because it is “harder,” but because the *why* should land first.
 
@@ -22,6 +23,7 @@ These pages use ordinary English. Math comes next in **Fundamentals** — not be
 2. [History](history.md)  
 3. [Problems](problems.md)  
 4. [Challenges](challenges.md)  
-5. Then [Fundamentals](../index.md#2-fundamentals) — start with [reading math](../fundamentals/reading-math-notation.md) if symbols feel scary  
+5. [Crypto categories (mindmap)](crypto-categories.md)  
+6. Then [Fundamentals](../index.md#2-fundamentals) — start with [reading math](../fundamentals/reading-math-notation.md) if symbols feel scary  
 
 **Lookup anytime:** [Glossary](../glossary.md)

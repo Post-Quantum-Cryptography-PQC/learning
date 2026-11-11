@@ -1,7 +1,7 @@
 # Challenges — what still makes PQC hard
 
 **Prereqs:** [Problems](problems.md)  
-**Next:** [How to read the math](../fundamentals/reading-math-notation.md) · or [Why cryptography?](../fundamentals/why-cryptography.md)
+**Next:** [Crypto categories (mindmap)](crypto-categories.md) · [How to read the math](../fundamentals/reading-math-notation.md) · or [Why cryptography?](../fundamentals/why-cryptography.md)
 
 **Learning goals.** Name several *practical* obstacles beyond “pick a hard problem”: key/ciphertext size, decryption failures, side channels, hardware cost, hybrids, and the fact that cryptanalysis never freezes.
 

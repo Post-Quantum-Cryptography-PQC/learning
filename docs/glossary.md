@@ -13,6 +13,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 |------|---------------|-----|
 | **ADP** | Area × delay — one circuit trade-off scalar in HW tables | [Area–time honesty](bridge/area-time-power-honesty.md) |
 | **Alternant code** | Algebraic code family related to GRS; includes binary Goppa as a famous case | [Goppa and alternant](concepts/goppa-alternant.md) |
+| <a id="asymmetric-pkc"></a>**Asymmetric / PKC** | Same family as public-key crypto: public + private key pair (not a shared house key) | [Crypto categories](orientation/crypto-categories.md) · [PKC](#pkc) |
 | **Authenticity** | Strangers cannot forge or silently edit a message | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Bit** | A $0$ or $1$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
 | **Bit-flipping** | Iterative decoder: flip bits that fail many parity checks | [Bit-flipping decoding](concepts/bit-flipping-decoding.md) |
@@ -30,6 +31,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | Term | Plain meaning | See |
 |------|---------------|-----|
 | **DFR** | How often honest Decaps fails to return the session key | [DFR](concepts/dfr.md) |
+| <a id="digital-signature"></a>**Digital signature** | Sign with the private key; anyone with the public key can verify — authenticity, not confidentiality | [Crypto categories](orientation/crypto-categories.md) · [Public-key picture](fundamentals/public-key-picture.md) |
 | **Encaps / Decaps** | KEM calls that create / recover a session key | [KEM](concepts/kem.md) |
 | **Generator matrix $G$** | Builds codewords from short messages | [Generator and parity-check](bridge/generator-and-parity-check.md) |
 | **Goppa code** | Classic algebraic secret code for McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
@@ -44,9 +46,10 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Independence heuristic** | Pretend noise coordinates are independent for easy tail bounds | [Independence heuristics](concepts/independence-heuristics.md) |
 | **IND-CPA / IND-CCA** | Security games: chosen-plaintext vs also decryption-oracle powers | [IND-CPA / CCA](concepts/ind-cpa-cca.md) |
 | **ISD** | Information-set decoding — main classical attack family on sparse decoding | [ISD](concepts/information-set-decoding.md) |
-| **KEM** | Key encapsulation mechanism — API to ship a fresh session key | [KEM](concepts/kem.md) |
+| <a id="kem"></a>**KEM** | Key encapsulation mechanism — API to ship a fresh session key ($\mathsf{Encaps}$ / $\mathsf{Decaps}$) | [KEM](concepts/kem.md) · [Crypto categories](orientation/crypto-categories.md) |
 | **KEM accelerator** | HW datapath + control that runs Encaps/Decaps hot paths | [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md) |
 | **Key** | Secret that controls scrambling / unscrambling | [Why cryptography?](fundamentals/why-cryptography.md) |
+| <a id="key-agreement"></a>**Key agreement** | Both parties contribute to a shared secret (e.g. DH / ECDH); not the same API as encrypting a message | [Crypto categories](orientation/crypto-categories.md) · [PKC](#pkc) |
 | **KL divergence** | Score for how badly model $Q$ describes reality $P$ | [KL divergence](concepts/kl-divergence.md) |
 
 ## L–N
@@ -73,9 +76,10 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | Term | Plain meaning | See |
 |------|---------------|-----|
 | **Parity-check matrix $H$** | Checklist of linear constraints; syndrome fingerprint | [Generator and parity-check](bridge/generator-and-parity-check.md) |
-| <a id="pkc"></a>**PKC** | Public-key cryptography (PKC) uses a mathematically related key pair: a public key that can be freely distributed and a private key that must remain secret. Public keys enable encryption, signature verification, or key agreement, depending on the cryptographic scheme. Classical PKC includes RSA, Diffie–Hellman (DH), and Elliptic-Curve Cryptography (ECC), which are widely used before the transition to post-quantum cryptography (PQC). | [Public-key picture](fundamentals/public-key-picture.md) · [History](orientation/history.md) · [Motivation](orientation/motivation.md) |
+| <a id="pkc"></a>**PKC** | Public-key cryptography (PKC) uses a mathematically related key pair: a public key that can be freely distributed and a private key that must remain secret. Public keys enable encryption, signature verification, or key agreement, depending on the cryptographic scheme. Classical PKC includes RSA, Diffie–Hellman (DH), and Elliptic-Curve Cryptography (ECC), which are widely used before the transition to post-quantum cryptography (PQC). | [Crypto categories](orientation/crypto-categories.md) · [Public-key picture](fundamentals/public-key-picture.md) · [History](orientation/history.md) · [Motivation](orientation/motivation.md) |
 | **Plaintext** | Readable message before encryption | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Poly-mul engine** | Schoolbook / Karatsuba / NTT organization for polynomial multiply | [Poly-mul engines](concepts/poly-mul-engines.md) |
+| <a id="pqc"></a>**PQC** | Post-quantum cryptography — public-key (and related) algorithms meant to stay hard even for large quantum computers; runs on ordinary machines today | [Crypto categories](orientation/crypto-categories.md) · [Motivation](orientation/motivation.md) |
 | **Public / secret key** | Publishable padlock vs private opener | [Public-key picture](fundamentals/public-key-picture.md) |
 | **PWM** | Pointwise multiply of NTT-domain coefficients | [Poly-mul engines](concepts/poly-mul-engines.md) |
 | **Quasi-cyclic (QC)** | Structure from rotations / polynomials mod $X^n-1$ | [Quasi-cyclic codes](concepts/quasi-cyclic-codes.md) |
@@ -85,6 +89,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Security bits** | Attack-work slogan (e.g. $\sim 2^{128}$), not DFR | [Security bits](bridge/security-bits-and-work.md) |
 | **SNDL** | Store now, decrypt later — record ciphertext today, break keys when quantum arrives | [Motivation](orientation/motivation.md) |
 | **Sparse** | Low Hamming weight (few ones) | [Hamming metric](concepts/hamming-metric.md) |
+| <a id="symmetric-crypto"></a>**Symmetric crypto** | Same shared secret locks and unlocks (or MACs) both sides — fast bulk tool after a session key exists | [Why cryptography?](fundamentals/why-cryptography.md) · [Crypto categories](orientation/crypto-categories.md) |
 | **Syndrome** | $He^\top$ — fingerprint of the error under checks $H$ | [Syndrome decoding](concepts/syndrome-decoding.md) |
 | **Syndrome decoding** | Find sparse $e$ matching a published syndrome | [Syndrome decoding](concepts/syndrome-decoding.md) |
 | **SVP** | Shortest nonzero lattice vector (slogan) | [Lattices](fundamentals/lattices-gentle.md) |
