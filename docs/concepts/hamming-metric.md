@@ -37,11 +37,10 @@ Distance $d(x,y)=2$.
 For $x,y\in\{0,1\}^n$ (or more generally over an alphabet, counting nonzero coordinate differences):
 
 $$
-\mathrm{wt}(x) = \#\{i: x_i \neq 0\},
-$$
-
-$$
-d(x,y) = \mathrm{wt}(x-y)
+\begin{aligned}
+\mathrm{wt}(x) &= \#\{i: x_i \neq 0\}, \\
+d(x,y) &= \mathrm{wt}(x-y).
+\end{aligned}
 $$
 
 (over bits, $x-y$ is XOR: $x\oplus y$).

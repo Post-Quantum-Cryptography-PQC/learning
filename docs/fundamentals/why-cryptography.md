@@ -63,11 +63,10 @@ Authenticity (and integrity of the text) — not confidentiality.
 ### Picture the four together
 
 $$
-\text{ciphertext} = \mathsf{Encrypt}(\text{key},\;\text{plaintext})
-$$
-
-$$
-\text{plaintext} = \mathsf{Decrypt}(\text{key},\;\text{ciphertext})
+\begin{aligned}
+\text{ciphertext} &= \mathsf{Encrypt}(\text{key},\;\text{plaintext}) \\
+\text{plaintext} &= \mathsf{Decrypt}(\text{key},\;\text{ciphertext})
+\end{aligned}
 $$
 
 Say aloud: “Encrypt takes a key and plaintext and returns ciphertext.”

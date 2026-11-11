@@ -51,10 +51,10 @@ Alice (secret-key owner). Eve should see only the scrambled public matrix.
 Exact generator / parity-check formulas vary by textbook. For this curriculum, hold:
 
 $$
-\text{secret algebraic description} \;\Rightarrow\; \text{fast decoder},
-$$
-$$
-\text{public scrambled } G' \text{ or } H' \;\Rightarrow\; \text{hard decoding for Eve}.
+\begin{aligned}
+\text{secret algebraic description} &\Rightarrow \text{fast decoder}, \\
+\text{public scrambled } G' \text{ or } H' &\Rightarrow \text{hard decoding for Eve}.
+\end{aligned}
 $$
 
 ## Worked story (no heavy algebra)
