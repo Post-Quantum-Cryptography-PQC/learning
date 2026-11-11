@@ -154,6 +154,129 @@
     });
   }
 
+  function wrapMermaidDiagrams() {
+    document.querySelectorAll(".md-typeset .mermaid").forEach(function (host) {
+      if (host.closest(".pqc-diagram")) return;
+      /* Wait until Mermaid has painted an SVG (or keep retrying via observer) */
+      if (!host.querySelector("svg") && host.tagName !== "SVG") return;
+
+      var stage = document.createElement("div");
+      stage.className = "pqc-diagram";
+      stage.innerHTML =
+        '<div class="pqc-diagram__toolbar">' +
+        '<span class="pqc-diagram__hint">Drag to pan · Ctrl/⌘+scroll to zoom</span>' +
+        '<button type="button" class="pqc-diagram__btn" data-act="out" aria-label="Zoom out">−</button>' +
+        '<button type="button" class="pqc-diagram__btn" data-act="in" aria-label="Zoom in">+</button>' +
+        '<button type="button" class="pqc-diagram__btn" data-act="reset" aria-label="Reset view">Reset</button>' +
+        "</div>" +
+        '<div class="pqc-diagram__viewport" tabindex="0">' +
+        '<div class="pqc-diagram__canvas"></div>' +
+        "</div>";
+
+      host.parentNode.insertBefore(stage, host);
+      stage.querySelector(".pqc-diagram__canvas").appendChild(host);
+      wireDiagramStage(stage);
+    });
+  }
+
+  function wireDiagramStage(stage) {
+    if (stage.dataset.pqcZoomWired) return;
+    stage.dataset.pqcZoomWired = "1";
+
+    var viewport = stage.querySelector(".pqc-diagram__viewport");
+    var canvas = stage.querySelector(".pqc-diagram__canvas");
+    var scale = 1;
+    var tx = 0;
+    var ty = 0;
+    var dragging = false;
+    var lastX = 0;
+    var lastY = 0;
+
+    function apply() {
+      canvas.style.transform =
+        "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+    }
+
+    function zoomAt(factor, cx, cy) {
+      var next = Math.min(3.2, Math.max(0.45, scale * factor));
+      if (next === scale) return;
+      var rect = viewport.getBoundingClientRect();
+      var px = (cx != null ? cx : rect.left + rect.width / 2) - rect.left;
+      var py = (cy != null ? cy : rect.top + rect.height / 2) - rect.top;
+      tx = px - (px - tx) * (next / scale);
+      ty = py - (py - ty) * (next / scale);
+      scale = next;
+      apply();
+    }
+
+    stage.querySelectorAll(".pqc-diagram__btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var act = btn.getAttribute("data-act");
+        if (act === "in") zoomAt(1.18);
+        else if (act === "out") zoomAt(1 / 1.18);
+        else {
+          scale = 1;
+          tx = 0;
+          ty = 0;
+          apply();
+        }
+      });
+    });
+
+    viewport.addEventListener(
+      "wheel",
+      function (e) {
+        if (!(e.ctrlKey || e.metaKey)) return;
+        e.preventDefault();
+        zoomAt(e.deltaY < 0 ? 1.12 : 1 / 1.12, e.clientX, e.clientY);
+      },
+      { passive: false }
+    );
+
+    viewport.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      dragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      viewport.classList.add("is-dragging");
+      viewport.setPointerCapture(e.pointerId);
+    });
+    viewport.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      tx += e.clientX - lastX;
+      ty += e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      apply();
+    });
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      viewport.classList.remove("is-dragging");
+      try {
+        viewport.releasePointerCapture(e.pointerId);
+      } catch (err) {}
+    }
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+  }
+
+  function scheduleDiagramEnhance() {
+    wrapMermaidDiagrams();
+    window.setTimeout(wrapMermaidDiagrams, 200);
+    window.setTimeout(wrapMermaidDiagrams, 800);
+    window.setTimeout(wrapMermaidDiagrams, 1800);
+    if (!window.__pqcMermaidObs && typeof MutationObserver !== "undefined") {
+      window.__pqcMermaidObs = new MutationObserver(function () {
+        wrapMermaidDiagrams();
+      });
+      window.__pqcMermaidObs.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+  }
+
   ready(function () {
     var progress = load(STORAGE_KEY);
     var key = pathKey();
@@ -165,5 +288,6 @@
     ensureProgressChip(progress);
     wireCheckpoints();
     enhanceDetails();
+    scheduleDiagramEnhance();
   });
 })();

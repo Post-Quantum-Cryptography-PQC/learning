@@ -397,3 +397,110 @@
     transition: none !important;
   }
 }
+
+/* Mermaid pan / zoom stages — room to breathe + interactive explore */
+.pqc-diagram {
+  margin: 1.1rem 0 1.4rem;
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  border-radius: var(--pqc-radius);
+  background: #fff;
+  box-shadow: var(--pqc-shadow);
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .pqc-diagram {
+  background: #0a0a0a;
+  border-color: rgba(245, 245, 245, 0.14);
+  box-shadow: none;
+}
+
+.pqc-diagram__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+  padding: 0.45rem 0.65rem;
+  border-bottom: 1px solid rgba(15, 118, 110, 0.16);
+  background: rgba(15, 118, 110, 0.05);
+  font-size: 0.82rem;
+}
+
+[data-md-color-scheme="slate"] .pqc-diagram__toolbar {
+  background: #111;
+  border-bottom-color: rgba(245, 245, 245, 0.1);
+}
+
+.pqc-diagram__hint {
+  color: var(--md-default-fg-color--light);
+  margin-right: auto;
+}
+
+.pqc-diagram__btn {
+  appearance: none;
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  background: #fff;
+  color: var(--pqc-teal-deep);
+  border-radius: 0.4rem;
+  min-width: 2rem;
+  height: 1.85rem;
+  padding: 0 0.55rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+[data-md-color-scheme="slate"] .pqc-diagram__btn {
+  background: #000;
+  color: #99f6e4;
+  border-color: rgba(153, 246, 228, 0.35);
+}
+
+.pqc-diagram__btn:hover {
+  border-color: var(--pqc-teal);
+  background: rgba(15, 118, 110, 0.08);
+}
+
+.pqc-diagram__btn:focus-visible {
+  outline: 2px solid var(--pqc-amber);
+  outline-offset: 2px;
+}
+
+.pqc-diagram__viewport {
+  height: min(70vh, 34rem);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(15, 118, 110, 0.05), transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.04), transparent 40%);
+}
+
+[data-md-color-scheme="slate"] .pqc-diagram__viewport {
+  background: #000;
+}
+
+.pqc-diagram__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.pqc-diagram__canvas {
+  transform-origin: 0 0;
+  will-change: transform;
+  padding: 1.25rem 1.5rem 1.75rem;
+  min-width: 100%;
+  display: inline-block;
+}
+
+.pqc-diagram__canvas .mermaid,
+.pqc-diagram__canvas svg {
+  max-width: none !important;
+  height: auto !important;
+}
+
+.pqc-diagram__canvas svg {
+  min-width: 28rem;
+}
+
+.tabbed-content .pqc-diagram__viewport {
+  height: min(62vh, 30rem);
+}

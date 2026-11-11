@@ -11,79 +11,125 @@ Later pages dive into codes, lattices, and hardware. This page is the **folder t
 
 Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc).
 
-## The mindmap
+## The maps
 
-Zoom / scroll if your browser clips the edges. Branches are slogans, not full courses.
+One giant mindmap is hard to read. This page uses:
+
+1. a **roomy overview** (six folders only), then  
+2. **one detailed map per folder** in tabs below.
+
+Each diagram sits in a **pan / zoom** stage: use `+` / `−` / `Reset`, drag to pan, or hold `Ctrl` / `⌘` and scroll to zoom. Branches are slogans, not full courses.
+
+### Overview (six folders)
 
 ```mermaid
-mindmap
-  root((Cryptography))
-    Goals
-      Confidentiality
-        strangers cannot read
-      Authenticity / integrity
-        strangers cannot forge or silently edit
-      Often both
-        HTTPS chat banking
-    Symmetric
-      Same shared secret both sides
-      Fast bulk crypto
-      Encryption
-        AES ChaCha
-      Hash / MAC / AEAD
-        SHA-2 SHA-3 HMAC
-      Quantum note
-        Grover → larger keys digests
-        not a full throw-away
-    Asymmetric_PKC
-      Public key + private key
-      Public-key encryption
-        encrypt with pk
-        decrypt with sk
-      Digital signatures
-        sign with sk
-        verify with pk
-      Key agreement
-        DH ECDH
-        shared secret
-        not message encryption
-      KEM
-        Encaps Decaps
-        ship a fresh session key K
-        modern deploy API
-    Classical_PKC
-      RSA
-        encryption and signatures
-      Diffie–Hellman_DH
-        shared secret only
-      ECC
-        ECDH key agreement
-        ECDSA signatures
-      Shor-vulnerable
-        migrate motivation
-    PQC
-      Designed vs large quantum computers
-      NIST-era standards
-        ML-KEM lattices
-        ML-DSA lattices
-        SLH-DSA hash-based
-      More KEMs and research
-        code-based
-        multivariate
-        isogeny-adjacent
-      Hardness families
-        lattice LWE
-        codes decoding
-        hashes
-    Protocols_hybrids
-      TLS HTTPS VPN
-      KEM or KE for session setup
-      Signatures for authenticity
-      Symmetric for bulk data
-      Classical + PQC hybrid during migration
+%%{init: {"flowchart": {"nodeSpacing": 56, "rankSpacing": 72, "padding": 24, "htmlLabels": true}, "themeVariables": {"fontSize": "16px"}}}%%
+flowchart TB
+  C(("Cryptography"))
+  C --> G["Goals<br/>why we encrypt / sign"]
+  C --> S["Symmetric<br/>shared secret · fast bulk"]
+  C --> A["Asymmetric / PKC<br/>public + private key"]
+  C --> CL["Classical PKC<br/>RSA · DH · ECC"]
+  C --> P["PQC<br/>post-quantum public-key"]
+  C --> PR["Protocols / hybrids<br/>TLS · HTTPS · VPN"]
+
+  classDef hub fill:#0f766e,stroke:#115e59,color:#ecfeff,font-weight:700;
+  classDef leaf fill:#f0fdfa,stroke:#0f766e,color:#134e4a;
+  class C hub;
+  class G,S,A,CL,P,PR leaf;
 ```
 
-## Branch guide (read after the map)
+### Detail maps (one folder at a time)
+
+=== "Goals"
+
+    Confidentiality vs authenticity — you can have one without the other.
+
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    flowchart TB
+      G["Goals"]
+      G --> C["Confidentiality<br/>strangers cannot read"]
+      G --> A["Authenticity / integrity<br/>strangers cannot forge or silently edit"]
+      G --> B["Often both<br/>HTTPS · chat · banking"]
+      C --> CT["Encryption · AEAD"]
+      A --> AT["Signatures · MACs · AEAD"]
+    ```
+
+=== "Symmetric"
+
+    Same shared secret on both sides — great after a session key exists.
+
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    flowchart TB
+      S["Symmetric"]
+      S --> K["Same shared secret both sides"]
+      S --> F["Fast bulk crypto"]
+      S --> E["Encryption<br/>AES · ChaCha"]
+      S --> H["Hash / MAC / AEAD<br/>SHA-2 · SHA-3 · HMAC"]
+      S --> Q["Quantum note<br/>Grover → larger keys / digests<br/>not a full throw-away"]
+    ```
+
+=== "Asymmetric / PKC"
+
+    Four jobs — do not mix the APIs.
+
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 44, "rankSpacing": 60, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    flowchart TB
+      A["Asymmetric / PKC<br/>public key + private key"]
+      A --> E["Public-key encryption<br/>encrypt with pk · decrypt with sk"]
+      A --> D["Digital signatures<br/>sign with sk · verify with pk"]
+      A --> K["Key agreement<br/>DH / ECDH → shared secret<br/>not message encryption"]
+      A --> M["KEM<br/>Encaps / Decaps → session key K<br/>modern deploy API"]
+    ```
+
+=== "Classical PKC"
+
+    Widely used before the PQC transition — Shor-vulnerable.
+
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    flowchart TB
+      CL["Classical PKC"]
+      CL --> R["RSA<br/>encryption and signatures"]
+      CL --> DH["Diffie–Hellman DH<br/>shared secret only"]
+      CL --> ECC["ECC<br/>ECDH agreement · ECDSA signatures"]
+      CL --> SH["Shor-vulnerable<br/>migrate motivation"]
+    ```
+
+=== "PQC"
+
+    Algorithms for ordinary computers today; public-key layer meant to resist large quantum computers.
+
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 44, "rankSpacing": 60, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    flowchart TB
+      P["PQC"]
+      P --> N["NIST-era standards"]
+      N --> K["ML-KEM · lattices"]
+      N --> D["ML-DSA · lattices"]
+      N --> H["SLH-DSA · hash-based"]
+      P --> R["More KEMs / research<br/>code-based · multivariate · isogeny-adjacent"]
+      P --> F["Hardness families<br/>lattice LWE · codes · hashes"]
+    ```
+
+=== "Protocols"
+
+    Real apps are bundles, not one algorithm.
+
+    ```mermaid
+    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    flowchart TB
+      PR["Protocols / hybrids<br/>TLS · HTTPS · VPN"]
+      PR --> K["KEM or key agreement<br/>session setup"]
+      PR --> S["Signatures<br/>authenticity / certificates"]
+      PR --> Y["Symmetric<br/>bulk data"]
+      PR --> H["Hybrid migration<br/>classical + PQC together"]
+    ```
+
+## Branch guide (read with the maps)
 
 ### 1. Goals (what crypto is *for*)
 
