@@ -97,4 +97,6 @@ False — experimental leakage evidence ≠ public-key security proof.
 
 ## Where this is grounded (optional)
 
-TCAS-II shuffling Kyber `paper.md` §I–II / §IV (SCA vs FIA; decrypt leakage points; CPA/TVLA); masked Kyber §2 (probing model); TVLSI RBLWE §IV.C (timing vs open DPA gap).
+1. D. Xu, K. Wang, and J. Tian, “A hardware-friendly shuffling countermeasure against side-channel attacks for Kyber,” *IEEE Trans. Circuits Syst. II*, vol. 72, no. 3, pp. 504–508, Mar. 2025, doi: [10.1109/TCSII.2025.3528751](https://doi.org/10.1109/TCSII.2025.3528751). (§I SCA vs FIA; §II.B decrypt leakage points; §IV.A CPA/TVLA)
+2. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 $t$-probing / share notions)
+3. P. He, T. Bao, and J. Xie, “High-performance instruction-set hardware accelerator for ring-binary-LWE-based lightweight PQC,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 33, no. 5, pp. 1417–1421, May 2025, doi: [10.1109/TVLSI.2025.3538874](https://doi.org/10.1109/TVLSI.2025.3538874). (§IV.C timing vs open DPA/fault gap)

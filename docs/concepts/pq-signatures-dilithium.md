@@ -92,4 +92,4 @@ SHAKE/hash work and possible retries can dominate.
 
 ## Where this is grounded (optional)
 
-TCAS-I Dilithium accelerator `paper.md` §II.B (KeyGen/Sign/Verify + rejection) and §III (shared datapath, SHAKE, sampling).
+1. N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599). (§II.B KeyGen/Sign/Verify and rejection loop; §III shared datapath, SHAKE, sampling)

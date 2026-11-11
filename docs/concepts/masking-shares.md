@@ -106,4 +106,5 @@ Compress’s decision is bit-oriented; arithmetic shares suit $\mathbb{Z}_q$ add
 
 ## Where this is grounded (optional)
 
-Masked Kyber TCHES `paper.md` §2 (share notations, probing) and §3.1–3.2 (masked Compress / compare); shuffling contrast in TCAS-II Kyber brief §I.
+1. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 arithmetic/Boolean shares and probing; §3.1–3.2 masked Compress / compare)
+2. D. Xu, K. Wang, and J. Tian, “A hardware-friendly shuffling countermeasure against side-channel attacks for Kyber,” *IEEE Trans. Circuits Syst. II*, vol. 72, no. 3, pp. 504–508, Mar. 2025, doi: [10.1109/TCSII.2025.3528751](https://doi.org/10.1109/TCSII.2025.3528751). (§I hiding/shuffling vs masking)

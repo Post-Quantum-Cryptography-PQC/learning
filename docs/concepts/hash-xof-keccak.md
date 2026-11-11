@@ -97,4 +97,5 @@ The noise sampler (this curriculum’s previous/next card).
 
 ## Where this is grounded (optional)
 
-Dilithium TCAS-I `paper.md` §II.B / §III.D–E (SHAKE jobs and wrapper modes); masked Kyber §2 (FO/KDF next to CCA decapsulation). Read those after the slogans click.
+1. N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599). (§II.B SHAKE roles; §III.D wrapper modes; §III.E sampling from Keccak)
+2. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 FO / KDF next to CCA decapsulation)

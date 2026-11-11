@@ -100,4 +100,5 @@ False — extra ECC is a different mechanism from choosing compress bit-width $d
 
 ## Where this is grounded (optional)
 
-Masked Kyber §2 (Compress/Decompress formulas); tailorable-codes TCHES `paper.md` §1–§3 (size vs DFR; $d_u,d_v$; Encode sketch) and §4 (Minal as extra ECC).
+1. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 $\mathrm{Compress}_q$ / $\mathrm{Decompress}_q$)
+2. T. B. Paiva, M. A. Simplicio Jr., S. M. Hafiz, B. Yildiz, E. L. Cominetti, and H. S. Ogawa, “Tailorable codes for lattice-based KEMs with applications to compact ML-KEM instantiations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2025, no. 3, pp. 139–163, 2025, doi: [10.46586/tches.v2025.i3.139-163](https://doi.org/10.46586/tches.v2025.i3.139-163). (§1–§3 size vs DFR, $d_u$/$d_v$, Encode; §4 Minal extra ECC)

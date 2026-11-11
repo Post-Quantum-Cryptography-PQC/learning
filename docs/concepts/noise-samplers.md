@@ -149,4 +149,9 @@ The Sampler unit next to NTT / hash / compress.
 
 ## Where this is grounded (optional)
 
-Ideas match in-repo `paper.md` extracts (CBD in masked Kyber §2; ML-KEM $\eta$ in tailorable-codes §3.1; Dilithium sampling/rejection in TCAS-I §II.B/§III.E; binary sampler in TVLSI RBLWE §III.G). This page teaches the idea first; those papers are later reading, not the lesson plan.
+Pedagogy first; the recipes above track these extracts (CBD / $\eta$ / Sign rejection / binary sampler):
+
+1. J. W. Bos, M. Gourjon, J. Renes, T. Schneider, and C. van Vredendaal, “Masking Kyber: First- and higher-order implementations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2021, no. 4, pp. 173–214, 2021, doi: [10.46586/tches.v2021.i4.173-214](https://doi.org/10.46586/tches.v2021.i4.173-214). (§2 CBD; in-repo `paper.md`)
+2. T. B. Paiva *et al.*, “Tailorable codes for lattice-based KEMs with applications to compact ML-KEM instantiations,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2025, no. 3, pp. 139–163, 2025, doi: [10.46586/tches.v2025.i3.139-163](https://doi.org/10.46586/tches.v2025.i3.139-163). (§3.1 $\eta$ parameters)
+3. N. Gupta, A. Jati, A. Chattopadhyay, and G. Jha, “Lightweight hardware accelerator for post-quantum digital signature CRYSTALS-Dilithium,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 8, pp. 3234–3243, Aug. 2023, doi: [10.1109/TCSI.2023.3274599](https://doi.org/10.1109/TCSI.2023.3274599). (§II.B, §III.E sampling / rejection)
+4. P. He, T. Bao, and J. Xie, “High-performance instruction-set hardware accelerator for ring-binary-LWE-based lightweight PQC,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 33, no. 5, pp. 1417–1421, May 2025, doi: [10.1109/TVLSI.2025.3538874](https://doi.org/10.1109/TVLSI.2025.3538874). (§III.G binary sampler)
