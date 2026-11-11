@@ -19,8 +19,8 @@ theme:
         icon: material/brightness-7
         name: Dark mode
     - scheme: slate
-      primary: teal
-      accent: amber
+      primary: black
+      accent: teal
       toggle:
         icon: material/brightness-4
         name: Light mode
