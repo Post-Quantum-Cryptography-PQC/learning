@@ -74,7 +74,9 @@ nav:
       - Public-key picture: fundamentals/public-key-picture.md
       - Vectors and matrices: fundamentals/vectors-matrices.md
       - Polynomials (gentle): fundamentals/polynomials-gentle.md
+      - Polynomial wrap-around: fundamentals/polynomials-wraparound.md
       - Quantum threat: fundamentals/quantum-threat.md
+      - Lattices (gentle): fundamentals/lattices-gentle.md
   - Bridge:
       - How to use bridge: bridge/README.md
       - From bits to codes: bridge/from-bits-to-codes.md
