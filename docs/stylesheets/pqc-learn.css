@@ -40,10 +40,43 @@
     var(--md-default-bg-color);
 }
 
+/* True-black dark theme (OLED-style), not Material slate gray */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #000000;
+  --md-default-bg-color--light: #050505;
+  --md-default-bg-color--lighter: #0a0a0a;
+  --md-default-bg-color--lightest: #121212;
+  --md-code-bg-color: #0a0a0a;
+  --md-code-fg-color: #e7e7e7;
+  --md-footer-bg-color: #000000;
+  --md-footer-bg-color--dark: #000000;
+  --md-typeset-table-color: hsla(0, 0%, 100%, 0.06);
+}
+
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #000000;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(45, 212, 191, 0.18);
+}
+
 [data-md-color-scheme="slate"] .md-main {
   background:
-    radial-gradient(1000px 420px at 0% 0%, rgba(45, 212, 191, 0.08), transparent 50%),
-    var(--md-default-bg-color);
+    radial-gradient(900px 380px at 0% 0%, rgba(45, 212, 191, 0.06), transparent 55%),
+    #000000;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar,
+[data-md-color-scheme="slate"] .md-nav,
+[data-md-color-scheme="slate"] .md-dialog,
+[data-md-color-scheme="slate"] .md-search__form {
+  background-color: #000000;
+}
+
+[data-md-color-scheme="slate"] .md-typeset code,
+[data-md-color-scheme="slate"] .md-typeset pre,
+[data-md-color-scheme="slate"] .md-typeset pre > code {
+  background-color: #0a0a0a;
 }
 
 .md-typeset {
@@ -215,8 +248,8 @@
 }
 
 [data-md-color-scheme="slate"] .pqc-progress {
-  background: rgba(30, 41, 40, 0.92);
-  border-color: rgba(94, 234, 212, 0.25);
+  background: rgba(0, 0, 0, 0.92);
+  border-color: rgba(94, 234, 212, 0.28);
 }
 
 .pqc-progress__bar {
@@ -279,8 +312,9 @@
 }
 
 [data-md-color-scheme="slate"] .pqc-check {
-  background: rgba(15, 118, 110, 0.2);
+  background: #0a0a0a;
   color: #ccfbf1;
+  border-color: rgba(94, 234, 212, 0.35);
 }
 
 .pqc-check:hover {
