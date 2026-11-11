@@ -28,7 +28,7 @@ Share the *why* before the *how*. Four short pages, then Fundamentals.
 Hub: [orientation/README.md](orientation/README.md)
 
 1. [Motivation](orientation/motivation.md) — why change cryptography; store-now-decrypt-later  
-2. [History](orientation/history.md) — classical PKC → quantum threat → NIST PQC  
+2. [History](orientation/history.md) — [classical PKC](glossary.md#pkc) → quantum threat → NIST PQC  
 3. [Problems](orientation/problems.md) — easy forward, hard backward; family slogans  
 4. [Challenges](orientation/challenges.md) — size, DFR, SCA, hybrids, moving cryptanalysis  
 

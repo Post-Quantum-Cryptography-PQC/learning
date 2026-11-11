@@ -73,6 +73,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | Term | Plain meaning | See |
 |------|---------------|-----|
 | **Parity-check matrix $H$** | Checklist of linear constraints; syndrome fingerprint | [Generator and parity-check](bridge/generator-and-parity-check.md) |
+| <a id="pkc"></a>**PKC** | Public-key cryptography — published padlock / private opener; *classical* PKC here means RSA / Diffie–Hellman / ECC (pre-PQC) | [Public-key picture](fundamentals/public-key-picture.md) · [History](orientation/history.md) |
 | **Plaintext** | Readable message before encryption | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Poly-mul engine** | Schoolbook / Karatsuba / NTT organization for polynomial multiply | [Poly-mul engines](concepts/poly-mul-engines.md) |
 | **Public / secret key** | Publishable padlock vs private opener | [Public-key picture](fundamentals/public-key-picture.md) |
