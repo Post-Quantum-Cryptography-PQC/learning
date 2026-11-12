@@ -39,7 +39,7 @@ You do not need full definitions yet — only the postcard. These rows are **mat
 | **Multivariate** | Solving systems of multivariate equations stays hard | Signature research and some competition / national tracks |
 | **Isogeny-related** | Hard problems on isogenies of elliptic curves | Important historically (e.g. SIKE context); treat with care after breaks |
 
-This curriculum spends the most time on **codes** and **lattices**, plus a **hardware** track for how chips implement the arithmetic. Multivariate and isogeny pages stay lighter unless you open those tracks.
+Later chapters go deepest on **codes** and **lattices**, and there is a **hardware** track for how chips run the arithmetic. **Multivariate** and **isogeny-related** ideas appear mainly when you choose those tracks.
 
 ## Standardization vs research
 
