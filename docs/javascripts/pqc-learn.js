@@ -294,8 +294,18 @@
     next();
   }
 
+  var __pqcEnhanceBusy = false;
   function enhancePqcMermaid() {
-    document.querySelectorAll("pre.pqc-mermaid").forEach(mountDiagramStage);
+    if (__pqcEnhanceBusy) return;
+    __pqcEnhanceBusy = true;
+    try {
+      document.querySelectorAll("pre.pqc-mermaid").forEach(mountDiagramStage);
+    } finally {
+      /* Release after this turn so MutationObserver from our own DOM edits cannot re-enter. */
+      window.setTimeout(function () {
+        __pqcEnhanceBusy = false;
+      }, 0);
+    }
     ensureMermaidApi(function (api) {
       renderPqcMermaidHosts(api);
     });
@@ -385,15 +395,21 @@
 
   function scheduleDiagramEnhance() {
     enhancePqcMermaid();
-    window.setTimeout(enhancePqcMermaid, 250);
-    window.setTimeout(enhancePqcMermaid, 900);
-    if (!window.__pqcMermaidObs && typeof MutationObserver !== "undefined") {
-      window.__pqcMermaidObs = new MutationObserver(function () {
-        enhancePqcMermaid();
+    /* Instant-nav / late tab paint — finite retries only (no childList observer). */
+    window.setTimeout(enhancePqcMermaid, 300);
+    window.setTimeout(enhancePqcMermaid, 1200);
+
+    if (!window.__pqcThemeObs && typeof MutationObserver !== "undefined") {
+      var themeTimer = null;
+      window.__pqcThemeObs = new MutationObserver(function () {
+        /* Theme flip only — never observe childList (that caused a tab hang). */
+        document.querySelectorAll(".pqc-mermaid-host").forEach(function (h) {
+          delete h.dataset.rendered;
+        });
+        window.clearTimeout(themeTimer);
+        themeTimer = window.setTimeout(enhancePqcMermaid, 50);
       });
-      window.__pqcMermaidObs.observe(document.body, {
-        childList: true,
-        subtree: true,
+      window.__pqcThemeObs.observe(document.body, {
         attributes: true,
         attributeFilter: ["data-md-color-scheme"]
       });
@@ -412,26 +428,5 @@
     wireCheckpoints();
     enhanceDetails();
     scheduleDiagramEnhance();
-  });
-})();
-
-/* Theme toggle: Material flips data-md-color-scheme on body */
-(function () {
-  if (typeof MutationObserver === "undefined") return;
-  var obs = new MutationObserver(function () {
-    if (typeof document$ !== "undefined" && document$.next) {
-      /* rely on page ready + diagram scheduler */
-    }
-    var ev = new Event("pqc-theme");
-    document.dispatchEvent(ev);
-  });
-  obs.observe(document.body, {
-    attributes: true,
-    attributeFilter: ["data-md-color-scheme"]
-  });
-  document.addEventListener("pqc-theme", function () {
-    document.querySelectorAll(".pqc-mermaid-host").forEach(function (h) {
-      delete h.dataset.rendered;
-    });
   });
 })();
