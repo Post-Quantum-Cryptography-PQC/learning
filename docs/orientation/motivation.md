@@ -60,9 +60,9 @@ Because an attacker can record ciphertext <em>now</em> and decrypt it <em>later<
 
 PQC is mainly an **asymmetric / public-key** story: replace RSA/ECC-style key setup and signatures with new KEMs and signatures that Shor should not break.
 
-**Symmetric** tools (AES, ChaCha, AEAD, HMAC, …) are the other half of real systems. Both sides share **one secret key**. Public-key / PQC tools are often used only to *set up* a temporary secret for this connection; then AES-like tools scramble the actual webpage, video, or VPN traffic with that shared key — because that part is much faster byte-by-byte. “PQC” does not rename AES.
+**Symmetric** tools (AES, ChaCha, AEAD, HMAC, …) are the other half of real systems. Both sides share **one secret key**. Public-key / PQC tools are often used only to *set up* a temporary secret for this connection; then AES-like tools scramble the actual webpage, video, or VPN traffic with that shared key — because that part is much faster byte-by-byte. Moving to PQC still leaves this shared-key layer in place.
 
-Symmetric crypto still faces a quantum speedup, but a milder one. **Grover’s algorithm** can make some brute-force key searches faster (roughly a *square-root* cut in effort in idealized models — far less devastating than Shor’s break of RSA/ECC). So the usual defense is: **keep the same designs, use a longer key or tag** (e.g. AES-256-class margins) so guessing stays out of reach. Unkeyed hashes (SHA-2/3, …) often get the same “use a larger digest” advice; they are shared building blocks, not a second PQC family.
+Symmetric crypto still faces a quantum speedup, but a milder one. **Grover’s algorithm** can make some brute-force key searches faster (roughly a *square-root* cut in effort in idealized models — far less devastating than Shor’s break of RSA/ECC). So the usual defense is: **keep the same designs, use a longer key or tag** (e.g. AES-256-class margins) so guessing stays out of reach. Common hash functions (SHA-2/3, …) are similar: you usually keep the same family and, when you want more margin, pick a longer hash output — they are not what PQC replaces either.
 
 ## Motivation in one sentence
 
