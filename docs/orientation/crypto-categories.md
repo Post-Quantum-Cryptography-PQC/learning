@@ -18,8 +18,6 @@ One giant mindmap is hard to read. This page uses:
 1. a **roomy overview** (six folders only), then  
 2. **one detailed map per folder** in tabs below.
 
-Each diagram sits in a **pan / zoom** stage: use `+` / `−` / `Reset`, drag to pan, or hold `Ctrl` / `⌘` and scroll to zoom. Node colors stay high-contrast in light and dark mode.
-
 ### Overview (six folders)
 
 ```pqc-mermaid
