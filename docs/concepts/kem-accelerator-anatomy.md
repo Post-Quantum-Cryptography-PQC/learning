@@ -65,7 +65,7 @@ No — that is a leaf module. A KEM accelerator composes engines, memory, hashin
 - **Fixed ML-KEM-512-only** core vs **configurable $k$** (module rank) — more muxing, wider address maps.  
 - **HW/SW co-design:** CPU (e.g. Ibex-class) + tightly coupled accelerator for poly/hash; software owns protocol glue.  
 - **Security extras:** masking, shuffling — learn the threat model first ([SCA bridge](../bridge/side-channel-threat-model.md), [masking shares](masking-shares.md), [shuffling / hiding](shuffling-hiding.md)).  
-- **Frontier engines:** [CIM-NTT](cim-ntt.md) and deep NTT shuffle / SUCRE leaves on the [hardware ROADMAP](../tracks/pqc-hardware/ROADMAP.md); HQC engines need [carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md).
+- **Frontier engines:** [CIM-NTT](cim-ntt.md) and deep NTT shuffle / SUCRE leaves on the [hardware ROADMAP](../tracks/pqc-hardware/ROADMAP.md); HQC/BIKE engines need [carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md); multi-scheme chips → [crypto-agile SoC](crypto-agile-soc.md).
 
 ## How IEEE exploration should grow this card
 

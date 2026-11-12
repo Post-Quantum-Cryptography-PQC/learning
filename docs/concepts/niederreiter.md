@@ -1,7 +1,7 @@
 # Niederreiter cryptosystem (intuition)
 
 **Prereqs:** [McEliece in plain words](../bridge/mceliece-in-plain-words.md) · [Goppa and alternant](goppa-alternant.md) · [Syndrome decoding](syndrome-decoding.md) · [Linear codes](linear-codes.md)  
-**Next:** [KEM](kem.md) · [ISD](information-set-decoding.md) · Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
+**Next:** [Constant-weight coding](constant-weight-coding.md) · [KEM](kem.md) · [ISD](information-set-decoding.md) · Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
 **Tracks:** code-based-kems
 
 **Learning goals.** After this page you can:

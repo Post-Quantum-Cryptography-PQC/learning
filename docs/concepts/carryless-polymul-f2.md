@@ -1,4 +1,4 @@
-# Carryless polynomial multiply over $\mathbb{F}_2$ (HQC-shaped)
+# Carryless polynomial multiply over $\mathbb{F}_2$ (HQC / BIKE-shaped)
 
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Polynomials with wraparound](../fundamentals/polynomials-wraparound.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md) · helpful: [Poly-mul engines](poly-mul-engines.md)  
 **Next:** [KEM](kem.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
@@ -7,8 +7,8 @@
 **Learning goals.** After this page you can:
 
 - Contrast **carryless** $\mathbb{F}_2[x]$ multiply with integer or $\mathbb{Z}_q$ poly mul  
-- See why HQC-style KEMs need big binary polynomial products  
-- Open the curated Ibex HQC co-design leaf with CLMUL / Karatsuba vocabulary  
+- See why HQC / BIKE-style KEMs need big binary polynomial products  
+- Open Ibex HQC CLMUL leaves **and** BIKE sparse–dense polymul leaves with shared vocabulary  
 
 ## The one idea
 
@@ -55,10 +55,23 @@ Teaching moral: HQC performance is often **binary poly mul + hashing**, not NTT 
 
 Quasi-cyclic structure means multiplies by fixed vectors become **circulant** actions — still binary polynomial arithmetic under the hood ([quasi-cyclic codes](quasi-cyclic-codes.md)). Sparse secrets help key size; the encaps/decaps hot path still leans on these products and the code’s decoder [[1]](#ref-1).
 
+## BIKE cousin — sparse × dense pipelines
+
+**BIKE**-shaped KEMs also live in binary / QC polynomial arithmetic, but many HW leaves optimize **sparse–dense** products: one operand has low Hamming weight, so only a few rotated copies of the dense operand are XORed [[2]](#ref-2).
+
+| Theme | HQC Ibex / LEAP-style | BIKE BPM-style [[2]](#ref-2) |
+|-------|----------------------|-----------------------------|
+| Algebra | Carryless $\mathbb{F}_2[x]$ / QC ring | Same neighborhood |
+| Hot trick | Unified CLMUL / Karatsuba (dense×dense + small-field) | **Inter- / inner-wise sparsity** + block-by-block pipeline |
+| Read next | Ibex HQC · LEAP sparse HQC | BIKE binary polymul · area–time BIKE KEM |
+
+**Slogan:** same XOR-multiply world; BIKE papers often schedule around **support sparsity**, not only wide CLMUL units.
+
 ## Common confusions
 
 - Carryless ≠ “ignore modular reduction forever” — you still reduce in the polynomial ring.  
 - HQC CLMUL ≠ Kyber NTT.  
+- BIKE sparsity pipeline ≠ a different hardness assumption — it is an implementation schedule for sparse×dense products [[2]](#ref-2).  
 - $\mathbb{F}_{2^8}$ mul inside HQC is related but smaller than the big QC polymul [[1]](#ref-1).  
 - This card does not teach HQC’s full decoder (RS/RM concatenation) — see code-based track leaves later.
 
@@ -82,8 +95,11 @@ Carryless (Karatsuba) multiplier and Keccak-$f[1600]$ accelerator [[1]](#ref-1).
 ## Next steps
 
 - [Code-based KEMs ROADMAP](../tracks/code-based-kems/ROADMAP.md)  
-- Extract: `papers/tcas-ii-pqc/a-hardware-software-co-optimization-of-hqc-using-tightly-coupled-accelerators-on-a-32-bit-ibex-core/paper.md`  
+- Extract (HQC): `papers/tcas-ii-pqc/a-hardware-software-co-optimization-of-hqc-using-tightly-coupled-accelerators-on-a-32-bit-ibex-core/paper.md`  
+- Extract (BIKE): `papers/tvlsi-pqc/A Scalable and Efficient Architecture for Binary Polynomial Multiplication in BIKE Utilizing Inter-Inner-Wise Sparsity and Block-by-Block Pipeline/paper.md`  
 
 ## References
 
-<a id="ref-1"></a>[1] S. C. Seo and Y. Kim, “A hardware/software co-optimization of HQC using tightly-coupled accelerators on a 32-bit Ibex core,” *IEEE Trans. Circuits Syst. II*, 2026, doi: [10.1109/TCSII.2026.3668482](https://doi.org/10.1109/TCSII.2026.3668482).
+<a id="ref-1"></a>[1] S. C. Seo and Y. Kim, “A hardware/software co-optimization of HQC using tightly-coupled accelerators on a 32-bit Ibex core,” *IEEE Trans. Circuits Syst. II*, 2026, doi: [10.1109/TCSII.2026.3668482](https://doi.org/10.1109/TCSII.2026.3668482).  
+
+<a id="ref-2"></a>[2] Scalable binary polynomial multiplication for BIKE with inter-/inner-wise sparsity and block pipeline, *IEEE Trans. VLSI Syst.* — `papers/tvlsi-pqc/A Scalable and Efficient Architecture for Binary Polynomial Multiplication in BIKE Utilizing Inter-Inner-Wise Sparsity and Block-by-Block Pipeline/paper.md`.

@@ -129,6 +129,8 @@ nav:
       - Information-set decoding: concepts/information-set-decoding.md
       - Goppa and alternant: concepts/goppa-alternant.md
       - Niederreiter: concepts/niederreiter.md
+      - Constant-weight coding: concepts/constant-weight-coding.md
+      - Code-based signatures: concepts/code-based-signatures.md
       - MDPC and QC-MDPC: concepts/mdpc-qc-mdpc.md
       - Bit-flipping decoding: concepts/bit-flipping-decoding.md
       - Quasi-cyclic codes: concepts/quasi-cyclic-codes.md
@@ -158,6 +160,8 @@ nav:
       - NTT parallel memory: concepts/ntt-parallel-memory.md
       - CIM-NTT: concepts/cim-ntt.md
       - KEM accelerator anatomy: concepts/kem-accelerator-anatomy.md
+      - Crypto-agile SoC: concepts/crypto-agile-soc.md
+      - ASA / HPC fuzzing: concepts/asa-hpc-fuzzing.md
       - Masking shares: concepts/masking-shares.md
       - Shuffling / hiding: concepts/shuffling-hiding.md
   - Tracks:

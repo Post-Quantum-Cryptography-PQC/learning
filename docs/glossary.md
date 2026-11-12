@@ -15,8 +15,10 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="aead"></a>**AEAD** | Authenticated encryption with associated data — encrypts for secrecy and adds a **shared-key** integrity/authentication tag (often with extra public header bytes). Not a public-key signature | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | <a id="aes"></a>**AES** | Advanced Encryption Standard — common symmetric block cipher for bulk confidentiality | [Symmetric crypto](#symmetric-crypto) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Alternant code** | Algebraic code family related to GRS; includes binary Goppa as a famous case | [Goppa and alternant](concepts/goppa-alternant.md) |
+| **ASA / Kleptography** | Maliciously substituted crypto algorithm or parameters (subversion), not ordinary SCA leakage | [ASA / HPC fuzzing](concepts/asa-hpc-fuzzing.md) |
 | <a id="asymmetric-pkc"></a>**Asymmetric / PKC** | Public-key family (public + private key). **Classical PKC** and **PQC** are subfamilies here — not separate top-level crypto kinds | [Crypto categories](orientation/crypto-categories.md) · [PKC](#pkc) |
 | <a id="authentication"></a>**Authentication** | Evidence about *which key* produced data — shared-key (MAC/AEAD) or publicly verifiable (signature) | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
+| **BIKE** | Bit Flipping Key Encapsulation — QC-MDPC-shaped code-based KEM family | [MDPC / QC-MDPC](concepts/mdpc-qc-mdpc.md) · [Carryless polymul](concepts/carryless-polymul-f2.md) |
 | **Authenticity** | Informal umbrella for “not forged / not silently edited”; this curriculum splits it into [integrity](#integrity), [authentication](#authentication), and [non-repudiation](#non-repudiation) | [Crypto categories](orientation/crypto-categories.md) |
 | **Bit** | A $0$ or $1$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
 | **Bit-flipping** | Iterative decoder: flip bits that fail many parity checks | [Bit-flipping decoding](concepts/bit-flipping-decoding.md) |
@@ -24,8 +26,12 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **CIM-NTT** | Compute-in-memory (or near-memory) organization for NTT butterflies | [CIM-NTT](concepts/cim-ntt.md) |
 | **Ciphertext** | Scrambled form that travels on the wire | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Clock / register** | Heartbeat + stored bits between ticks | [Clocks, registers](bridge/clocks-registers-latency.md) |
-| **Carryless / CLMUL** | Binary polynomial multiply (XOR instead of integer carry); HQC-shaped hot path | [Carryless $\mathbb{F}_2$ polymul](concepts/carryless-polymul-f2.md) |
+| **Carryless / CLMUL** | Binary polynomial multiply (XOR instead of integer carry); HQC/BIKE-shaped hot path | [Carryless $\mathbb{F}_2$ polymul](concepts/carryless-polymul-f2.md) |
+| **CED** | Concurrent error detection — reliability / fault-detection logic on arithmetic (not a digital signature) | Code CED leaves on [code-based ROADMAP](tracks/code-based-kems/ROADMAP.md) |
+| **CFS / QC-LDGM / LEDAsig** | Code-based signature families (historical / engineering leaves) | [Code-based signatures](concepts/code-based-signatures.md) |
 | **Code / codeword** | Allowed protected strings; a codeword is one allowed string | [Error-correcting codes](concepts/error-correcting-codes.md) |
+| **Constant-weight coding** | Map ordinary bits ↔ fixed Hamming-weight vectors (format layer) | [Constant-weight coding](concepts/constant-weight-coding.md) |
+| **Crypto-agile SoC** | One chip / processor reconfigured across multiple PQC families | [Crypto-agile SoC](concepts/crypto-agile-soc.md) |
 | **Combinational logic** | Outputs from current inputs only (no memory) | [Clocks, registers](bridge/clocks-registers-latency.md) |
 | **CSIDH / CTIDH** | Isogeny group-action key exchange; CTIDH emphasizes constant-time evaluation | [Isogenies, CSIDH, SIKE](concepts/isogeny-csidh-sike.md) |
 
@@ -57,6 +63,8 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 |------|---------------|-----|
 | **Hamming distance** | How many positions two strings disagree | [Hamming metric](concepts/hamming-metric.md) |
 | **Hamming weight** | How many nonzero positions (ones, for bits) | [Hamming metric](concepts/hamming-metric.md) |
+| **HQC** | Hamming Quasi-Cyclic — code-based KEM using binary QC polynomials + coding layers | [Quasi-cyclic codes](concepts/quasi-cyclic-codes.md) · [Carryless polymul](concepts/carryless-polymul-f2.md) |
+| **HPC (here)** | Hardware performance counters — CPU event counts used e.g. for ASA detection | [ASA / HPC fuzzing](concepts/asa-hpc-fuzzing.md) |
 | <a id="hash"></a>**Hash / digest** | Usually an **unkeyed** fingerprint of data (e.g. SHA-2/3); building block for HMAC, signatures, and many PQC steps — not itself a shared-key cipher | [Crypto categories](orientation/crypto-categories.md) · [Hash / XOF](concepts/hash-xof-keccak.md) · [SHA-2 / SHA-3](#sha) |
 | <a id="hmac"></a>**HMAC** | Hash-based message authentication code — keyed integrity check built from a hash | [MAC](#mac) · [Symmetric crypto](#symmetric-crypto) |
 | <a id="https"></a>**HTTPS** | HTTP over TLS — everyday web encryption/authenticity bundle in the browser | [TLS](#tls) · [Crypto categories](orientation/crypto-categories.md) |
@@ -85,6 +93,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **McEliece** | Public scramble of a secret easy code + intentional sparse error | [McEliece in plain words](bridge/mceliece-in-plain-words.md) |
 | **MDPC / QC-MDPC** | Moderate-density parity-check; QC = quasi-cyclic blocks | [MDPC and QC-MDPC](concepts/mdpc-qc-mdpc.md) |
 | **Minimum distance $d$** | Smallest Hamming distance between distinct codewords | [Hamming metric](concepts/hamming-metric.md) |
+| **Min-sum (MDPC)** | Soft / message-passing cousin of bit-flipping on the same check graph | [Bit-flipping decoding](concepts/bit-flipping-decoding.md) |
 | **MinRank** | Find a low-rank linear combination of given matrices | [MinRank and MPCitH](concepts/minrank-mpcitH.md) |
 | <a id="ml-dsa"></a>**ML-DSA** | Module-lattice digital signature algorithm — NIST PQC signature standard (Dilithium family) | [PQC](#pqc) · [PQ signatures](concepts/pq-signatures-dilithium.md) |
 | <a id="ml-kem"></a>**ML-KEM** | Module-lattice key-encapsulation mechanism — NIST PQC KEM standard (Kyber family) | [PQC](#pqc) · [KEM](#kem) · [Module-LWE](concepts/module-lwe.md) |

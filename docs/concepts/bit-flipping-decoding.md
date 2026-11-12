@@ -1,14 +1,15 @@
 # Bit-flipping decoding (intuition)
 
 **Prereqs:** [MDPC and QC-MDPC](mdpc-qc-mdpc.md) · [Hamming metric](hamming-metric.md) · [Generator and parity-check](../bridge/generator-and-parity-check.md) · [Noisy channel story](../bridge/noisy-channel-story.md)  
-**Next:** [DFR](dfr.md) · [QC-MDPC reaction attack explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md) · [Syndrome decoding](syndrome-decoding.md)  
-**Tracks:** code-based-kems
+**Next:** [DFR](dfr.md) · [QC-MDPC reaction attack explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md) · [Syndrome decoding](syndrome-decoding.md) · HW: min-sum / sparsity-aware MDPC leaves on [code-based ROADMAP](../tracks/code-based-kems/ROADMAP.md)  
+**Tracks:** code-based-kems · pqc-hardware
 
 **Learning goals.** After this page you can:
 
 - Explain bit-flipping as “flip bits that look guilty under many failed checks”
 - Run a tiny iteration by hand
 - Connect decoder failure to DFR and reaction-attack lessons
+- Contrast hard bit-flipping with **soft / min-sum** MDPC decoder leaves
 
 ## Why this card exists
 
@@ -93,18 +94,35 @@ If Eve learns only success/fail on many probes against a **static** key, she may
 | Correctness | Does bit-flipping usually clear honest noise? |
 | Security | Does observable fail/success leak the secret $H$? |
 
+## Soft cousin — min-sum / message-passing (HW leaves)
+
+Classic bit-flipping uses **hard** votes: a check fails or not.  
+**Min-sum** (and related LDPC-style) decoders pass **soft** reliability messages along the same sparse $H$ graph and update bit beliefs with a scaled min-sum rule. Crypto MDPC papers adapt that family when column weight is high and plain flipping struggles [[1]](#ref-1).
+
+| Decoder flavor | Message style | Curriculum use |
+|----------------|---------------|----------------|
+| Bit-flipping | Hard fail/pass votes | Default QC-MDPC / reaction-attack story |
+| Min-sum / soft MDPC | Reliability messages on the Tanner graph | TCAS-I min-sum QC-MDPC leaf [[1]](#ref-1) |
+| Sparsity-aware MDPC | Exploit secret / matrix sparsity in HW | TCAS-II sparsity-aware decoder leaf |
+
+**Slogan:** same parity-check graph; soft methods carry *how wrong* a check looks, not only *that* it failed.
+
+You do **not** need a full LDPC course before the HW leaf — read [[1]](#ref-1)’s decoder section with this contrast in mind, then return to [DFR](dfr.md).
+
 ## Where it appears in PQC
 
 - QC-MDPC / BIKE-shaped decapsulation  
 - Some iterative attacks on algebraic McEliece (different setting — still “flip under checks”)  
 - Hardware / constant-time implementations must be careful with timing of iterations and failure handling  
+- Min-sum and sparsity-aware MDPC accelerator leaves on the [code-based circuit table](../tracks/code-based-kems/ROADMAP.md)
 
 ## Common confusions
 
 - Bit-flipping is an **algorithm**, not a metric.  
 - It is the owner’s (or attacker’s iterative) tool — not the same as ISD’s information-set search ([ISD](information-set-decoding.md)).  
 - More iterations ≠ always more security; failures and side channels matter.  
-- Thresholds and “which bits flip” are scheme-specific — read the paper’s decoder section slowly.
+- Thresholds and “which bits flip” are scheme-specific — read the paper’s decoder section slowly.  
+- Min-sum ≠ a different hardness assumption — it is another iterative decoder on MDPC-like $H$.
 
 ## Check yourself
 
@@ -142,3 +160,8 @@ If Eve learns only success/fail on many probes against a **static** key, she may
 - [MDPC and QC-MDPC](mdpc-qc-mdpc.md)  
 - Paper: [QC-MDPC reaction attack](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md)  
 - Contrast algebraic path: [Goppa and alternant](goppa-alternant.md)  
+- Extract: `papers/tcas-i-pqc/low-complexity-parallel-min-sum-medium-density-parity-check-decoder-for-mceliece-cryptosystem/paper.md`
+
+## References
+
+<a id="ref-1"></a>[1] Low-complexity parallel min-sum MDPC decoder for McEliece, *IEEE Trans. Circuits Syst. I* — `papers/tcas-i-pqc/low-complexity-parallel-min-sum-medium-density-parity-check-decoder-for-mceliece-cryptosystem/paper.md`.

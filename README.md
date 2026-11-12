@@ -35,7 +35,7 @@ Public teaching curriculum for **post-quantum cryptography**: orientation, funda
 | Orientation | 6 pages — motivation, history, problems, challenges, crypto-categories mindmap |
 | Fundamentals | 12 starter pages (notation, modular arithmetic, soft lattices, …) |
 | Bridge | 13 story-first pages plus `bridge/README.md` (14 Markdown files) |
-| Concepts | 38 compact cards (LWE, KEM, NTT, ISD, masking, SPHINCS+, UOV/MAYO, isogeny, CIM-NTT, …) |
+| Concepts | 42 compact cards (LWE, KEM, NTT, ISD, masking, SPHINCS+, UOV/MAYO, code signatures, agile SoC, ASA, …) |
 | Tracks | 7 roadmaps: `code-based-kems`, `lattice-lwe`, `rank-metric`, `hash-based-signatures`, `multivariate`, `isogeny`, `pqc-hardware` |
 | Glossary | Plain-English term lookup (`docs/glossary.md`) |
 | Paper map | `docs/papers.md` + `docs/data/papers.json` (catalog refreshed from the lab index) |

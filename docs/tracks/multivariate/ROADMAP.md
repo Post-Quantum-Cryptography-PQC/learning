@@ -10,14 +10,14 @@ After this track you can:
 
 - Place multivariate quadratic (MQ) signature families among PQC options.  
 - Use the oil–vinegar / UOV / MAYO concept card before opening extracts.  
-- Open curated MAYO / UOV / Rainbow / MQ-SCA `paper.md` extracts.  
+- Open curated MAYO / UOV / Rainbow / MQ-SCA `paper.md` extracts, plus circuit-journal multi-family silicon that implements Rainbow.  
 - Fork to hardware/GPU leaves on the shared HW roadmap.
 
 ## How to use
 
 1. Shared entry (linear algebra + polynomials).  
 2. Stage 1 family placement via the oil–vinegar concept card.  
-3. Paper leaves, then HW fork.
+3. Paper leaves (TCHES + circuit journals), then HW fork.
 
 ## Shared entry
 
@@ -39,17 +39,29 @@ After this track you can:
 
 ### Stage 2 — Curated extracts
 
-Read the leaf table; treat Rainbow/UOV implementation papers as historical/engineering context alongside MAYO-focused rows.
+Read the leaf tables; treat Rainbow/UOV implementation papers as **historical / engineering** context alongside MAYO-focused rows (Rainbow was a NIST Round-3 finalist — not a current deployment recommendation). Circuit-journal rows are promoted only when MQ / Rainbow is a first-class subject (or a substantially implemented family on multi-scheme silicon). Prep: [crypto-agile SoC](../../concepts/crypto-agile-soc.md) · [ASA / HPC fuzzing](../../concepts/asa-hpc-fuzzing.md) before RePQC / TCAD rows.
 
-## Paper leaves
+## Paper leaves — TCHES / software–HW extracts
 
 | Title (short) | Extract | Status |
 |---------------|---------|--------|
 | Threshold MAYO | `papers/tches-pqc/optimizing-and-implementing-threshold-mayo/paper.md` | extract only |
 | MAYO GPU (matrix reordering) | `papers/tches-pqc/high-throughput-gpu-design-and-implementation-of-mayo-with-matrix-computation-reordering/paper.md` | extract only |
+| Nibbling MAYO (AVX2 / Cortex-M4) | `papers/tches-pqc/nibbling-mayo-optimized-implementations-for-avx2-and-cortex-m4/paper.md` | extract only |
 | QR-UOV on AVX2 | `papers/tches-pqc/avx2-implementation-of-qr-uov-for-modern-x86-processors/paper.md` | extract only |
 | Rainbow and UOV AVX2 | `papers/tches-pqc/efficient-implementations-of-rainbow-and-uov-using-avx2/paper.md` | extract only |
+| Rainbow on Cortex-M4 | `papers/tches-pqc/rainbow-on-cortex-m4/paper.md` | extract only |
+| Masked linear solves → UOV | `papers/tches-pqc/masked-solving-of-linear-equations-system-and-application-to-uov-signatures/paper.md` | extract only |
 | SCA on MQ signature schemes | `papers/tches-pqc/side-channel-attacks-on-post-quantum-signature-schemes-based-on-multivariate-quadratic-equations/paper.md` | extract only |
+
+## Paper leaves — circuit journals (JSSC / TCAD)
+
+| Title (short) | Extract | Status |
+|---------------|---------|--------|
+| RePQC agile SoC (includes Rainbow) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
+| HPC fuzzing ASA (includes Rainbow) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` | extract only (multi-family detection) |
+
+Same rows are mirrored on [PQC hardware § multivariate](../pqc-hardware/ROADMAP.md#family-hw-leaves-mq). No dedicated TCAS/TVLSI MQ-primary accelerator leaf is in the current corpus (rank-adjacent MinRank HW also absent).
 
 ## Course map (PQC_HTML Intro — inspiration only)
 

@@ -11,13 +11,14 @@ After this track you can:
 - Read latency / area–time tables without treating every paper as comparable.  
 - Name modmul → poly/NTT → sampler/hash/compress → KEM accelerator blocks.  
 - Place SCA threat model and masking shares before TCHES-style leaves.  
-- Open **family HW leaves** (hash / multivariate / isogeny / **code–HQC**) as optional extracts off the lattice core.  
-- Place CIM-NTT and deep shuffle schedules as frontier lattice-core leaves after banking / hiding vocabulary.
+- Open **family HW leaf tables** (hash / multivariate / isogeny / **code–HQC**) off the lattice core — primary-subject extracts, not name-drops.  
+- Place CIM-NTT and deep shuffle schedules as frontier lattice-core leaves after banking / hiding vocabulary.  
+- Use [crypto-agile SoC](../../concepts/crypto-agile-soc.md) before PQPU / RePQC / ARV-Q rows; [ASA / HPC fuzzing](../../concepts/asa-hpc-fuzzing.md) before the TCAD detection leaf.
 
 ## How to use
 
 1. Shared crypto entry, then **Tier 0–3b** (lattice core).  
-2. Paper leaves: core table first; then family sections (including code–HQC).  
+2. Paper leaves: lattice-core table first; then **family sections** (code table is large — walk after [carryless polymul](../../concepts/carryless-polymul-f2.md)).  
 3. Lab RTL under `projects/papers/` stays implementation, not default curriculum.
 
 **Lab split:** pedagogy here; faithful RTL via `research-circuit-implementation`.
@@ -84,8 +85,13 @@ After this track you can:
 |---------------|---------|--------|
 | SPHINCS+ reconfigurable processor | `papers/tcas-i-pqc/an-efficient-and-reconfigurable-post-quantum-crypto-processor-for-sphincs/paper.md` | extract only |
 | XMSS / EMSS for SPHINCS | `papers/tcas-i-pqc/efficient-hardware-implementation-of-extended-merkle-signature-scheme-for-sphincs/paper.md` | extract only |
+| Parallel SPHINCS+ on GPUs | `papers/tcas-i-pqc/parallel-implementation-of-sphincs-with-gpus/paper.md` | extract only |
 | SLH-DSA RISC-V (RVSLH) | `papers/tvlsi-pqc/RVSLH: Acceleration of Postquantum Standard SLH-DSA With Customized RISC-V Processor/paper.md` | extract only |
+| SPHINCS+-256 FPGA accelerator | `papers/tches-pqc/fpga-based-accelerator-for-post-quantum-signature-scheme-sphincs-256/paper.md` | extract only |
 | SPHINCS+ fault protection | `papers/tches-pqc/on-protecting-sphincs-against-fault-attacks/paper.md` | extract only |
+| WOTS+ fault countermeasures | `papers/tches-pqc/fault-attack-countermeasures-for-sphincs-wots-with-checksum-segmentation-and-subtree-root-children-caching/paper.md` | extract only |
+| PQPU agile SoC (includes SPHINCS+) | `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
+| HPC fuzzing ASA (includes SPHINCS+) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` | extract only (multi-family detection) |
 
 ## Family HW leaves — multivariate
 
@@ -95,8 +101,14 @@ After this track you can:
 |---------------|---------|--------|
 | Threshold MAYO | `papers/tches-pqc/optimizing-and-implementing-threshold-mayo/paper.md` | extract only |
 | MAYO GPU matrix reordering | `papers/tches-pqc/high-throughput-gpu-design-and-implementation-of-mayo-with-matrix-computation-reordering/paper.md` | extract only |
+| Nibbling MAYO (AVX2 / Cortex-M4) | `papers/tches-pqc/nibbling-mayo-optimized-implementations-for-avx2-and-cortex-m4/paper.md` | extract only |
 | QR-UOV AVX2 | `papers/tches-pqc/avx2-implementation-of-qr-uov-for-modern-x86-processors/paper.md` | extract only |
 | Rainbow / UOV AVX2 | `papers/tches-pqc/efficient-implementations-of-rainbow-and-uov-using-avx2/paper.md` | extract only |
+| Rainbow on Cortex-M4 | `papers/tches-pqc/rainbow-on-cortex-m4/paper.md` | extract only |
+| Masked linear solves → UOV | `papers/tches-pqc/masked-solving-of-linear-equations-system-and-application-to-uov-signatures/paper.md` | extract only |
+| SCA on MQ signatures | `papers/tches-pqc/side-channel-attacks-on-post-quantum-signature-schemes-based-on-multivariate-quadratic-equations/paper.md` | extract only |
+| RePQC agile SoC (includes Rainbow) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
+| HPC fuzzing ASA (includes Rainbow) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` | extract only (multi-family detection) |
 
 ## Family HW leaves — isogeny (historical / broken-KEM context)
 
@@ -116,7 +128,7 @@ SIKE is **not** a current NIST KEM standard path; leaves teach accelerators and 
 <a id="family-hw-leaves-code"></a>
 <a id="family-hw-leaves-code-later"></a>
 
-Walk [Carryless $\mathbb{F}_2$ polymul](../../concepts/carryless-polymul-f2.md) first. These leaves are the **code-based HW fork** off the lattice core (not a replacement for ML-KEM study).
+Walk [Carryless $\mathbb{F}_2$ polymul](../../concepts/carryless-polymul-f2.md) first. These leaves are the **code-based HW fork** off the lattice core (not a replacement for ML-KEM study). Full theory + circuit table also lives on [Code-based KEMs](../code-based-kems/ROADMAP.md).
 
 | Title (short) | Extract | Status |
 |---------------|---------|--------|
@@ -124,6 +136,21 @@ Walk [Carryless $\mathbb{F}_2$ polymul](../../concepts/carryless-polymul-f2.md) 
 | LEAP sparse HQC polymul | `papers/tvlsi-pqc/LEAP: Lightweight and Efficient Accelerator for Sparse Polynomial Multiplication of HQC/paper.md` | extract only |
 | Area-efficient HQC accelerator (unified modules) | `papers/tvlsi-pqc/An Area-Efficient HQC Accelerator With Unified Parallel Modules and Fine-Grained Scheduling/paper.md` | extract only |
 | PHOENIX (ML-KEM + HQC agile sharing) | `papers/tches-pqc/phoenix-crypto-agile-hardware-sharing-for-ml-kem-and-hqc/paper.md` | extract only |
+| BIKE binary polymul (sparsity pipeline) | `papers/tvlsi-pqc/A Scalable and Efficient Architecture for Binary Polynomial Multiplication in BIKE Utilizing Inter-Inner-Wise Sparsity and Block-by-Block Pipeline/paper.md` | extract only |
+| Area–time BIKE KEM on FPGA | `papers/tvlsi-pqc/Area–Time-Efficient Code-Based Postquantum Key Encapsulation Mechanism on FPGA/paper.md` | extract only |
+| Classic McEliece Encap/Decap (EReA) | `papers/tvlsi-pqc/An Efficient and Reconfigurable Architecture for Classic McEliece Encapsulation and Decapsulation/paper.md` | extract only |
+| Classic McEliece keygen (matrix / Gaussian) | `papers/tcas-i-pqc/fast-hardware-architecture-with-efficient-matrix-computations-for-the-key-generation-of-classic-mceliece/paper.md` | extract only |
+| Min-sum QC-MDPC decoder | `papers/tcas-i-pqc/low-complexity-parallel-min-sum-medium-density-parity-check-decoder-for-mceliece-cryptosystem/paper.md` | extract only |
+| Sparsity-aware MDPC decoder | `papers/tcas-ii-pqc/sparsity-aware-medium-density-parity-check-decoder-for-mceliece-cryptosystems/paper.md` | extract only |
+| Constant-weight coding engines | `papers/tcas-ii-pqc/compact-constant-weight-coding-engines-for-the-code-based-cryptography/paper.md` | extract only |
+| QC-LDGM signature on embedded HW | `papers/tcas-i-pqc/toward-practical-code-based-signature-implementing-fast-and-compact-qc-ldgm-signature-scheme-on-embedded-hardware/paper.md` | extract only |
+| Compact LEDAsig + SCA resilience | `papers/tcas-i-pqc/compact-code-based-signature-for-reconfigurable-devices-with-side-channel-resilience/paper.md` | extract only |
+| CED for McEliece composite-field Goppa arith | `papers/tcad-pqc/reliable-architectures-for-composite-field-oriented-constructions-of-mceliece-post-quantum-cryptography-on-fpga/paper.md` | extract only |
+| CED for GF multipliers (McEliece-oriented) | `papers/tvlsi-pqc/Reliable Architectures for Finite Field Multipliers Using Cyclic Codes on FPGA Utilized in Classic and Post-Quantum Cryptography/paper.md` | extract only (component) |
+| ARV-Q (supports BIKE / HQC / McEliece) | `papers/tcas-i-pqc/arv-q-an-adaptive-risc-v-vector-processor-for-unified-support-of-post-quantum-standards-and-side-channel-protection-on-the-edge/paper.md` | extract only (multi-scheme) |
+| PQPU agile SoC (BIKE / HQC / McEliece) | `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
+| RePQC agile SoC (includes Classic McEliece) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
+| PQC HW tutorial (BIKE / McEliece / HQC) | `papers/tcas-ii-pqc/hardware-circuits-and-systems-design-for-post-quantum-cryptography-a-tutorial-brief/paper.md` | extract only (survey) |
 
 ## Course map (ASIC book — inspiration only)
 
