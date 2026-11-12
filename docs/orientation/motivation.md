@@ -33,6 +33,8 @@ An adversary can:
 
 That is **store now, decrypt later** (SNDL). Long-lived secrets — medical archives, state records, identity keys, firmware roots — are especially exposed. Migration planning started early because **recorded traffic lasts**, not because a world-breaking machine ships next Tuesday.
 
+Early migration does **not** erase copies Eve already stored under RSA/ECC — those old recordings may still fall later. What it buys is: **new** traffic (and freshly protected archives) use a public-key layer Shor is not expected to break that way, so *further* photocopies stay useless.
+
 ### Slow-motion timeline
 
 | When | What happens |
@@ -44,9 +46,9 @@ That is **store now, decrypt later** (SNDL). Long-lived secrets — medical arch
 
 ### Quick self-check
 
-Why delay migration until “quantum day”?  
+Why is it a **bad idea** to wait until “quantum day” (a big quantum computer exists) before migrating away from RSA/ECC?  
 <details><summary>Answer</summary>
-Because traffic recorded *before* that day may still be valuable — and still decryptable later if the public-key layer was RSA/ECC.
+Because Eve can record ciphertext <em>now</em> and decrypt it <em>later</em>. Waiting only protects traffic after you finally migrate. Anything still encrypted under RSA/ECC — including years of recordings already on disk — may become readable on quantum day. Early migration limits how much new valuable traffic gets added to that pile.
 </details>
 
 ## What about symmetric crypto?
