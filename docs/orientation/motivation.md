@@ -8,7 +8,7 @@
 - Explain what cryptography is for in one breath
 - Explain why large quantum computers threaten today’s public-key tools
 - Explain what “store now, decrypt later” means
-- Explain why PQC migration started before a world-breaking machine ships
+- Explain why PQC migration started before large quantum computers exist
 
 ## The job cryptography already does
 
@@ -36,7 +36,7 @@ An attacker can:
 2. wait until a large quantum machine exists,  
 3. decrypt the old recording **later**.
 
-That is **store now, decrypt later** (SNDL). Long-lived secrets — medical archives, state records, identity keys, firmware roots — are especially exposed. Migration planning started early because **recorded traffic lasts**, not because a world-breaking machine ships next Tuesday.
+That is **store now, decrypt later** (SNDL). Long-lived secrets — medical archives, state records, identity keys, firmware roots — are especially exposed. Migration planning started early because **recorded traffic lasts** — not because a large quantum computer is expected to appear overnight.
 
 Early migration does **not** erase copies an attacker already stored under RSA/ECC — those old recordings may still fall later. What it buys is: **new** traffic (and freshly protected archives) use a public-key layer Shor is not expected to break that way, so *further* recordings stay useless.
 

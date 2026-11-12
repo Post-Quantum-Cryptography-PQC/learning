@@ -32,7 +32,7 @@ An attacker can:
 
 That is **store now, decrypt later** (sometimes called SNDL).  
 
-Long-lived secrets (medical files, state archives, identity keys) are especially exposed. That is why migration planning started early — not because a world-breaking machine ships next Tuesday, but because recorded traffic lasts.
+Long-lived secrets (medical files, state archives, identity keys) are especially exposed. That is why migration planning started early — because recorded traffic lasts, not because a large quantum computer is expected to appear overnight.
 
 ### Slow-motion timeline
 
