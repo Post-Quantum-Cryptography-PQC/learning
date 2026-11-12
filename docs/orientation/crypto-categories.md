@@ -132,7 +132,7 @@ flowchart TB
 
 === "PQC"
 
-    Subcategory of asymmetric / PKC. Primary folders are **hardness families** (where the hardness comes from). Scheme names carry a **job** tag (KEM vs signature). Multivariate / isogeny stay one research leaf here — no deep pages yet.
+    Subcategory of asymmetric / PKC. Primary folders are **hardness families** (where the hardness comes from). Scheme names carry a **job** tag (KEM vs signature). NIST is not the only standards path — see [History](history.md).
 
     ```pqc-mermaid
     flowchart TB
@@ -140,15 +140,17 @@ flowchart TB
       P --> L["Lattice / LWE"]
       L --> LK["ML-KEM - KEM"]
       L --> LD["ML-DSA - signature"]
-      L --> LF["FN-DSA / Falcon - signature optional"]
+      L --> LF["FN-DSA / Falcon / FrodoKEM-style"]
       P --> H["Hash-based"]
       H --> HS["SLH-DSA - signature"]
       P --> C["Code-based"]
       C --> CK["McEliece / HQC-shaped - KEMs"]
-      P --> O["Other research"]
-      O --> OR["multivariate · isogeny-adjacent"]
+      P --> M["Multivariate"]
+      M --> MS["signatures - research / other tracks"]
+      P --> I["Isogeny-related"]
+      I --> IS["historical / careful after breaks"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class P,L,LK,LD,LF,H,HS,C,CK,O,OR n
+      class P,L,LK,LD,LF,H,HS,C,CK,M,MS,I,IS n
     ```
 
 === "Protocols"
@@ -251,20 +253,21 @@ See [Motivation](motivation.md) · [History](history.md).
 
 | Family | Plain hardness slogan | Example schemes (job) |
 |--------|----------------------|------------------------|
-| **Lattice / LWE** | Noisy linear equations stay hard | [ML-KEM](../glossary.md#ml-kem) (KEM), [ML-DSA](../glossary.md#ml-dsa) (sig); FN-DSA/Falcon optional |
+| **Lattice / LWE** | Noisy linear equations stay hard | [ML-KEM](../glossary.md#ml-kem) (KEM), [ML-DSA](../glossary.md#ml-dsa) (sig); FN-DSA/Falcon; FrodoKEM-style |
 | **Hash-based** | One-way hashes + tree/state tricks | [SLH-DSA](../glossary.md#slh-dsa) (sig) |
-| **Code-based** | Decoding a random-looking code is hard | McEliece / HQC-shaped (KEMs) |
-| **Other research** | Multivariate, isogeny-adjacent, … | Fewer default-deploy slots today |
+| **Code-based** | Decoding a random-looking code is hard | McEliece / Classic McEliece; HQC-shaped (KEMs) |
+| **Multivariate** | Multivariate equation systems stay hard | Signature research / other standards tracks |
+| **Isogeny-related** | Hard problems on isogenies | Historical interest; treat carefully after breaks |
 
 **Secondary postcard = by job** (same schemes, cut by API role):
 
 | Job | Deploy-facing examples | Also see |
 |-----|------------------------|----------|
-| **KEM** | ML-KEM | HQC / McEliece-shaped code-based KEMs |
+| **KEM** | ML-KEM | HQC / McEliece-shaped; FrodoKEM-style (e.g. ISO/IEC paths) |
 | **Signature** | ML-DSA, SLH-DSA | FN-DSA/Falcon (optional) |
 
 Do not confuse the two cuts: *family* answers “what math?”, *job* answers “what API?”.  
-Hardness postcard: [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
+Not a NIST primary FIPS pick ≠ unused elsewhere — see [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
 
 ### 6. Protocols are bundles
 
