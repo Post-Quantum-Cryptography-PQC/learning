@@ -5,8 +5,8 @@
 
 **Learning goals.** After this page you can:
 
-- Sketch when classical [public-key cryptography (PKC)](../glossary.md#pkc) (RSA / Diffie–Hellman / ECC) appeared
-- Sketch when early PQC ideas, quantum algorithms (Shor / Grover), and later standardization arrived
+- Say when classical [public-key cryptography (PKC)](../glossary.md#pkc) (RSA / Diffie–Hellman / ECC) appeared
+- Say when early PQC ideas, quantum algorithms (Shor / Grover), and later standardization arrived
 - Name the main PQC hardness families, and that **NIST is not the only** standards path (e.g. ISO/IEC)
 
 ## Why a timeline helps
