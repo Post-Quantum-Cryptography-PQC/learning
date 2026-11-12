@@ -64,7 +64,8 @@ No — that is a leaf module. A KEM accelerator composes engines, memory, hashin
 
 - **Fixed ML-KEM-512-only** core vs **configurable $k$** (module rank) — more muxing, wider address maps.  
 - **HW/SW co-design:** CPU (e.g. Ibex-class) + tightly coupled accelerator for poly/hash; software owns protocol glue.  
-- **Security extras:** masking, shuffling — learn the threat model first ([SCA bridge](../bridge/side-channel-threat-model.md), [masking shares](masking-shares.md)); shuffling / CIM remain optional leaves.
+- **Security extras:** masking, shuffling — learn the threat model first ([SCA bridge](../bridge/side-channel-threat-model.md), [masking shares](masking-shares.md), [shuffling / hiding](shuffling-hiding.md)).  
+- **Frontier engines:** [CIM-NTT](cim-ntt.md) and deep NTT shuffle / SUCRE leaves on the [hardware ROADMAP](../tracks/pqc-hardware/ROADMAP.md); HQC engines need [carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md).
 
 ## How IEEE exploration should grow this card
 
@@ -109,10 +110,10 @@ Usually no — it is an engine leaf (NTT/CWM/INTT). Full KEM still needs samplin
 ## Next steps
 
 - [Noise samplers](noise-samplers.md) · [Hash / XOF](hash-xof-keccak.md) · [Compress / encode](ciphertext-compress-encode.md)  
-- [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Masking shares](masking-shares.md) · [Dilithium slogan](pq-signatures-dilithium.md)  
-- Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+- [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Masking shares](masking-shares.md) · [Shuffling / hiding](shuffling-hiding.md) · [Dilithium slogan](pq-signatures-dilithium.md)  
+- Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) (lattice core + HQC/code + CIM/deep shuffle)  
 - Theory: [Module-LWE](module-lwe.md) · [Lattice / LWE roadmap](../tracks/lattice-lwe/ROADMAP.md)  
-- [NTT parallel memory](ntt-parallel-memory.md)  
+- [NTT parallel memory](ntt-parallel-memory.md) · [CIM-NTT](cim-ntt.md) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md)  
 - Paper leaf: [Reconfigurable Kyber poly-mul explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/explainer.md)  
 - Lab RTL (when you implement): `projects/papers/` via `research-circuit-implementation`  
-- Deferred leaves: TCAS-II modmul explainer; Super-K / CIM / shuffling depth — see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml)  
+- Still optional later: TCAS-II modmul explainer; super-scalar hash–poly leaves — see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml)  

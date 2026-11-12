@@ -11,14 +11,14 @@ After this track you can:
 - Tell the McEliece story from generator / parity-check intuition.  
 - Place QC-MDPC / HQC-shaped KEMs next to DFR and independence heuristics.  
 - Read curated TIT explainers with matching `paper.md` (or labeled private explainer) grounding.  
-- Fork to **rank metric** (Hamming → rank) or later **code HW** leaves on the hardware track.
+- Fork to **rank metric** (Hamming → rank) or the **HQC / code HW** leaf table on the hardware track.
 
 ## How to use
 
 1. Shared entry (essentials only — full fundamentals list is on [Home](../../index.md)).  
 2. Stages 1–4 in order.  
 3. TIT / ePrint leaves after Stage 3.  
-4. Optional: [Rank metric](../rank-metric/ROADMAP.md); hardware family leaves later on [PQC hardware](../pqc-hardware/ROADMAP.md).
+4. Optional: [Rank metric](../rank-metric/ROADMAP.md); code HW fork on [PQC hardware § HQC](../pqc-hardware/ROADMAP.md#family-hw-leaves-code).
 
 ## Shared entry
 
@@ -64,7 +64,7 @@ Walk the paper table below (TIT core first).
 
 | Title (short) | Extract / explainer | Status |
 |---------------|---------------------|--------|
-| McEliece ↔ Niederreiter equivalence | [Private explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md) · analysis at `papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/analysis.md` (`paper.md` not yet extracted) | private explainer |
+| McEliece ↔ Niederreiter equivalence | `papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/paper.md` · [explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md) | private explainer + extract |
 | Ouroboros KEM family | `papers/tit-pqc/ouroboros-an-efficient-and-provably-secure-kem-family/paper.md` · [explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/ouroboros-an-efficient-and-provably-secure-kem-family/explainer.md) | private explainer + extract |
 | QC-MDPC reaction attack | `papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/paper.md` · [explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md) | private explainer + extract |
 | High-rate McEliece distinguisher | `papers/tit-pqc/a-distinguisher-for-high-rate-mceliece-cryptosystems/paper.md` | extract only |
@@ -82,5 +82,5 @@ Walk the paper table below (TIT core first).
 ## Cross-track forks
 
 - [Rank metric](../rank-metric/ROADMAP.md) — Hamming → rank (only from this family)  
-- [PQC hardware](../pqc-hardware/ROADMAP.md#family-hw-leaves-code-later) — code HW leaves deferred  
+- [PQC hardware § HQC / code](../pqc-hardware/ROADMAP.md#family-hw-leaves-code) — Ibex / LEAP / unified HQC / PHOENIX  
 - [Lattice / LWE](../lattice-lwe/ROADMAP.md) — parallel NIST KEM family

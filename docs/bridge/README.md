@@ -35,9 +35,9 @@ The jump can feel steep (codes, syndromes, DFR, independence, LWE). **Bridge** p
 
 11. [Clocks, registers, and latency](clocks-registers-latency.md)  
 12. [Area, time, power honesty](area-time-power-honesty.md) → [PQC hardware track](../tracks/pqc-hardware/ROADMAP.md)  
-13. [Side-channel threat model (gentle)](side-channel-threat-model.md) → masking / TCHES SCA leaves
+13. [Side-channel threat model (gentle)](side-channel-threat-model.md) → [Masking shares](../concepts/masking-shares.md) · [Shuffling / hiding](../concepts/shuffling-hiding.md)
 
-Then enter Concepts starting at [Error-correcting codes](../concepts/error-correcting-codes.md) (code track), [LWE](../concepts/lwe.md) (lattice track), or [Modular multiplier](../concepts/modular-multiplier.md) (hardware track) — they should read as summaries of ideas you already met slowly.
+Then enter Concepts starting at [Error-correcting codes](../concepts/error-correcting-codes.md) (code track), [LWE](../concepts/lwe.md) (lattice track), [Hash-based signatures](../concepts/hash-based-signatures.md) / [Oil–vinegar](../concepts/oil-vinegar-multivariate.md) / [Isogeny](../concepts/isogeny-csidh-sike.md) (other families), or [Modular multiplier](../concepts/modular-multiplier.md) (hardware track) — they should read as summaries of ideas you already met slowly.
 
 ## Already comfortable?
 

@@ -1,7 +1,7 @@
 # Hash / XOF (Keccak–SHAKE slogan)
 
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · helpful: [Noise samplers](noise-samplers.md) · [KEM](kem.md)  
-**Next:** [Noise samplers](noise-samplers.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
+**Next:** [Noise samplers](noise-samplers.md) · [Hash-based signatures](hash-based-signatures.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
 **Learning goals.** After this page you can:

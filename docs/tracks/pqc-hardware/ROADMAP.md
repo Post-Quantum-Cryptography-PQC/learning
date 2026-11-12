@@ -11,12 +11,13 @@ After this track you can:
 - Read latency / area–time tables without treating every paper as comparable.  
 - Name modmul → poly/NTT → sampler/hash/compress → KEM accelerator blocks.  
 - Place SCA threat model and masking shares before TCHES-style leaves.  
-- Open **family HW leaves** (hash / multivariate / isogeny) as optional extracts off the lattice core.
+- Open **family HW leaves** (hash / multivariate / isogeny / **code–HQC**) as optional extracts off the lattice core.  
+- Place CIM-NTT and deep shuffle schedules as frontier lattice-core leaves after banking / hiding vocabulary.
 
 ## How to use
 
 1. Shared crypto entry, then **Tier 0–3b** (lattice core).  
-2. Paper leaves: core table first; then family sections as needed.  
+2. Paper leaves: core table first; then family sections (including code–HQC).  
 3. Lab RTL under `projects/papers/` stays implementation, not default curriculum.
 
 **Lab split:** pedagogy here; faithful RTL via `research-circuit-implementation`.
@@ -44,7 +45,8 @@ After this track you can:
 
 1. [Polynomial multiply engines](../../concepts/poly-mul-engines.md)  
 2. [NTT butterfly](../../concepts/ntt-butterfly.md)  
-3. [NTT parallel memory](../../concepts/ntt-parallel-memory.md)
+3. [NTT parallel memory](../../concepts/ntt-parallel-memory.md)  
+4. Optional frontier: [CIM-NTT](../../concepts/cim-ntt.md)
 
 ### Tier 3 — Scheme datapath (ASIC ~3–4, 13)
 
@@ -55,7 +57,8 @@ After this track you can:
 ### Tier 3b — Side-channel vocabulary (ASIC ~9–10)
 
 1. [Side-channel threat model](../../bridge/side-channel-threat-model.md)  
-2. [Masking shares](../../concepts/masking-shares.md)
+2. [Masking shares](../../concepts/masking-shares.md)  
+3. [Shuffling / hiding](../../concepts/shuffling-hiding.md)
 
 **Checkpoint:** Masking randomizes **values** (shares); shuffling randomizes **order** — which paper leaf below targets each?
 
@@ -69,8 +72,9 @@ After this track you can:
 | Dilithium high-speed TCAS-II | `papers/tcas-ii-pqc/a-high-speed-post-quantum-crypto-processor-for-crystals-dilithium/paper.md` | extract only |
 | Kyber reconfigurable poly-mul | `papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/paper.md` | private explainer + extract |
 | RBLWE instruction-set accelerator | `papers/tvlsi-pqc/High-Performance Instruction-Set Hardware Accelerator for Ring-Binary-LWE-Based Lightweight PQC/paper.md` | concept ready |
-
-CIM-NTT / deep shuffle schedules remain deferred (see pedagogy gaps).
+| CIM pipeline NTT (28 nm) | `papers/tcas-ii-pqc/a-28-nm-75-6-kops-13-nj-computing-in-memory-pipeline-number-theoretic-transform-accelerator-for-pqc/paper.md` | concept ready |
+| Low-cost NTT shuffling (deep schedule) | `papers/tcad-pqc/low-cost-shuffling-countermeasures-against-side-channel-attacks-for-ntt-based-post-quantum-cryptography/paper.md` | concept ready |
+| SUCRE shuffle-and-unmask (ML-DSA rejection) | `papers/tches-pqc/ml-dsa-masking-sweetened-with-sucre-shuffle-and-unmask-countermeasure-for-rejection-sampling/paper.md` | concept ready |
 
 ## Family HW leaves — hash-based
 
@@ -107,22 +111,30 @@ SIKE is **not** a current NIST KEM standard path; leaves teach accelerators and 
 | High-performance SIKE (TVLSI) | `papers/tvlsi-pqc/A High-Performance SIKE Hardware Accelerator/paper.md` | extract only |
 | CTIDH (constant-time CSIDH) | `papers/tches-pqc/ctidh-faster-constant-time-csidh/paper.md` | extract only |
 
-## Family HW leaves — code (later)
+## Family HW leaves — code / HQC
 
-Deferred until lattice core is walkable; candidates include HQC Ibex co-design `papers/tcas-ii-pqc/a-hardware-software-co-optimization-of-hqc-using-tightly-coupled-accelerators-on-a-32-bit-ibex-core/paper.md`.
-
+<a id="family-hw-leaves-code"></a>
 <a id="family-hw-leaves-code-later"></a>
+
+Walk [Carryless $\mathbb{F}_2$ polymul](../../concepts/carryless-polymul-f2.md) first. These leaves are the **code-based HW fork** off the lattice core (not a replacement for ML-KEM study).
+
+| Title (short) | Extract | Status |
+|---------------|---------|--------|
+| HQC Ibex tightly coupled accelerators | `papers/tcas-ii-pqc/a-hardware-software-co-optimization-of-hqc-using-tightly-coupled-accelerators-on-a-32-bit-ibex-core/paper.md` | concept ready |
+| LEAP sparse HQC polymul | `papers/tvlsi-pqc/LEAP: Lightweight and Efficient Accelerator for Sparse Polynomial Multiplication of HQC/paper.md` | extract only |
+| Area-efficient HQC accelerator (unified modules) | `papers/tvlsi-pqc/An Area-Efficient HQC Accelerator With Unified Parallel Modules and Fine-Grained Scheduling/paper.md` | extract only |
+| PHOENIX (ML-KEM + HQC agile sharing) | `papers/tches-pqc/phoenix-crypto-agile-hardware-sharing-for-ml-kem-and-hqc/paper.md` | extract only |
 
 ## Course map (ASIC book — inspiration only)
 
 | ASIC ch. (approx.) | Theme | This track |
 |--------------------|--------|------------|
 | 1–2 | Flow / HDL intuition | Tier 0 |
-| 3–6 | Kyber params / NTT / poly | Tiers 1–2 |
-| 8–10 | Dilithium / TRNG / masking | Tier 3–3b |
-| — | Family accelerators | Family HW leaf tables |
+| 3–6 | Kyber params / NTT / poly | Tiers 1–2 (+ optional [CIM-NTT](../../concepts/cim-ntt.md)) |
+| 8–10 | Dilithium / TRNG / masking / shuffling | Tier 3–3b |
+| — | Family accelerators | Hash / MQ / isogeny / **HQC–code** leaf tables |
 
 ## Cross-track forks
 
 - Theory core: [Lattice / LWE](../lattice-lwe/ROADMAP.md)  
-- Family theory: [Hash-based](../hash-based-signatures/ROADMAP.md) · [Multivariate](../multivariate/ROADMAP.md) · [Isogeny](../isogeny/ROADMAP.md) · [Code-based](../code-based-kems/ROADMAP.md)
+- Family theory: [Hash-based](../hash-based-signatures/ROADMAP.md) · [Multivariate](../multivariate/ROADMAP.md) · [Isogeny](../isogeny/ROADMAP.md) · [Code-based](../code-based-kems/ROADMAP.md) (HQC HW → [#family-hw-leaves-code](#family-hw-leaves-code))

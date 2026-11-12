@@ -21,10 +21,14 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Bit** | A $0$ or $1$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
 | **Bit-flipping** | Iterative decoder: flip bits that fail many parity checks | [Bit-flipping decoding](concepts/bit-flipping-decoding.md) |
 | **Butterfly (NTT)** | Local 2-in/2-out modular update with a twiddle | [NTT butterfly](concepts/ntt-butterfly.md) |
+| **CIM-NTT** | Compute-in-memory (or near-memory) organization for NTT butterflies | [CIM-NTT](concepts/cim-ntt.md) |
 | **Ciphertext** | Scrambled form that travels on the wire | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Clock / register** | Heartbeat + stored bits between ticks | [Clocks, registers](bridge/clocks-registers-latency.md) |
+| **Carryless / CLMUL** | Binary polynomial multiply (XOR instead of integer carry); HQC-shaped hot path | [Carryless $\mathbb{F}_2$ polymul](concepts/carryless-polymul-f2.md) |
 | **Code / codeword** | Allowed protected strings; a codeword is one allowed string | [Error-correcting codes](concepts/error-correcting-codes.md) |
 | **Combinational logic** | Outputs from current inputs only (no memory) | [Clocks, registers](bridge/clocks-registers-latency.md) |
+| **CSIDH / CTIDH** | Isogeny group-action key exchange; CTIDH emphasizes constant-time evaluation | [Isogenies, CSIDH, SIKE](concepts/isogeny-csidh-sike.md) |
+
 | <a id="cmac"></a>**CMAC** | Cipher-based MAC — keyed integrity tag built from a block cipher (sibling of HMAC) | [MAC](#mac) · [Symmetric crypto](#symmetric-crypto) |
 | **Confidentiality** | Strangers cannot read the content | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Critical path** | Longest combo delay that limits the clock period (ns) | [Clocks, registers](bridge/clocks-registers-latency.md) |
@@ -41,6 +45,8 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="ecdh"></a>**ECDH** | Elliptic-curve Diffie–Hellman — ECC-based key agreement | [DH](#dh) · [Key agreement](#key-agreement) |
 | <a id="ecdsa"></a>**ECDSA** | Elliptic-curve digital signature algorithm — ECC-based signatures | [Digital signature](#digital-signature) · [ECC](#ecc) |
 | **Encaps / Decaps** | KEM calls that create / recover a session key | [KEM](concepts/kem.md) |
+| **Fault injection (FIA)** | Physical flips/glitches during crypto; distinct from power/EM SCA | [Fault attacks on hash-based signatures](concepts/fault-attacks-hash-sigs.md) · [Side-channel threat model](bridge/side-channel-threat-model.md) |
+| **FORS** | Few-time hash-based signature layer inside SPHINCS+ | [Hash-based signatures](concepts/hash-based-signatures.md) |
 | **Generator matrix $G$** | Builds codewords from short messages | [Generator and parity-check](bridge/generator-and-parity-check.md) |
 | **Goppa code** | Classic algebraic secret code for McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
 | **GRS** | Generalized Reed–Solomon — strong algebra, often unsafe raw in McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
@@ -75,15 +81,18 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **LRPC** | Low-rank parity-check codes (rank-metric family) | [LRPC](concepts/lrpc-codes.md) |
 | **LWE** | Learning With Errors — noisy modular linear equations | [LWE](concepts/lwe.md) |
 | <a id="mac"></a>**MAC** | Message authentication code — short tag proving integrity/authenticity under a shared key (not a public-key signature) | [Symmetric crypto](#symmetric-crypto) · [Crypto categories](orientation/crypto-categories.md) |
+| **MAYO / UOV** | Multivariate quadratic signatures (oil–vinegar family) | [Oil–vinegar multivariate](concepts/oil-vinegar-multivariate.md) |
 | **McEliece** | Public scramble of a secret easy code + intentional sparse error | [McEliece in plain words](bridge/mceliece-in-plain-words.md) |
 | **MDPC / QC-MDPC** | Moderate-density parity-check; QC = quasi-cyclic blocks | [MDPC and QC-MDPC](concepts/mdpc-qc-mdpc.md) |
 | **Minimum distance $d$** | Smallest Hamming distance between distinct codewords | [Hamming metric](concepts/hamming-metric.md) |
+| **MinRank** | Find a low-rank linear combination of given matrices | [MinRank and MPCitH](concepts/minrank-mpcitH.md) |
 | <a id="ml-dsa"></a>**ML-DSA** | Module-lattice digital signature algorithm — NIST PQC signature standard (Dilithium family) | [PQC](#pqc) · [PQ signatures](concepts/pq-signatures-dilithium.md) |
 | <a id="ml-kem"></a>**ML-KEM** | Module-lattice key-encapsulation mechanism — NIST PQC KEM standard (Kyber family) | [PQC](#pqc) · [KEM](#kem) · [Module-LWE](concepts/module-lwe.md) |
 | **Modular arithmetic** | Clock / leftover wrap-around math | [Modular arithmetic](fundamentals/modular-arithmetic.md) |
 | **Modular multiplier** | HW/SW unit for $a\cdot b \bmod q$ | [Modular multiplier](concepts/modular-multiplier.md) |
 | **Module-LWE** | LWE with polynomial / module packaging (ML-KEM-shaped) | [Module-LWE](concepts/module-lwe.md) |
 | **Motivation (PQC)** | Why migrate: quantum break of RSA/ECC + long-lived recorded traffic | [Motivation](orientation/motivation.md) |
+| **MPCitH** | Multi-party computation in the head — proof/signature style from virtual parties | [MinRank and MPCitH](concepts/minrank-mpcitH.md) |
 | **Niederreiter** | Syndrome / parity-check packaging twin of McEliece | [Niederreiter](concepts/niederreiter.md) |
 | <a id="nist"></a>**NIST** | U.S. standards body that ran the PQC competition and publishes algorithm standards many products follow | [History](orientation/history.md) · [PQC](#pqc) |
 | <a id="non-repudiation"></a>**Non-repudiation** | Third parties can check that a particular signer key authorized a message (with key-identity assumptions) — typically signatures, not MAC/AEAD | [Crypto categories](orientation/crypto-categories.md) · [Digital signature](#digital-signature) |
@@ -107,8 +116,11 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="rsa"></a>**RSA** | Classical public-key scheme for encryption and signatures; Shor-vulnerable | [PKC](#pkc) · [Motivation](orientation/motivation.md) |
 | **Security bits** | Attack-work slogan (e.g. $\sim 2^{128}$), not DFR | [Security bits](bridge/security-bits-and-work.md) |
 | <a id="sha"></a>**SHA-2 / SHA-3** | Common cryptographic hash families (fixed-length fingerprints of data) | [Bits, XOR](fundamentals/bits-xor-randomness.md) · [Hash / XOF](concepts/hash-xof-keccak.md) |
-| <a id="slh-dsa"></a>**SLH-DSA** | Stateless hash-based digital signature algorithm — NIST PQC signature standard (SPHINCS+ family) | [PQC](#pqc) · [Hash-based signatures](tracks/hash-based-signatures/ROADMAP.md) |
+| **Shuffling / hiding** | SCA countermeasure that randomizes operation order (not share values) | [Shuffling / hiding](concepts/shuffling-hiding.md) · [Masking shares](concepts/masking-shares.md) |
+| **SIKE** | Historical isogeny KEM (broken NIST path) — study as history, not new deployments | [Isogenies, CSIDH, SIKE](concepts/isogeny-csidh-sike.md) |
+| <a id="slh-dsa"></a>**SLH-DSA** | Stateless hash-based digital signature algorithm — NIST PQC signature standard (SPHINCS+ family) | [PQC](#pqc) · [Hash-based signatures](concepts/hash-based-signatures.md) · [Track](tracks/hash-based-signatures/ROADMAP.md) |
 | **SNDL** | Store now, decrypt later — record ciphertext today, break keys when quantum arrives | [Motivation](orientation/motivation.md) |
+| **SPHINCS+** | Stateless hash-based signature family (WOTS+ / FORS / hypertrees); SLH-DSA standardized form | [Hash-based signatures](concepts/hash-based-signatures.md) |
 | **Sparse** | Low Hamming weight (few ones) | [Hamming metric](concepts/hamming-metric.md) |
 | <a id="symmetric-crypto"></a>**Symmetric crypto** | Same shared secret locks and unlocks (or MACs) both sides — fast bulk tool after a session key exists | [Why cryptography?](fundamentals/why-cryptography.md) · [Crypto categories](orientation/crypto-categories.md) |
 | **Syndrome** | $He^\top$ — fingerprint of the error under checks $H$ | [Syndrome decoding](concepts/syndrome-decoding.md) |
@@ -125,6 +137,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="vpn"></a>**VPN** | Virtual private network — encrypted tunnel for traffic; usually classical or hybrid PKC + symmetric crypto under the hood | [Crypto categories](orientation/crypto-categories.md) · [TLS](#tls) |
 | <a id="xof"></a>**XOF / SHAKE** | Extendable-output function — hash-like primitive that can emit a long bitstream (common in PQC sampling) | [Hash](#hash) · [Hash / XOF](concepts/hash-xof-keccak.md) |
 | **XOR $\oplus$** | Same bits → $0$, different → $1$; addition in $\mathbb{F}_2$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
+| **WOTS+** | Hash-chain one-time signature used under Merkle / SPHINCS+ leaves | [Hash-based signatures](concepts/hash-based-signatures.md) |
 | **Wrap-around ($X^n\equiv 1$)** | Fold high powers back to fixed length $n$ | [Polynomial wrap-around](fundamentals/polynomials-wraparound.md) |
 
 ## Symbol cheat strip

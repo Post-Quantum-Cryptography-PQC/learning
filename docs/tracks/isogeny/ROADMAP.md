@@ -1,7 +1,7 @@
 # Track: Isogeny
 
 **Prereqs:** [Modular arithmetic](../../fundamentals/modular-arithmetic.md) · [Orientation — History](../../orientation/history.md) · [Challenges](../../orientation/challenges.md)  
-**Next:** [PQC hardware § isogeny leaves](../pqc-hardware/ROADMAP.md#family-hw-leaves-isogeny) · [index](../../index.md)  
+**Next:** [Isogenies, CSIDH, SIKE](../../concepts/isogeny-csidh-sike.md) · [PQC hardware § isogeny leaves](../pqc-hardware/ROADMAP.md#family-hw-leaves-isogeny) · [index](../../index.md)  
 **Tracks:** isogeny
 
 ## Who / outcomes
@@ -30,8 +30,8 @@ After this track you can:
 ### Stage 1 — Status and placement (Intro ch. 20–21)
 
 1. Read Challenges / History for NIST path changes and broken candidates.  
-2. Concept gap (follow-on): elliptic-curve isogeny / SIDH intuition cards — not in `share/` yet.  
-3. TIT digests without `paper.md` yet (e.g. `papers/tit-pqc/new-hybrid-method-for-isogeny-based-cryptosystems-using-edwards-curves/analysis.md`) — wait for extract before promoting to leaf table.
+2. [Isogenies, CSIDH, SIKE (historical)](../../concepts/isogeny-csidh-sike.md).  
+3. Optional later leaf: `papers/tit-pqc/new-hybrid-method-for-isogeny-based-cryptosystems-using-edwards-curves/` (now has `paper.md` — promote when curated).
 
 **Checkpoint:** Why is a fast SIKE FPGA paper still useful to read, and why is it unsafe to recommend SIKE for new deployments?
 

@@ -1,7 +1,7 @@
 # Track: Multivariate
 
 **Prereqs:** [Vectors and matrices](../../fundamentals/vectors-matrices.md) · [Polynomials (gentle)](../../fundamentals/polynomials-gentle.md) · [Orientation — Problems](../../orientation/problems.md)  
-**Next:** [PQC hardware § multivariate leaves](../pqc-hardware/ROADMAP.md#family-hw-leaves-mq) · [index](../../index.md)  
+**Next:** [Oil–vinegar multivariate](../../concepts/oil-vinegar-multivariate.md) · [PQC hardware § multivariate leaves](../pqc-hardware/ROADMAP.md#family-hw-leaves-mq) · [index](../../index.md)  
 **Tracks:** multivariate
 
 ## Who / outcomes
@@ -9,13 +9,14 @@
 After this track you can:
 
 - Place multivariate quadratic (MQ) signature families among PQC options.  
+- Use the oil–vinegar / UOV / MAYO concept card before opening extracts.  
 - Open curated MAYO / UOV / Rainbow / MQ-SCA `paper.md` extracts.  
 - Fork to hardware/GPU leaves on the shared HW roadmap.
 
 ## How to use
 
 1. Shared entry (linear algebra + polynomials).  
-2. Stage 1 family placement (concept cards for Oil–Vinegar / MAYO are follow-on gaps).  
+2. Stage 1 family placement via the oil–vinegar concept card.  
 3. Paper leaves, then HW fork.
 
 ## Shared entry
@@ -30,8 +31,9 @@ After this track you can:
 ### Stage 1 — Family placement (Intro ch. 15–17)
 
 1. Orientation family slogans ([Problems](../../orientation/problems.md)).  
-2. Concept gap (follow-on): MQ problem card, Oil–Vinegar, MAYO/UOV scheme cards — not in `share/` yet.  
-3. Reuse [Public-key picture](../../fundamentals/public-key-picture.md) for “trapdoor map” intuition only.
+2. [Oil–vinegar multivariate (UOV / MAYO)](../../concepts/oil-vinegar-multivariate.md).  
+3. Optional: [MinRank and MPCitH](../../concepts/minrank-mpcitH.md) for algebraic / rank-adjacent leaves.  
+4. Reuse [Public-key picture](../../fundamentals/public-key-picture.md) for “trapdoor map” intuition only.
 
 **Checkpoint:** Multivariate schemes hide structure in a system of equations — what is the public object an attacker sees?
 

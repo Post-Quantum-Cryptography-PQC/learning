@@ -146,12 +146,20 @@ nav:
       - Hash / XOF (Keccak–SHAKE): concepts/hash-xof-keccak.md
       - Ciphertext compress / encode: concepts/ciphertext-compress-encode.md
       - PQ signatures (Dilithium slogan): concepts/pq-signatures-dilithium.md
+      - Hash-based signatures: concepts/hash-based-signatures.md
+      - Fault attacks on hash-based signatures: concepts/fault-attacks-hash-sigs.md
+      - Oil–vinegar multivariate: concepts/oil-vinegar-multivariate.md
+      - MinRank and MPCitH: concepts/minrank-mpcitH.md
+      - Isogenies, CSIDH, SIKE: concepts/isogeny-csidh-sike.md
       - Modular multiplier: concepts/modular-multiplier.md
       - Poly-mul engines: concepts/poly-mul-engines.md
+      - Carryless F2 polymul: concepts/carryless-polymul-f2.md
       - NTT butterfly: concepts/ntt-butterfly.md
       - NTT parallel memory: concepts/ntt-parallel-memory.md
+      - CIM-NTT: concepts/cim-ntt.md
       - KEM accelerator anatomy: concepts/kem-accelerator-anatomy.md
       - Masking shares: concepts/masking-shares.md
+      - Shuffling / hiding: concepts/shuffling-hiding.md
   - Tracks:
       - Code-based KEMs: tracks/code-based-kems/ROADMAP.md
       - Lattice / LWE: tracks/lattice-lwe/ROADMAP.md

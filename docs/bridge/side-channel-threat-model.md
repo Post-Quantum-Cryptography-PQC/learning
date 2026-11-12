@@ -1,7 +1,7 @@
 # Side-channel threat model (gentle)
 
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Public-key picture](../fundamentals/public-key-picture.md) · helpful: [Clocks, registers, and latency](clocks-registers-latency.md)  
-**Next:** [Masking shares](../concepts/masking-shares.md) · [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) · [Area–time–power honesty](area-time-power-honesty.md)  
+**Next:** [Masking shares](../concepts/masking-shares.md) · [Shuffling / hiding](../concepts/shuffling-hiding.md) · [Fault attacks on hash-based signatures](../concepts/fault-attacks-hash-sigs.md) · [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) · [Area–time–power honesty](area-time-power-honesty.md)  
 
 **Learning goals.** After this page you can:
 

@@ -22,12 +22,23 @@
 <div class="pqc-metrics" markdown="0">
   <div class="pqc-metric"><span class="pqc-metric__n">12</span><span class="pqc-metric__l">Fundamentals</span></div>
   <div class="pqc-metric"><span class="pqc-metric__n">13</span><span class="pqc-metric__l">Bridge pages</span></div>
-  <div class="pqc-metric"><span class="pqc-metric__n">30</span><span class="pqc-metric__l">Concept cards</span></div>
+  <div class="pqc-metric"><span class="pqc-metric__n">38</span><span class="pqc-metric__l">Concept cards</span></div>
   <div class="pqc-metric"><span class="pqc-metric__n">7</span><span class="pqc-metric__l">Research tracks</span></div>
 </div>
 
 **Lookup:** [Glossary (plain English)](glossary.md) — jump here whenever a word feels fuzzy.  
 **Paper map:** [Browse indexed papers](papers.md) — search / filter / sort; titles link to publisher URLs.
+
+### Recently added / updated
+
+Curriculum Wave B (concepts + track leaves):
+
+| Area | What changed |
+|------|----------------|
+| **Concepts (+8)** | [Hash-based signatures](concepts/hash-based-signatures.md), [faults on hash sigs](concepts/fault-attacks-hash-sigs.md), [oil–vinegar / MAYO](concepts/oil-vinegar-multivariate.md), [MinRank / MiRitH](concepts/minrank-mpcitH.md), [isogeny / CSIDH / SIKE](concepts/isogeny-csidh-sike.md), [shuffling / hiding](concepts/shuffling-hiding.md), [carryless $\mathbb{F}_2$ polymul](concepts/carryless-polymul-f2.md), [CIM-NTT](concepts/cim-ntt.md) |
+| **Rank track** | Promoted TIT **blockwise LRPC** + **BD-LRPC** `paper.md` leaves |
+| **Hardware track** | **HQC / code** family HW fork (Ibex, LEAP, unified HQC, PHOENIX); CIM-NTT + deep NTT shuffle / SUCRE on the lattice-core leaf table |
+| **Other tracks** | Hash / multivariate / isogeny / code-based ROADMAPs now point at the new concept cards; McEliece↔Niederreiter cites `paper.md` |
 
 ## Who this is for
 
@@ -135,6 +146,7 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [Rank metric](concepts/rank-metric.md)  
 - [LRPC codes](concepts/lrpc-codes.md)  
 - [Rank syndrome decoding](concepts/rank-syndrome-decoding.md)  
+- [MinRank and MPCitH (MiRitH)](concepts/minrank-mpcitH.md) — *also listed under multivariate / algebraic*  
 
 **Lattice / LWE**
 
@@ -145,14 +157,25 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [Ciphertext compress / encode](concepts/ciphertext-compress-encode.md) — *why ciphertexts drop bits*  
 - [PQ signatures — Dilithium slogan](concepts/pq-signatures-dilithium.md) — *Sign vs KEM + retry*  
 
+**Hash-based / multivariate / isogeny**
+
+- [Hash-based signatures (WOTS+, Merkle, SPHINCS+)](concepts/hash-based-signatures.md) — *trees of one-time hashes*  
+- [Fault attacks on hash-based signatures](concepts/fault-attacks-hash-sigs.md) — *tree-grafting threat shape*  
+- [Oil–vinegar multivariate (UOV / MAYO)](concepts/oil-vinegar-multivariate.md) — *quadratic public maps*  
+- [MinRank and MPCitH (MiRitH)](concepts/minrank-mpcitH.md) — *low-rank witness proofs*  
+- [Isogenies, CSIDH, SIKE (historical)](concepts/isogeny-csidh-sike.md) — *broken SIKE KEM labeled*  
+
 **PQC hardware (modules → accelerator)**
 
 - [Modular multiplier](concepts/modular-multiplier.md)  
 - [Polynomial multiply engines](concepts/poly-mul-engines.md)  
+- [Carryless $\mathbb{F}_2$ polymul (HQC-shaped)](concepts/carryless-polymul-f2.md) — *binary poly / CLMUL*  
 - [NTT butterfly (gentle)](concepts/ntt-butterfly.md)  
 - [NTT parallel memory](concepts/ntt-parallel-memory.md)  
+- [CIM-NTT](concepts/cim-ntt.md) — *compute-in-memory transform*  
 - [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md)  
 - [Masking shares](concepts/masking-shares.md) — *split secrets against side channels*  
+- [Shuffling / hiding](concepts/shuffling-hiding.md) — *randomize operation order*  
 
 
 ## 5. Tracks
@@ -162,14 +185,14 @@ Pick **one family** (or hardware) by goal. Each roadmap is staged like a short c
 | You want… | Track | After this path you can… | Start |
 |-----------|--------|--------------------------|--------|
 | ML-KEM / Module-LWE intuition | [Lattice / LWE](tracks/lattice-lwe/ROADMAP.md) | Read LWE → Module-LWE → samplers / compress / Dilithium slogan | [Lattices (gentle)](fundamentals/lattices-gentle.md) |
-| McEliece / QC-MDPC / HQC-shaped reading | [Code-based KEMs](tracks/code-based-kems/ROADMAP.md) | Walk codes → KEM/DFR → curated TIT leaves | [From bits to codes](bridge/from-bits-to-codes.md) |
-| Rank distance / LRPC (after Hamming) | [Rank metric](tracks/rank-metric/ROADMAP.md) | Contrast Hamming vs rank and name rank-SD / LRPC slogans | [From Hamming to rank](bridge/from-hamming-to-rank.md) |
-| SPHINCS+ / SLH-DSA-shaped reading | [Hash-based signatures](tracks/hash-based-signatures/ROADMAP.md) | Place hash-based sigs among PQC families; open curated extracts | [Bits, XOR, randomness](fundamentals/bits-xor-randomness.md) |
-| MQ / MAYO / UOV-shaped reading | [Multivariate](tracks/multivariate/ROADMAP.md) | Place multivariate signatures; open curated extracts | [Vectors and matrices](fundamentals/vectors-matrices.md) |
-| Isogeny / SIKE history (broken KEM context) | [Isogeny](tracks/isogeny/ROADMAP.md) | Explain why SIKE left the NIST path; open HW/SW extracts | [Modular arithmetic](fundamentals/modular-arithmetic.md) |
-| Chips, NTT, SCA / masking | [PQC hardware](tracks/pqc-hardware/ROADMAP.md) | Name accelerator blocks; read lattice-core + family HW leaves | [Clocks, registers, latency](bridge/clocks-registers-latency.md) |
+| McEliece / QC-MDPC / HQC-shaped reading | [Code-based KEMs](tracks/code-based-kems/ROADMAP.md) | Walk codes → KEM/DFR → curated TIT leaves; fork to HQC HW | [From bits to codes](bridge/from-bits-to-codes.md) |
+| Rank distance / LRPC (after Hamming) | [Rank metric](tracks/rank-metric/ROADMAP.md) | Contrast Hamming vs rank; open TIT LRPC + MiRitH leaves | [From Hamming to rank](bridge/from-hamming-to-rank.md) |
+| SPHINCS+ / SLH-DSA-shaped reading | [Hash-based signatures](tracks/hash-based-signatures/ROADMAP.md) | Use WOTS+/Merkle/SPHINCS+ card; open HW + fault extracts | [Hash-based signatures](concepts/hash-based-signatures.md) |
+| MQ / MAYO / UOV-shaped reading | [Multivariate](tracks/multivariate/ROADMAP.md) | Use oil–vinegar card; open MAYO/UOV/Rainbow extracts | [Oil–vinegar multivariate](concepts/oil-vinegar-multivariate.md) |
+| Isogeny / SIKE history (broken KEM context) | [Isogeny](tracks/isogeny/ROADMAP.md) | Label SIKE historical; open CSIDH/CTIDH + SIKE HW extracts | [Isogenies, CSIDH, SIKE](concepts/isogeny-csidh-sike.md) |
+| Chips, NTT, SCA / masking / HQC HW | [PQC hardware](tracks/pqc-hardware/ROADMAP.md) | Lattice core + CIM/deep shuffle; family HW incl. **HQC/code** | [Clocks, registers, latency](bridge/clocks-registers-latency.md) |
 {: .pqc-path-table }
 
-**Forks:** Rank opens only from the code-based path. Hardware is orthogonal — lattice is the core walk; hash / multivariate / isogeny (and later code) add family HW leaves on the same roadmap.
+**Forks:** Rank opens only from the code-based path. Hardware is orthogonal — lattice is the core walk; hash / multivariate / isogeny / **code–HQC** add family HW leaves on the same roadmap.
 
 Maintained by skill: `research-pqc-learn`.

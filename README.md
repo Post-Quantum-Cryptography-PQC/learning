@@ -1,16 +1,17 @@
 # PQC Learn (public)
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-green?logo=creativecommons&logoColor=white)](https://creativecommons.org/licenses/by/4.0/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776ab.svg)](https://www.python.org/downloads/)
 [![MkDocs](https://img.shields.io/badge/docs-MkDocs%20Material-526CFE?logo=materialformkdocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
 
 **Repository:** [Post-Quantum-Cryptography-PQC/pqc-learning-public](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public)
 
-Public teaching curriculum for **post-quantum cryptography**: fundamentals, bridge explainers, concept cards, curated track roadmaps, and an interactive paper map page. This repo is the Markdown / MkDocs **source module**. The live website is hosted from a separate Pages repo named [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) so the site URL stays at `/learning/`.
+Public teaching curriculum for **post-quantum cryptography**: orientation, fundamentals, bridge explainers, concept cards, curated track roadmaps, glossary, and an interactive paper map. This repository is the Markdown / MkDocs **source module**. The live website is built from a separate Pages host named [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) so the site URL stays at `/learning/`.
 
 - **Website**: https://post-quantum-cryptography-pqc.github.io/learning/
 - **Sibling (private)**: [pqc-learning-private](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private) — paper explainers and gap graphs
 - **Org profile / paper map**: [`.github`](https://github.com/Post-Quantum-Cryptography-PQC/.github)
-- **Parent lab**: [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) (consumes this tree as `share/public` submodule)
+- **Parent lab**: [pqc-lab](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab) (consumes this tree as `share/public`)
 - **License**: CC BY 4.0 (see `LICENSE`)
 
 ## Table of contents
@@ -18,21 +19,27 @@ Public teaching curriculum for **post-quantum cryptography**: fundamentals, brid
 - [Features](#features)
 - [Requirements](#requirements)
 - [Quick start](#quick-start)
+  - [Clone and preview this module](#clone-and-preview-this-module)
+  - [Preview from the parent lab](#preview-from-the-parent-lab)
+  - [Publish the website](#publish-the-website)
+  - [Refresh the paper map](#refresh-the-paper-map)
 - [Project layout](#project-layout)
 - [Related repositories](#related-repositories)
 - [License](#license)
+- [Contact](#contact)
 
 ## Features
 
 | Area | What you get |
 |------|----------------|
-| Orientation | Motivation, history, problems, challenges (story before math) |
+| Orientation | 6 pages — motivation, history, problems, challenges, crypto-categories mindmap |
 | Fundamentals | 12 starter pages (notation, modular arithmetic, soft lattices, …) |
-| Bridge | 12 story-first pages closing the gap to PQC vocabulary (plus `bridge/README.md`) |
-| Concepts | 25 compact cards (LWE, KEM, NTT, ISD, …) |
-| Tracks | Roadmaps: `code-based-kems`, `lattice-lwe`, `rank-metric`, `pqc-hardware` |
-| Paper map | `docs/papers.md` + `docs/data/papers.json` (refreshed from the lab index) |
-| Site build | MkDocs Material + KaTeX (`mkdocs.yml`, `docs/`) |
+| Bridge | 13 story-first pages plus `bridge/README.md` (14 Markdown files) |
+| Concepts | 38 compact cards (LWE, KEM, NTT, ISD, masking, SPHINCS+, UOV/MAYO, isogeny, CIM-NTT, …) |
+| Tracks | 7 roadmaps: `code-based-kems`, `lattice-lwe`, `rank-metric`, `hash-based-signatures`, `multivariate`, `isogeny`, `pqc-hardware` |
+| Glossary | Plain-English term lookup (`docs/glossary.md`) |
+| Paper map | `docs/papers.md` + `docs/data/papers.json` (catalog refreshed from the lab index) |
+| Site chrome | MkDocs Material with **Cipher Mist** theme (`docs/stylesheets/pqc-learn.css`): teal/amber hub hero, sticky tabs, path cards, KaTeX, pan/zoom Mermaid |
 
 Paper explainers and research-gap YAML stay in **pqc-learning-private** and are not published on the public site.
 
@@ -47,6 +54,8 @@ pip install "mkdocs-material>=9.5.0"
 
 ## Quick start
 
+### Clone and preview this module
+
 ```bash
 git clone https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public.git
 cd pqc-learning-public
@@ -54,19 +63,32 @@ pip install "mkdocs-material>=9.5.0"
 mkdocs serve
 ```
 
-Open the local preview (typically http://127.0.0.1:8000/). Teaching pages live under `docs/`; start at [`docs/index.md`](docs/index.md).
+Open the local preview at http://127.0.0.1:8000/learning/ (`site_url` includes the `/learning/` path). Teaching pages live under `docs/`; start at [`docs/index.md`](docs/index.md).
 
-From the parent lab (shared preview config at the monorepo root):
+### Preview from the parent lab
 
 ```bash
 cd pqc-lab
 git submodule update --init --recursive
+pip install "mkdocs-material>=9.5.0"
 mkdocs serve
 ```
 
-To publish the website, mirror this tree to the Pages host [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) (from the parent lab: `bash share/sync_learning_repos.sh`). GitHub Pages for free organizations must run on that public host so the URL remains https://post-quantum-cryptography-pqc.github.io/learning/.
+The monorepo root `mkdocs.yml` points `docs_dir` at `share/public/docs` and matches this module’s theme features.
 
-Refresh the paper map from the lab after updating [`docs/PAPERS.md`](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab/blob/main/docs/PAPERS.md):
+### Publish the website
+
+Mirror this tree to the Pages host [`learning`](https://github.com/Post-Quantum-Cryptography-PQC/learning) from the parent lab:
+
+```bash
+bash share/sync_learning_repos.sh
+```
+
+GitHub Pages for free organizations must run on that public host so the URL remains https://post-quantum-cryptography-pqc.github.io/learning/.
+
+### Refresh the paper map
+
+After updating [`docs/PAPERS.md`](https://github.com/Post-Quantum-Cryptography-PQC/pqc-lab/blob/main/docs/PAPERS.md) in the lab:
 
 ```bash
 python3 share/export_papers_catalog.py
@@ -76,18 +98,19 @@ python3 share/export_papers_catalog.py
 
 ```text
 pqc-learning-public/
-├── docs/                 # MkDocs docs_dir (edit teaching pages here)
-│   ├── index.md
+├── docs/                      # MkDocs docs_dir (edit teaching pages here)
+│   ├── index.md               # Hub home (Cipher Mist hero + path cards)
 │   ├── glossary.md
-│   ├── papers.md         # interactive paper map (generated)
+│   ├── papers.md              # Interactive paper map
 │   ├── data/
 │   │   └── papers.json
+│   ├── orientation/
 │   ├── fundamentals/
 │   ├── bridge/
 │   ├── concepts/
 │   ├── tracks/<id>/ROADMAP.md
-│   ├── javascripts/      # katex.js, papers-catalog.js
-│   └── stylesheets/      # papers-catalog.css
+│   ├── javascripts/           # katex.js, papers-catalog.js, pqc-learn.js
+│   └── stylesheets/           # papers-catalog.css, pqc-learn.css
 ├── mkdocs.yml
 ├── LICENSE
 └── README.md
@@ -108,3 +131,9 @@ pqc-learning-public/
 This project is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [LICENSE](LICENSE).
 
 **Third-party assets** (publisher links in the paper map) remain under their respective terms. This module does not host paper PDFs.
+
+## Contact
+
+- **Issues**: https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public/issues
+- **Organization**: https://github.com/Post-Quantum-Cryptography-PQC
+- **Repository**: https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public

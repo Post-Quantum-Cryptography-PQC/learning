@@ -1,7 +1,7 @@
 # Masking shares
 
 **Prereqs:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · helpful: [Modular arithmetic](../fundamentals/modular-arithmetic.md)  
-**Next:** [Ciphertext compress / encode](ciphertext-compress-encode.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [Shuffling / hiding](shuffling-hiding.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
 **Learning goals.** After this page you can:

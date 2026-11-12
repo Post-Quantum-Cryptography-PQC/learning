@@ -1,7 +1,7 @@
 # Track: Hash-based signatures
 
 **Prereqs:** [Bits, XOR, randomness](../../fundamentals/bits-xor-randomness.md) · [Orientation — Problems](../../orientation/problems.md)  
-**Next:** [Hash / XOF](../../concepts/hash-xof-keccak.md) (shared XOF slogan) · [PQC hardware § hash leaves](../pqc-hardware/ROADMAP.md#family-hw-leaves-hash) · [index](../../index.md)  
+**Next:** [Hash-based signatures](../../concepts/hash-based-signatures.md) · [Hash / XOF](../../concepts/hash-xof-keccak.md) · [PQC hardware § hash leaves](../pqc-hardware/ROADMAP.md#family-hw-leaves-hash) · [index](../../index.md)  
 **Tracks:** hash-based-signatures
 
 ## Who / outcomes
@@ -9,8 +9,8 @@
 After this track you can:
 
 - Place hash-based signatures (SPHINCS+ / SLH-DSA-shaped) among PQC families.  
-- Reuse the curriculum’s XOF/hash slogan before opening HW extracts.  
-- Open curated `paper.md` leaves (concept cards for Merkle/WOTS are still a follow-on gap).
+- Reuse the curriculum’s XOF/hash slogan and the WOTS+/Merkle/SPHINCS+ concept card before opening HW extracts.  
+- Open curated `paper.md` leaves with fault-awareness via the fault concept card.
 
 ## How to use
 
@@ -32,7 +32,8 @@ After this track you can:
 
 1. Skim family slogans on [Problems](../../orientation/problems.md) / [Challenges](../../orientation/challenges.md).  
 2. [Hash / XOF (Keccak–SHAKE)](../../concepts/hash-xof-keccak.md) — shared seed→bitstream tool (Dilithium-grounded extract; still the right XOF vocabulary).  
-3. Concept gap (follow-on): dedicated Merkle / WOTS / SPHINCS+ cards — not in `share/` yet.
+3. [Hash-based signatures (WOTS+, Merkle, SPHINCS+)](../../concepts/hash-based-signatures.md).  
+4. [Fault attacks on hash-based signatures](../../concepts/fault-attacks-hash-sigs.md) before the TCHES fault leaf.
 
 **Checkpoint:** Stateless hash-based signatures avoid lattices/codes — what do they lean on instead?
 

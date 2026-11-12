@@ -1,7 +1,7 @@
 # NTT parallel memory
 
 **Prereqs:** [NTT butterfly](ntt-butterfly.md) · [Polynomial multiply engines](poly-mul-engines.md) · [Clocks, registers, latency](../bridge/clocks-registers-latency.md)  
-**Next:** [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [CIM-NTT](cim-ntt.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
 **Learning goals.** After this page you can:
