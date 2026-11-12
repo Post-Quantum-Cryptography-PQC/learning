@@ -334,6 +334,15 @@
     }
 
     function naturalSvgSize(svg) {
+      /* Prefer ink bbox (drawn content) over oversized viewBox padding. */
+      if (typeof svg.getBBox === "function") {
+        try {
+          var box = svg.getBBox();
+          if (box && box.width > 1 && box.height > 1) {
+            return { sw: box.width, sh: box.height, ox: box.x, oy: box.y };
+          }
+        } catch (err) {}
+      }
       var vb = svg.viewBox && svg.viewBox.baseVal;
       var sw =
         (vb && vb.width) ||
@@ -345,14 +354,7 @@
         parseFloat(svg.getAttribute("height")) ||
         svg.clientHeight ||
         0;
-      if ((!sw || !sh) && typeof svg.getBBox === "function") {
-        try {
-          var box = svg.getBBox();
-          sw = sw || box.width;
-          sh = sh || box.height;
-        } catch (err) {}
-      }
-      return { sw: sw, sh: sh };
+      return { sw: sw, sh: sh, ox: (vb && vb.x) || 0, oy: (vb && vb.y) || 0 };
     }
 
     function fitToViewport() {
@@ -373,14 +375,13 @@
         stage.dataset.pqcNeedsFit = "1";
         return;
       }
-      var pad = 10;
+      var pad = 6;
       var availW = Math.max(8, vw - pad * 2);
       var availH = Math.max(8, vh - pad * 2);
+      /* Fill the box (contain): use nearly full width/height. */
       scale = Math.min(availW / sw, availH / sh);
-      /* Keep a little margin; never blow up tiny diagrams past the box. */
-      scale = Math.min(scale, 1.25);
-      tx = pad + (availW - sw * scale) / 2;
-      ty = pad + (availH - sh * scale) / 2;
+      tx = pad + (availW - sw * scale) / 2 - (size.ox || 0) * scale;
+      ty = pad + (availH - sh * scale) / 2 - (size.oy || 0) * scale;
       stage.dataset.pqcNeedsFit = "0";
       apply();
     }
