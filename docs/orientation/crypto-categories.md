@@ -9,7 +9,7 @@
 
 Later pages dive into codes, lattices, and hardware. This page is the **folder tree**: what kinds of crypto tools exist, what job each does, and how PQC fits.
 
-Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc).
+Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc) · [AEAD](../glossary.md#aead) · [MAC](../glossary.md#mac).
 
 ## The maps
 
@@ -137,8 +137,8 @@ flowchart TB
 
 | Goal | Plain English | Typical tools |
 |------|---------------|---------------|
-| **Confidentiality** | Strangers cannot *read* the content | Encryption (symmetric or public-key), then usually AEAD |
-| **Authenticity / integrity** | Strangers cannot *forge or silently edit* | Signatures, MACs, authenticated encryption |
+| **Confidentiality** | Strangers cannot *read* the content | Encryption (symmetric or public-key), then usually [AEAD](../glossary.md#aead) |
+| **Authenticity / integrity** | Strangers cannot *forge or silently edit* | Signatures, [MACs](../glossary.md#mac), authenticated encryption |
 
 You can have one without the other. Real apps usually need **both**.  
 Deeper toys: [Why cryptography?](../fundamentals/why-cryptography.md).

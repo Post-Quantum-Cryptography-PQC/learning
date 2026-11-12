@@ -466,7 +466,7 @@
 }
 
 .pqc-diagram__viewport {
-  height: min(42vh, 22rem);
+  height: min(28vh, 15rem);
   overflow: hidden;
   cursor: grab;
   touch-action: none;
@@ -498,16 +498,16 @@
 }
 
 .pqc-diagram__canvas svg {
-  min-width: 28rem;
+  min-width: 18rem;
 }
 
 .tabbed-content .pqc-diagram__viewport {
-  height: min(36vh, 18rem);
+  height: min(26vh, 14rem);
 }
 
 .pqc-mermaid-host {
   display: block;
-  min-height: 12rem;
+  min-height: 8rem;
 }
 
 .pqc-mermaid-host svg {
