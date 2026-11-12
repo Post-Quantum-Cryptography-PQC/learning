@@ -7,7 +7,7 @@
 
 - Put classical [PKC](../glossary.md#pkc) (Diffie–Hellman, RSA, ECC), McEliece (1978), Shor / Grover, and later PQC standards in the right historical order
 - Name the main hardness families: lattice / LWE, code-based, hash-based, multivariate, and isogeny-related
-- Explain that a scheme need not be a NIST FIPS primary pick to appear in other standards (for example ISO/IEC)
+- Explain what **NIST** and **ISO/IEC** each focus on when they standardize PQC algorithms
 
 ## Why a timeline helps
 
@@ -25,11 +25,11 @@ PQC is not a brand-new idea that appeared the day NIST finished. Some families (
 | **mid-1990s–2000s** | Lattice / LWE-style hardness enters crypto; more code-based and hash-based designs | Alternative public-key families mature in research |
 | **2016** | NIST opens the Post-Quantum Cryptography standardization project | Public call → multi-round evaluation of candidates |
 | **2022–2024** | First NIST selections; **ML-KEM**, **ML-DSA**, **SLH-DSA** published as standards (FIPS 203/204/205) | Deployers get concrete algorithms for KEM + signatures |
-| **2024 onward** | More standardization continues (e.g. additional KEMs such as **HQC** on the NIST path; **ISO/IEC** work on KEMs including ML-KEM, Classic McEliece, FrodoKEM) | Research and other standards bodies do not stop when one FIPS lands |
+| **2024 onward** | More work continues (e.g. additional KEMs such as **HQC** on the NIST path; **ISO/IEC** KEMs including ML-KEM, Classic McEliece, FrodoKEM) | Different standards bodies keep refining the toolbox |
 
 ## Hardness families you will meet (names only)
 
-You do not need full definitions yet — only the postcard. These are **math families**, not “NIST winners vs losers.”
+You do not need full definitions yet — only the postcard. These rows are **math families** (where the hardness comes from).
 
 | Family | Hardness slogan (later pages unpack) | Examples / notes |
 |--------|--------------------------------------|------------------|
@@ -43,29 +43,36 @@ This curriculum spends the most time on **codes** and **lattices**, plus a **har
 
 ## Standardization vs research
 
+Two large standards paths beginners hear about first:
+
+| Body | What its PQC selection tends to focus on | Examples you will see named |
+|------|------------------------------------------|-----------------------------|
+| **NIST** | A **public multi-round competition** aimed at algorithms many general-purpose products can ship: strong security analysis, plus practical size/speed for broad IT and internet use. Results appear as U.S. **FIPS** / SP documents that many vendors follow worldwide. | ML-KEM, ML-DSA, SLH-DSA; further KEMs (e.g. HQC) on the same program |
+| **ISO/IEC** | **International** algorithm standards (e.g. asymmetric ciphers / KEMs in the ISO/IEC 18033 family). The portfolio can include high-performance choices **and** more conservative or niche profiles (different key/ciphertext size trade-offs), for countries and industries that adopt ISO/IEC documents. | ML-KEM together with Classic McEliece and FrodoKEM-style KEMs in that work |
+
+Other rooms in the same building:
+
 | Body / world | Role |
 |--------------|------|
-| **NIST** | Runs a major public process; FIPS / SP documents many products follow (ML-KEM, ML-DSA, SLH-DSA, …) |
-| **ISO/IEC** | International standards (e.g. asymmetric ciphers / KEMs in the ISO/IEC 18033 family) — can include schemes beyond a single NIST primary pick |
 | **IETF / TLS world** | Puts algorithms into internet protocols |
-| **National guidance** | Some agencies recommend or allow additional algorithms for conservative use |
+| **National guidance** | Country-level recommendations for government and industry migration |
 | **IACR + ePrint** | Theory, cryptanalysis, new schemes |
 | **IEEE / CHES-style HW** | Accelerators, SCA, systems engineering |
 
-**Not selected as a NIST primary standard ≠ “rejected by cryptography.”** Other standards bodies and national profiles may still standardize or recommend a scheme. **Standards freeze a snapshot**; research keeps attacking, improving, and measuring. Both matter: standards for deployers; papers for understanding *why* parameters look the way they do.
+**Standards freeze a snapshot** for implementers. Research keeps attacking, improving, and measuring — that is how parameter choices and later revisions stay honest.
 
 ### Quick self-check
 
 Was code-based public-key crypto invented *after* NIST’s PQC project?  
 <details><summary>Answer</summary>
-No — McEliece (1978) is much earlier. NIST popularized and stress-tested modern parameter sets and families; it did not invent the idea of “codes as crypto.”
+No — McEliece (1978) is much earlier. NIST stress-tested modern parameter sets in a public competition; it did not invent the idea of “codes as crypto.”
 </details>
 
 ### Quick self-check (standards)
 
-If a scheme is not a NIST FIPS primary pick, does that mean no standard will ever use it?  
+In one sentence each, what do NIST and ISO/IEC mainly optimize for when they standardize PQC?  
 <details><summary>Answer</summary>
-No — for example, ISO/IEC and some national guidance have paths for algorithms (such as Classic McEliece or FrodoKEM-style KEMs) alongside or beyond NIST’s first FIPS set.
+NIST: a public competition for broadly deployable general-purpose algorithms (FIPS/SP). ISO/IEC: international algorithm standards that can cover several KEM profiles (performance and conservative / niche trade-offs) for global adoption.
 </details>
 
 ## Next

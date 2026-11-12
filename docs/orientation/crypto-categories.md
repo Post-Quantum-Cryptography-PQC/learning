@@ -267,7 +267,7 @@ See [Motivation](motivation.md) · [History](history.md).
 | **Signature** | ML-DSA, SLH-DSA | FN-DSA/Falcon (optional) |
 
 Do not confuse the two cuts: *family* answers “what math?”, *job* answers “what API?”.  
-Not a NIST primary FIPS pick ≠ unused elsewhere — see [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
+What NIST vs ISO/IEC each focus on: [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
 
 ### 6. Protocols are bundles
 
