@@ -281,6 +281,10 @@
           host.innerHTML = out.svg;
           host.dataset.rendered = sig;
           if (out.bindFunctions) out.bindFunctions(host);
+          var stage = host.closest(".pqc-diagram");
+          window.requestAnimationFrame(function () {
+            if (stage && stage.__pqcFit) stage.__pqcFit();
+          });
           next();
         })
         .catch(function (err) {
@@ -329,8 +333,62 @@
         "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
     }
 
+    function naturalSvgSize(svg) {
+      var vb = svg.viewBox && svg.viewBox.baseVal;
+      var sw =
+        (vb && vb.width) ||
+        parseFloat(svg.getAttribute("width")) ||
+        svg.clientWidth ||
+        0;
+      var sh =
+        (vb && vb.height) ||
+        parseFloat(svg.getAttribute("height")) ||
+        svg.clientHeight ||
+        0;
+      if ((!sw || !sh) && typeof svg.getBBox === "function") {
+        try {
+          var box = svg.getBBox();
+          sw = sw || box.width;
+          sh = sh || box.height;
+        } catch (err) {}
+      }
+      return { sw: sw, sh: sh };
+    }
+
+    function fitToViewport() {
+      var svg = canvas.querySelector("svg");
+      if (!svg) return;
+      var vw = viewport.clientWidth;
+      var vh = viewport.clientHeight;
+      /* Hidden tab panels report 0 — mark dirty and fit when shown. */
+      if (vw < 8 || vh < 8) {
+        stage.dataset.pqcNeedsFit = "1";
+        return;
+      }
+      canvas.style.transform = "translate(0px, 0px) scale(1)";
+      var size = naturalSvgSize(svg);
+      var sw = size.sw;
+      var sh = size.sh;
+      if (!sw || !sh) {
+        stage.dataset.pqcNeedsFit = "1";
+        return;
+      }
+      var pad = 10;
+      var availW = Math.max(8, vw - pad * 2);
+      var availH = Math.max(8, vh - pad * 2);
+      scale = Math.min(availW / sw, availH / sh);
+      /* Keep a little margin; never blow up tiny diagrams past the box. */
+      scale = Math.min(scale, 1.25);
+      tx = pad + (availW - sw * scale) / 2;
+      ty = pad + (availH - sh * scale) / 2;
+      stage.dataset.pqcNeedsFit = "0";
+      apply();
+    }
+
+    stage.__pqcFit = fitToViewport;
+
     function zoomAt(factor, cx, cy) {
-      var next = Math.min(3.2, Math.max(0.45, scale * factor));
+      var next = Math.min(4, Math.max(0.2, scale * factor));
       if (next === scale) return;
       var rect = viewport.getBoundingClientRect();
       var px = (cx != null ? cx : rect.left + rect.width / 2) - rect.left;
@@ -346,12 +404,7 @@
         var act = btn.getAttribute("data-act");
         if (act === "in") zoomAt(1.18);
         else if (act === "out") zoomAt(1 / 1.18);
-        else {
-          scale = 1;
-          tx = 0;
-          ty = 0;
-          apply();
-        }
+        else fitToViewport();
       });
     });
 
@@ -391,13 +444,57 @@
     }
     viewport.addEventListener("pointerup", endDrag);
     viewport.addEventListener("pointercancel", endDrag);
+
+    if (typeof ResizeObserver !== "undefined") {
+      var roTimer = null;
+      var ro = new ResizeObserver(function () {
+        window.clearTimeout(roTimer);
+        roTimer = window.setTimeout(fitToViewport, 40);
+      });
+      ro.observe(viewport);
+    }
+  }
+
+  function fitVisibleDiagrams() {
+    document.querySelectorAll(".pqc-diagram").forEach(function (stage) {
+      var viewport = stage.querySelector(".pqc-diagram__viewport");
+      if (!viewport || viewport.clientWidth < 8 || viewport.clientHeight < 8) {
+        stage.dataset.pqcNeedsFit = "1";
+        return;
+      }
+      if (stage.__pqcFit) stage.__pqcFit();
+    });
+  }
+
+  function wireTabFit() {
+    if (window.__pqcTabFitWired) return;
+    window.__pqcTabFitWired = true;
+    document.addEventListener(
+      "change",
+      function (e) {
+        var t = e.target;
+        if (!t || !t.matches || !t.matches('.tabbed-set input[type="radio"]'))
+          return;
+        window.setTimeout(fitVisibleDiagrams, 30);
+        window.setTimeout(fitVisibleDiagrams, 120);
+      },
+      true
+    );
+    window.addEventListener("resize", function () {
+      window.clearTimeout(window.__pqcFitResizeTimer);
+      window.__pqcFitResizeTimer = window.setTimeout(fitVisibleDiagrams, 80);
+    });
   }
 
   function scheduleDiagramEnhance() {
     enhancePqcMermaid();
+    wireTabFit();
     /* Instant-nav / late tab paint — finite retries only (no childList observer). */
     window.setTimeout(enhancePqcMermaid, 300);
-    window.setTimeout(enhancePqcMermaid, 1200);
+    window.setTimeout(function () {
+      enhancePqcMermaid();
+      fitVisibleDiagrams();
+    }, 1200);
 
     if (!window.__pqcThemeObs && typeof MutationObserver !== "undefined") {
       var themeTimer = null;
@@ -407,7 +504,10 @@
           delete h.dataset.rendered;
         });
         window.clearTimeout(themeTimer);
-        themeTimer = window.setTimeout(enhancePqcMermaid, 50);
+        themeTimer = window.setTimeout(function () {
+          enhancePqcMermaid();
+          window.setTimeout(fitVisibleDiagrams, 80);
+        }, 50);
       });
       window.__pqcThemeObs.observe(document.body, {
         attributes: true,

@@ -486,9 +486,9 @@
 .pqc-diagram__canvas {
   transform-origin: 0 0;
   will-change: transform;
-  padding: 0.75rem 1rem 1rem;
-  min-width: 100%;
+  padding: 0;
   display: inline-block;
+  line-height: 0;
 }
 
 .pqc-diagram__canvas .mermaid,
@@ -497,22 +497,18 @@
   height: auto !important;
 }
 
-.pqc-diagram__canvas svg {
-  min-width: 18rem;
-}
-
 .tabbed-content .pqc-diagram__viewport {
   height: min(26vh, 14rem);
 }
 
 .pqc-mermaid-host {
   display: block;
-  min-height: 8rem;
+  line-height: 0;
 }
 
 .pqc-mermaid-host svg {
   display: block;
-  margin: 0 auto;
+  margin: 0;
   max-width: none !important;
   height: auto !important;
 }
