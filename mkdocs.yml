@@ -11,20 +11,24 @@ site_dir: site
 
 theme:
   name: material
+  # Fonts loaded in stylesheets/pqc-learn.css (IBM Plex — distinct from Inter hubs).
+  font: false
   palette:
     - scheme: default
       primary: teal
       accent: amber
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-night
         name: Dark mode
     - scheme: slate
       primary: black
       accent: amber
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-sunny
         name: Light mode
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -33,8 +37,10 @@ theme:
     - toc.follow
     - search.highlight
     - search.suggest
+    - search.share
     - content.action.edit
     - content.code.copy
+    - content.tabs.link
 
 plugins:
   - search
@@ -42,6 +48,7 @@ plugins:
 markdown_extensions:
   - admonition
   - attr_list
+  - md_in_html
   - tables
   - toc:
       permalink: true
@@ -59,6 +66,9 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
   - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css

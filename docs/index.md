@@ -3,23 +3,60 @@
 **Prereqs:** none (curriculum entry)  
 **Next:** [Motivation](orientation/motivation.md) · or [Orientation hub](orientation/README.md)
 
-A guided path from **orientation** (why / history / problems / challenges) through
-**fundamentals**, **bridge** pages, and **concept** cards into curated **tracks**.
-Written so newcomers can follow with patience — no prior crypto course assumed.
+<div class="pqc-hero" markdown="0">
+  <div class="pqc-hero__brand">PQC Learn</div>
+  <h1>From first principles to research papers</h1>
+  <p class="pqc-hero__lead">
+    A guided curriculum in post-quantum cryptography — orientation, gentle math,
+    bridge stories, concept cards, and curated family tracks. Written so newcomers
+    can follow with patience.
+  </p>
+  <div class="pqc-hero__actions">
+    <a class="pqc-btn pqc-btn--primary" href="orientation/motivation/">Start orientation</a>
+    <a class="pqc-btn pqc-btn--amber" href="tracks/lattice-lwe/ROADMAP/">Lattice / LWE track</a>
+    <a class="pqc-btn pqc-btn--ghost" href="glossary/">Glossary</a>
+    <a class="pqc-btn pqc-btn--ghost" href="papers/">Paper map</a>
+  </div>
+</div>
+
+<div class="pqc-metrics" markdown="0">
+  <div class="pqc-metric"><span class="pqc-metric__n">12</span><span class="pqc-metric__l">Fundamentals</span></div>
+  <div class="pqc-metric"><span class="pqc-metric__n">13</span><span class="pqc-metric__l">Bridge pages</span></div>
+  <div class="pqc-metric"><span class="pqc-metric__n">30</span><span class="pqc-metric__l">Concept cards</span></div>
+  <div class="pqc-metric"><span class="pqc-metric__n">7</span><span class="pqc-metric__l">Research tracks</span></div>
+</div>
 
 **Lookup:** [Glossary (plain English)](glossary.md) — jump here whenever a word feels fuzzy.  
 **Paper map:** [Browse indexed papers](papers.md) — search / filter / sort; titles link to publisher URLs.
 
 ## Who this is for
 
-| You are… | Start at |
-|----------|----------|
-| Brand new — want the story before math | [Orientation](#1-orientation-start-here) (Motivation → History → Problems → Challenges) |
-| New to cryptography or the math notation | [Fundamentals](#2-fundamentals) (start with [reading math](fundamentals/reading-math-notation.md) if symbols feel scary) |
-| Finished fundamentals but concepts feel sudden | [Bridge](#3-bridge-close-the-gap) |
-| Comfortable with coding intuition | [Concepts](#4-concepts) |
-| Ready for a guided path | [Tracks](#5-tracks) |
-| Curious about chips / accelerators | [PQC hardware track](#5-tracks) |
+<div class="pqc-card-grid" markdown="0">
+  <div class="pqc-card">
+    <span class="pqc-card__kicker">Path A</span>
+    <div class="pqc-card__title">Brand new</div>
+    <p class="pqc-card__desc">Want the story before the math — why crypto must change, then the history and problem slogans.</p>
+    <a class="pqc-card__link" href="orientation/motivation/">Open Orientation</a>
+  </div>
+  <div class="pqc-card">
+    <span class="pqc-card__kicker">Path B</span>
+    <div class="pqc-card__title">New to the notation</div>
+    <p class="pqc-card__desc">Start with reading math gently, then modular arithmetic, bits, and hard problems.</p>
+    <a class="pqc-card__link" href="fundamentals/reading-math-notation/">Open Fundamentals</a>
+  </div>
+  <div class="pqc-card">
+    <span class="pqc-card__kicker">Path C</span>
+    <div class="pqc-card__title">Concepts feel sudden</div>
+    <p class="pqc-card__desc">Use story-first bridge pages between fundamentals and compact PQC vocabulary cards.</p>
+    <a class="pqc-card__link" href="bridge/">Open Bridge</a>
+  </div>
+  <div class="pqc-card">
+    <span class="pqc-card__kicker">Path D</span>
+    <div class="pqc-card__title">Ready for a family track</div>
+    <p class="pqc-card__desc">Pick lattice, code-based, rank, hash, multivariate, isogeny, or hardware — staged like a short course.</p>
+    <a class="pqc-card__link" href="#5-tracks">Browse Tracks</a>
+  </div>
+</div>
 
 ## 1. Orientation (start here)
 
@@ -116,7 +153,7 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [NTT parallel memory](concepts/ntt-parallel-memory.md)  
 - [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md)  
 - [Masking shares](concepts/masking-shares.md) — *split secrets against side channels*  
- 
+
 
 ## 5. Tracks
 

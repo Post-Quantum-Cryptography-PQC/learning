@@ -1,16 +1,23 @@
-/* PQC Learn — theme polish + interactive teaching UI
-   Works with Material for MkDocs; uses theme CSS variables. */
+/* PQC Learn — Cipher Mist design system
+   Soft teal/amber + IBM Plex (not NoC indigo/Inter, not Dataset cream neo-brutal). */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,600;0,700;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,600;0,700;1,600&display=swap");
 
 :root {
   --pqc-teal: #0f766e;
+  --pqc-teal-mid: #0d9488;
   --pqc-teal-deep: #115e59;
-  --pqc-ink: #134e4a;
+  --pqc-ink: #0c2e2b;
   --pqc-sand: #f0fdfa;
-  --pqc-amber: #d97706;
-  --pqc-radius: 0.65rem;
-  --pqc-shadow: 0 8px 24px rgba(15, 118, 110, 0.08);
+  --pqc-mist: #f4faf8;
+  --pqc-amber: #c2410c;
+  --pqc-amber-soft: #ea580c;
+  --pqc-radius: 0.75rem;
+  --pqc-radius-lg: 1.1rem;
+  --pqc-shadow: 0 10px 28px rgba(12, 46, 43, 0.07);
+  --pqc-shadow-hover: 0 14px 36px rgba(12, 46, 43, 0.12);
+  --md-text-font: "IBM Plex Sans", system-ui, sans-serif;
+  --md-code-font: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 /* Typography */
@@ -27,17 +34,10 @@
   letter-spacing: -0.01em;
 }
 
-/* Soft page atmosphere (not flat white / not purple glow) */
+/* Soft page atmosphere (Cipher Mist — not flat white / not purple glow) */
 [data-md-color-scheme="default"] {
-  --md-default-bg-color: #f7fbfa;
+  --md-default-bg-color: var(--pqc-mist);
   --md-code-bg-color: #e7f5f3;
-}
-
-[data-md-color-scheme="default"] .md-main {
-  background:
-    radial-gradient(1200px 480px at 8% -10%, rgba(15, 118, 110, 0.07), transparent 55%),
-    radial-gradient(900px 420px at 100% 0%, rgba(217, 119, 6, 0.05), transparent 50%),
-    var(--md-default-bg-color);
 }
 
 /* True-black dark theme (OLED) — override Material slate gray completely */
@@ -533,4 +533,360 @@
 pre.pqc-mermaid {
   /* Hidden until JS mounts the pan/zoom stage; keep source accessible if JS off */
   overflow: auto;
+}
+
+/* ========== Cipher Mist chrome (header / tabs / footer) ========== */
+
+[data-md-color-scheme="default"] .md-header {
+  background: linear-gradient(105deg, #0c2e2b 0%, #115e59 55%, #0f766e 100%);
+  box-shadow: 0 1px 0 rgba(12, 46, 43, 0.18);
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+  background: rgba(12, 46, 43, 0.96);
+  border-bottom: 1px solid rgba(240, 253, 250, 0.08);
+}
+
+[data-md-color-scheme="default"] .md-tabs__link--active,
+[data-md-color-scheme="default"] .md-tabs__link:hover {
+  color: #fde68a;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background: #030a09;
+  border-bottom: 1px solid #1a2e2c;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background: #030a09;
+  border-bottom: 1px solid #1a2e2c;
+}
+
+.md-footer {
+  border-top: 1px solid rgba(15, 118, 110, 0.18);
+}
+
+[data-md-color-scheme="slate"] .md-footer {
+  border-top-color: #1a2e2c;
+}
+
+.md-typeset code {
+  font-family: var(--md-code-font);
+  border-radius: 0.35rem;
+}
+
+/* Subtle lattice grid atmosphere behind content */
+[data-md-color-scheme="default"] .md-main {
+  background:
+    radial-gradient(1000px 420px at 6% -8%, rgba(15, 118, 110, 0.09), transparent 55%),
+    radial-gradient(820px 380px at 96% 4%, rgba(194, 65, 12, 0.05), transparent 48%),
+    linear-gradient(rgba(15, 118, 110, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 118, 110, 0.035) 1px, transparent 1px),
+    var(--pqc-mist);
+  background-size: auto, auto, 28px 28px, 28px 28px, auto;
+}
+
+[data-md-color-scheme="slate"] .md-main {
+  background:
+    radial-gradient(900px 400px at 10% -5%, rgba(45, 212, 191, 0.06), transparent 50%),
+    #030a09;
+}
+
+/* ========== Home hub: hero, CTAs, path cards ========== */
+
+.pqc-hero {
+  position: relative;
+  margin: 0 0 1.75rem;
+  padding: 1.75rem 1.6rem 1.5rem;
+  border-radius: var(--pqc-radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 70% at 100% 0%, rgba(194, 65, 12, 0.14), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 0% 100%, rgba(13, 148, 136, 0.22), transparent 50%),
+    linear-gradient(145deg, #0c2e2b 0%, #115e59 48%, #0f766e 100%);
+  color: #ecfeff;
+  box-shadow: var(--pqc-shadow);
+  animation: pqc-hero-in 0.55s ease;
+}
+
+.pqc-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(236, 254, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(236, 254, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(120deg, #000 20%, transparent 75%);
+}
+
+@keyframes pqc-hero-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.pqc-hero__brand {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 0 0 0.65rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(253, 230, 138, 0.35);
+  background: rgba(3, 10, 9, 0.25);
+  color: #fde68a;
+  font-family: var(--md-code-font);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: pqc-fade 0.7s ease 0.08s both;
+}
+
+.pqc-hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.55rem !important;
+  color: #f0fdfa !important;
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-size: clamp(1.55rem, 3.2vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  animation: pqc-fade 0.7s ease 0.12s both;
+}
+
+.pqc-hero__lead {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  margin: 0 0 1.15rem;
+  color: rgba(236, 254, 255, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  animation: pqc-fade 0.7s ease 0.18s both;
+}
+
+.pqc-hero__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  animation: pqc-fade 0.7s ease 0.24s both;
+}
+
+.pqc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 0.55rem;
+  border: 1px solid transparent;
+  font-family: var(--md-text-font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.pqc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(3, 10, 9, 0.25);
+}
+
+.pqc-btn--primary {
+  background: #fde68a;
+  color: #0c2e2b !important;
+}
+
+.pqc-btn--primary:hover {
+  background: #fcd34d;
+}
+
+.pqc-btn--ghost {
+  background: rgba(236, 254, 255, 0.08);
+  border-color: rgba(236, 254, 255, 0.28);
+  color: #ecfeff !important;
+}
+
+.pqc-btn--ghost:hover {
+  background: rgba(236, 254, 255, 0.14);
+}
+
+.pqc-btn--amber {
+  background: var(--pqc-amber);
+  color: #fff7ed !important;
+}
+
+.pqc-btn--amber:hover {
+  background: var(--pqc-amber-soft);
+}
+
+/* Metrics sit below the first viewport composition */
+.pqc-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+}
+
+@media (max-width: 52rem) {
+  .pqc-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pqc-metric {
+  padding: 0.9rem 1rem;
+  border-radius: var(--pqc-radius);
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: var(--pqc-shadow);
+  backdrop-filter: blur(6px);
+}
+
+[data-md-color-scheme="slate"] .pqc-metric {
+  background: #0a1211;
+  border-color: rgba(45, 212, 191, 0.2);
+  box-shadow: none;
+}
+
+.pqc-metric__n {
+  display: block;
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--pqc-teal-deep);
+  line-height: 1.1;
+}
+
+[data-md-color-scheme="slate"] .pqc-metric__n {
+  color: #5eead4;
+}
+
+.pqc-metric__l {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--md-default-fg-color--light);
+}
+
+.pqc-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 0.85rem 0 1.6rem;
+}
+
+@media (max-width: 44rem) {
+  .pqc-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pqc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 8.5rem;
+  padding: 1rem 1.05rem 0.95rem;
+  border-radius: var(--pqc-radius);
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  border-left: 3px solid var(--pqc-teal);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--pqc-shadow);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.pqc-card:nth-child(2) { border-left-color: #0d9488; }
+.pqc-card:nth-child(3) { border-left-color: #b45309; }
+.pqc-card:nth-child(4) { border-left-color: #c2410c; }
+.pqc-card:nth-child(5) { border-left-color: #115e59; }
+.pqc-card:nth-child(6) { border-left-color: #ea580c; }
+
+.pqc-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pqc-shadow-hover);
+  border-color: rgba(15, 118, 110, 0.32);
+}
+
+[data-md-color-scheme="slate"] .pqc-card {
+  background: #0a1211;
+  border-color: rgba(45, 212, 191, 0.16);
+  box-shadow: none;
+}
+
+.pqc-card__kicker {
+  font-family: var(--md-code-font);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pqc-amber);
+}
+
+.pqc-card__title {
+  margin: 0;
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--pqc-ink);
+  line-height: 1.25;
+}
+
+[data-md-color-scheme="slate"] .pqc-card__title {
+  color: #ecfeff;
+}
+
+.pqc-card__desc {
+  margin: 0;
+  flex: 1;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--md-default-fg-color--light);
+}
+
+.pqc-card__link {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--pqc-teal-deep) !important;
+  text-decoration: none !important;
+}
+
+.pqc-card__link:hover {
+  color: var(--pqc-amber) !important;
+}
+
+[data-md-color-scheme="slate"] .pqc-card__link {
+  color: #5eead4 !important;
+}
+
+.pqc-card__link::after {
+  content: " →";
+}
+
+/* Hide Material's duplicate H1 when hero already brands the page */
+.md-typeset > .pqc-hero + h1 {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pqc-hero,
+  .pqc-hero__brand,
+  .pqc-hero h1,
+  .pqc-hero__lead,
+  .pqc-hero__actions {
+    animation: none !important;
+  }
+
+  .pqc-btn:hover,
+  .pqc-card:hover {
+    transform: none;
+  }
 }
