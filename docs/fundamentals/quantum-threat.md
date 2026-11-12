@@ -18,7 +18,7 @@ Today, many websites use RSA or elliptic-curve methods so your browser can set u
 
 A powerful enough **quantum computer** (if built at scale) could break those methods using **Shor’s algorithm**.
 
-An adversary can:
+An attacker can:
 
 1. record ciphertext **today**,  
 2. wait until a big quantum machine exists,  
@@ -32,16 +32,16 @@ Long-lived secrets (medical files, state archives, identity keys) are especially
 
 | When | What happens |
 |------|----------------|
-| Today | Eve records HTTPS / VPN ciphertext under RSA/ECC |
+| Today | Attacker records HTTPS / VPN ciphertext under RSA/ECC |
 | Years later | Large quantum computer exists |
-| Then | Eve runs Shor-style attacks on recorded handshakes / ciphertexts |
+| Then | Attacker runs Shor-style attacks on recorded handshakes / ciphertexts |
 | Result | Old “secret” traffic may become readable |
 
 ### Quick self-check
 
-Does store-now-decrypt-later require Eve to break the crypto *today*?  
+Does store-now-decrypt-later require the attacker to break the crypto *today*?  
 <details><summary>Answer</summary>
-No — she only needs to record today and break later.
+No — they only need to record today and break later.
 </details>
 
 ## Two quantum algorithms (only slogans)

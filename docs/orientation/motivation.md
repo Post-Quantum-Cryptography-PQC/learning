@@ -23,9 +23,9 @@ You do **not** need a quantum computer to *use* PQC. You need new algorithms tha
 
 Much of today’s web and VPN security uses **RSA** or **elliptic-curve** public-key methods so browsers and servers can agree on keys.
 
-A powerful enough quantum computer could break those methods with **Shor’s algorithm**. That is not a story about “quantum wifi.” It is a story about recorded math puzzles suddenly becoming easy for the attacker.
+A powerful enough quantum computer could break those methods with **Shor’s algorithm**. The threat is not a new kind of network — it is that the **math puzzles** behind RSA/ECC key setup can become easy for that attacker.
 
-An adversary can:
+An attacker can:
 
 1. record ciphertext **today**,  
 2. wait until a large quantum machine exists,  
@@ -33,22 +33,22 @@ An adversary can:
 
 That is **store now, decrypt later** (SNDL). Long-lived secrets — medical archives, state records, identity keys, firmware roots — are especially exposed. Migration planning started early because **recorded traffic lasts**, not because a world-breaking machine ships next Tuesday.
 
-Early migration does **not** erase copies Eve already stored under RSA/ECC — those old recordings may still fall later. What it buys is: **new** traffic (and freshly protected archives) use a public-key layer Shor is not expected to break that way, so *further* photocopies stay useless.
+Early migration does **not** erase copies an attacker already stored under RSA/ECC — those old recordings may still fall later. What it buys is: **new** traffic (and freshly protected archives) use a public-key layer Shor is not expected to break that way, so *further* recordings stay useless.
 
 ### Slow-motion timeline
 
 | When | What happens |
 |------|----------------|
-| Today | Eve records HTTPS / VPN ciphertext under RSA/ECC |
+| Today | Attacker records HTTPS / VPN ciphertext under RSA/ECC |
 | Years later | A large enough quantum computer exists |
-| Then | Eve runs Shor-style attacks on old handshakes |
+| Then | Attacker runs Shor-style attacks on old handshakes |
 | Result | Old “secret” traffic may become readable |
 
 ### Quick self-check
 
 Why is it a **bad idea** to wait until “quantum day” (a big quantum computer exists) before migrating away from RSA/ECC?  
 <details><summary>Answer</summary>
-Because Eve can record ciphertext <em>now</em> and decrypt it <em>later</em>. Waiting only protects traffic after you finally migrate. Anything still encrypted under RSA/ECC — including years of recordings already on disk — may become readable on quantum day. Early migration limits how much new valuable traffic gets added to that pile.
+Because an attacker can record ciphertext <em>now</em> and decrypt it <em>later</em>. Waiting only protects traffic after you finally migrate. Anything still encrypted under RSA/ECC — including years of recordings already on disk — may become readable on quantum day. Early migration limits how much new valuable traffic gets added to that pile.
 </details>
 
 ## What about symmetric crypto?
