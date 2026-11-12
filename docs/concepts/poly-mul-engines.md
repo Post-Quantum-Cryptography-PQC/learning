@@ -1,7 +1,7 @@
 # Polynomial multiply engines
 
 **Prereqs:** [Polynomials Part A](../fundamentals/polynomials-gentle.md) · [Polynomial wrap-around](../fundamentals/polynomials-wraparound.md) · [Modular multiplier](modular-multiplier.md)  
-**Next:** [NTT butterfly](ntt-butterfly.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [NTT butterfly](ntt-butterfly.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) (code/HQC contrast) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -138,6 +138,7 @@ Coefficient-wise multiply in the NTT domain — for Kyber often a **binomial** p
 
 - [NTT butterfly](ntt-butterfly.md)  
 - [NTT parallel memory](ntt-parallel-memory.md)  
-- [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
+- [KEM accelerator anatomy](kem-accelerator-anatomy.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
+- Code-based contrast: [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md)  
 - Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 - Paper leaf: [Reconfigurable Kyber poly-mul explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/explainer.md)  

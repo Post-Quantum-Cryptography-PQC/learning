@@ -1,7 +1,7 @@
 # Hash-based signatures (WOTS+, Merkle, SPHINCS+)
 
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Hash / XOF](hash-xof-keccak.md) · [Public-key picture](../fundamentals/public-key-picture.md)  
-**Next:** [Fault attacks on hash-based signatures](fault-attacks-hash-sigs.md) · Track: [Hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [PQC hardware § hash leaves](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [Fault attacks on hash-based signatures](fault-attacks-hash-sigs.md) · [ASA / HPC fuzzing](asa-hpc-fuzzing.md) · [Crypto-agile SoC](crypto-agile-soc.md) · Track: [Hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [PQC hardware § hash leaves](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-hash)  
 **Tracks:** hash-based-signatures · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -95,15 +95,18 @@ The scheme is hash/XOF-heavy; [[4]](#ref-4) focuses on SHAKE-256 SIMD, not latti
 ## Next steps
 
 - [Fault attacks on hash-based signatures](fault-attacks-hash-sigs.md)  
+- [ASA / HPC fuzzing](asa-hpc-fuzzing.md) — subverted Sign binaries (different threat)  
+- [Crypto-agile SoC](crypto-agile-soc.md) — multi-family silicon that may include SPHINCS+  
+- Contrast other Sign families: [Oil–vinegar multivariate](oil-vinegar-multivariate.md) · [Code-based signatures](code-based-signatures.md)  
 - Track leaves: [Hash-based signatures ROADMAP](../tracks/hash-based-signatures/ROADMAP.md)  
-- HW fork: [PQC hardware — hash family leaves](../tracks/pqc-hardware/ROADMAP.md)
+- HW fork: [PQC hardware — hash family leaves](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-hash)
 
 ## References
 
-<a id="ref-1"></a>[1] T. Huang, J. Lu, D. Liu, Z. Luo, C. Cheng, et al., “An efficient and reconfigurable post-quantum crypto-processor for SPHINCS+,” *IEEE Trans. Circuits Syst. I*, 2025, doi: [10.1109/TCSI.2025.3544341](https://doi.org/10.1109/TCSI.2025.3544341).
+<a id="ref-1"></a>[1] T. Huang et al., “An efficient and reconfigurable post-quantum crypto-processor for SPHINCS+,” *IEEE Trans. Circuits Syst. I*, vol. 72, no. 5, pp. 2252–2262, May 2025, doi: [10.1109/TCSI.2025.3544341](https://doi.org/10.1109/TCSI.2025.3544341).
 
-<a id="ref-2"></a>[2] B. Yu, K. Zhao, W. Wang, Z. Liu, and H. Huang, “Efficient hardware implementation of extended Merkle signature scheme for SPHINCS+,” *IEEE Trans. Circuits Syst. I*, 2026, doi: [10.1109/TCSI.2026.3667602](https://doi.org/10.1109/TCSI.2026.3667602).
+<a id="ref-2"></a>[2] B. Yu, K. Zhao, W. Wang, Z. Liu, and H. Huang, “Efficient hardware implementation of extended Merkle signature scheme for SPHINCS+,” *IEEE Trans. Circuits Syst. I*, vol. 73, no. 5, pp. 3375–3384, May 2026, doi: [10.1109/TCSI.2026.3667602](https://doi.org/10.1109/TCSI.2026.3667602).
 
 <a id="ref-3"></a>[3] A. Genêt, “On protecting SPHINCS+ against fault attacks,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2023, no. 2, pp. 80–114, 2023, doi: [10.46586/tches.v2023.i2.80-114](https://doi.org/10.46586/tches.v2023.i2.80-114).
 
-<a id="ref-4"></a>[4] Z. Ye, X. Li, C. Wang, R. C. C. Cheung, and K. Huang, “RVSLH: Acceleration of postquantum standard SLH-DSA with customized RISC-V processor,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, 2025, doi: [10.1109/TVLSI.2025.3543352](https://doi.org/10.1109/TVLSI.2025.3543352).
+<a id="ref-4"></a>[4] Z. Ye, X. Li, C. Wang, R. C. C. Cheung, and K. Huang, “RVSLH: Acceleration of postquantum standard SLH-DSA with customized RISC-V processor,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 33, no. 7, pp. 1999–2003, Jul. 2025, doi: [10.1109/TVLSI.2025.3543352](https://doi.org/10.1109/TVLSI.2025.3543352).

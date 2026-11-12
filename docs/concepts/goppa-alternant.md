@@ -119,7 +119,8 @@ If Bob’s error weight exceeds $t$, Alice may fail — a correctness / DFR-styl
 
 ## Next steps
 
-- [Niederreiter](niederreiter.md)  
+- [Niederreiter](niederreiter.md) · [Constant-weight coding](constant-weight-coding.md)  
+- [CED / composite-field Goppa](ced-composite-goppa.md) — fault detection on Goppa $\mathrm{GF}$ units  
 - [Syndrome decoding](syndrome-decoding.md) · [ISD](information-set-decoding.md)  
 - Bridge: [McEliece in plain words](../bridge/mceliece-in-plain-words.md)  
 - Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  

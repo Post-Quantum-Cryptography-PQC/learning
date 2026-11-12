@@ -92,7 +92,7 @@ Walk **theory** then **circuit** tables. Circuit rows are promoted because the p
 | Classic McEliece keygen (matrix / Gaussian) | `papers/tcas-i-pqc/fast-hardware-architecture-with-efficient-matrix-computations-for-the-key-generation-of-classic-mceliece/paper.md` | extract only |
 | Min-sum QC-MDPC decoder for McEliece | `papers/tcas-i-pqc/low-complexity-parallel-min-sum-medium-density-parity-check-decoder-for-mceliece-cryptosystem/paper.md` | extract only |
 | HQC Ibex tightly coupled accelerators | `papers/tcas-ii-pqc/a-hardware-software-co-optimization-of-hqc-using-tightly-coupled-accelerators-on-a-32-bit-ibex-core/paper.md` | concept ready |
-| Constant-weight coding engines (code-based) | `papers/tcas-ii-pqc/compact-constant-weight-coding-engines-for-the-code-based-cryptography/paper.md` | concept ready |
+| Constant-weight coding engines (code-based) | `papers/tcas-ii-pqc/compact-constant-weight-coding-engines-for-the-code-based-cryptography/paper.md` · [CW concept](../../concepts/constant-weight-coding.md) | concept ready |
 | Sparsity-aware MDPC decoder | `papers/tcas-ii-pqc/sparsity-aware-medium-density-parity-check-decoder-for-mceliece-cryptosystems/paper.md` | extract only |
 | PQC HW tutorial (covers BIKE / McEliece / HQC) | `papers/tcas-ii-pqc/hardware-circuits-and-systems-design-for-post-quantum-cryptography-a-tutorial-brief/paper.md` | extract only (survey) |
 | BIKE binary polymul (sparsity pipeline) | `papers/tvlsi-pqc/A Scalable and Efficient Architecture for Binary Polynomial Multiplication in BIKE Utilizing Inter-Inner-Wise Sparsity and Block-by-Block Pipeline/paper.md` | concept ready |
@@ -107,16 +107,16 @@ Walk **theory** then **circuit** tables. Circuit rows are promoted because the p
 
 | Title (short) | Extract | Status |
 |---------------|---------|--------|
-| QC-LDGM signature on embedded HW | `papers/tcas-i-pqc/toward-practical-code-based-signature-implementing-fast-and-compact-qc-ldgm-signature-scheme-on-embedded-hardware/paper.md` | concept ready |
-| Compact LEDAsig + SCA resilience | `papers/tcas-i-pqc/compact-code-based-signature-for-reconfigurable-devices-with-side-channel-resilience/paper.md` | concept ready |
+| QC-LDGM signature on embedded HW | `papers/tcas-i-pqc/toward-practical-code-based-signature-implementing-fast-and-compact-qc-ldgm-signature-scheme-on-embedded-hardware/paper.md` · [code-sig concept](../../concepts/code-based-signatures.md) | concept ready |
+| Compact LEDAsig + SCA resilience | `papers/tcas-i-pqc/compact-code-based-signature-for-reconfigurable-devices-with-side-channel-resilience/paper.md` · [code-sig concept](../../concepts/code-based-signatures.md) | concept ready |
 
 ### Multi-family silicon
 
 | Title (short) | Extract | Status |
 |---------------|---------|--------|
-| ARV-Q (supports BIKE / HQC / McEliece among standards) | `papers/tcas-i-pqc/arv-q-an-adaptive-risc-v-vector-processor-for-unified-support-of-post-quantum-standards-and-side-channel-protection-on-the-edge/paper.md` | concept ready (multi-scheme) |
-| PQPU agile SoC (includes BIKE / McEliece / HQC) | `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md` | concept ready (multi-family silicon) |
-| RePQC agile SoC (includes Classic McEliece) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` | concept ready (multi-family silicon) |
+| ARV-Q (supports BIKE / HQC / McEliece among standards) | `papers/tcas-i-pqc/arv-q-an-adaptive-risc-v-vector-processor-for-unified-support-of-post-quantum-standards-and-side-channel-protection-on-the-edge/paper.md` · [agile SoC](../../concepts/crypto-agile-soc.md) | concept ready (multi-scheme) |
+| PQPU agile SoC (includes BIKE / McEliece / HQC) | `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md` · [agile SoC](../../concepts/crypto-agile-soc.md) | concept ready (multi-family silicon) |
+| RePQC agile SoC (includes Classic McEliece) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` · [agile SoC](../../concepts/crypto-agile-soc.md) | concept ready (multi-family silicon) |
 
 Same circuit rows are mirrored / extended on [PQC hardware § code](../pqc-hardware/ROADMAP.md#family-hw-leaves-code). Prep cards: [carryless polymul](../../concepts/carryless-polymul-f2.md) · [crypto-agile SoC](../../concepts/crypto-agile-soc.md).
 

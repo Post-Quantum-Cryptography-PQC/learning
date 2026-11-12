@@ -156,8 +156,9 @@ Weight of $tR$ is **not** always $(\mathrm{wt}\,t)\times(\mathrm{wt}\,R)$. Cance
 
 ## Next steps
 
-- [DFR](dfr.md)  
-- [Independence heuristics](independence-heuristics.md)  
+- [MDPC and QC-MDPC](mdpc-qc-mdpc.md) · [Bit-flipping decoding](bit-flipping-decoding.md)  
+- [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) — HQC/BIKE HW hot path  
+- [DFR](dfr.md) · [Independence heuristics](independence-heuristics.md)  
 - Paper: [2025/018 explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md)  
 - Revisit hardness: [Syndrome decoding](syndrome-decoding.md) · [Information-set decoding](information-set-decoding.md)  
 - Polynomial refresh: [Part A](../fundamentals/polynomials-gentle.md) · [Part B wrap-around](../fundamentals/polynomials-wraparound.md)  

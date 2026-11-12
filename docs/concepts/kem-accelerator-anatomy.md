@@ -1,7 +1,7 @@
 # KEM accelerator anatomy
 
 **Prereqs:** [NTT butterfly](ntt-butterfly.md) · [Polynomial multiply engines](poly-mul-engines.md) · [KEM](kem.md) · [Noise samplers](noise-samplers.md) · [Hash / XOF](hash-xof-keccak.md) · helpful: [Module-LWE](module-lwe.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md)  
-**Next:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [index](../index.md)  
+**Next:** [Crypto-agile SoC](crypto-agile-soc.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [index](../index.md)  
 **Tracks:** pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -113,7 +113,8 @@ Usually no — it is an engine leaf (NTT/CWM/INTT). Full KEM still needs samplin
 - [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Masking shares](masking-shares.md) · [Shuffling / hiding](shuffling-hiding.md) · [Dilithium slogan](pq-signatures-dilithium.md)  
 - Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) (lattice core + HQC/code + CIM/deep shuffle)  
 - Theory: [Module-LWE](module-lwe.md) · [Lattice / LWE roadmap](../tracks/lattice-lwe/ROADMAP.md)  
-- [NTT parallel memory](ntt-parallel-memory.md) · [CIM-NTT](cim-ntt.md) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md)  
+- [NTT parallel memory](ntt-parallel-memory.md) · [CIM-NTT](cim-ntt.md) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
+- Reliability / assurance cousins: [CED / composite-field Goppa](ced-composite-goppa.md) · [ASA / HPC fuzzing](asa-hpc-fuzzing.md)  
 - Paper leaf: [Reconfigurable Kyber poly-mul explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tcad-pqc/reconfigurable-and-high-efficiency-polynomial-multiplication-accelerator-for-crystals-kyber/explainer.md)  
 - Lab RTL (when you implement): `projects/papers/` via `research-circuit-implementation`  
 - Still optional later: TCAS-II modmul explainer; super-scalar hash–poly leaves — see [pedagogy-gaps.yaml](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/pedagogy-gaps.yaml)  

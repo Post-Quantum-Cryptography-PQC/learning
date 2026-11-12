@@ -1,7 +1,7 @@
 # Oil–vinegar and multivariate signatures (UOV / MAYO)
 
 **Prereqs:** [Vectors and matrices](../fundamentals/vectors-matrices.md) · [Modular arithmetic](../fundamentals/modular-arithmetic.md) · [Public-key picture](../fundamentals/public-key-picture.md)  
-**Next:** [MinRank in the head](minrank-mpcitH.md) · Track: [Multivariate](../tracks/multivariate/ROADMAP.md)  
+**Next:** [MinRank in the head](minrank-mpcitH.md) · [ASA / HPC fuzzing](asa-hpc-fuzzing.md) · [Crypto-agile SoC](crypto-agile-soc.md) · Track: [Multivariate](../tracks/multivariate/ROADMAP.md)  
 **Tracks:** multivariate · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -86,6 +86,9 @@ Threshold MAYO [[2]](#ref-2) or GPU MAYO with matrix reordering [[3]](#ref-3).
 ## Next steps
 
 - [MinRank in the head](minrank-mpcitH.md)  
+- [ASA / HPC fuzzing](asa-hpc-fuzzing.md) — Rainbow among ASA targets (historical)  
+- [Crypto-agile SoC](crypto-agile-soc.md) — RePQC multi-family silicon  
+- Contrast Sign families: [Hash-based signatures](hash-based-signatures.md) · [Code-based signatures](code-based-signatures.md)  
 - [Multivariate ROADMAP](../tracks/multivariate/ROADMAP.md)  
 - SCA leaf: TCHES MQ signature attacks (see track table)
 

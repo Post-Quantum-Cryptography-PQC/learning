@@ -1,7 +1,7 @@
 # Constant-weight coding (code-based)
 
 **Prereqs:** [Hamming metric](hamming-metric.md) · [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · helpful: [Niederreiter](niederreiter.md)  
-**Next:** [Code-based signatures](code-based-signatures.md) · [Niederreiter](niederreiter.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
+**Next:** [Code-based signatures](code-based-signatures.md) · [Niederreiter](niederreiter.md) · [KEM](kem.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
 **Tracks:** code-based-kems · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -66,10 +66,11 @@ Niederreiter message → sparse $e$, or CFS / QC-LDGM / LEDAsig signature pipeli
 
 ## Next steps
 
-- [Code-based signatures](code-based-signatures.md)  
+- [Niederreiter](niederreiter.md) · [Code-based signatures](code-based-signatures.md) · [KEM](kem.md)  
+- [Hamming metric](hamming-metric.md) (weight $t$ refresher)  
 - Extract: `papers/tcas-ii-pqc/compact-constant-weight-coding-engines-for-the-code-based-cryptography/paper.md`  
 - [Code-based ROADMAP](../tracks/code-based-kems/ROADMAP.md)
 
 ## References
 
-<a id="ref-1"></a>[1] Compact constant-weight coding engines for code-based cryptography, *IEEE Trans. Circuits Syst. II* — extract: `papers/tcas-ii-pqc/compact-constant-weight-coding-engines-for-the-code-based-cryptography/paper.md`.
+<a id="ref-1"></a>[1] J. Hu, R. C. C. Cheung, and T. Güneysu, “Compact constant weight coding engines for the code-based cryptography,” *IEEE Trans. Circuits Syst. II*, vol. 64, no. 9, pp. 1092–1096, Sep. 2017, doi: [10.1109/TCSII.2017.2675449](https://doi.org/10.1109/TCSII.2017.2675449).

@@ -1,7 +1,7 @@
 # McEliece in plain words
 
 **Prereqs:** [Decoding as a puzzle](decoding-as-a-puzzle.md) · [Public-key picture](../fundamentals/public-key-picture.md)  
-**Next:** [Niederreiter](../concepts/niederreiter.md) · [Goppa and alternant](../concepts/goppa-alternant.md) · [From KEM API to noise](from-kem-api-to-noise.md) · Concept: [KEM](../concepts/kem.md)  
+**Next:** [Niederreiter](../concepts/niederreiter.md) · [Goppa and alternant](../concepts/goppa-alternant.md) · [Constant-weight coding](../concepts/constant-weight-coding.md) · [Code-based signatures](../concepts/code-based-signatures.md) · [CED / composite-field Goppa](../concepts/ced-composite-goppa.md) · [From KEM API to noise](from-kem-api-to-noise.md) · Concept: [KEM](../concepts/kem.md)  
 
 **Learning goals.** After this page you can:
 
@@ -125,6 +125,8 @@ If Bob’s error is heavier than Alice’s decoder can handle (or randomness is 
 
 ## Next steps
 
-- [From KEM API to noise](from-kem-api-to-noise.md)  
+- [Niederreiter](../concepts/niederreiter.md) · [Goppa and alternant](../concepts/goppa-alternant.md) · [Constant-weight coding](../concepts/constant-weight-coding.md)  
+- Optional forks: [Code-based signatures](../concepts/code-based-signatures.md) · [CED / composite-field Goppa](../concepts/ced-composite-goppa.md)  
+- [From KEM API to noise](from-kem-api-to-noise.md) · [KEM](../concepts/kem.md)  
 - [Security bits and attack work](security-bits-and-work.md)  
 - Concepts: [KEM](../concepts/kem.md) · [Syndrome decoding](../concepts/syndrome-decoding.md)  

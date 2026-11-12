@@ -27,7 +27,7 @@ This card stays qualitative so you can read HW/SW leaves; it is **not** a course
 
 | Name | Role in the lab corpus | Status slogan for learners |
 |------|------------------------|----------------------------|
-| **SIKE** | Isogeny-based **KEM** with FPGA/ASIC-style accelerators in curated leaves [[2]](#ref-2) [[3]](#ref-3) | **Broken** as a NIST PQC KEM path — study as **history + implementation archaeology** |
+| **SIKE** | Isogeny-based **KEM** with FPGA/ASIC-style accelerators in curated leaves [[2]](#ref-2) [[3]](#ref-3) [[4]](#ref-4) | **Broken** as a NIST PQC KEM path — study as **history + implementation archaeology** |
 | **CSIDH** | Non-interactive key exchange via class-group actions on supersingular curves; tiny keys, timing risks | Still a research object; needs **constant-time** care [[1]](#ref-1) |
 | **CTIDH** | Faster **constant-time** CSIDH via new key space + CT evaluation [[1]](#ref-1) | Implementation / CT research leaf |
 
@@ -43,7 +43,7 @@ No. SIKE’s NIST KEM story ended in break; curated SIKE papers are labeled hist
 
 ## Why HW papers still exist
 
-Before the break, SIKE needed heavy modular arithmetic (large prime fields, Montgomery multipliers, isogeny pipelines). Papers such as [[2]](#ref-2) [[3]](#ref-3) optimized area–time on FPGA.  
+Before the break, SIKE needed heavy modular arithmetic (large prime fields, Montgomery multipliers, isogeny pipelines). Papers such as [[2]](#ref-2) [[3]](#ref-3) [[4]](#ref-4) optimized area–time on FPGA.  
 They remain useful for **arithmetic accelerator** reading — with the security outcome labeled honestly.
 
 ## CSIDH / CTIDH (constant-time angle)
@@ -88,4 +88,6 @@ Constant-time evaluation of the CSIDH group action [[1]](#ref-1).
 
 <a id="ref-2"></a>[2] P. M. C. Massolino, P. Longa, J. Renes, and L. Batina, “A compact and scalable hardware/software co-design of SIKE,” *IACR Trans. Cryptogr. Hardw. Embed. Syst.*, vol. 2020, no. 2, pp. 245–271, 2020, doi: [10.13154/tches.v2020.i2.245-271](https://doi.org/10.13154/tches.v2020.i2.245-271).
 
-<a id="ref-3"></a>[3] High-performance SIKE FPGA accelerators — see TCAS-II / TVLSI leaves on the [isogeny](../tracks/isogeny/ROADMAP.md) and [hardware](../tracks/pqc-hardware/ROADMAP.md) tracks.
+<a id="ref-3"></a>[3] Z. Ni, D. Kundi, M. O’Neill, and W. Liu, “A high performance SIKE accelerator with high frequency and low area-time product,” *IEEE Trans. Circuits Syst. II*, vol. 69, no. 9, pp. 3899–3903, Sep. 2022, doi: [10.1109/TCSII.2022.3181625](https://doi.org/10.1109/TCSII.2022.3181625).
+
+<a id="ref-4"></a>[4] Z. Ni, D. Kundi, M. O’Neill, and W. Liu, “A high-performance SIKE hardware accelerator,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 30, no. 6, pp. 803–815, Jun. 2022, doi: [10.1109/TVLSI.2022.3152011](https://doi.org/10.1109/TVLSI.2022.3152011).

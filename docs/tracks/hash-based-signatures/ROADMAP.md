@@ -53,8 +53,8 @@ Use the paper table. Prefer reading extract abstracts/sections named in each `pa
 | SPHINCS+-256 FPGA accelerator | `papers/tches-pqc/fpga-based-accelerator-for-post-quantum-signature-scheme-sphincs-256/paper.md` | extract only |
 | Protecting SPHINCS+ against fault attacks | `papers/tches-pqc/on-protecting-sphincs-against-fault-attacks/paper.md` | extract only |
 | WOTS+ fault countermeasures | `papers/tches-pqc/fault-attack-countermeasures-for-sphincs-wots-with-checksum-segmentation-and-subtree-root-children-caching/paper.md` | extract only |
-| PQPU agile SoC (includes SPHINCS+) | `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
-| HPC fuzzing ASA (includes SPHINCS+) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` | extract only (multi-family detection) |
+| PQPU agile SoC (includes SPHINCS+) | `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md` · [agile SoC](../../concepts/crypto-agile-soc.md) | concept ready (multi-family silicon) |
+| HPC fuzzing ASA (includes SPHINCS+) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` · [ASA concept](../../concepts/asa-hpc-fuzzing.md) | concept ready (multi-family detection) |
 
 Same rows are mirrored on [PQC hardware § hash](../pqc-hardware/ROADMAP.md#family-hw-leaves-hash).
 

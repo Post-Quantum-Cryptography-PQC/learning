@@ -156,12 +156,11 @@ You do **not** need a full LDPC course before the HW leaf — read [[1]](#ref-1)
 
 ## Next steps
 
-- [DFR](dfr.md)  
-- [MDPC and QC-MDPC](mdpc-qc-mdpc.md)  
+- [DFR](dfr.md) · [MDPC and QC-MDPC](mdpc-qc-mdpc.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md)  
 - Paper: [QC-MDPC reaction attack](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md)  
-- Contrast algebraic path: [Goppa and alternant](goppa-alternant.md)  
+- Contrast algebraic path: [Goppa and alternant](goppa-alternant.md) · [CED / composite-field Goppa](ced-composite-goppa.md)  
+- HW cousins: [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
 - Extract: `papers/tcas-i-pqc/low-complexity-parallel-min-sum-medium-density-parity-check-decoder-for-mceliece-cryptosystem/paper.md`
-
 ## References
 
-<a id="ref-1"></a>[1] Low-complexity parallel min-sum MDPC decoder for McEliece, *IEEE Trans. Circuits Syst. I* — `papers/tcas-i-pqc/low-complexity-parallel-min-sum-medium-density-parity-check-decoder-for-mceliece-cryptosystem/paper.md`.
+<a id="ref-1"></a>[1] J. Cai and X. Zhang, “Low-complexity parallel min-sum medium-density parity-check decoder for McEliece cryptosystem,” *IEEE Trans. Circuits Syst. I*, vol. 70, no. 12, pp. 5328–5338, Dec. 2023, doi: [10.1109/TCSI.2023.3319358](https://doi.org/10.1109/TCSI.2023.3319358).

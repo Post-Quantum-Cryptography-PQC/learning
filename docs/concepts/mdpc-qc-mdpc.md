@@ -122,6 +122,7 @@ Both are still **Hamming**-metric code-based crypto.
 
 ## Next steps
 
-- [Bit-flipping decoding](bit-flipping-decoding.md)  
+- [Bit-flipping decoding](bit-flipping-decoding.md) (includes min-sum contrast)  
 - [DFR](dfr.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md)  
+- HW cousins: [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
 - Paper: [QC-MDPC reaction attack](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md)  

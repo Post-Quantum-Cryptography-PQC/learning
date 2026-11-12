@@ -1,7 +1,7 @@
 # Carryless polynomial multiply over $\mathbb{F}_2$ (HQC / BIKE-shaped)
 
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Polynomials with wraparound](../fundamentals/polynomials-wraparound.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md) · helpful: [Poly-mul engines](poly-mul-engines.md)  
-**Next:** [KEM](kem.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [KEM](kem.md) · [Crypto-agile SoC](crypto-agile-soc.md) · [Poly-mul engines](poly-mul-engines.md) (lattice contrast) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** code-based-kems · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -94,12 +94,15 @@ Carryless (Karatsuba) multiplier and Keccak-$f[1600]$ accelerator [[1]](#ref-1).
 
 ## Next steps
 
-- [Code-based KEMs ROADMAP](../tracks/code-based-kems/ROADMAP.md)  
+- [Quasi-cyclic codes](quasi-cyclic-codes.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
+- Contrast lattice engines: [Poly-mul engines](poly-mul-engines.md) · [NTT butterfly](ntt-butterfly.md)  
+- Contrast McEliece GF CED: [CED / composite-field Goppa](ced-composite-goppa.md)  
+- [Code-based KEMs ROADMAP](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
 - Extract (HQC): `papers/tcas-ii-pqc/a-hardware-software-co-optimization-of-hqc-using-tightly-coupled-accelerators-on-a-32-bit-ibex-core/paper.md`  
 - Extract (BIKE): `papers/tvlsi-pqc/A Scalable and Efficient Architecture for Binary Polynomial Multiplication in BIKE Utilizing Inter-Inner-Wise Sparsity and Block-by-Block Pipeline/paper.md`  
 
 ## References
 
-<a id="ref-1"></a>[1] S. C. Seo and Y. Kim, “A hardware/software co-optimization of HQC using tightly-coupled accelerators on a 32-bit Ibex core,” *IEEE Trans. Circuits Syst. II*, 2026, doi: [10.1109/TCSII.2026.3668482](https://doi.org/10.1109/TCSII.2026.3668482).  
+<a id="ref-1"></a>[1] S. C. Seo and Y. Kim, “A hardware/software co-optimization of HQC using tightly-coupled accelerators on a 32-bit Ibex core,” *IEEE Trans. Circuits Syst. II*, vol. 73, no. 5, pp. 583–587, May 2026, doi: [10.1109/TCSII.2026.3668482](https://doi.org/10.1109/TCSII.2026.3668482).
 
-<a id="ref-2"></a>[2] Scalable binary polynomial multiplication for BIKE with inter-/inner-wise sparsity and block pipeline, *IEEE Trans. VLSI Syst.* — `papers/tvlsi-pqc/A Scalable and Efficient Architecture for Binary Polynomial Multiplication in BIKE Utilizing Inter-Inner-Wise Sparsity and Block-by-Block Pipeline/paper.md`.
+<a id="ref-2"></a>[2] J. Hou, J. Wang, Y. Meng, F. Zhang, Y. Su, and C. Yang, “A scalable and efficient architecture for binary polynomial multiplication in BIKE utilizing inter-/inner-wise sparsity and block-by-block pipeline,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 33, no. 5, pp. 1457–1461, May 2025, doi: [10.1109/TVLSI.2024.3510541](https://doi.org/10.1109/TVLSI.2024.3510541).

@@ -1,7 +1,7 @@
 # Crypto-agile multi-family SoC (PQPU / RePQC / ARV-Q)
 
 **Prereqs:** [KEM accelerator anatomy](kem-accelerator-anatomy.md) · [KEM](kem.md) · helpful: [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Hash / XOF](hash-xof-keccak.md)  
-**Next:** Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Code-based](../tracks/code-based-kems/ROADMAP.md) · [Hash-based](../tracks/hash-based-signatures/ROADMAP.md) · [Multivariate](../tracks/multivariate/ROADMAP.md)  
+**Next:** [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [ASA / HPC fuzzing](asa-hpc-fuzzing.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Code-based](../tracks/code-based-kems/ROADMAP.md) · [Hash-based](../tracks/hash-based-signatures/ROADMAP.md) · [Multivariate](../tracks/multivariate/ROADMAP.md)  
 **Tracks:** pqc-hardware · code-based-kems · hash-based-signatures · multivariate
 
 **Learning goals.** After this page you can:
@@ -72,11 +72,13 @@ PQPU [[1]](#ref-1) and RePQC [[2]](#ref-2) (ARV-Q / PHOENIX are related agile/sh
 
 ## Next steps
 
-- [PQC hardware ROADMAP](../tracks/pqc-hardware/ROADMAP.md)  
-- Extracts under JSSC / TCAS-I agile rows on family track tables  
+- [KEM accelerator anatomy](kem-accelerator-anatomy.md) (single-scheme skeleton) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md)  
+- Families that may share the die: [Hash-based signatures](hash-based-signatures.md) · [Oil–vinegar multivariate](oil-vinegar-multivariate.md) · [KEM](kem.md)  
+- Assurance cousin (not agility): [ASA / HPC fuzzing](asa-hpc-fuzzing.md)  
+- [PQC hardware ROADMAP](../tracks/pqc-hardware/ROADMAP.md) · family track tables  
 
 ## References
 
-<a id="ref-1"></a>[1] PQPU — agile post-quantum crypto processor across multiple mathematical problems, *IEEE J. Solid-State Circuits* — `papers/jssc-pqc/pqpu-a-4-4-uj-op-69-4-kops-agile-post-quantum-crypto-processor-across-multiple-mathematical-problems/paper.md`.  
+<a id="ref-1"></a>[1] Y. Zhu et al., “PQPU: A 4.4-µJ/Op 69.4-kOPS agile post-quantum crypto-processor across multiple mathematical problems,” *IEEE J. Solid-State Circuits*, vol. 60, no. 6, pp. 2261–2275, Jun. 2025, doi: [10.1109/JSSC.2024.3476949](https://doi.org/10.1109/JSSC.2024.3476949).
 
-<a id="ref-2"></a>[2] RePQC — post-quantum crypto processor for multiple mathematical problems, *IEEE J. Solid-State Circuits* — `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md`.
+<a id="ref-2"></a>[2] Y. Zhu et al., “RePQC: A 3.4-µJ/Op 48-kOPS post-quantum crypto-processor for multiple-mathematical problems,” *IEEE J. Solid-State Circuits*, vol. 58, no. 1, pp. 124–139, Jan. 2023, doi: [10.1109/JSSC.2022.3216758](https://doi.org/10.1109/JSSC.2022.3216758).

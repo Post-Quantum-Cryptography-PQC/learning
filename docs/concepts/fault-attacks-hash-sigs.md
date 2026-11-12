@@ -1,7 +1,7 @@
 # Fault attacks on hash-based signatures
 
 **Prereqs:** [Hash-based signatures](hash-based-signatures.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md)  
-**Next:** Track: [Hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [Masking shares](masking-shares.md) (different threat)  
+**Next:** [ASA / HPC fuzzing](asa-hpc-fuzzing.md) (different threat) · [CED / composite-field Goppa](ced-composite-goppa.md) (detection, not tree grafting) · Track: [Hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [Masking shares](masking-shares.md)  
 **Tracks:** hash-based-signatures · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -78,6 +78,7 @@ It can expose alternate openings usable for tree-grafting forgeries [[1]](#ref-1
 
 - Read the extract abstract + threat sections in the TCHES leaf on the [hash track](../tracks/hash-based-signatures/ROADMAP.md).  
 - Contrast with [masking](masking-shares.md) / [shuffling](shuffling-hiding.md) for SCA.  
+- Contrast with [ASA / HPC fuzzing](asa-hpc-fuzzing.md) (subverted code) and [CED / composite-field Goppa](ced-composite-goppa.md) (arithmetic error flags).  
 
 ## References
 

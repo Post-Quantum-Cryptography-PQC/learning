@@ -1,7 +1,7 @@
 # Algorithm subversion (ASA) and HPC fuzzing
 
 **Prereqs:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [Public-key picture](../fundamentals/public-key-picture.md) · helpful: [Hash-based signatures](hash-based-signatures.md) · [Oil–vinegar multivariate](oil-vinegar-multivariate.md)  
-**Next:** Track: [Hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [Multivariate](../tracks/multivariate/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
+**Next:** [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · [Crypto-agile SoC](crypto-agile-soc.md) · Track: [Hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [Multivariate](../tracks/multivariate/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** hash-based-signatures · multivariate · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -72,9 +72,11 @@ Hardware performance counters (plus fuzzing-style measurement) [[1]](#ref-1).
 
 ## Next steps
 
+- Family cards: [Hash-based signatures](hash-based-signatures.md) · [Oil–vinegar multivariate](oil-vinegar-multivariate.md)  
+- [Crypto-agile SoC](crypto-agile-soc.md) — multi-family silicon (assurance ≠ agility)  
+- Contrast: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · [Masking shares](masking-shares.md) · [CED / composite-field Goppa](ced-composite-goppa.md)  
 - Extract: `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md`  
-- Contrast: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · [Masking shares](masking-shares.md)  
 
 ## References
 
-<a id="ref-1"></a>[1] Fuzzing / hardware performance counters for detecting algorithm-subversion attacks on post-quantum signature schemes, *IEEE Trans. Comput.-Aided Design Integr. Circuits Syst.* — `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md`.
+<a id="ref-1"></a>[1] A. B. Chowdhury, A. Mahapatra, D. Soni, and R. Karri, “Fuzzing+hardware performance counters-based detection of algorithm subversion attacks on postquantum signature schemes,” *IEEE Trans. Comput.-Aided Design Integr. Circuits Syst.*, vol. 42, no. 2, pp. 384–396, Feb. 2023, doi: [10.1109/TCAD.2022.3159749](https://doi.org/10.1109/TCAD.2022.3159749).

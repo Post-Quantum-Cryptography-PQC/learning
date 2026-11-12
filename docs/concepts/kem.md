@@ -1,7 +1,7 @@
 # Key encapsulation (KEM)
 
 **Prereqs:** [From KEM API to noise](../bridge/from-kem-api-to-noise.md) · [McEliece in plain words](../bridge/mceliece-in-plain-words.md) · [Public-key picture](../fundamentals/public-key-picture.md)  
-**Next:** [IND-CPA / IND-CCA](ind-cpa-cca.md) · [DFR](dfr.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
+**Next:** [IND-CPA / IND-CCA](ind-cpa-cca.md) · [DFR](dfr.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Code-based signatures](code-based-signatures.md) (Sign fork) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
 **Tracks:** code-based-kems · lattice-lwe
 
 **Learning goals.** After this page you can:
@@ -144,6 +144,8 @@ Different size, speed, and security profiles — **same API shape**. That is why
 
 - [IND-CPA / IND-CCA](ind-cpa-cca.md) — what “secure KEM” means as a game  
 - [DFR](dfr.md) — when honest Decaps fails  
-- [Quasi-cyclic codes](quasi-cyclic-codes.md) — structure used by some code-based KEMs  
+- [Quasi-cyclic codes](quasi-cyclic-codes.md) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) — HQC/BIKE HW path  
+- [Code-based signatures](code-based-signatures.md) — different API (Sign/Verify), same code neighborhood  
+- [Crypto-agile SoC](crypto-agile-soc.md) — multi-family silicon that may host several KEMs  
 - Bridge revisit: [From KEM API to noise](../bridge/from-kem-api-to-noise.md)  
 - Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md)  

@@ -1,7 +1,7 @@
 # CED for composite-field Goppa / GF multipliers (McEliece)
 
 **Prereqs:** [Goppa and alternant](goppa-alternant.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md) · helpful: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md)  
-**Next:** Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
+**Next:** [Code-based signatures](code-based-signatures.md) (naming trap) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) (different code HW) · [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
 **Tracks:** code-based-kems · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -129,14 +129,17 @@ $\mathrm{GF}(2^{13})$ with $x^{13}+x^4+x^3+x+1$ [[2]](#ref-2) Table I.
 
 ## Next steps
 
+- [Goppa and alternant](goppa-alternant.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md)  
+- Naming trap: [Code-based signatures](code-based-signatures.md) (Sign/Verify, not CED check bits)  
+- Other code HW: [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
+- Threat cousins: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · [ASA / HPC fuzzing](asa-hpc-fuzzing.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md)  
 - Extracts:  
   - `papers/tcad-pqc/reliable-architectures-for-composite-field-oriented-constructions-of-mceliece-post-quantum-cryptography-on-fpga/paper.md`  
   - `papers/tvlsi-pqc/Reliable Architectures for Finite Field Multipliers Using Cyclic Codes on FPGA Utilized in Classic and Post-Quantum Cryptography/paper.md`  
-- [Code-based ROADMAP](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
-- Contrast FIA on hash trees: [fault-attacks-hash-sigs](fault-attacks-hash-sigs.md)
+- [Code-based ROADMAP](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)
 
 ## References
 
-<a id="ref-1"></a>[1] A. Cintas Canto, M. Mozaffari Kermani, and R. Azarderakhsh, “Reliable architectures for composite-field-oriented constructions of McEliece post-quantum cryptography on FPGA,” *IEEE Trans. Comput.-Aided Design Integr. Circuits Syst.*, vol. 40, no. 5, pp. 999–1003, May 2021, doi: [10.1109/TCAD.2020.3019987](https://doi.org/10.1109/TCAD.2020.3019987). Grounded in extract §§I–IV (esp. Table I, Theorems 1–4, Figs. 1–2, GPE FPGA).  
+<a id="ref-1"></a>[1] A. Cintas Canto, M. Mozaffari Kermani, and R. Azarderakhsh, “Reliable architectures for composite-field-oriented constructions of McEliece post-quantum cryptography on FPGA,” *IEEE Trans. Comput.-Aided Design Integr. Circuits Syst.*, vol. 40, no. 5, pp. 999–1003, May 2021, doi: [10.1109/TCAD.2020.3019987](https://doi.org/10.1109/TCAD.2020.3019987).
 
-<a id="ref-2"></a>[2] A. Cintas-Canto, M. Mozaffari Kermani, and R. Azarderakhsh, “Reliable architectures for finite field multipliers using cyclic codes on FPGA utilized in classic and post-quantum cryptography,” *IEEE Trans. VLSI Syst.*, vol. 31, no. 1, pp. 157–161, Jan. 2023, doi: [10.1109/TVLSI.2022.3224357](https://doi.org/10.1109/TVLSI.2022.3224357). Grounded in extract §§I–IV (Tables I, IV; Figs. 1–2; Artix-7 fault sims).
+<a id="ref-2"></a>[2] A. Cintas-Canto, M. Mozaffari Kermani, and R. Azarderakhsh, “Reliable architectures for finite field multipliers using cyclic codes on FPGA utilized in classic and post-quantum cryptography,” *IEEE Trans. Very Large Scale Integr. (VLSI) Syst.*, vol. 31, no. 1, pp. 157–161, Jan. 2023, doi: [10.1109/TVLSI.2022.3224357](https://doi.org/10.1109/TVLSI.2022.3224357).

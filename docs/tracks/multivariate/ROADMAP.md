@@ -58,8 +58,8 @@ Read the leaf tables; treat Rainbow/UOV implementation papers as **historical / 
 
 | Title (short) | Extract | Status |
 |---------------|---------|--------|
-| RePQC agile SoC (includes Rainbow) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` | extract only (multi-family silicon) |
-| HPC fuzzing ASA (includes Rainbow) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` | extract only (multi-family detection) |
+| RePQC agile SoC (includes Rainbow) | `papers/jssc-pqc/repqc-a-3-4-uj-op-48-kops-post-quantum-crypto-processor-for-multiple-mathematical-problems/paper.md` · [agile SoC](../../concepts/crypto-agile-soc.md) | concept ready (multi-family silicon) |
+| HPC fuzzing ASA (includes Rainbow) | `papers/tcad-pqc/fuzzinghardware-performance-counters-based-detection-of-algorithm-subversion-attacks-on-postquantum-signature-schemes/paper.md` · [ASA concept](../../concepts/asa-hpc-fuzzing.md) | concept ready (multi-family detection) |
 
 Same rows are mirrored on [PQC hardware § multivariate](../pqc-hardware/ROADMAP.md#family-hw-leaves-mq). No dedicated TCAS/TVLSI MQ-primary accelerator leaf is in the current corpus (rank-adjacent MinRank HW also absent).
 

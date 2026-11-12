@@ -1,7 +1,7 @@
 # Side-channel threat model (gentle)
 
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Public-key picture](../fundamentals/public-key-picture.md) · helpful: [Clocks, registers, and latency](clocks-registers-latency.md)  
-**Next:** [Masking shares](../concepts/masking-shares.md) · [Shuffling / hiding](../concepts/shuffling-hiding.md) · [Fault attacks on hash-based signatures](../concepts/fault-attacks-hash-sigs.md) · [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) · [Area–time–power honesty](area-time-power-honesty.md)  
+**Next:** [Masking shares](../concepts/masking-shares.md) · [Shuffling / hiding](../concepts/shuffling-hiding.md) · [Fault attacks on hash-based signatures](../concepts/fault-attacks-hash-sigs.md) · [ASA / HPC fuzzing](../concepts/asa-hpc-fuzzing.md) · [CED / composite-field Goppa](../concepts/ced-composite-goppa.md) · [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) · [Area–time–power honesty](area-time-power-honesty.md)  
 
 **Learning goals.** After this page you can:
 
@@ -102,6 +102,8 @@ Constant timing helps regular timing attacks; DPA/fault need countermeasures the
 ## Next steps
 
 - [Masking shares](../concepts/masking-shares.md) — the share picture  
+- [Shuffling / hiding](../concepts/shuffling-hiding.md) · [Fault attacks on hash-based signatures](../concepts/fault-attacks-hash-sigs.md)  
+- Different threats: [ASA / HPC fuzzing](../concepts/asa-hpc-fuzzing.md) · [CED / composite-field Goppa](../concepts/ced-composite-goppa.md)  
 - [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) — where leaky units sit  
 - Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 

@@ -1,7 +1,7 @@
 # Code-based signatures (CFS / QC-LDGM / LEDAsig)
 
 **Prereqs:** [McEliece in plain words](../bridge/mceliece-in-plain-words.md) · [Niederreiter](niederreiter.md) · [Constant-weight coding](constant-weight-coding.md) · [Digital signature](../glossary.md#digital-signature)  
-**Next:** Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) (signature fork) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
+**Next:** [KEM](kem.md) (contrast API) · [Hash-based signatures](hash-based-signatures.md) · [Oil–vinegar multivariate](oil-vinegar-multivariate.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) (Stage 3b) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
 **Tracks:** code-based-kems · pqc-hardware
 
 **Learning goals.** After this page you can:
@@ -77,11 +77,14 @@ QC-LDGM embedded HW [[1]](#ref-1) and compact LEDAsig with SCA resilience [[2]](
 
 ## Next steps
 
+- [Constant-weight coding](constant-weight-coding.md) · [Niederreiter](niederreiter.md)  
+- Naming trap: CED “signatures” ≠ this card — [CED / composite-field Goppa](ced-composite-goppa.md)  
+- Other Sign families: [Hash-based signatures](hash-based-signatures.md) · [Oil–vinegar multivariate](oil-vinegar-multivariate.md)  
+- KEM core contrast: [KEM](kem.md) · [Bit-flipping](bit-flipping-decoding.md)  
 - Extracts: QC-LDGM embedded HW · LEDAsig SCA resilience (see code-based circuit table)  
-- [Constant-weight coding](constant-weight-coding.md) · [Bit-flipping](bit-flipping-decoding.md) for KEM decoders  
 
 ## References
 
-<a id="ref-1"></a>[1] Toward practical code-based signature — QC-LDGM on embedded hardware, *IEEE Trans. Circuits Syst. I* — `papers/tcas-i-pqc/toward-practical-code-based-signature-implementing-fast-and-compact-qc-ldgm-signature-scheme-on-embedded-hardware/paper.md`.  
+<a id="ref-1"></a>[1] J. Hu and R. C. C. Cheung, “Toward practical code-based signature: Implementing fast and compact QC-LDGM signature scheme on embedded hardware,” *IEEE Trans. Circuits Syst. I*, vol. 64, no. 8, pp. 2086–2097, Aug. 2017, doi: [10.1109/TCSI.2017.2684828](https://doi.org/10.1109/TCSI.2017.2684828).
 
-<a id="ref-2"></a>[2] Compact code-based signature (LEDAsig-shaped) with side-channel resilience, *IEEE Trans. Circuits Syst. I* — `papers/tcas-i-pqc/compact-code-based-signature-for-reconfigurable-devices-with-side-channel-resilience/paper.md`.
+<a id="ref-2"></a>[2] J. Hu, Y. Liu, R. C. C. Cheung, S. Bhasin, S. Ling, and H. Wang, “Compact code-based signature for reconfigurable devices with side channel resilience,” *IEEE Trans. Circuits Syst. I*, vol. 67, no. 7, pp. 2305–2316, Jul. 2020, doi: [10.1109/TCSI.2020.2984026](https://doi.org/10.1109/TCSI.2020.2984026).

@@ -79,4 +79,4 @@ Data movement energy / cycles between memory and arithmetic.
 
 ## References
 
-<a id="ref-1"></a>[1] J. Zhu et al., “A 28 nm 75.6 KOPS 13 nJ computing-in-memory pipeline number theoretic transform accelerator for PQC,” *IEEE Trans. Circuits Syst. II*, 2025, doi: [10.1109/TCSII.2024.3481996](https://doi.org/10.1109/TCSII.2024.3481996).
+<a id="ref-1"></a>[1] J. Zhu et al., “A 28 nm 75.6 KOPS 13 nJ computing-in-memory pipeline number theoretic transform accelerator for PQC,” *IEEE Trans. Circuits Syst. II*, vol. 72, no. 1, pp. 273–277, Jan. 2025, doi: [10.1109/TCSII.2024.3481996](https://doi.org/10.1109/TCSII.2024.3481996).
