@@ -3,36 +3,37 @@
 **Prereqs:** [Motivation](motivation.md) · [History](history.md) · [Challenges](challenges.md) (recommended)  
 **Next:** [How to read the math](../fundamentals/reading-math-notation.md) · [Why cryptography?](../fundamentals/why-cryptography.md) · [Public-key picture](../fundamentals/public-key-picture.md)
 
-**Learning goals.** Place confidentiality vs authenticity, symmetric vs asymmetric (PKC), encryption vs signatures vs key agreement vs KEMs, classical PKC vs PQC, and “protocols bundle tools” on one mental map — before the math pages.
+**Learning goals.** Place confidentiality vs authenticity, symmetric vs asymmetric (PKC), unkeyed hashes, encryption vs signatures vs key agreement vs KEMs, classical PKC and PQC *as asymmetric subfamilies*, and “protocols bundle tools” on one mental map — before the math pages.
 
 ## Why this map exists
 
 Later pages dive into codes, lattices, and hardware. This page is the **folder tree**: what kinds of crypto tools exist, what job each does, and how PQC fits.
 
-Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc) · [AEAD](../glossary.md#aead) · [MAC](../glossary.md#mac).
+Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc) · [AEAD](../glossary.md#aead) · [MAC](../glossary.md#mac) · [Hash](../glossary.md#hash).
 
 ## The maps
 
 One giant mindmap is hard to read. This page uses:
 
-1. a **roomy overview** (six folders only), then  
+1. a **roomy overview** (top folders + asymmetric subfamilies), then  
 2. **one detailed map per folder** in tabs below.
 
-### Overview (six folders)
+### Overview
 
 ```pqc-mermaid
 flowchart TB
   C(("Cryptography"))
   C --> G["Goals<br/>why we encrypt / sign"]
-  C --> S["Symmetric<br/>shared secret - fast bulk"]
+  C --> S["Symmetric<br/>shared secret - keyed"]
+  C --> H["Hash / digests<br/>usually unkeyed"]
   C --> A["Asymmetric / PKC<br/>public + private key"]
-  C --> CL["Classical PKC<br/>RSA / DH / ECC"]
-  C --> P["PQC<br/>post-quantum public-key"]
   C --> PR["Protocols / hybrids<br/>TLS / HTTPS / VPN"]
+  A --> CL["Classical PKC<br/>RSA / DH / ECC"]
+  A --> P["PQC<br/>post-quantum public-key"]
   classDef hub fill:#0f766e,stroke:#5eead4,color:#ecfeff
   classDef leaf fill:#115e59,stroke:#99f6e4,color:#ecfeff
   class C hub
-  class G,S,A,CL,P,PR leaf
+  class G,S,H,A,PR,CL,P leaf
 ```
 
 ### Detail maps (one folder at a time)
@@ -56,42 +57,60 @@ flowchart TB
 
 === "Symmetric"
 
-    Same shared secret on both sides — great after a session key exists.
+    Keyed tools that share one secret on both sides — great after a session key exists. Ordinary hashes are *not* listed here (see Hash / digests).
 
     ```pqc-mermaid
     flowchart TB
-      S["Symmetric"]
+      S["Symmetric - keyed"]
       S --> K["Same shared secret both sides"]
       S --> F["Fast bulk crypto"]
       S --> E["Encryption<br/>AES / ChaCha"]
-      S --> H["Hash / MAC / AEAD<br/>SHA-2 / SHA-3 / HMAC"]
-      S --> Q["Quantum note<br/>Grover - larger keys / digests<br/>not a full throw-away"]
+      S --> M["MAC / HMAC / AEAD<br/>keyed integrity or both"]
+      S --> Q["Quantum note<br/>Grover - larger keys / tags"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class S,K,F,E,H,Q n
+      class S,K,F,E,M,Q n
+    ```
+
+=== "Hash / digests"
+
+    Ordinary cryptographic hashes are **unkeyed** primitives (no shared secret). They feed many constructions — MACs, signatures, KEMs, transcripts — without being “symmetric crypto” themselves.
+
+    ```pqc-mermaid
+    flowchart TB
+      H["Hash / digests<br/>usually unkeyed"]
+      H --> S["SHA-2 / SHA-3<br/>fixed-length fingerprint"]
+      H --> X["XOF / SHAKE<br/>extendable output"]
+      H --> U["Used by<br/>HMAC / signatures / PQC / transcripts"]
+      H --> N["Not a shared-key cipher<br/>and not a signature by itself"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class H,S,X,U,N n
     ```
 
 === "Asymmetric / PKC"
 
-    Four jobs — do not mix the APIs.
+    Public + private key family. **Jobs** first; **classical** and **PQC** are subfamilies under this same branch (not peer folders next to “asymmetric”).
 
     ```pqc-mermaid
     flowchart TB
-      A["Asymmetric / PKC<br/>public key + private key"]
-      A --> E["Public-key encryption<br/>encrypt with pk / decrypt with sk"]
-      A --> D["Digital signatures<br/>sign with sk / verify with pk"]
-      A --> K["Key agreement<br/>DH / ECDH - shared secret<br/>not message encryption"]
-      A --> M["KEM<br/>Encaps / Decaps - session key K<br/>modern deploy API"]
+      A["Asymmetric / PKC"]
+      A --> J["Jobs"]
+      J --> E["Public-key encryption"]
+      J --> D["Digital signatures"]
+      J --> K["Key agreement"]
+      J --> M["KEM"]
+      A --> CL["Classical PKC<br/>RSA / DH / ECC<br/>Shor-vulnerable"]
+      A --> P["PQC<br/>ML-KEM / ML-DSA / SLH-DSA<br/>and more research families"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class A,E,D,K,M n
+      class A,J,E,D,K,M,CL,P n
     ```
 
 === "Classical PKC"
 
-    Widely used before the PQC transition — Shor-vulnerable.
+    Subcategory of asymmetric / PKC — widely used before the PQC transition; Shor-vulnerable.
 
     ```pqc-mermaid
     flowchart TB
-      CL["Classical PKC"]
+      CL["Classical PKC<br/>under asymmetric"]
       CL --> R["RSA<br/>encryption and signatures"]
       CL --> DH["Diffie-Hellman DH<br/>shared secret only"]
       CL --> ECC["ECC<br/>ECDH agreement / ECDSA signatures"]
@@ -102,11 +121,11 @@ flowchart TB
 
 === "PQC"
 
-    Algorithms for ordinary computers today; public-key layer meant to resist large quantum computers.
+    Subcategory of asymmetric / PKC — algorithms for ordinary computers today; public-key layer meant to resist large quantum computers.
 
     ```pqc-mermaid
     flowchart TB
-      P["PQC"]
+      P["PQC<br/>under asymmetric"]
       P --> N["NIST-era standards"]
       N --> K["ML-KEM - lattices"]
       N --> D["ML-DSA - lattices"]
@@ -127,9 +146,10 @@ flowchart TB
       PR --> K["KEM or key agreement<br/>session setup"]
       PR --> S["Signatures<br/>authenticity / certificates"]
       PR --> Y["Symmetric<br/>bulk data"]
-      PR --> H["Hybrid migration<br/>classical + PQC together"]
+      PR --> H["Hashes<br/>transcripts / derivations"]
+      PR --> X["Hybrid migration<br/>classical + PQC together"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class PR,K,S,Y,H n
+      class PR,K,S,Y,H,X n
     ```
 
 ## Branch guide (read with the maps)
@@ -145,17 +165,17 @@ flowchart TB
 You can have one without the other. Real apps usually need **both**.  
 Deeper toys: [Why cryptography?](../fundamentals/why-cryptography.md).
 
-### 2. Symmetric vs asymmetric (PKC)
+### 2. Symmetric, hashes, and asymmetric (PKC)
 
-| | **Symmetric** | **Asymmetric / PKC** |
-|--|---------------|----------------------|
-| Keys | Same secret on both sides | Public key + private key |
-| Strength | Very fast for bulk data | Heavier; great for *first meeting* |
-| First-contact problem | How do strangers share the secret? | Designed for this |
-| Quantum slogan | Grover → larger margins | Shor breaks classical RSA / DH / ECC |
+| | **Symmetric** | **Hash / digests** | **Asymmetric / PKC** |
+|--|---------------|--------------------|----------------------|
+| Keys | Same secret both sides | Usually **unkeyed** | Public + private pair |
+| Role | Fast bulk encrypt / MAC / AEAD | Fingerprint data; building block | First meeting, encrypt/sign/agree/KEM |
+| Quantum slogan | Grover → larger keys/tags | Larger digests for margin | Shor breaks **classical** PKC |
 
+**Classical PKC** and **PQC** are two subfamilies *under* asymmetric / PKC — not separate top-level folders beside it.  
 **Asymmetric** and **public-key cryptography (PKC)** mean the same family here.  
-Glossary: [Symmetric crypto](../glossary.md#symmetric-crypto) · [Asymmetric / PKC](../glossary.md#asymmetric-pkc) · [PKC](../glossary.md#pkc).
+Glossary: [Symmetric crypto](../glossary.md#symmetric-crypto) · [Hash](../glossary.md#hash) · [Asymmetric / PKC](../glossary.md#asymmetric-pkc) · [PKC](../glossary.md#pkc).
 
 ### 3. Four PKC *jobs* (do not mix the APIs)
 
@@ -176,7 +196,9 @@ Diffie–Hellman gives two parties a shared secret. Is that the same API as “e
 No — DH is <strong>key agreement</strong>. Message encryption and KEMs are different jobs (related story, different algorithms / APIs).
 </details>
 
-### 4. Classical PKC vs PQC
+### 4. Classical PKC vs PQC (both under asymmetric)
+
+Both are **asymmetric / PKC** subfamilies.
 
 **Classical PKC** (widely used *before* the PQC transition):
 
@@ -187,7 +209,7 @@ No — DH is <strong>key agreement</strong>. Message encryption and KEMs are dif
 A large enough quantum computer running **Shor’s algorithm** breaks these. That is a main reason for **PQC**.  
 See [Motivation](motivation.md) · [History](history.md).
 
-**Post-quantum cryptography (PQC)** — algorithms classical computers can run *today*, designed so large quantum computers should not break the public-key layer.
+**Post-quantum cryptography (PQC)** — still public-key style algorithms classical computers can run *today*, designed so large quantum computers should not break that public-key layer.
 
 | Role (NIST-era postcard) | Example slogan | Family |
 |--------------------------|----------------|--------|
@@ -213,6 +235,8 @@ PQC mainly replaces the **public-key** pieces; AES-like tools stay, often with l
 - “Encryption” in everyday speech often mixes confidentiality with authenticity — they differ.  
 - A **KEM is not a signature**.  
 - **DH is not RSA encryption**.  
+- **PQC** is not a third peer next to “symmetric” and “asymmetric” — it is an asymmetric / PKC subfamily.  
+- A bare **hash** (SHA-2/3) is usually unkeyed — not the same shelf as AES or a shared-key MAC.  
 - **PQC ≠ quantum communication**; PQC runs on ordinary computers.  
 - Publishing a **public** key is intentional; the **private** key must stay secret.
 

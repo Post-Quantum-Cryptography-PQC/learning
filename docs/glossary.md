@@ -15,7 +15,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="aead"></a>**AEAD** | Authenticated encryption with associated data — encrypts for secrecy and checks integrity (often with extra public header bytes) in one package | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | <a id="aes"></a>**AES** | Advanced Encryption Standard — common symmetric block cipher for bulk confidentiality | [Symmetric crypto](#symmetric-crypto) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Alternant code** | Algebraic code family related to GRS; includes binary Goppa as a famous case | [Goppa and alternant](concepts/goppa-alternant.md) |
-| <a id="asymmetric-pkc"></a>**Asymmetric / PKC** | Same family as public-key crypto: public + private key pair (not a shared house key) | [Crypto categories](orientation/crypto-categories.md) · [PKC](#pkc) |
+| <a id="asymmetric-pkc"></a>**Asymmetric / PKC** | Public-key family (public + private key). **Classical PKC** and **PQC** are subfamilies here — not separate top-level crypto kinds | [Crypto categories](orientation/crypto-categories.md) · [PKC](#pkc) |
 | **Authenticity** | Strangers cannot forge or silently edit a message | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Bit** | A $0$ or $1$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
 | **Bit-flipping** | Iterative decoder: flip bits that fail many parity checks | [Bit-flipping decoding](concepts/bit-flipping-decoding.md) |
@@ -49,6 +49,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 |------|---------------|-----|
 | **Hamming distance** | How many positions two strings disagree | [Hamming metric](concepts/hamming-metric.md) |
 | **Hamming weight** | How many nonzero positions (ones, for bits) | [Hamming metric](concepts/hamming-metric.md) |
+| <a id="hash"></a>**Hash / digest** | Usually an **unkeyed** fingerprint of data (e.g. SHA-2/3); building block for HMAC, signatures, and many PQC steps — not itself a shared-key cipher | [Crypto categories](orientation/crypto-categories.md) · [Hash / XOF](concepts/hash-xof-keccak.md) · [SHA-2 / SHA-3](#sha) |
 | <a id="hmac"></a>**HMAC** | Hash-based message authentication code — keyed integrity check built from a hash | [MAC](#mac) · [Symmetric crypto](#symmetric-crypto) |
 | <a id="https"></a>**HTTPS** | HTTP over TLS — everyday web encryption/authenticity bundle in the browser | [TLS](#tls) · [Crypto categories](orientation/crypto-categories.md) |
 | **Independence heuristic** | Pretend noise coordinates are independent for easy tail bounds | [Independence heuristics](concepts/independence-heuristics.md) |
@@ -91,7 +92,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="pkc"></a>**PKC** | Public-key cryptography (PKC) uses a mathematically related key pair: a public key that can be freely distributed and a private key that must remain secret. Public keys enable encryption, signature verification, or key agreement, depending on the cryptographic scheme. Classical PKC includes RSA, Diffie–Hellman (DH), and Elliptic-Curve Cryptography (ECC), which are widely used before the transition to post-quantum cryptography (PQC). | [Crypto categories](orientation/crypto-categories.md) · [Public-key picture](fundamentals/public-key-picture.md) · [History](orientation/history.md) · [Motivation](orientation/motivation.md) |
 | **Plaintext** | Readable message before encryption | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Poly-mul engine** | Schoolbook / Karatsuba / NTT organization for polynomial multiply | [Poly-mul engines](concepts/poly-mul-engines.md) |
-| <a id="pqc"></a>**PQC** | Post-quantum cryptography — public-key (and related) algorithms meant to stay hard even for large quantum computers; runs on ordinary machines today | [Crypto categories](orientation/crypto-categories.md) · [Motivation](orientation/motivation.md) |
+| <a id="pqc"></a>**PQC** | Post-quantum cryptography — asymmetric / public-key algorithms meant to stay hard even for large quantum computers; runs on ordinary machines today (a subfamily of PKC, alongside classical RSA/DH/ECC) | [Crypto categories](orientation/crypto-categories.md) · [Motivation](orientation/motivation.md) · [PKC](#pkc) |
 | **Public / secret key** | Publishable padlock vs private opener | [Public-key picture](fundamentals/public-key-picture.md) |
 | **PWM** | Pointwise multiply of NTT-domain coefficients | [Poly-mul engines](concepts/poly-mul-engines.md) |
 | **Quasi-cyclic (QC)** | Structure from rotations / polynomials mod $X^n-1$ | [Quasi-cyclic codes](concepts/quasi-cyclic-codes.md) |

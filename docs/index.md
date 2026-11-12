@@ -31,7 +31,7 @@ Hub: [orientation/README.md](orientation/README.md)
 2. [History](orientation/history.md) — [classical PKC](glossary.md#pkc) → quantum threat → NIST PQC  
 3. [Problems](orientation/problems.md) — easy forward, hard backward; family slogans  
 4. [Challenges](orientation/challenges.md) — size, DFR, SCA, hybrids, moving cryptanalysis  
-5. [Crypto categories (mindmap)](orientation/crypto-categories.md) — symmetric / PKC / KEM / signatures / classical vs PQC  
+5. [Crypto categories (mindmap)](orientation/crypto-categories.md) — goals / symmetric / hashes / asymmetric (classical + PQC) / protocols  
 
 
 ## 2. Fundamentals
