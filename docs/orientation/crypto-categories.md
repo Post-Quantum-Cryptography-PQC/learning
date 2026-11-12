@@ -3,7 +3,7 @@
 **Prereqs:** [Motivation](motivation.md) · [History](history.md) · [Challenges](challenges.md) (recommended)  
 **Next:** [How to read the math](../fundamentals/reading-math-notation.md) · [Why cryptography?](../fundamentals/why-cryptography.md) · [Public-key picture](../fundamentals/public-key-picture.md)
 
-**Learning goals.** Place security *goals* (confidentiality, integrity, authentication, non-repudiation), symmetric vs asymmetric (PKC), shared unkeyed building blocks, encryption vs signatures vs key agreement vs KEMs, classical PKC and PQC *as asymmetric subfamilies*, AEAD vs MAC vs signature, and “protocols bundle tools” on one mental map — before the math pages.
+**Learning goals.** Place security *goals* (confidentiality, integrity, authentication, non-repudiation), symmetric vs asymmetric (PKC), shared unkeyed building blocks, encryption vs signatures vs key agreement vs KEMs, classical PKC and PQC *as asymmetric subfamilies*, PQC by **hardness family** (with job tags), AEAD vs MAC vs signature, and “protocols bundle tools” on one mental map — before the math pages.
 
 ## Why this map exists
 
@@ -26,7 +26,7 @@ Symmetric and asymmetric are the two main tool families. Shared building blocks 
 flowchart TB
   C(("Cryptography"))
   C --> S["Symmetric / keyed<br/>• AES / ChaCha20<br/>• AEAD<br/>• HMAC / CMAC"]
-  C --> A["Asymmetric / PKC<br/>• Classical: RSA, ECC, DH<br/>• PQC: ML-KEM, ML-DSA, SLH-DSA"]
+  C --> A["Asymmetric / PKC<br/>• Classical: RSA, ECC, DH<br/>• PQC: lattice · hash-based · code-based (+ research)"]
   S --> B["Shared building blocks<br/>Hash functions · XOFs · KDFs · Randomness"]
   A --> B
   B --> PR["Protocols and applications<br/>TLS · HTTPS · VPN · Secure Boot · IoT"]
@@ -101,7 +101,7 @@ flowchart TB
       J --> K["Key agreement"]
       J --> M["KEM"]
       A --> CL["Classical PKC<br/>RSA / DH / ECC<br/>Shor-vulnerable"]
-      A --> P["PQC<br/>ML-KEM / ML-DSA / SLH-DSA<br/>and more research families"]
+      A --> P["PQC by hardness family<br/>lattice / hash / code / other"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
       class A,J,E,D,K,M,CL,P n
     ```
@@ -123,19 +123,23 @@ flowchart TB
 
 === "PQC"
 
-    Subcategory of asymmetric / PKC — algorithms for ordinary computers today; public-key layer meant to resist large quantum computers.
+    Subcategory of asymmetric / PKC. Primary folders are **hardness families** (where the hardness comes from). Scheme names carry a **job** tag (KEM vs signature). Multivariate / isogeny stay one research leaf here — no deep pages yet.
 
     ```pqc-mermaid
     flowchart TB
       P["PQC<br/>under asymmetric"]
-      P --> N["NIST-era standards"]
-      N --> K["ML-KEM - lattices"]
-      N --> D["ML-DSA - lattices"]
-      N --> H["SLH-DSA - hash-based"]
-      P --> R["More KEMs / research<br/>code-based / multivariate / isogeny-adjacent"]
-      P --> F["Hardness families<br/>lattice LWE / codes / hashes"]
+      P --> L["Lattice / LWE"]
+      L --> LK["ML-KEM - KEM"]
+      L --> LD["ML-DSA - signature"]
+      L --> LF["FN-DSA / Falcon - signature optional"]
+      P --> H["Hash-based"]
+      H --> HS["SLH-DSA - signature"]
+      P --> C["Code-based"]
+      C --> CK["McEliece / HQC-shaped - KEMs"]
+      P --> O["Other research"]
+      O --> OR["multivariate · isogeny-adjacent"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class P,N,K,D,H,R,F n
+      class P,L,LK,LD,LF,H,HS,C,CK,O,OR n
     ```
 
 === "Protocols"
@@ -234,14 +238,24 @@ See [Motivation](motivation.md) · [History](history.md).
 
 **Post-quantum cryptography (PQC)** — still public-key style algorithms classical computers can run *today*, designed so large quantum computers should not break that public-key layer.
 
-| Role (NIST-era postcard) | Example slogan | Family |
-|--------------------------|----------------|--------|
-| KEM | ML-KEM | Lattices / Module-LWE |
-| Signature | ML-DSA | Lattices |
-| Signature | SLH-DSA | Hash-based |
-| More KEMs / research | code-based, multivariate, … | See tracks |
+**Primary categories = hardness families** (math source of hardness):
 
-Hardness-family postcard: [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
+| Family | Plain hardness slogan | Example schemes (job) |
+|--------|----------------------|------------------------|
+| **Lattice / LWE** | Noisy linear equations stay hard | [ML-KEM](../glossary.md#ml-kem) (KEM), [ML-DSA](../glossary.md#ml-dsa) (sig); FN-DSA/Falcon optional |
+| **Hash-based** | One-way hashes + tree/state tricks | [SLH-DSA](../glossary.md#slh-dsa) (sig) |
+| **Code-based** | Decoding a random-looking code is hard | McEliece / HQC-shaped (KEMs) |
+| **Other research** | Multivariate, isogeny-adjacent, … | Fewer default-deploy slots today |
+
+**Secondary postcard = by job** (same schemes, cut by API role):
+
+| Job | Deploy-facing examples | Also see |
+|-----|------------------------|----------|
+| **KEM** | ML-KEM | HQC / McEliece-shaped code-based KEMs |
+| **Signature** | ML-DSA, SLH-DSA | FN-DSA/Falcon (optional) |
+
+Do not confuse the two cuts: *family* answers “what math?”, *job* answers “what API?”.  
+Hardness postcard: [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
 
 ### 6. Protocols are bundles
 
@@ -261,6 +275,8 @@ PQC mainly replaces the **public-key** pieces; AES-like tools and shared buildin
 - A **KEM is not a signature**.  
 - **DH is not RSA encryption**.  
 - **PQC** is not a third peer next to “symmetric” and “asymmetric” — it is an asymmetric / PKC subfamily.  
+- PQC’s main shelves are **hardness families**, not “whatever NIST named this year”; NIST names are *instances* under those families.  
+- **Family ≠ job** — ML-KEM and ML-DSA share a lattice family but different APIs.  
 - A bare **hash** (SHA-2/3) is usually unkeyed — not the same shelf as AES or a shared-key MAC.  
 - **AEAD/MAC** = shared-key authentication; **signatures** = public verification (and usually non-repudiation assumptions).  
 - **PQC ≠ quantum communication**; PQC runs on ordinary computers.  
