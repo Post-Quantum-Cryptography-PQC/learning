@@ -5,9 +5,9 @@
 
 **Learning goals.** After this page you can:
 
-- Say when classical [public-key cryptography (PKC)](../glossary.md#pkc) (RSA / Diffie–Hellman / ECC) appeared
-- Say when early PQC ideas, quantum algorithms (Shor / Grover), and later standardization arrived
-- Name the main PQC hardness families, and that **NIST is not the only** standards path (e.g. ISO/IEC)
+- Put classical [PKC](../glossary.md#pkc) (Diffie–Hellman, RSA, ECC), McEliece (1978), Shor / Grover, and later PQC standards in the right historical order
+- Name the main hardness families: lattice / LWE, code-based, hash-based, multivariate, and isogeny-related
+- Explain that a scheme need not be a NIST FIPS primary pick to appear in other standards (for example ISO/IEC)
 
 ## Why a timeline helps
 
