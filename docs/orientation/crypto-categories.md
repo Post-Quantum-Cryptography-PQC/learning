@@ -15,32 +15,32 @@ Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#p
 
 One giant mindmap is hard to read. This page uses:
 
-1. a **roomy overview** (top folders + asymmetric subfamilies), then  
-2. **one detailed map per folder** in tabs below.
+1. a **roomy overview** matching the tool stack below, then  
+2. **one detailed map per folder** in tabs (including Goals — *what crypto is for*, not a peer tool family).
 
 ### Overview
+
+Symmetric and asymmetric are the two main tool families. Shared building blocks feed both. Protocols sit on top of the stack.
 
 ```pqc-mermaid
 flowchart TB
   C(("Cryptography"))
-  C --> G["Goals<br/>conf / integrity / auth / non-repudiation"]
-  C --> S["Symmetric / keyed<br/>AES / ChaCha / AEAD / MAC"]
-  C --> B["Shared building blocks<br/>hash / XOF / KDF / randomness"]
-  C --> A["Asymmetric / PKC"]
-  C --> PR["Protocols / apps<br/>TLS / HTTPS / VPN / boot / IoT"]
-  A --> CL["Classical<br/>RSA / ECC / DH"]
-  A --> P["PQC<br/>ML-KEM / ML-DSA / SLH-DSA"]
+  C --> S["Symmetric / keyed<br/>• AES / ChaCha20<br/>• AEAD<br/>• HMAC / CMAC"]
+  C --> A["Asymmetric / PKC<br/>• Classical: RSA, ECC, DH<br/>• PQC: ML-KEM, ML-DSA, SLH-DSA"]
+  S --> B["Shared building blocks<br/>Hash functions · XOFs · KDFs · Randomness"]
+  A --> B
+  B --> PR["Protocols and applications<br/>TLS · HTTPS · VPN · Secure Boot · IoT"]
   classDef hub fill:#0f766e,stroke:#5eead4,color:#ecfeff
   classDef leaf fill:#115e59,stroke:#99f6e4,color:#ecfeff
   class C hub
-  class G,S,B,A,PR,CL,P leaf
+  class S,A,B,PR leaf
 ```
 
 ### Detail maps (one folder at a time)
 
 === "Goals"
 
-    Four security objectives — related, but not the same word.
+    Not a tool shelf — four security *objectives* the tools above aim for.
 
     ```pqc-mermaid
     flowchart TB
