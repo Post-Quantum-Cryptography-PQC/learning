@@ -12,11 +12,12 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | Term | Plain meaning | See |
 |------|---------------|-----|
 | **ADP** | Area × delay — one circuit trade-off scalar in HW tables | [Area–time honesty](bridge/area-time-power-honesty.md) |
-| <a id="aead"></a>**AEAD** | Authenticated encryption with associated data — encrypts for secrecy and checks integrity (often with extra public header bytes) in one package | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
+| <a id="aead"></a>**AEAD** | Authenticated encryption with associated data — encrypts for secrecy and adds a **shared-key** integrity/authentication tag (often with extra public header bytes). Not a public-key signature | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | <a id="aes"></a>**AES** | Advanced Encryption Standard — common symmetric block cipher for bulk confidentiality | [Symmetric crypto](#symmetric-crypto) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Alternant code** | Algebraic code family related to GRS; includes binary Goppa as a famous case | [Goppa and alternant](concepts/goppa-alternant.md) |
 | <a id="asymmetric-pkc"></a>**Asymmetric / PKC** | Public-key family (public + private key). **Classical PKC** and **PQC** are subfamilies here — not separate top-level crypto kinds | [Crypto categories](orientation/crypto-categories.md) · [PKC](#pkc) |
-| **Authenticity** | Strangers cannot forge or silently edit a message | [Why cryptography?](fundamentals/why-cryptography.md) |
+| <a id="authentication"></a>**Authentication** | Evidence about *which key* produced data — shared-key (MAC/AEAD) or publicly verifiable (signature) | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
+| **Authenticity** | Informal umbrella for “not forged / not silently edited”; this curriculum splits it into [integrity](#integrity), [authentication](#authentication), and [non-repudiation](#non-repudiation) | [Crypto categories](orientation/crypto-categories.md) |
 | **Bit** | A $0$ or $1$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
 | **Bit-flipping** | Iterative decoder: flip bits that fail many parity checks | [Bit-flipping decoding](concepts/bit-flipping-decoding.md) |
 | **Butterfly (NTT)** | Local 2-in/2-out modular update with a twiddle | [NTT butterfly](concepts/ntt-butterfly.md) |
@@ -24,6 +25,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Clock / register** | Heartbeat + stored bits between ticks | [Clocks, registers](bridge/clocks-registers-latency.md) |
 | **Code / codeword** | Allowed protected strings; a codeword is one allowed string | [Error-correcting codes](concepts/error-correcting-codes.md) |
 | **Combinational logic** | Outputs from current inputs only (no memory) | [Clocks, registers](bridge/clocks-registers-latency.md) |
+| <a id="cmac"></a>**CMAC** | Cipher-based MAC — keyed integrity tag built from a block cipher (sibling of HMAC) | [MAC](#mac) · [Symmetric crypto](#symmetric-crypto) |
 | **Confidentiality** | Strangers cannot read the content | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Critical path** | Longest combo delay that limits the clock period (ns) | [Clocks, registers](bridge/clocks-registers-latency.md) |
 | **CVP** | Closest vector problem — nearest lattice point to a target (slogan) | [Lattices](fundamentals/lattices-gentle.md) |
@@ -34,7 +36,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 |------|---------------|-----|
 | **DFR** | How often honest Decaps fails to return the session key | [DFR](concepts/dfr.md) |
 | <a id="dh"></a>**DH / Diffie–Hellman** | Classical key-agreement method: both sides derive a shared secret; not message encryption by itself | [Key agreement](#key-agreement) · [Crypto categories](orientation/crypto-categories.md) |
-| <a id="digital-signature"></a>**Digital signature** | Sign with the private key; anyone with the public key can verify — authenticity, not confidentiality | [Crypto categories](orientation/crypto-categories.md) · [Public-key picture](fundamentals/public-key-picture.md) |
+| <a id="digital-signature"></a>**Digital signature** | Sign with the private key; anyone with the public key can verify — integrity + authentication with public verification; often non-repudiation. Not confidentiality, and not a shared-key MAC/AEAD | [Crypto categories](orientation/crypto-categories.md) · [Public-key picture](fundamentals/public-key-picture.md) |
 | <a id="ecc"></a>**ECC** | Elliptic-curve cryptography — classical PKC family; often **ECDH** (agreement) and **ECDSA** (signatures) | [PKC](#pkc) · [Crypto categories](orientation/crypto-categories.md) |
 | <a id="ecdh"></a>**ECDH** | Elliptic-curve Diffie–Hellman — ECC-based key agreement | [DH](#dh) · [Key agreement](#key-agreement) |
 | <a id="ecdsa"></a>**ECDSA** | Elliptic-curve digital signature algorithm — ECC-based signatures | [Digital signature](#digital-signature) · [ECC](#ecc) |
@@ -53,8 +55,10 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="hmac"></a>**HMAC** | Hash-based message authentication code — keyed integrity check built from a hash | [MAC](#mac) · [Symmetric crypto](#symmetric-crypto) |
 | <a id="https"></a>**HTTPS** | HTTP over TLS — everyday web encryption/authenticity bundle in the browser | [TLS](#tls) · [Crypto categories](orientation/crypto-categories.md) |
 | **Independence heuristic** | Pretend noise coordinates are independent for easy tail bounds | [Independence heuristics](concepts/independence-heuristics.md) |
+| <a id="integrity"></a>**Integrity** | Silent edits are detected (content was not changed unnoticed) | [Crypto categories](orientation/crypto-categories.md) · [Why cryptography?](fundamentals/why-cryptography.md) |
 | **IND-CPA / IND-CCA** | Security games: chosen-plaintext vs also decryption-oracle powers | [IND-CPA / CCA](concepts/ind-cpa-cca.md) |
 | **ISD** | Information-set decoding — main classical attack family on sparse decoding | [ISD](concepts/information-set-decoding.md) |
+| <a id="kdf"></a>**KDF** | Key-derivation function — turns a secret (and maybe context) into one or more keys | [Crypto categories](orientation/crypto-categories.md) · [Hash](#hash) |
 | <a id="kem"></a>**KEM** | Key encapsulation mechanism — API to ship a fresh session key ($\mathsf{Encaps}$ / $\mathsf{Decaps}$) | [KEM](concepts/kem.md) · [Crypto categories](orientation/crypto-categories.md) |
 | **KEM accelerator** | HW datapath + control that runs Encaps/Decaps hot paths | [KEM accelerator anatomy](concepts/kem-accelerator-anatomy.md) |
 | **Key** | Secret that controls scrambling / unscrambling | [Why cryptography?](fundamentals/why-cryptography.md) |
@@ -82,6 +86,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Motivation (PQC)** | Why migrate: quantum break of RSA/ECC + long-lived recorded traffic | [Motivation](orientation/motivation.md) |
 | **Niederreiter** | Syndrome / parity-check packaging twin of McEliece | [Niederreiter](concepts/niederreiter.md) |
 | <a id="nist"></a>**NIST** | U.S. standards body that ran the PQC competition and publishes algorithm standards many products follow | [History](orientation/history.md) · [PQC](#pqc) |
+| <a id="non-repudiation"></a>**Non-repudiation** | Third parties can check that a particular signer key authorized a message (with key-identity assumptions) — typically signatures, not MAC/AEAD | [Crypto categories](orientation/crypto-categories.md) · [Digital signature](#digital-signature) |
 | **NTT / INTT** | Number-theoretic (inverse) transform — modular FFT for poly mul | [NTT butterfly](concepts/ntt-butterfly.md) |
 
 ## P–S
@@ -118,6 +123,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Trapdoor** | Secret that makes a hard reverse easy for the owner | [Hard problems](fundamentals/hard-problems.md) |
 | **Twiddle** | Precomputed root-of-unity power used inside NTT butterflies | [NTT butterfly](concepts/ntt-butterfly.md) |
 | <a id="vpn"></a>**VPN** | Virtual private network — encrypted tunnel for traffic; usually classical or hybrid PKC + symmetric crypto under the hood | [Crypto categories](orientation/crypto-categories.md) · [TLS](#tls) |
+| <a id="xof"></a>**XOF / SHAKE** | Extendable-output function — hash-like primitive that can emit a long bitstream (common in PQC sampling) | [Hash](#hash) · [Hash / XOF](concepts/hash-xof-keccak.md) |
 | **XOR $\oplus$** | Same bits → $0$, different → $1$; addition in $\mathbb{F}_2$ | [Bits, XOR](fundamentals/bits-xor-randomness.md) |
 | **Wrap-around ($X^n\equiv 1$)** | Fold high powers back to fixed length $n$ | [Polynomial wrap-around](fundamentals/polynomials-wraparound.md) |
 

@@ -3,13 +3,13 @@
 **Prereqs:** [Motivation](motivation.md) · [History](history.md) · [Challenges](challenges.md) (recommended)  
 **Next:** [How to read the math](../fundamentals/reading-math-notation.md) · [Why cryptography?](../fundamentals/why-cryptography.md) · [Public-key picture](../fundamentals/public-key-picture.md)
 
-**Learning goals.** Place confidentiality vs authenticity, symmetric vs asymmetric (PKC), unkeyed hashes, encryption vs signatures vs key agreement vs KEMs, classical PKC and PQC *as asymmetric subfamilies*, and “protocols bundle tools” on one mental map — before the math pages.
+**Learning goals.** Place security *goals* (confidentiality, integrity, authentication, non-repudiation), symmetric vs asymmetric (PKC), shared unkeyed building blocks, encryption vs signatures vs key agreement vs KEMs, classical PKC and PQC *as asymmetric subfamilies*, AEAD vs MAC vs signature, and “protocols bundle tools” on one mental map — before the math pages.
 
 ## Why this map exists
 
-Later pages dive into codes, lattices, and hardware. This page is the **folder tree**: what kinds of crypto tools exist, what job each does, and how PQC fits.
+Later pages dive into codes, lattices, and hardware. This page is a **teaching folder tree** (conceptual organization, not a rigid ontology): what kinds of crypto tools exist, what job each does, and how PQC fits. Shared primitives (hashes, XOFs, KDFs, randomness) can serve **both** symmetric and asymmetric schemes.
 
-Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc) · [AEAD](../glossary.md#aead) · [MAC](../glossary.md#mac) · [Hash](../glossary.md#hash).
+Skip freely; come back when a word feels fuzzy. Glossary: [PKC](../glossary.md#pkc) · [KEM](../glossary.md#kem) · [PQC](../glossary.md#pqc) · [AEAD](../glossary.md#aead) · [MAC](../glossary.md#mac) · [Hash](../glossary.md#hash) · [Integrity](../glossary.md#integrity) · [Authentication](../glossary.md#authentication) · [Non-repudiation](../glossary.md#non-repudiation).
 
 ## The maps
 
@@ -23,72 +23,74 @@ One giant mindmap is hard to read. This page uses:
 ```pqc-mermaid
 flowchart TB
   C(("Cryptography"))
-  C --> G["Goals<br/>why we encrypt / sign"]
-  C --> S["Symmetric<br/>shared secret - keyed"]
-  C --> H["Hash / digests<br/>usually unkeyed"]
-  C --> A["Asymmetric / PKC<br/>public + private key"]
-  C --> PR["Protocols / hybrids<br/>TLS / HTTPS / VPN"]
-  A --> CL["Classical PKC<br/>RSA / DH / ECC"]
-  A --> P["PQC<br/>post-quantum public-key"]
+  C --> G["Goals<br/>conf / integrity / auth / non-repudiation"]
+  C --> S["Symmetric / keyed<br/>AES / ChaCha / AEAD / MAC"]
+  C --> B["Shared building blocks<br/>hash / XOF / KDF / randomness"]
+  C --> A["Asymmetric / PKC"]
+  C --> PR["Protocols / apps<br/>TLS / HTTPS / VPN / boot / IoT"]
+  A --> CL["Classical<br/>RSA / ECC / DH"]
+  A --> P["PQC<br/>ML-KEM / ML-DSA / SLH-DSA"]
   classDef hub fill:#0f766e,stroke:#5eead4,color:#ecfeff
   classDef leaf fill:#115e59,stroke:#99f6e4,color:#ecfeff
   class C hub
-  class G,S,H,A,PR,CL,P leaf
+  class G,S,B,A,PR,CL,P leaf
 ```
 
 ### Detail maps (one folder at a time)
 
 === "Goals"
 
-    Confidentiality vs authenticity — you can have one without the other.
+    Four security objectives — related, but not the same word.
 
     ```pqc-mermaid
     flowchart TB
       G["Goals"]
       G --> C["Confidentiality<br/>strangers cannot read"]
-      G --> A["Authenticity / integrity<br/>strangers cannot forge or silently edit"]
-      G --> B["Often both<br/>HTTPS / chat / banking"]
-      C --> CT["Encryption"]
-      A --> AT["Signatures / MACs"]
-      B --> AE["AEAD<br/>secrecy + integrity together"]
+      G --> I["Integrity<br/>silent edits are detected"]
+      G --> A["Authentication<br/>who/which key is speaking"]
+      G --> N["Non-repudiation<br/>third-party evidence of signing"]
+      C --> CE["Encryption / AEAD"]
+      I --> IM["MAC / AEAD / signature"]
+      A --> AM["MAC-AEAD shared key<br/>or signature public verify"]
+      N --> NS["Digital signatures<br/>not plain MAC/AEAD"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class G,C,A,B,CT,AT,AE n
+      class G,C,I,A,N,CE,IM,AM,NS n
     ```
 
 === "Symmetric"
 
-    Keyed tools that share one secret on both sides — great after a session key exists. Ordinary hashes are *not* listed here (see Hash / digests).
+    Keyed tools that share one secret on both sides. Ordinary unkeyed hashes live under Shared building blocks.
 
     ```pqc-mermaid
     flowchart TB
-      S["Symmetric - keyed"]
-      S --> K["Same shared secret both sides"]
-      S --> F["Fast bulk crypto"]
-      S --> E["Encryption<br/>AES / ChaCha"]
-      S --> M["MAC / HMAC / AEAD<br/>keyed integrity or both"]
+      S["Symmetric / keyed"]
+      S --> E["AES / ChaCha<br/>encryption"]
+      S --> AE["AEAD<br/>encrypt + integrity tag"]
+      S --> M["HMAC / CMAC<br/>keyed MAC only"]
       S --> Q["Quantum note<br/>Grover - larger keys / tags"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class S,K,F,E,M,Q n
+      class S,E,AE,M,Q n
     ```
 
-=== "Hash / digests"
+=== "Shared building blocks"
 
-    Ordinary cryptographic hashes are **unkeyed** primitives (no shared secret). They feed many constructions — MACs, signatures, KEMs, transcripts — without being “symmetric crypto” themselves.
+    Usually **unkeyed** (or randomness) primitives reused by *both* symmetric and asymmetric schemes — conceptual shelf, not “a kind of PKC.”
 
     ```pqc-mermaid
     flowchart TB
-      H["Hash / digests<br/>usually unkeyed"]
-      H --> S["SHA-2 / SHA-3<br/>fixed-length fingerprint"]
-      H --> X["XOF / SHAKE<br/>extendable output"]
-      H --> U["Used by<br/>HMAC / signatures / PQC / transcripts"]
-      H --> N["Not a shared-key cipher<br/>and not a signature by itself"]
+      B["Shared building blocks"]
+      B --> H["Hash / digest<br/>SHA-2 / SHA-3"]
+      B --> X["XOF / SHAKE<br/>extendable output"]
+      B --> K["KDF<br/>derive keys from secrets"]
+      B --> R["Randomness<br/>fresh keys / nonces"]
+      B --> N["Used by<br/>HMAC / signatures / KEMs / TLS"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class H,S,X,U,N n
+      class B,H,X,K,R,N n
     ```
 
 === "Asymmetric / PKC"
 
-    Public + private key family. **Jobs** first; **classical** and **PQC** are subfamilies under this same branch (not peer folders next to “asymmetric”).
+    Public + private key family. **Jobs** first; **classical** and **PQC** are subfamilies under this same branch.
 
     ```pqc-mermaid
     flowchart TB
@@ -142,14 +144,14 @@ flowchart TB
 
     ```pqc-mermaid
     flowchart TB
-      PR["Protocols / hybrids<br/>TLS / HTTPS / VPN"]
-      PR --> K["KEM or key agreement<br/>session setup"]
-      PR --> S["Signatures<br/>authenticity / certificates"]
-      PR --> Y["Symmetric<br/>bulk data"]
-      PR --> H["Hashes<br/>transcripts / derivations"]
+      PR["Protocols / apps"]
+      PR --> T["TLS / HTTPS"]
+      PR --> V["VPN"]
+      PR --> B["Secure Boot"]
+      PR --> I["IoT / constrained links"]
       PR --> X["Hybrid migration<br/>classical + PQC together"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class PR,K,S,Y,H,X n
+      class PR,T,V,B,I,X n
     ```
 
 ## Branch guide (read with the maps)
@@ -158,45 +160,66 @@ flowchart TB
 
 | Goal | Plain English | Typical tools |
 |------|---------------|---------------|
-| **Confidentiality** | Strangers cannot *read* the content | Encryption (symmetric or public-key) |
-| **Authenticity / integrity** | Strangers cannot *forge or silently edit* | Signatures, [MACs](../glossary.md#mac) |
-| **Often both** | Real apps usually need secrecy *and* authenticity | [AEAD](../glossary.md#aead) packages both; HTTPS / chat / banking |
+| **Confidentiality** | Strangers cannot *read* the content | Encryption; often [AEAD](../glossary.md#aead) |
+| **Integrity** | Silent edits are *detected* | [MAC](../glossary.md#mac), AEAD tag, or signature |
+| **Authentication** | You know *which key* produced the data | Shared-key MAC/AEAD **or** public-key signature |
+| **Non-repudiation** | Third parties can check a signer’s mark (with key-identity assumptions) | [Digital signatures](../glossary.md#digital-signature) — **not** plain MAC/AEAD |
 
-You can have one without the other. Real apps usually need **both**.  
+Real apps usually need several of these together.  
 Deeper toys: [Why cryptography?](../fundamentals/why-cryptography.md).
 
-### 2. Symmetric, hashes, and asymmetric (PKC)
+### 2. AEAD vs MAC vs digital signature
 
-| | **Symmetric** | **Hash / digests** | **Asymmetric / PKC** |
-|--|---------------|--------------------|----------------------|
-| Keys | Same secret both sides | Usually **unkeyed** | Public + private pair |
-| Role | Fast bulk encrypt / MAC / AEAD | Fingerprint data; building block | First meeting, encrypt/sign/agree/KEM |
-| Quantum slogan | Grover → larger keys/tags | Larger digests for margin | Shor breaks **classical** PKC |
+This is the distinction that most helps when moving into PQC (where you will meet KEMs **and** signatures).
+
+| Capability | [AEAD](../glossary.md#aead) | [MAC](../glossary.md#mac) | [Signature](../glossary.md#digital-signature) |
+|------------|------|-----|-----------|
+| Encryption (confidentiality) | Yes | No | No |
+| Integrity | Yes | Yes | Yes |
+| Shared-key authentication | Yes | Yes | No |
+| Public verification | No | No | Yes |
+| Third-party evidence of signer authorization | No | No | Yes — subject to key identity and security assumptions |
+
+**Read-out:** AEAD/MAC prove “someone who knows the shared secret touched this.” A signature proves “the holder of this public verification key signed this,” which strangers can check without that secret.
+
+### Quick self-check (auth)
+
+Can a TLS record’s AEAD tag replace a certificate signature for proving the server’s long-term identity to a browser?  
+<details><summary>Answer</summary>
+No — AEAD is shared-key authentication for the session traffic. Long-term server identity uses <strong>signatures</strong> (and certificates) that outsiders can verify with a public key.
+</details>
+
+### 3. Symmetric, shared blocks, and asymmetric (PKC)
+
+| | **Symmetric / keyed** | **Shared building blocks** | **Asymmetric / PKC** |
+|--|----------------------|----------------------------|----------------------|
+| Keys | Same secret both sides | Usually unkeyed (or RNG) | Public + private pair |
+| Role | AES/ChaCha, AEAD, HMAC/CMAC | Hash, XOF, KDF, randomness | Encrypt / sign / agree / KEM |
+| Quantum slogan | Grover → larger keys/tags | Larger digests / margins | Shor breaks **classical** PKC |
 
 **Classical PKC** and **PQC** are two subfamilies *under* asymmetric / PKC — not separate top-level folders beside it.  
-**Asymmetric** and **public-key cryptography (PKC)** mean the same family here.  
-Glossary: [Symmetric crypto](../glossary.md#symmetric-crypto) · [Hash](../glossary.md#hash) · [Asymmetric / PKC](../glossary.md#asymmetric-pkc) · [PKC](../glossary.md#pkc).
+Glossary: [Symmetric crypto](../glossary.md#symmetric-crypto) · [Hash](../glossary.md#hash) · [KDF](../glossary.md#kdf) · [Asymmetric / PKC](../glossary.md#asymmetric-pkc) · [PKC](../glossary.md#pkc).
 
-### 3. Four PKC *jobs* (do not mix the APIs)
+### 4. Four PKC *jobs* (do not mix the APIs)
 
 | Job | Who uses which key | What you get |
 |-----|--------------------|--------------|
 | **Public-key encryption** | Encrypt with $\mathsf{pk}$; decrypt with $\mathsf{sk}$ | Confidentiality of a message |
-| **Digital signature** | Sign with $\mathsf{sk}$; verify with $\mathsf{pk}$ | Authenticity / integrity |
+| **Digital signature** | Sign with $\mathsf{sk}$; verify with $\mathsf{pk}$ | Integrity + authentication; often non-repudiation |
 | **Key agreement** (e.g. DH / ECDH) | Both contribute; output a **shared secret** | A session secret — *not* “encrypt this email” by itself |
 | **KEM** | $\mathsf{Encaps}(\mathsf{pk})\to(\mathsf{ct},K)$; $\mathsf{Decaps}(\mathsf{sk},\mathsf{ct})\to K$ | Fresh session key $K$ under a clean API |
 
 Modern deployments lean on **KEMs** (and signatures) more than raw “encrypt a whole file with RSA.”  
 Story page: [Public-key picture](../fundamentals/public-key-picture.md) · concept: [KEM](../concepts/kem.md).
 
-### Quick self-check
+### Quick self-check (PKC jobs)
 
 Diffie–Hellman gives two parties a shared secret. Is that the same API as “encrypt a message under Alice’s public key”?  
 <details><summary>Answer</summary>
 No — DH is <strong>key agreement</strong>. Message encryption and KEMs are different jobs (related story, different algorithms / APIs).
 </details>
 
-### 4. Classical PKC vs PQC (both under asymmetric)
+### 5. Classical PKC vs PQC (both under asymmetric)
 
 Both are **asymmetric / PKC** subfamilies.
 
@@ -220,23 +243,26 @@ See [Motivation](motivation.md) · [History](history.md).
 
 Hardness-family postcard: [History](history.md). Tracks: [code-based](../tracks/code-based-kems/ROADMAP.md) · [lattice](../tracks/lattice-lwe/ROADMAP.md) · [hash-based signatures](../tracks/hash-based-signatures/ROADMAP.md) · [hardware](../tracks/pqc-hardware/ROADMAP.md).
 
-### 5. Protocols are bundles
+### 6. Protocols are bundles
 
-**HTTPS / TLS / VPN** are not one algorithm. They combine:
+**TLS / HTTPS / VPN / Secure Boot / IoT stacks** are not one algorithm. They combine:
 
 1. key establishment (KEM or key agreement, often **hybrid** classical + PQC during migration),  
-2. **signatures** (and certificates) for who you are talking to,  
-3. **symmetric** crypto for the bulk bytes.
+2. **signatures** (and certificates) for long-term identity / authorization evidence,  
+3. **symmetric** crypto (often AEAD) for bulk bytes,  
+4. **hashes / KDFs** for transcripts and key derivation.
 
-PQC mainly replaces the **public-key** pieces; AES-like tools stay, often with larger margins.
+PQC mainly replaces the **public-key** pieces; AES-like tools and shared building blocks stay, often with larger margins.
 
 ## Common confusions
 
-- “Encryption” in everyday speech often mixes confidentiality with authenticity — they differ.  
+- “Encryption” in everyday speech often mixes confidentiality with integrity/authentication — they differ.  
+- **Integrity ≠ authentication ≠ non-repudiation** — see the goals table and AEAD/MAC/signature comparison.  
 - A **KEM is not a signature**.  
 - **DH is not RSA encryption**.  
 - **PQC** is not a third peer next to “symmetric” and “asymmetric” — it is an asymmetric / PKC subfamily.  
 - A bare **hash** (SHA-2/3) is usually unkeyed — not the same shelf as AES or a shared-key MAC.  
+- **AEAD/MAC** = shared-key authentication; **signatures** = public verification (and usually non-repudiation assumptions).  
 - **PQC ≠ quantum communication**; PQC runs on ordinary computers.  
 - Publishing a **public** key is intentional; the **private** key must stay secret.
 
