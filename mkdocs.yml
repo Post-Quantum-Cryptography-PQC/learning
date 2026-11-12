@@ -1,8 +1,8 @@
 site_name: PQC Learn
 site_description: Fundamentals to research papers in post-quantum cryptography
 site_url: https://post-quantum-cryptography-pqc.github.io/learning/
-repo_url: https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-public
-repo_name: pqc-learning-public
+repo_url: https://github.com/Post-Quantum-Cryptography-PQC/learning
+repo_name: learning
 edit_uri: edit/main/docs/
 
 # Website HTML is built by CI on the `learning` Pages host (not committed here).
