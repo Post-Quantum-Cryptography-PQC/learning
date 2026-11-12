@@ -4,7 +4,12 @@
 **Next:** [Polynomial multiply engines](poly-mul-engines.md) · [NTT butterfly](ntt-butterfly.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** State what a modular multiplier computes, contrast Barrett / Montgomery / sparse-prime Karatsuba-style approaches at slogan level, sketch Barrett for Kyber-shaped primes $q=\delta\cdot 2^e+1$, and explain why LBC/HE coefficient mul is a bottleneck — without reading Verilog.
+**Learning goals.** After this page you can:
+
+- State what a modular multiplier computes
+- Contrast Barrett / Montgomery / sparse-prime Karatsuba-style approaches at slogan level
+- Sketch Barrett for Kyber-shaped primes $q=\delta\cdot 2^e+1$
+- Explain why LBC/HE coefficient mul is a bottleneck — without reading Verilog
 
 ## Why this card exists
 

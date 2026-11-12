@@ -4,7 +4,11 @@
 **Next:** Track: [Rank metric](../tracks/rank-metric/ROADMAP.md) · [Information-set decoding](information-set-decoding.md) (Hamming twin)  
 **Tracks:** rank-metric
 
-**Learning goals.** State the rank-metric decoding problem in one line, contrast it side-by-side with Hamming syndrome decoding, and separate the owner’s structured decoder from the attacker’s hard public instance.
+**Learning goals.** After this page you can:
+
+- State the rank-metric decoding problem in one line
+- Contrast it side-by-side with Hamming syndrome decoding
+- Separate the owner’s structured decoder from the attacker’s hard public instance
 
 ## Why this card exists
 

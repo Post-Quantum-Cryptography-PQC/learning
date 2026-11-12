@@ -4,7 +4,11 @@
 **Next:** [Niederreiter](niederreiter.md) · [Syndrome decoding](syndrome-decoding.md) · Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Place GRS, alternant, and Goppa codes on one spectrum, say why Classic McEliece likes binary Goppa codes, and know that “algebraic shortcut for smaller keys” is historically dangerous — without deriving a full Goppa decoder.
+**Learning goals.** After this page you can:
+
+- Place GRS, alternant, and Goppa codes on one spectrum
+- Say why Classic McEliece likes binary Goppa codes
+- Know that “algebraic shortcut for smaller keys” is historically dangerous — without deriving a full Goppa decoder
 
 ## Why this card exists
 

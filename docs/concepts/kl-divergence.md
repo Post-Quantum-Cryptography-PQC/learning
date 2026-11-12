@@ -4,7 +4,12 @@
 **Next:** Paper: [2025/018 explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md) · [Gaps](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/graph/gaps.yaml) · [DFR](dfr.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Read $D(P\|Q)$ as “how badly $Q$ models $P$,” compute a tiny discrete example by hand, connect the independence case to an entropy gap, and know that large KL is about distributions — not an automatic attack.
+**Learning goals.** After this page you can:
+
+- Read $D(P\|Q)$ as “how badly $Q$ models $P$”
+- Compute a tiny discrete example by hand
+- Connect the independence case to an entropy gap
+- Know that large KL is about distributions — not an automatic attack
 
 ## Symbols on this page
 

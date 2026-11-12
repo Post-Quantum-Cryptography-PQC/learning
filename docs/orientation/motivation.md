@@ -3,7 +3,12 @@
 **Prereqs:** none  
 **Next:** [History](history.md)
 
-**Learning goals.** Explain what cryptography is for in one breath, why large quantum computers threaten today’s public-key tools, what “store now, decrypt later” means, and why PQC migration started before a world-breaking machine ships.
+**Learning goals.** After this page you can:
+
+- Explain what cryptography is for in one breath
+- Explain why large quantum computers threaten today’s public-key tools
+- Explain what “store now, decrypt later” means
+- Explain why PQC migration started before a world-breaking machine ships
 
 ## The job cryptography already does
 

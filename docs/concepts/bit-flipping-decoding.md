@@ -4,7 +4,11 @@
 **Next:** [DFR](dfr.md) · [QC-MDPC reaction attack explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md) · [Syndrome decoding](syndrome-decoding.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Explain bit-flipping as “flip bits that look guilty under many failed checks,” run a tiny iteration by hand, and connect decoder failure to DFR and reaction-attack lessons.
+**Learning goals.** After this page you can:
+
+- Explain bit-flipping as “flip bits that look guilty under many failed checks”
+- Run a tiny iteration by hand
+- Connect decoder failure to DFR and reaction-attack lessons
 
 ## Why this card exists
 

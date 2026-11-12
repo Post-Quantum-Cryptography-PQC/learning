@@ -4,7 +4,12 @@
 **Next:** [Quasi-cyclic codes](quasi-cyclic-codes.md) · [DFR](dfr.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Explain what an “information set” is, sketch why ISD beats naive sparse search, walk a tiny guess-and-check story, and connect ISD cost estimates to “security bits.”
+**Learning goals.** After this page you can:
+
+- Explain what an “information set” is
+- Sketch why ISD beats naive sparse search
+- Walk a tiny guess-and-check story
+- Connect ISD cost estimates to “security bits”
 
 ## Symbols on this page
 

@@ -3,7 +3,11 @@
 **Prereqs:** [From bits to codes](from-bits-to-codes.md) · [Probability](../fundamentals/probability-gentle.md)  
 **Next:** [Generator and parity-check](generator-and-parity-check.md) · [What “security bits” means](security-bits-and-work.md)
 
-**Learning goals.** Describe a binary symmetric channel, relate error rate to decoder failure with a fully counted toy, and contrast “channel noise” with “crypto noise” until the McEliece twist feels natural.
+**Learning goals.** After this page you can:
+
+- Describe a binary symmetric channel
+- Relate error rate to decoder failure with a fully counted toy
+- Contrast “channel noise” with “crypto noise” until the McEliece twist feels natural
 
 ## Why this page exists
 

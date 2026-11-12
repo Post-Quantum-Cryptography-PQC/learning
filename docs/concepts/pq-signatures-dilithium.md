@@ -4,7 +4,11 @@
 **Next:** [KEM](kem.md) (contrast) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Tracks: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
-**Learning goals.** Contrast a KEM with a signature in one table, walk Dilithium’s Sign loop as written in [[1]](#ref-1) (including “try again”), and see why that HW paper sweats both NTT and SHAKE.
+**Learning goals.** After this page you can:
+
+- Contrast a KEM with a signature in one table
+- Walk Dilithium’s Sign loop as written in [[1]](#ref-1) (including “try again”)
+- See why that HW paper sweats both NTT and SHAKE
 
 ## The one idea
 

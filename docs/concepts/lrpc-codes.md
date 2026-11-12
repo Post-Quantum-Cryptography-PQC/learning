@@ -4,7 +4,11 @@
 **Next:** [Rank syndrome decoding](rank-syndrome-decoding.md) · Track: [Rank metric](../tracks/rank-metric/ROADMAP.md)  
 **Tracks:** rank-metric
 
-**Learning goals.** Explain what “low-rank parity-check” suggests, contrast LRPC structure with MDPC-style Hamming sparsity, and say who uses the hidden support for decoding.
+**Learning goals.** After this page you can:
+
+- Explain what “low-rank parity-check” suggests
+- Contrast LRPC structure with MDPC-style Hamming sparsity
+- Say who uses the hidden support for decoding
 
 ## Why this card exists
 

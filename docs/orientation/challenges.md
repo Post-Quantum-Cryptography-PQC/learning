@@ -3,7 +3,11 @@
 **Prereqs:** [Problems](problems.md)  
 **Next:** [Crypto categories (mindmap)](crypto-categories.md) · [How to read the math](../fundamentals/reading-math-notation.md) · or [Why cryptography?](../fundamentals/why-cryptography.md)
 
-**Learning goals.** Name several *practical* obstacles beyond “pick a hard problem”: key/ciphertext size, decryption failures, side channels, hardware cost, hybrids, and the fact that cryptanalysis never freezes.
+**Learning goals.** After this page you can:
+
+- Name practical obstacles beyond “pick a hard problem”: key/ciphertext size, decryption failures, and side channels
+- Name hardware cost and hybrid migration as deployment realities
+- Remember that cryptanalysis never freezes
 
 ## Hardness is necessary, not sufficient
 

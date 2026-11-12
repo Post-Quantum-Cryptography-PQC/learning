@@ -3,7 +3,12 @@
 **Prereqs:** [History](history.md)  
 **Next:** [Challenges](challenges.md)
 
-**Learning goals.** Explain “easy forward, hard backward,” why parameters matter, that “secure” always means “hard for whom, under what puzzle, at what size,” and name RSA vs code vs lattice hardness at slogan level.
+**Learning goals.** After this page you can:
+
+- Explain “easy forward, hard backward”
+- Explain why parameters matter
+- Explain that “secure” always means “hard for whom, under what puzzle, at what size”
+- Name RSA vs code vs lattice hardness at slogan level
 
 ## Crypto is puzzle design
 

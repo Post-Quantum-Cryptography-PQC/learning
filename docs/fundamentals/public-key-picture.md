@@ -3,7 +3,13 @@
 **Prereqs:** [Why cryptography?](why-cryptography.md) · [Hard problems](hard-problems.md) · [Crypto categories (mindmap)](../orientation/crypto-categories.md) (recommended)  
 **Next:** [Quantum threat](quantum-threat.md) · [Vectors](vectors-matrices.md)
 
-**Learning goals.** Explain public vs secret keys with the padlock story, name the three classical PKC jobs plus KEM, walk Encaps/Decaps in plain English, say why real systems combine public-key crypto with AES-like tools, and separate correctness from security.
+**Learning goals.** After this page you can:
+
+- Explain public vs secret keys with the padlock story
+- Name the three classical PKC jobs plus KEM
+- Walk Encaps/Decaps in plain English
+- Say why real systems combine public-key crypto with AES-like tools
+- Separate correctness from security
 
 ## Why this page exists
 

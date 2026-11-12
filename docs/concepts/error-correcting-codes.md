@@ -4,7 +4,12 @@
 **Next:** [Hamming metric](hamming-metric.md) · [Linear codes](linear-codes.md) · [Syndrome decoding](syndrome-decoding.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Explain redundancy vs secrecy, encode and decode a tiny repeat code by hand, compute Hamming distance between two strings, and state the crypto twist (intentional sparse noise + secret decoder).
+**Learning goals.** After this page you can:
+
+- Explain redundancy vs secrecy
+- Encode and decode a tiny repeat code by hand
+- Compute Hamming distance between two strings
+- State the crypto twist (intentional sparse noise + secret decoder)
 
 ## Why this card exists
 

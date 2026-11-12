@@ -4,7 +4,11 @@
 **Next:** [Module-LWE](module-lwe.md) · [KEM](kem.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md)  
 **Tracks:** lattice-lwe
 
-**Learning goals.** State search-LWE and decision-LWE in plain words, write sample equations by hand, and explain why small noise is essential — building on the bridge arithmetic you already did.
+**Learning goals.** After this page you can:
+
+- State search-LWE and decision-LWE in plain words
+- Write sample equations by hand
+- Explain why small noise is essential — building on the bridge arithmetic you already did
 
 ## Why this card exists
 

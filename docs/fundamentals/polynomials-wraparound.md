@@ -3,7 +3,12 @@
 **Prereqs:** [Polynomials Part A (add and multiply)](polynomials-gentle.md)  
 **Next:** [Quantum threat](quantum-threat.md) · Concept: [Quasi-cyclic codes](../concepts/quasi-cyclic-codes.md) · Bridge: [From bits to codes](../bridge/from-bits-to-codes.md)
 
-**Learning goals.** Treat $X^n$ as $1$ (circular length $n$), reduce a product mod $X^n-1$ by hand, see that $\times X$ rotates coefficients, and meet the sparse×random slogan used later in QC KEMs.
+**Learning goals.** After this page you can:
+
+- Treat $X^n$ as $1$ (circular length $n$)
+- Reduce a product mod $X^n-1$ by hand
+- See that $\times X$ rotates coefficients
+- Meet the sparse×random slogan used later in QC KEMs
 
 ## Why this page exists
 

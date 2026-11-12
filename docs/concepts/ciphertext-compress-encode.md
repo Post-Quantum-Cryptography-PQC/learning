@@ -4,7 +4,11 @@
 **Next:** [Masking shares](masking-shares.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · [Error-correcting codes](error-correcting-codes.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
-**Learning goals.** Explain why lattice KEMs drop coefficient bits, try a tiny compress/decompress by hand, and separate “built-in compress” from optional extra error-correcting codes that shrink blobs further.
+**Learning goals.** After this page you can:
+
+- Explain why lattice KEMs drop coefficient bits
+- Try a tiny compress/decompress by hand
+- Separate “built-in compress” from optional extra error-correcting codes that shrink blobs further
 
 ## The one idea
 

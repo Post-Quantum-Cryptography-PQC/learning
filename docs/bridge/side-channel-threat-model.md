@@ -3,7 +3,11 @@
 **Prereqs:** [Bits, XOR, randomness](../fundamentals/bits-xor-randomness.md) · [Public-key picture](../fundamentals/public-key-picture.md) · helpful: [Clocks, registers, and latency](clocks-registers-latency.md)  
 **Next:** [Masking shares](../concepts/masking-shares.md) · [KEM accelerator anatomy](../concepts/kem-accelerator-anatomy.md) · [Area–time–power honesty](area-time-power-honesty.md)  
 
-**Learning goals.** Separate “the math looks hard” from “the chip might still leak,” name everyday side channels in plain words, and know why PQC HW papers add masking or shuffling.
+**Learning goals.** After this page you can:
+
+- Separate “the math looks hard” from “the chip might still leak”
+- Name everyday side channels in plain words
+- Know why PQC HW papers add masking or shuffling
 
 ## The one idea
 

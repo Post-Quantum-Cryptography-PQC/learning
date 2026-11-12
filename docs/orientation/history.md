@@ -3,7 +3,11 @@
 **Prereqs:** [Motivation](motivation.md)  
 **Next:** [Problems](problems.md)
 
-**Learning goals.** Place [classical PKC](../glossary.md#pkc) (RSA / Diffie–Hellman / ECC), early PQC ideas, the NIST competition, and today’s standards on one mental timeline — without memorizing every year.
+**Learning goals.** After this page you can:
+
+- Place [classical PKC](../glossary.md#pkc) (RSA / Diffie–Hellman / ECC) on one mental timeline
+- Place early PQC ideas, the NIST competition, and today’s standards on that same timeline
+- Do this without memorizing every year
 
 ## Why a timeline helps
 

@@ -3,7 +3,13 @@
 **Prereqs:** [Motivation](../orientation/motivation.md) · [History](../orientation/history.md) · [Hard problems](hard-problems.md) · [Public-key picture](public-key-picture.md)  
 **Next:** [Bridge overview](../bridge/README.md) · [Lattices (gentle)](lattices-gentle.md)
 
-**Learning goals.** Explain “store now, decrypt later,” what Shor vs Grover change in plain language, what post-quantum cryptography means, why you do **not** need a quantum computer to *use* PQC, and where code-based vs lattice families fit.
+**Learning goals.** After this page you can:
+
+- Explain “store now, decrypt later”
+- Explain what Shor vs Grover change in plain language
+- Explain what post-quantum cryptography means
+- Explain why you do **not** need a quantum computer to *use* PQC
+- Say where code-based vs lattice families fit
 
 ## Why this page exists
 

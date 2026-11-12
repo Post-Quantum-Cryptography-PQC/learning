@@ -4,7 +4,12 @@
 **Next:** [MDPC and QC-MDPC](mdpc-qc-mdpc.md) · [DFR](dfr.md) · [Independence heuristics](independence-heuristics.md) · Paper: [2025/018](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Explain why QC structure shrinks keys, identify bitlists with polynomials mod $X^n-1$, multiply a tiny example by hand, and see why product noise can create dependent coordinates.
+**Learning goals.** After this page you can:
+
+- Explain why QC structure shrinks keys
+- Identify bitlists with polynomials mod $X^n-1$
+- Multiply a tiny example by hand
+- See why product noise can create dependent coordinates
 
 ## Why this card exists
 

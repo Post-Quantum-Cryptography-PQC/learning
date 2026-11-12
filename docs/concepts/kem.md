@@ -4,7 +4,12 @@
 **Next:** [IND-CPA / IND-CCA](ind-cpa-cca.md) · [DFR](dfr.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
 **Tracks:** code-based-kems · lattice-lwe
 
-**Learning goals.** Recite KeyGen / Encaps / Decaps aloud, separate correctness from security, walk a hybrid-encryption story with AES, and name which PQC families share this API shape.
+**Learning goals.** After this page you can:
+
+- Recite KeyGen / Encaps / Decaps aloud
+- Separate correctness from security
+- Walk a hybrid-encryption story with AES
+- Name which PQC families share this API shape
 
 ## Why this card exists
 

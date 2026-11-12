@@ -4,7 +4,11 @@
 **Next:** [Noise samplers](noise-samplers.md) · [KEM](kem.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · HW fork: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** lattice-lwe · pqc-hardware (after theory)
 
-**Learning goals.** Explain Module-LWE as “LWE with polynomial / module packaging,” see why that shrinks keys versus plain LWE, and know that ML-KEM sits in this family — without implementing Kyber here.
+**Learning goals.** After this page you can:
+
+- Explain Module-LWE as “LWE with polynomial / module packaging”
+- See why that shrinks keys versus plain LWE
+- Know that ML-KEM sits in this family — without implementing Kyber here
 
 ## Why this card exists
 

@@ -3,7 +3,12 @@
 **Prereqs:** [Motivation](../orientation/motivation.md) (recommended) · [How to read the math](reading-math-notation.md) (optional)  
 **Next:** [Modular arithmetic](modular-arithmetic.md)
 
-**Learning goals.** After this page you can explain plaintext vs ciphertext, why keys matter more than secret recipes, name confidentiality vs authenticity, and tell symmetric from public-key at slogan level — slowly, with toys you can do on paper.
+**Learning goals.** After this page you can:
+
+- Explain plaintext vs ciphertext
+- Explain why keys matter more than secret recipes
+- Name confidentiality vs authenticity
+- Tell symmetric from public-key at slogan level — slowly, with paper toys
 
 ## Why this page exists
 

@@ -4,7 +4,10 @@
 **Next:** [Modular multiplier](../concepts/modular-multiplier.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Read area, delay, power, and ADP columns without over-claiming; know why open-PDK / academic STA tables are not drop-in copies of proprietary foundry numbers in a paper.
+**Learning goals.** After this page you can:
+
+- Read area, delay, power, and ADP columns without over-claiming
+- Know why open-PDK / academic STA tables are not drop-in copies of proprietary foundry numbers
 
 ## Why this page exists
 

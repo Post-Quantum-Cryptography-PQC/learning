@@ -3,7 +3,12 @@
 **Prereqs:** [Modular arithmetic](../fundamentals/modular-arithmetic.md) · [Polynomials Part A](../fundamentals/polynomials-gentle.md)  
 **Next:** Concept: [Linear codes](../concepts/linear-codes.md) · Lattice: [Lattices (gentle)](../fundamentals/lattices-gentle.md) · [Quasi-cyclic codes](../concepts/quasi-cyclic-codes.md)
 
-**Learning goals.** Explain why $\mathbb{F}_q$ appears, compute addition and multiplication in a tiny prime field with full tables, see why mod-$4$ is *not* a field, and know that extension fields exist without building them fully yet.
+**Learning goals.** After this page you can:
+
+- Explain why $\mathbb{F}_q$ appears
+- Compute addition and multiplication in a tiny prime field with full tables
+- See why mod-$4$ is *not* a field
+- Know that extension fields exist without building them fully yet
 
 ## Why this page exists
 

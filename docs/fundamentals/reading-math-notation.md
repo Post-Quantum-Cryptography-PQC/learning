@@ -3,7 +3,11 @@
 **Prereqs:** [Orientation](../orientation/README.md) recommended (Motivation → Challenges) · or none if jumping straight to symbols  
 **Next:** [Why cryptography?](why-cryptography.md)
 
-**Learning goals.** Recognize common symbols ($=$, $\equiv$, $\oplus$, $\Pr$, vectors), know that you can skip a formula on first read and come back, and practice translating several lines of math into English — slowly, on purpose.
+**Learning goals.** After this page you can:
+
+- Recognize common symbols ($=$, $\equiv$, $\oplus$, $\Pr$, vectors)
+- Know that you can skip a formula on first read and come back
+- Practice translating several lines of math into English — slowly, on purpose
 
 ## Symbols on this page (starter kit)
 

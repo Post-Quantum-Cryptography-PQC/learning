@@ -3,7 +3,12 @@
 **Prereqs:** [Hard problems](../fundamentals/hard-problems.md) · [Decoding as a puzzle](decoding-as-a-puzzle.md) · [Probability](../fundamentals/probability-gentle.md)  
 **Next:** [Information-set decoding](../concepts/information-set-decoding.md) · [Error-correcting codes](../concepts/error-correcting-codes.md) · [Code-based roadmap](../tracks/code-based-kems/ROADMAP.md) · [index](../index.md)
 
-**Learning goals.** Interpret phrases like “$128$-bit security,” compare attack cost to DFR-scale probabilities without mixing them up, read asymptotic big-O at slogan level, and ask the right questions when a paper claims a security level.
+**Learning goals.** After this page you can:
+
+- Interpret phrases like “$128$-bit security”
+- Compare attack cost to DFR-scale probabilities without mixing them up
+- Read asymptotic big-O at slogan level
+- Ask the right questions when a paper claims a security level
 
 ## Why this page exists
 

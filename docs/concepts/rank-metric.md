@@ -4,7 +4,11 @@
 **Next:** [LRPC codes](lrpc-codes.md) · [Rank syndrome decoding](rank-syndrome-decoding.md)  
 **Tracks:** rank-metric
 
-**Learning goals.** Define rank weight and rank distance, contrast them with Hamming twins on a tiny worked matrix, and recognize “low-rank error” as the sparsity slogan used in rank-based PQC.
+**Learning goals.** After this page you can:
+
+- Define rank weight and rank distance
+- Contrast them with Hamming twins on a tiny worked matrix
+- Recognize “low-rank error” as the sparsity slogan used in rank-based PQC
 
 ## Why this card exists
 

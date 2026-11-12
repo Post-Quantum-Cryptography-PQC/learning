@@ -4,7 +4,11 @@
 **Next:** [Syndrome decoding](syndrome-decoding.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md)  
 **Tracks:** code-based-kems · rank-metric
 
-**Learning goals.** Read $[n,k]$ notation, explain $G$ vs $H$, and compute a syndrome $Hy^\top=He^\top$ on a tiny example — recognizing that you already did this on the bridge.
+**Learning goals.** After this page you can:
+
+- Read $[n,k]$ notation
+- Explain $G$ vs $H$
+- Compute a syndrome $Hy^\top=He^\top$ on a tiny example
 
 ## Why this card exists
 

@@ -4,7 +4,12 @@
 **Next:** [DFR](dfr.md) · [Independence heuristics](independence-heuristics.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md)  
 **Tracks:** code-based-kems · lattice-lwe
 
-**Learning goals.** Separate “looking at ciphertexts” from “talking to a decryptor,” state IND-CPA vs IND-CCA in plain language, walk the challenge-bit game once slowly, and recognize why modern KEMs aim at CCA-style security.
+**Learning goals.** After this page you can:
+
+- Separate “looking at ciphertexts” from “talking to a decryptor”
+- State IND-CPA vs IND-CCA in plain language
+- Walk the challenge-bit game once slowly
+- Recognize why modern KEMs aim at CCA-style security
 
 ## Why this card exists
 

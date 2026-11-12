@@ -4,7 +4,12 @@
 **Next:** [KL divergence](kl-divergence.md) · Paper: [2025/018](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Explain what an independence heuristic claims, give a two-bit counterexample to “fair margins ⇒ independent,” separate $P$ from the product-of-marginals $Q$, and state clearly that dependence is not an automatic key-recovery break.
+**Learning goals.** After this page you can:
+
+- Explain what an independence heuristic claims
+- Give a two-bit counterexample to “fair margins ⇒ independent”
+- Separate $P$ from the product-of-marginals $Q$
+- State clearly that dependence is not an automatic key-recovery break
 
 ## Why this card exists
 

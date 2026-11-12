@@ -4,7 +4,11 @@
 **Next:** [NTT butterfly](ntt-butterfly.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Name the main ways hardware multiplies polynomials mod $(X^n\pm 1)$ (or similar), say when schoolbook vs Karatsuba vs NTT appear, and see memory / scheduling as part of the “engine,” not just ALUs.
+**Learning goals.** After this page you can:
+
+- Name the main ways hardware multiplies polynomials mod $(X^n\pm 1)$ (or similar)
+- Say when schoolbook vs Karatsuba vs NTT appear
+- See memory / scheduling as part of the “engine,” not just ALUs
 
 ## Why this card exists
 

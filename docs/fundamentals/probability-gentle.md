@@ -3,7 +3,12 @@
 **Prereqs:** [Bits, XOR, and randomness](bits-xor-randomness.md)  
 **Next:** [What is a hard problem?](hard-problems.md)
 
-**Learning goals.** Use probability in ordinary sentences, compute tiny coin-flip examples by counting, understand average number of ones in a random string, and meet the idea of a rare failure event — without calculus.
+**Learning goals.** After this page you can:
+
+- Use probability in ordinary sentences
+- Compute tiny coin-flip examples by counting
+- Understand average number of ones in a random string
+- Meet the idea of a rare failure event — without calculus
 
 ## Why this page exists
 

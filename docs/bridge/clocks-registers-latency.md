@@ -4,7 +4,12 @@
 **Next:** [Area, time, power honesty](area-time-power-honesty.md) · [Modular multiplier](../concepts/modular-multiplier.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Separate wires from clocks, combinatorial logic from registers, **cycles** from **nanoseconds**, and say why a PQC accelerator cares about both.
+**Learning goals.** After this page you can:
+
+- Separate wires from clocks
+- Separate combinatorial logic from registers
+- Separate **cycles** from **nanoseconds**
+- Say why a PQC accelerator cares about both time units
 
 ## Why this page exists
 

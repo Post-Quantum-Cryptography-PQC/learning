@@ -3,7 +3,11 @@
 **Prereqs:** [Modular arithmetic](modular-arithmetic.md)  
 **Next:** [Probability (gentle)](probability-gentle.md)
 
-**Learning goals.** XOR two bit-strings by hand, count Hamming weight and distance, and explain the difference between “looks random,” “fair coins,” and “independent” — with enough practice that the habits feel boring.
+**Learning goals.** After this page you can:
+
+- XOR two bit-strings by hand
+- Count Hamming weight and distance
+- Explain the difference between “looks random,” “fair coins,” and “independent”
 
 ## Why this page exists
 

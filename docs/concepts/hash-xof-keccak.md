@@ -4,7 +4,11 @@
 **Next:** [Noise samplers](noise-samplers.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
-**Learning goals.** Tell a hash from an XOF in plain words, see why PQC schemes expand a short seed into long bitstreams, and recognize SHAKE/Keccak as the usual engine — including why Sign HW can be “hash-bound.”
+**Learning goals.** After this page you can:
+
+- Tell a hash from an XOF in plain words
+- See why PQC schemes expand a short seed into long bitstreams
+- Recognize SHAKE/Keccak as the usual engine — including why Sign HW can be “hash-bound”
 
 ## The one idea
 

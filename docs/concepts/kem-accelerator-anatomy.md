@@ -4,7 +4,11 @@
 **Next:** [Side-channel threat model](../bridge/side-channel-threat-model.md) · [PQ signatures (Dilithium slogan)](pq-signatures-dilithium.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md) · [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · [index](../index.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Sketch what a lattice KEM accelerator must do for Encaps/Decaps, name the recurring units (NTT, PWM, sampling, hash), and separate leaf modules from system architecture (FSM, HW/SW split, configurable parameters).
+**Learning goals.** After this page you can:
+
+- Sketch what a lattice KEM accelerator must do for Encaps/Decaps
+- Name the recurring units (NTT, PWM, sampling, hash)
+- Separate leaf modules from system architecture (FSM, HW/SW split, configurable parameters)
 
 ## Why this card exists
 

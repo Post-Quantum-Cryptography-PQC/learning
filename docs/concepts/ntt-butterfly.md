@@ -4,7 +4,12 @@
 **Next:** [NTT parallel memory](ntt-parallel-memory.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Explain an NTT as “FFT for modular integers,” contrast Cooley–Tukey (CT) vs Gentleman–Sande (GS) at slogan level, describe a butterfly as a small modular arithmetic cell, and list what hardware must store beyond the ALU (twiddles, addresses, pipeline).
+**Learning goals.** After this page you can:
+
+- Explain an NTT as “FFT for modular integers”
+- Contrast Cooley–Tukey (CT) vs Gentleman–Sande (GS) at slogan level
+- Describe a butterfly as a small modular arithmetic cell
+- List what hardware must store beyond the ALU (twiddles, addresses, pipeline)
 
 ## Why this card exists
 

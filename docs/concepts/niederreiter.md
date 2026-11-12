@@ -4,7 +4,11 @@
 **Next:** [KEM](kem.md) · [ISD](information-set-decoding.md) · Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Contrast McEliece’s “codeword + error” ciphertext with Niederreiter’s “syndrome of a sparse vector,” explain why they are twins for the same code, and know that security should be judged together.
+**Learning goals.** After this page you can:
+
+- Contrast McEliece’s “codeword + error” ciphertext with Niederreiter’s “syndrome of a sparse vector”
+- Explain why they are twins for the same code
+- Know that security should be judged together
 
 ## Why this card exists
 

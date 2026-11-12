@@ -3,7 +3,11 @@
 **Prereqs:** [Why cryptography?](why-cryptography.md) · [Reading math](reading-math-notation.md)  
 **Next:** [Bits, XOR, and randomness](bits-xor-randomness.md)
 
-**Learning goals.** Compute remainders confidently, use “clock math,” add and multiply wrapping around $n$, and meet the bit world where $1+1=0$ — without needing the word “field” on day one.
+**Learning goals.** After this page you can:
+
+- Compute remainders confidently
+- Use “clock math,” and add/multiply wrapping around $n$
+- Meet the bit world where $1+1=0$ — without needing the word “field” on day one
 
 ## Symbols on this page
 

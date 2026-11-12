@@ -3,7 +3,12 @@
 **Prereqs:** [Decoding as a puzzle](decoding-as-a-puzzle.md) · [Public-key picture](../fundamentals/public-key-picture.md)  
 **Next:** [Niederreiter](../concepts/niederreiter.md) · [Goppa and alternant](../concepts/goppa-alternant.md) · [From KEM API to noise](from-kem-api-to-noise.md) · Concept: [KEM](../concepts/kem.md)  
 
-**Learning goals.** Tell the McEliece story with public/secret roles, explain why the error is intentional, contrast Niederreiter packaging, and locate HQC/BIKE as cousins (not identical twins).
+**Learning goals.** After this page you can:
+
+- Tell the McEliece story with public/secret roles
+- Explain why the error is intentional
+- Contrast Niederreiter packaging
+- Locate HQC/BIKE as cousins (not identical twins)
 
 ## Why this page exists
 

@@ -3,7 +3,12 @@
 **Prereqs:** [Generator and parity-check](generator-and-parity-check.md) · [Hard problems](../fundamentals/hard-problems.md)  
 **Next:** [McEliece in plain words](mceliece-in-plain-words.md) · Concept: [Syndrome decoding](../concepts/syndrome-decoding.md)
 
-**Learning goals.** State the sparse-decoding puzzle in words, finish a tiny exhaustive search by hand, feel why candidate counts explode, and explain why structure can make decoding easy for the owner but hard for everyone else.
+**Learning goals.** After this page you can:
+
+- State the sparse-decoding puzzle in words
+- Finish a tiny exhaustive search by hand
+- Feel why candidate counts explode
+- Explain why structure can make decoding easy for the owner but hard for everyone else
 
 ## Why this page exists
 

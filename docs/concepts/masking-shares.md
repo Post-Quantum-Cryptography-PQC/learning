@@ -4,7 +4,11 @@
 **Next:** [Ciphertext compress / encode](ciphertext-compress-encode.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Explain masking as “split the secret so each piece looks random,” do a tiny boolean and arithmetic share by hand, and see why Kyber’s Compress step needs special care under masking.
+**Learning goals.** After this page you can:
+
+- Explain masking as “split the secret so each piece looks random”
+- Do a tiny boolean and arithmetic share by hand
+- See why Kyber’s Compress step needs special care under masking
 
 ## The one idea
 

@@ -4,7 +4,11 @@
 **Next:** [Hash / XOF](hash-xof-keccak.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md) · [KEM accelerator anatomy](kem-accelerator-anatomy.md)  
 **Tracks:** lattice-lwe · pqc-hardware
 
-**Learning goals.** After this page you can (1) say in one sentence what a noise sampler *does*, (2) build a tiny CBD sample by hand, and (3) recognize named sampling blocks when HW papers describe them.
+**Learning goals.** After this page you can:
+
+- Say in one sentence what a noise sampler *does*
+- Build a tiny CBD sample by hand
+- Recognize named sampling blocks when HW papers describe them
 
 ## The one idea
 

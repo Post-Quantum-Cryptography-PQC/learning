@@ -3,7 +3,12 @@
 **Prereqs:** [McEliece in plain words](mceliece-in-plain-words.md) · [Public-key picture](../fundamentals/public-key-picture.md)  
 **Next:** Concept: [KEM](../concepts/kem.md) · [DFR](../concepts/dfr.md) · [Quasi-cyclic codes](../concepts/quasi-cyclic-codes.md)
 
-**Learning goals.** Connect $\mathsf{Encaps}/\mathsf{Decaps}$ to “hidden noise,” explain why correctness is probabilistic, walk a toy Encaps timeline, and preview why independence of noise coordinates matters in analyses.
+**Learning goals.** After this page you can:
+
+- Connect $\mathsf{Encaps}/\mathsf{Decaps}$ to “hidden noise”
+- Explain why correctness is probabilistic
+- Walk a toy Encaps timeline
+- Preview why independence of noise coordinates matters in analyses
 
 ## Why this page exists
 

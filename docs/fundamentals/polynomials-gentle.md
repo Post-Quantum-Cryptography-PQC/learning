@@ -3,7 +3,11 @@
 **Prereqs:** [Modular arithmetic](modular-arithmetic.md) · [Vectors](vectors-matrices.md) · [Bits, XOR](bits-xor-randomness.md)  
 **Next:** [Polynomial wrap-around (Part B)](polynomials-wraparound.md) · [Quantum threat](quantum-threat.md)
 
-**Learning goals.** See a bit-string as a polynomial, add two bit-polynomials by XOR of coefficients, and multiply by distributing — **without** wrap-around yet.
+**Learning goals.** After this page you can:
+
+- See a bit-string as a polynomial
+- Add two bit-polynomials by XOR of coefficients
+- Multiply by distributing — **without** wrap-around yet
 
 ## Why this page exists
 

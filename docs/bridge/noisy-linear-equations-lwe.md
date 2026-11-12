@@ -3,7 +3,11 @@
 **Prereqs:** [Lattices (gentle)](../fundamentals/lattices-gentle.md) · [Modular arithmetic](../fundamentals/modular-arithmetic.md) · [Vectors and matrices](../fundamentals/vectors-matrices.md) · [Probability](../fundamentals/probability-gentle.md)  
 **Next:** Concept: [LWE](../concepts/lwe.md) · [Module-LWE](../concepts/module-lwe.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md)
 
-**Learning goals.** Write a tiny noisy modular equation by hand, see why many such equations with a short secret form a puzzle, and connect the story to lattices without needing a formal LWE definition yet (that waits for the concept card).
+**Learning goals.** After this page you can:
+
+- Write a tiny noisy modular equation by hand
+- See why many such equations with a short secret form a puzzle
+- Connect the story to lattices without needing a formal LWE definition yet
 
 ## Why this page exists
 

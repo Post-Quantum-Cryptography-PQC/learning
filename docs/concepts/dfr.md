@@ -4,7 +4,12 @@
 **Next:** [Independence heuristics](independence-heuristics.md) · [KL divergence](kl-divergence.md) · Paper: [2025/018 explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/eprint/2025-018/explainer.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Define DFR in one line, relate it to noise weight and a decoder threshold, separate DFR from attack success probability, and see why “coordinates independent” is a stronger claim than “weight concentrates.”
+**Learning goals.** After this page you can:
+
+- Define DFR in one line
+- Relate it to noise weight and a decoder threshold
+- Separate DFR from attack success probability
+- See why “coordinates independent” is a stronger claim than “weight concentrates”
 
 ## Why this card exists
 

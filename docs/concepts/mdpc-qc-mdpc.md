@@ -4,7 +4,12 @@
 **Next:** [Bit-flipping decoding](bit-flipping-decoding.md) · [DFR](dfr.md) · Paper: [QC-MDPC reaction attack explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/a-key-recovery-reaction-attack-on-qc-mdpc/explainer.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Explain what “moderate density” means for a parity-check matrix, contrast MDPC with Classic McEliece’s Goppa story, say why QC-MDPC shrinks keys, and know that decoding is probabilistic (DFR + reaction-attack lessons).
+**Learning goals.** After this page you can:
+
+- Explain what “moderate density” means for a parity-check matrix
+- Contrast MDPC with Classic McEliece’s Goppa story
+- Say why QC-MDPC shrinks keys
+- Know that decoding is probabilistic (DFR + reaction-attack lessons)
 
 ## Why this card exists
 

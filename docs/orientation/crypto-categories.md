@@ -3,7 +3,16 @@
 **Prereqs:** [Motivation](motivation.md) · [History](history.md) · [Challenges](challenges.md) (recommended)  
 **Next:** [How to read the math](../fundamentals/reading-math-notation.md) · [Why cryptography?](../fundamentals/why-cryptography.md) · [Public-key picture](../fundamentals/public-key-picture.md)
 
-**Learning goals.** Place security *goals* (confidentiality, integrity, authentication, non-repudiation), symmetric vs asymmetric (PKC), shared unkeyed building blocks, encryption vs signatures vs key agreement vs KEMs, classical PKC and PQC *as asymmetric subfamilies*, PQC by **hardness family** (with job tags), AEAD vs MAC vs signature, and “protocols bundle tools” on one mental map — before the math pages.
+**Learning goals.** After this page you can:
+
+- Place security goals: confidentiality, integrity, authentication, and non-repudiation
+- Separate symmetric / keyed tools from asymmetric / PKC
+- Place shared unkeyed building blocks (hash / XOF / KDF / randomness)
+- Distinguish encryption, signatures, key agreement, and KEMs
+- Treat classical PKC and PQC as asymmetric subfamilies
+- Sort PQC by hardness family (with job tags)
+- Compare AEAD vs MAC vs digital signature
+- See protocols as bundles of tools — before the math pages
 
 ## Why this map exists
 

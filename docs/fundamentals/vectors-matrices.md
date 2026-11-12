@@ -3,7 +3,13 @@
 **Prereqs:** [Modular arithmetic](modular-arithmetic.md) · [Bits, XOR](bits-xor-randomness.md)  
 **Next:** [Polynomials Part A](polynomials-gentle.md) · [Polynomial wrap-around](polynomials-wraparound.md) · Bridge: [From bits to codes](../bridge/from-bits-to-codes.md)
 
-**Learning goals.** Treat a bit-string as a vector, compute a dot product over bits, multiply a small matrix by a vector with every step written out, see a **row as a codeword**, and — only after that arithmetic is comfortable — meet a syndrome as “fingerprint of the error.”
+**Learning goals.** After this page you can:
+
+- Treat a bit-string as a vector
+- Compute a dot product over bits
+- Multiply a small matrix by a vector with every step written out
+- See a **row as a codeword**
+- Meet a syndrome as “fingerprint of the error” only after that arithmetic is comfortable
 
 ## Symbols on this page
 

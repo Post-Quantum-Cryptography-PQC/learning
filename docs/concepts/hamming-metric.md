@@ -4,7 +4,12 @@
 **Next:** [Error-correcting codes](error-correcting-codes.md) · [Linear codes](linear-codes.md) · [Goppa and alternant](goppa-alternant.md) · [Syndrome decoding](syndrome-decoding.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** Compute Hamming weight and Hamming distance by hand, state the Hamming metric as “count disagreements,” connect distance to correcting radius $t$, and contrast briefly with the rank metric so you never mix the two.
+**Learning goals.** After this page you can:
+
+- Compute Hamming weight and Hamming distance by hand
+- State the Hamming metric as “count disagreements”
+- Connect distance to correcting radius $t$
+- Contrast briefly with the rank metric so you never mix the two
 
 ## Why this card exists
 

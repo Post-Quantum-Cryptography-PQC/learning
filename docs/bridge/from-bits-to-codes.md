@@ -3,7 +3,12 @@
 **Prereqs:** [Bits, XOR](../fundamentals/bits-xor-randomness.md) · [Vectors](../fundamentals/vectors-matrices.md) · [Probability](../fundamentals/probability-gentle.md)  
 **Next:** [Noisy channel story](noisy-channel-story.md) · [Generator and parity-check](generator-and-parity-check.md)
 
-**Learning goals.** Explain redundancy in plain language, encode and decode a tiny repeat code by hand, compute Hamming distances between codewords, and say why “more bits” can fight noise — without confusing reliability with secrecy.
+**Learning goals.** After this page you can:
+
+- Explain redundancy in plain language
+- Encode and decode a tiny repeat code by hand
+- Compute Hamming distances between codewords
+- Say why “more bits” can fight noise — without confusing reliability with secrecy
 
 ## Why this page exists
 

@@ -3,7 +3,12 @@
 **Prereqs:** [Linear codes](../concepts/linear-codes.md) · [Finite fields beyond F₂](finite-fields-beyond-f2.md) · [Vectors and matrices](../fundamentals/vectors-matrices.md)  
 **Next:** Concept: [Rank metric](../concepts/rank-metric.md) · Track: [Rank metric](../tracks/rank-metric/ROADMAP.md)
 
-**Learning goals.** Contrast Hamming weight with rank weight, see a vector over $\mathbb{F}_{q^m}$ as a matrix over $\mathbb{F}_q$, work a tiny rank example by hand, and know why a second metric exists before meeting LRPC / RQC-shaped schemes.
+**Learning goals.** After this page you can:
+
+- Contrast Hamming weight with rank weight
+- See a vector over $\mathbb{F}_{q^m}$ as a matrix over $\mathbb{F}_q$
+- Work a tiny rank example by hand
+- Know why a second metric exists before meeting LRPC / RQC-shaped schemes
 
 ## Why this page exists
 

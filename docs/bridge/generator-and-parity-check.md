@@ -3,7 +3,11 @@
 **Prereqs:** [From bits to codes](from-bits-to-codes.md) · [Vectors and matrices](../fundamentals/vectors-matrices.md)  
 **Next:** [Decoding as a puzzle](decoding-as-a-puzzle.md) · Concept: [Linear codes](../concepts/linear-codes.md)
 
-**Learning goals.** Encode with a tiny generator matrix $G$, check membership with $H$, and compute a syndrome for an error — with encoding practiced **before** checks, so the two jobs do not blur.
+**Learning goals.** After this page you can:
+
+- Encode with a tiny generator matrix $G$
+- Check membership with $H$
+- Compute a syndrome for an error — with encoding practiced **before** checks
 
 ## Symbols on this page
 

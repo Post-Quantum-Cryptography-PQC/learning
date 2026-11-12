@@ -4,7 +4,11 @@
 **Next:** [KEM accelerator anatomy](kem-accelerator-anatomy.md) · Track: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** pqc-hardware
 
-**Learning goals.** Explain why NTT stages need many simultaneous coefficient reads/writes, say what “conflict-free” banking means at slogan level, and connect dual-port / multi-bank SRAM to dual-butterfly throughput — without designing a full address generator.
+**Learning goals.** After this page you can:
+
+- Explain why NTT stages need many simultaneous coefficient reads/writes
+- Say what “conflict-free” banking means at slogan level
+- Connect dual-port / multi-bank SRAM to dual-butterfly throughput — without designing a full address generator
 
 ## Why this card exists
 

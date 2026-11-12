@@ -4,7 +4,12 @@
 **Next:** [Information-set decoding](information-set-decoding.md) · [KEM](kem.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md)  
 **Tracks:** code-based-kems
 
-**Learning goals.** State the sparse decoding problem in words and math, finish a weight-1 search on a toy $H$ by hand, feel why candidate counts explode, and explain easy-for-owner vs hard-for-attacker.
+**Learning goals.** After this page you can:
+
+- State the sparse decoding problem in words and math
+- Finish a weight-1 search on a toy $H$ by hand
+- Feel why candidate counts explode
+- Explain easy-for-owner vs hard-for-attacker
 
 ## Why this card exists
 
