@@ -27,7 +27,8 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Ciphertext** | Scrambled form that travels on the wire | [Why cryptography?](fundamentals/why-cryptography.md) |
 | **Clock / register** | Heartbeat + stored bits between ticks | [Clocks, registers](bridge/clocks-registers-latency.md) |
 | **Carryless / CLMUL** | Binary polynomial multiply (XOR instead of integer carry); HQC/BIKE-shaped hot path | [Carryless $\mathbb{F}_2$ polymul](concepts/carryless-polymul-f2.md) |
-| **CED** | Concurrent error detection — reliability / fault-detection logic on arithmetic (not a digital signature) | Code CED leaves on [code-based ROADMAP](tracks/code-based-kems/ROADMAP.md) |
+| **CED** | Concurrent error detection — reliability / fault-detection logic on arithmetic (not a digital signature) | [CED / composite-field Goppa](concepts/ced-composite-goppa.md) |
+| **Composite-field Goppa arith** | McEliece Goppa ops built from $\mathrm{GF}(2^m)$ coefficient units | [CED / composite-field Goppa](concepts/ced-composite-goppa.md) · [Goppa](concepts/goppa-alternant.md) |
 | **CFS / QC-LDGM / LEDAsig** | Code-based signature families (historical / engineering leaves) | [Code-based signatures](concepts/code-based-signatures.md) |
 | **Code / codeword** | Allowed protected strings; a codeword is one allowed string | [Error-correcting codes](concepts/error-correcting-codes.md) |
 | **Constant-weight coding** | Map ordinary bits ↔ fixed Hamming-weight vectors (format layer) | [Constant-weight coding](concepts/constant-weight-coding.md) |

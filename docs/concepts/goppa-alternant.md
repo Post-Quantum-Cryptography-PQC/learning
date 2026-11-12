@@ -1,7 +1,7 @@
 # Goppa and alternant codes (intuition)
 
 **Prereqs:** [Hamming metric](hamming-metric.md) · [Linear codes](linear-codes.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md) · [McEliece in plain words](../bridge/mceliece-in-plain-words.md)  
-**Next:** [Niederreiter](niederreiter.md) · [Syndrome decoding](syndrome-decoding.md) · Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
+**Next:** [Niederreiter](niederreiter.md) · [CED / composite-field Goppa](ced-composite-goppa.md) · [Syndrome decoding](syndrome-decoding.md) · Paper: [McEliece↔Niederreiter explainer](https://github.com/Post-Quantum-Cryptography-PQC/pqc-learning-private/blob/main/papers/tit-pqc/on-the-equivalence-of-mceliece-s-and-niederreiter-s-public-key-cryptosystems/explainer.md)  
 **Tracks:** code-based-kems
 
 **Learning goals.** After this page you can:

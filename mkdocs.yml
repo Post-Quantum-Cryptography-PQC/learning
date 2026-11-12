@@ -129,6 +129,7 @@ nav:
       - Information-set decoding: concepts/information-set-decoding.md
       - Goppa and alternant: concepts/goppa-alternant.md
       - Niederreiter: concepts/niederreiter.md
+      - CED / composite-field Goppa: concepts/ced-composite-goppa.md
       - Constant-weight coding: concepts/constant-weight-coding.md
       - Code-based signatures: concepts/code-based-signatures.md
       - MDPC and QC-MDPC: concepts/mdpc-qc-mdpc.md

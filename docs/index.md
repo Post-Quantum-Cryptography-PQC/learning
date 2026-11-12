@@ -22,7 +22,7 @@
 <div class="pqc-metrics" markdown="0">
   <div class="pqc-metric"><span class="pqc-metric__n">12</span><span class="pqc-metric__l">Fundamentals</span></div>
   <div class="pqc-metric"><span class="pqc-metric__n">13</span><span class="pqc-metric__l">Bridge pages</span></div>
-  <div class="pqc-metric"><span class="pqc-metric__n">42</span><span class="pqc-metric__l">Concept cards</span></div>
+  <div class="pqc-metric"><span class="pqc-metric__n">43</span><span class="pqc-metric__l">Concept cards</span></div>
   <div class="pqc-metric"><span class="pqc-metric__n">7</span><span class="pqc-metric__l">Research tracks</span></div>
 </div>
 
@@ -33,9 +33,9 @@
 
 | Area | What changed |
 |------|----------------|
-| **Concepts (+4)** | [Constant-weight coding](concepts/constant-weight-coding.md), [code-based signatures](concepts/code-based-signatures.md), [crypto-agile SoC](concepts/crypto-agile-soc.md), [ASA / HPC fuzzing](concepts/asa-hpc-fuzzing.md); min-sum + BIKE sparsity notes on existing decoder / carryless cards |
-| **Code-based track** | KEM core kept; **Stage 3b signature fork**; circuit leaves split KEM / signature / multi-family |
-| **Family HW leaves** | Primary-subject TCAS/TVLSI/TCAD/JSSC (+ TCHES) rows on code / hash / MQ tables (`tracks.md` rule 9) |
+| **Concepts (+5)** | [Constant-weight](concepts/constant-weight-coding.md), [code-based signatures](concepts/code-based-signatures.md), [crypto-agile SoC](concepts/crypto-agile-soc.md), [ASA / HPC fuzzing](concepts/asa-hpc-fuzzing.md), [CED / composite-field Goppa](concepts/ced-composite-goppa.md) |
+| **Code-based track** | KEM core + Stage 3b signature fork; CED reliability leaves concept-ready |
+| **Family HW leaves** | Primary-subject TCAS/TVLSI/TCAD/JSSC (+ TCHES) rows (`tracks.md` rule 9) |
 
 ## Who this is for
 
@@ -129,6 +129,7 @@ PQC vocabulary cards. Best after the matching bridge pages. Prefer clarity over 
 - [Information-set decoding (ISD)](concepts/information-set-decoding.md)  
 - [Goppa and alternant codes](concepts/goppa-alternant.md)  
 - [Niederreiter cryptosystem](concepts/niederreiter.md)  
+- [CED / composite-field Goppa](concepts/ced-composite-goppa.md) — *fault detection on McEliece GF arith*  
 - [Constant-weight coding](concepts/constant-weight-coding.md) — *bits ↔ fixed-weight vectors*  
 - [Code-based signatures (CFS / QC-LDGM / LEDAsig)](concepts/code-based-signatures.md) — *Sign fork off the KEM core*  
 - [MDPC and QC-MDPC codes](concepts/mdpc-qc-mdpc.md)  

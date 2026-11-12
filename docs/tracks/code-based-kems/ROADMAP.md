@@ -46,7 +46,7 @@ After this track you can:
 
 1. [McEliece in plain words](../../bridge/mceliece-in-plain-words.md)  
 2. [Goppa and alternant](../../concepts/goppa-alternant.md) · [Niederreiter](../../concepts/niederreiter.md) · [ISD](../../concepts/information-set-decoding.md)  
-3. Helpful before packaging leaves: [Constant-weight coding](../../concepts/constant-weight-coding.md)
+3. Helpful before packaging / reliability leaves: [Constant-weight coding](../../concepts/constant-weight-coding.md) · [CED / composite-field Goppa](../../concepts/ced-composite-goppa.md)
 
 **Checkpoint:** What is hidden in the public key vs what the legitimate owner still knows?
 
@@ -100,8 +100,8 @@ Walk **theory** then **circuit** tables. Circuit rows are promoted because the p
 | Classic McEliece Encap/Decap (EReA) | `papers/tvlsi-pqc/An Efficient and Reconfigurable Architecture for Classic McEliece Encapsulation and Decapsulation/paper.md` | extract only |
 | LEAP sparse HQC polymul | `papers/tvlsi-pqc/LEAP: Lightweight and Efficient Accelerator for Sparse Polynomial Multiplication of HQC/paper.md` | extract only |
 | Area-efficient HQC accelerator | `papers/tvlsi-pqc/An Area-Efficient HQC Accelerator With Unified Parallel Modules and Fine-Grained Scheduling/paper.md` | extract only |
-| CED for GF multipliers (McEliece-oriented) | `papers/tvlsi-pqc/Reliable Architectures for Finite Field Multipliers Using Cyclic Codes on FPGA Utilized in Classic and Post-Quantum Cryptography/paper.md` | extract only (component) |
-| CED for McEliece composite-field Goppa arith | `papers/tcad-pqc/reliable-architectures-for-composite-field-oriented-constructions-of-mceliece-post-quantum-cryptography-on-fpga/paper.md` | extract only |
+| CED for GF multipliers (McEliece-oriented) | `papers/tvlsi-pqc/Reliable Architectures for Finite Field Multipliers Using Cyclic Codes on FPGA Utilized in Classic and Post-Quantum Cryptography/paper.md` · [CED concept](../../concepts/ced-composite-goppa.md) | concept ready (component) |
+| CED for McEliece composite-field Goppa arith | `papers/tcad-pqc/reliable-architectures-for-composite-field-oriented-constructions-of-mceliece-post-quantum-cryptography-on-fpga/paper.md` · [CED concept](../../concepts/ced-composite-goppa.md) | concept ready |
 
 ### Signature HW (after Stage 3b)
 
