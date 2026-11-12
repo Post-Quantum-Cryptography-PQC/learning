@@ -47,10 +47,11 @@ flowchart TB
       G --> C["Confidentiality<br/>strangers cannot read"]
       G --> A["Authenticity / integrity<br/>strangers cannot forge or silently edit"]
       G --> B["Often both<br/>HTTPS / chat / banking"]
-      C --> CT["Encryption / AEAD"]
-      A --> AT["Signatures / MACs / AEAD"]
+      C --> CT["Encryption"]
+      A --> AT["Signatures / MACs"]
+      B --> AE["AEAD<br/>secrecy + integrity together"]
       classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
-      class G,C,A,B,CT,AT n
+      class G,C,A,B,CT,AT,AE n
     ```
 
 === "Symmetric"
@@ -137,8 +138,9 @@ flowchart TB
 
 | Goal | Plain English | Typical tools |
 |------|---------------|---------------|
-| **Confidentiality** | Strangers cannot *read* the content | Encryption (symmetric or public-key), then usually [AEAD](../glossary.md#aead) |
-| **Authenticity / integrity** | Strangers cannot *forge or silently edit* | Signatures, [MACs](../glossary.md#mac), authenticated encryption |
+| **Confidentiality** | Strangers cannot *read* the content | Encryption (symmetric or public-key) |
+| **Authenticity / integrity** | Strangers cannot *forge or silently edit* | Signatures, [MACs](../glossary.md#mac) |
+| **Often both** | Real apps usually need secrecy *and* authenticity | [AEAD](../glossary.md#aead) packages both; HTTPS / chat / banking |
 
 You can have one without the other. Real apps usually need **both**.  
 Deeper toys: [Why cryptography?](../fundamentals/why-cryptography.md).
