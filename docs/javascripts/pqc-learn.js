@@ -306,57 +306,52 @@
     __pqcEnhanceBusy = true;
     try {
       document.querySelectorAll("pre.pqc-mermaid").forEach(mountDiagramStage);
+      /* Refresh fit handlers on already-mounted stages (hot JS updates / instant nav). */
+      document.querySelectorAll(".pqc-diagram").forEach(wireDiagramStage);
     } finally {
-      /* Release after this turn so MutationObserver from our own DOM edits cannot re-enter. */
       window.setTimeout(function () {
         __pqcEnhanceBusy = false;
       }, 0);
     }
     ensureMermaidApi(function (api) {
       renderPqcMermaidHosts(api);
+      window.setTimeout(fitVisibleDiagrams, 50);
     });
   }
 
   function wireDiagramStage(stage) {
-    if (stage.dataset.pqcZoomWired) return;
-    stage.dataset.pqcZoomWired = "1";
-
     var viewport = stage.querySelector(".pqc-diagram__viewport");
     var canvas = stage.querySelector(".pqc-diagram__canvas");
-    var scale = 1;
-    var tx = 0;
-    var ty = 0;
-    var dragging = false;
-    var lastX = 0;
-    var lastY = 0;
+    var state = stage.__pqcZoomState || {
+      scale: 1,
+      tx: 0,
+      ty: 0,
+      dragging: false,
+      lastX: 0,
+      lastY: 0
+    };
+    stage.__pqcZoomState = state;
 
     function apply() {
       canvas.style.transform =
-        "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+        "translate(" + state.tx + "px," + state.ty + "px) scale(" + state.scale + ")";
     }
 
     function normalizeSvgSizing(svg) {
       /*
-        Mermaid often emits width="100%". Measuring with viewBox then scaling
-        again double-shrinks the drawing. Pin absolute px from viewBox first.
+        Mermaid often emits width="100%". Measuring that as if it were viewBox
+        pixels, then scaling again, double-shrinks the drawing.
       */
       var vb = svg.viewBox && svg.viewBox.baseVal;
-      var w =
-        (vb && vb.width) ||
-        parseFloat(svg.getAttribute("width")) ||
-        0;
-      var h =
-        (vb && vb.height) ||
-        parseFloat(svg.getAttribute("height")) ||
-        0;
-      if (w > 1 && h > 1) {
-        svg.setAttribute("width", String(w));
-        svg.setAttribute("height", String(h));
-        svg.style.width = w + "px";
-        svg.style.height = h + "px";
-        svg.style.maxWidth = "none";
-        svg.style.maxHeight = "none";
-      }
+      var w = vb && vb.width > 1 ? vb.width : 0;
+      var h = vb && vb.height > 1 ? vb.height : 0;
+      if (!(w > 1 && h > 1)) return;
+      svg.setAttribute("width", String(w));
+      svg.setAttribute("height", String(h));
+      svg.style.width = w + "px";
+      svg.style.height = h + "px";
+      svg.style.maxWidth = "none";
+      svg.style.maxHeight = "none";
     }
 
     function fitToViewport() {
@@ -364,14 +359,12 @@
       if (!svg) return;
       var vw = viewport.clientWidth;
       var vh = viewport.clientHeight;
-      /* Hidden tab panels report 0 — mark dirty and fit when shown. */
       if (vw < 8 || vh < 8) {
         stage.dataset.pqcNeedsFit = "1";
         return;
       }
       canvas.style.transform = "translate(0px, 0px) scale(1)";
       normalizeSvgSizing(svg);
-      /* Force layout after width/height pin. */
       void svg.getBoundingClientRect();
       var rect = svg.getBoundingClientRect();
       var sw = rect.width;
@@ -383,25 +376,31 @@
       var pad = 8;
       var availW = Math.max(8, vw - pad * 2);
       var availH = Math.max(8, vh - pad * 2);
-      /* Contain: largest scale that still fits the viewport. */
-      scale = Math.min(availW / sw, availH / sh);
-      tx = pad + (availW - sw * scale) / 2;
-      ty = pad + (availH - sh * scale) / 2;
+      state.scale = Math.min(availW / sw, availH / sh);
+      state.tx = pad + (availW - sw * state.scale) / 2;
+      state.ty = pad + (availH - sh * state.scale) / 2;
       stage.dataset.pqcNeedsFit = "0";
       apply();
     }
 
     stage.__pqcFit = fitToViewport;
 
+    /* Already wired: refresh fit only; do not bind duplicate listeners. */
+    if (stage.dataset.pqcZoomWired === "1") {
+      fitToViewport();
+      return;
+    }
+    stage.dataset.pqcZoomWired = "1";
+
     function zoomAt(factor, cx, cy) {
-      var next = Math.min(4, Math.max(0.2, scale * factor));
-      if (next === scale) return;
+      var next = Math.min(4, Math.max(0.2, state.scale * factor));
+      if (next === state.scale) return;
       var rect = viewport.getBoundingClientRect();
       var px = (cx != null ? cx : rect.left + rect.width / 2) - rect.left;
       var py = (cy != null ? cy : rect.top + rect.height / 2) - rect.top;
-      tx = px - (px - tx) * (next / scale);
-      ty = py - (py - ty) * (next / scale);
-      scale = next;
+      state.tx = px - (px - state.tx) * (next / state.scale);
+      state.ty = py - (py - state.ty) * (next / state.scale);
+      state.scale = next;
       apply();
     }
 
@@ -426,23 +425,23 @@
 
     viewport.addEventListener("pointerdown", function (e) {
       if (e.button !== 0) return;
-      dragging = true;
-      lastX = e.clientX;
-      lastY = e.clientY;
+      state.dragging = true;
+      state.lastX = e.clientX;
+      state.lastY = e.clientY;
       viewport.classList.add("is-dragging");
       viewport.setPointerCapture(e.pointerId);
     });
     viewport.addEventListener("pointermove", function (e) {
-      if (!dragging) return;
-      tx += e.clientX - lastX;
-      ty += e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
+      if (!state.dragging) return;
+      state.tx += e.clientX - state.lastX;
+      state.ty += e.clientY - state.lastY;
+      state.lastX = e.clientX;
+      state.lastY = e.clientY;
       apply();
     });
     function endDrag(e) {
-      if (!dragging) return;
-      dragging = false;
+      if (!state.dragging) return;
+      state.dragging = false;
       viewport.classList.remove("is-dragging");
       try {
         viewport.releasePointerCapture(e.pointerId);
