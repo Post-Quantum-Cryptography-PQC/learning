@@ -58,9 +58,11 @@ Because an attacker can record ciphertext <em>now</em> and decrypt it <em>later<
 
 ## What about symmetric crypto?
 
-Symmetric tools (AES, SHA-2/3, …) are in a different boat. **Grover’s algorithm** gives a quadratic speedup for some search-style attacks, which usually means “use larger keys / digests,” not “throw the whole design away.”
+PQC is mainly an **asymmetric / public-key** story: replace RSA/ECC-style key setup and signatures with new KEMs and signatures that Shor should not break.
 
-PQC is mainly about replacing **public-key** building blocks (key encapsulation, signatures) whose hardness collapses under Shor.
+**Symmetric** tools (AES, ChaCha, AEAD, HMAC, …) are the other half of real systems — the fast shared-key layer that usually carries the bulk bytes *after* a session key exists. They are not what “PQC” renames.
+
+They still face a quantum speedup, but a milder one. **Grover’s algorithm** can speed up some brute-force / search attacks (roughly a *square-root* cut in effort in idealized models — far less devastating than Shor’s break of RSA/ECC). So the usual defense is: **keep the same designs, use larger keys or tags** (e.g. AES-256-class margins) so the search stays out of reach. Unkeyed hashes (SHA-2/3, …) often get the same “larger digest / margin” advice; they are shared building blocks, not a second PQC family.
 
 ## Motivation in one sentence
 
