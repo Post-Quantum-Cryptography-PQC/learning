@@ -6,8 +6,8 @@
 **Learning goals.** After this page you can:
 
 - Explain “easy forward, hard backward”
-- Explain why parameters matter
-- Explain that “secure” always means “hard for whom, under what puzzle, at what size”
+- Explain what **parameters** are and why they matter
+- Break the word “secure” into **whom**, **which puzzle**, and **what size**
 - Name RSA vs code vs lattice hardness at slogan level
 
 ## Crypto is puzzle design
@@ -18,8 +18,6 @@ Public-key cryptography is not magic ink. It is a **puzzle**:
 - believed **hard** if you do not.
 
 Honest parties use the easy direction. Attackers are stuck with the hard direction — at the sizes we choose.
-
-**Study tip:** every time someone says “secure,” ask: “hard for whom, under what puzzle, at what size?”
 
 ## Everyday analogies
 
@@ -39,6 +37,42 @@ For “multiply two primes / factor the product,” which direction is easy?
 Multiplying is easy; factoring is the hard direction (at cryptographic sizes).
 </details>
 
+## What “secure” means here
+
+“Secure” is not a yes/no sticker. It is shorthand for three questions:
+
+| Question | Plain English | Tiny example |
+|----------|---------------|--------------|
+| **Hard for whom?** | Which attacker are we talking about — a laptop, a big classical cluster, or also a future quantum machine? | Factoring $221$ is easy for anyone; factoring a huge RSA modulus is aimed at powerful computers |
+| **Under what puzzle?** | Which hard problem is the scheme betting on? | RSA-style factoring ≠ code decoding ≠ lattice / LWE |
+| **At what size?** | How large is the instance (the knobs we set below)? | Same puzzle can be a classroom toy or a cryptographic instance |
+
+Whenever a claim says “secure,” try to fill in those three blanks.
+
+### Quick self-check
+
+Someone says “this code-based KEM is secure.” Which three blanks should you ask them to fill?  
+<details><summary>Answer</summary>
+Hard for <em>whom</em>, under <em>which puzzle</em> (here: decoding-style hardness), at <em>what size / parameters</em>.
+</details>
+
+## Parameters — the knobs that set the size
+
+**Parameters** are the numbers that define one concrete instance of a puzzle: how big the primes are, how long the code is, how large the lattice dimension is, how much noise is added, and so on.
+
+Why they matter:
+
+- **Too small** → even the “hard” direction becomes easy; attacks finish.  
+- **Large enough** → known attacks cost absurd work (the usual security goal).  
+- **Larger still** → often **bigger keys, ciphertexts, or slower code** — so designers pick a size that is hard enough *and* still usable.
+
+| Kind of size | Role |
+|--------------|------|
+| **Toy size** | For learning by hand (like $13\times 17$) |
+| **Cryptographic size** | Chosen so best known attacks stay out of reach for the attackers you named above |
+
+Later: [Security bits and work](../bridge/security-bits-and-work.md).
+
 ## Three hardness slogans (orientation only)
 
 | Family | Easy direction (honest) | Hard direction (attacker slogan) |
@@ -55,12 +89,9 @@ Later pages unpack each slogan with pictures and tiny examples:
 
 ## Average case vs “one lucky hard instance”
 
-Crypto needs puzzles that are hard **almost always** for random instances of the size we use — not only for a few special numbers. Papers often talk about **average-case** hardness and **reductions** (“if you break my scheme, you solve problem $P$”).
+Crypto needs puzzles that are hard **almost always** for random instances at the parameters we use — not only for a few special numbers. Papers often talk about **average-case** hardness and **reductions** (“if you break my scheme, you solve problem $P$”).
 
-At orientation level, remember:
-
-- A toy size is for learning.  
-- A cryptographic size is chosen so known attacks cost absurd work (see [Security bits and work](../bridge/security-bits-and-work.md) later).
+At orientation level: a toy instance teaches the idea; cryptographic parameters are chosen so known attacks cost absurd work for the attackers you care about.
 
 ## Problems vs challenges
 
@@ -75,5 +106,5 @@ Both matter. A beautiful hard problem that makes huge keys, fails too often, or 
 
 If an attacker’s best known attack costs about $2^{40}$ steps on your parameters, is that “128-bit security”?  
 <details><summary>Answer</summary>
-No — 128-bit security slogans aim near $2^{128}$ work. $2^{40}$ is in feasible territory for well-funded attackers.
+No — 128-bit security slogans aim near $2^{128}$ work. $2^{40}$ is in feasible territory for well-funded attackers. The size / parameters were not large enough for that claim.
 </details>
