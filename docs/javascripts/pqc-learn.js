@@ -154,28 +154,150 @@
     });
   }
 
-  function wrapMermaidDiagrams() {
-    document.querySelectorAll(".md-typeset .mermaid").forEach(function (host) {
-      if (host.closest(".pqc-diagram")) return;
-      /* Wait until Mermaid has painted an SVG (or keep retrying via observer) */
-      if (!host.querySelector("svg") && host.tagName !== "SVG") return;
+  function isDarkScheme() {
+    return (
+      document.body.getAttribute("data-md-color-scheme") === "slate" ||
+      document.documentElement.getAttribute("data-md-color-scheme") === "slate"
+    );
+  }
 
-      var stage = document.createElement("div");
-      stage.className = "pqc-diagram";
-      stage.innerHTML =
-        '<div class="pqc-diagram__toolbar">' +
-        '<span class="pqc-diagram__hint">Drag to pan · Ctrl/⌘+scroll to zoom</span>' +
-        '<button type="button" class="pqc-diagram__btn" data-act="out" aria-label="Zoom out">−</button>' +
-        '<button type="button" class="pqc-diagram__btn" data-act="in" aria-label="Zoom in">+</button>' +
-        '<button type="button" class="pqc-diagram__btn" data-act="reset" aria-label="Reset view">Reset</button>' +
-        "</div>" +
-        '<div class="pqc-diagram__viewport" tabindex="0">' +
-        '<div class="pqc-diagram__canvas"></div>' +
-        "</div>";
+  function ensureMermaidApi(cb) {
+    if (window.mermaid && typeof window.mermaid.render === "function") {
+      cb(window.mermaid);
+      return;
+    }
+    if (window.__pqcMermaidLoading) {
+      window.__pqcMermaidLoading.push(cb);
+      return;
+    }
+    window.__pqcMermaidLoading = [cb];
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js";
+    s.onload = function () {
+      var api = window.mermaid;
+      var q = window.__pqcMermaidLoading || [];
+      window.__pqcMermaidLoading = null;
+      q.forEach(function (fn) {
+        fn(api);
+      });
+    };
+    s.onerror = function () {
+      window.__pqcMermaidLoading = null;
+    };
+    document.head.appendChild(s);
+  }
 
-      host.parentNode.insertBefore(stage, host);
-      stage.querySelector(".pqc-diagram__canvas").appendChild(host);
-      wireDiagramStage(stage);
+  function configureMermaid(api) {
+    var dark = isDarkScheme();
+    api.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: dark ? "dark" : "base",
+      themeVariables: dark
+        ? {
+            background: "#000000",
+            primaryColor: "#115e59",
+            primaryTextColor: "#ecfeff",
+            primaryBorderColor: "#99f6e4",
+            lineColor: "#99f6e4",
+            secondaryColor: "#0f766e",
+            tertiaryColor: "#134e4a",
+            fontFamily: "IBM Plex Sans, system-ui, sans-serif",
+            fontSize: "16px"
+          }
+        : {
+            background: "#ffffff",
+            primaryColor: "#0f766e",
+            primaryTextColor: "#ecfeff",
+            primaryBorderColor: "#5eead4",
+            lineColor: "#0f766e",
+            secondaryColor: "#115e59",
+            tertiaryColor: "#ccfbf1",
+            fontFamily: "IBM Plex Sans, system-ui, sans-serif",
+            fontSize: "16px"
+          },
+      flowchart: {
+        htmlLabels: true,
+        curve: "basis",
+        nodeSpacing: 48,
+        rankSpacing: 64,
+        padding: 16
+      }
+    });
+  }
+
+  function sourceFromPre(pre) {
+    var code = pre.querySelector("code");
+    return ((code && code.textContent) || pre.textContent || "").trim();
+  }
+
+  function mountDiagramStage(pre) {
+    if (pre.closest(".pqc-diagram")) return pre.closest(".pqc-diagram");
+    var stage = document.createElement("div");
+    stage.className = "pqc-diagram";
+    stage.innerHTML =
+      '<div class="pqc-diagram__toolbar">' +
+      '<span class="pqc-diagram__hint">Drag to pan · Ctrl/⌘+scroll to zoom</span>' +
+      '<button type="button" class="pqc-diagram__btn" data-act="out" aria-label="Zoom out">−</button>' +
+      '<button type="button" class="pqc-diagram__btn" data-act="in" aria-label="Zoom in">+</button>' +
+      '<button type="button" class="pqc-diagram__btn" data-act="reset" aria-label="Reset view">Reset</button>' +
+      "</div>" +
+      '<div class="pqc-diagram__viewport" tabindex="0">' +
+      '<div class="pqc-diagram__canvas"></div>' +
+      "</div>";
+    pre.parentNode.insertBefore(stage, pre);
+    var canvas = stage.querySelector(".pqc-diagram__canvas");
+    var host = document.createElement("div");
+    host.className = "pqc-mermaid-host";
+    host.dataset.source = sourceFromPre(pre);
+    canvas.appendChild(host);
+    pre.remove();
+    wireDiagramStage(stage);
+    return stage;
+  }
+
+  function renderPqcMermaidHosts(api) {
+    configureMermaid(api);
+    var hosts = document.querySelectorAll(".pqc-mermaid-host");
+    var i = 0;
+    function next() {
+      if (i >= hosts.length) return;
+      var host = hosts[i++];
+      var src = host.dataset.source || "";
+      if (!src) {
+        next();
+        return;
+      }
+      /* Re-render when theme flips or first paint */
+      var sig = (isDarkScheme() ? "d:" : "l:") + src.length;
+      if (host.dataset.rendered === sig && host.querySelector("svg")) {
+        next();
+        return;
+      }
+      var id = "pqc-mmd-" + Math.random().toString(36).slice(2, 10);
+      api
+        .render(id, src)
+        .then(function (out) {
+          host.innerHTML = out.svg;
+          host.dataset.rendered = sig;
+          if (out.bindFunctions) out.bindFunctions(host);
+          next();
+        })
+        .catch(function (err) {
+          host.innerHTML =
+            '<p class="pqc-diagram__error">Diagram failed to render.</p>';
+          host.dataset.rendered = "err";
+          console.warn("pqc-mermaid render failed", err);
+          next();
+        });
+    }
+    next();
+  }
+
+  function enhancePqcMermaid() {
+    document.querySelectorAll("pre.pqc-mermaid").forEach(mountDiagramStage);
+    ensureMermaidApi(function (api) {
+      renderPqcMermaidHosts(api);
     });
   }
 
@@ -262,17 +384,18 @@
   }
 
   function scheduleDiagramEnhance() {
-    wrapMermaidDiagrams();
-    window.setTimeout(wrapMermaidDiagrams, 200);
-    window.setTimeout(wrapMermaidDiagrams, 800);
-    window.setTimeout(wrapMermaidDiagrams, 1800);
+    enhancePqcMermaid();
+    window.setTimeout(enhancePqcMermaid, 250);
+    window.setTimeout(enhancePqcMermaid, 900);
     if (!window.__pqcMermaidObs && typeof MutationObserver !== "undefined") {
       window.__pqcMermaidObs = new MutationObserver(function () {
-        wrapMermaidDiagrams();
+        enhancePqcMermaid();
       });
       window.__pqcMermaidObs.observe(document.body, {
         childList: true,
-        subtree: true
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["data-md-color-scheme"]
       });
     }
   }
@@ -289,5 +412,26 @@
     wireCheckpoints();
     enhanceDetails();
     scheduleDiagramEnhance();
+  });
+})();
+
+/* Theme toggle: Material flips data-md-color-scheme on body */
+(function () {
+  if (typeof MutationObserver === "undefined") return;
+  var obs = new MutationObserver(function () {
+    if (typeof document$ !== "undefined" && document$.next) {
+      /* rely on page ready + diagram scheduler */
+    }
+    var ev = new Event("pqc-theme");
+    document.dispatchEvent(ev);
+  });
+  obs.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["data-md-color-scheme"]
+  });
+  document.addEventListener("pqc-theme", function () {
+    document.querySelectorAll(".pqc-mermaid-host").forEach(function (h) {
+      delete h.dataset.rendered;
+    });
   });
 })();

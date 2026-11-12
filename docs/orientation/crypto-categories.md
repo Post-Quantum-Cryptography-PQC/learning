@@ -18,25 +18,23 @@ One giant mindmap is hard to read. This page uses:
 1. a **roomy overview** (six folders only), then  
 2. **one detailed map per folder** in tabs below.
 
-Each diagram sits in a **pan / zoom** stage: use `+` / `−` / `Reset`, drag to pan, or hold `Ctrl` / `⌘` and scroll to zoom. Branches are slogans, not full courses.
+Each diagram sits in a **pan / zoom** stage: use `+` / `−` / `Reset`, drag to pan, or hold `Ctrl` / `⌘` and scroll to zoom. Node colors stay high-contrast in light and dark mode.
 
 ### Overview (six folders)
 
-```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 56, "rankSpacing": 72, "padding": 24, "htmlLabels": true}, "themeVariables": {"fontSize": "16px"}}}%%
+```pqc-mermaid
 flowchart TB
   C(("Cryptography"))
   C --> G["Goals<br/>why we encrypt / sign"]
-  C --> S["Symmetric<br/>shared secret · fast bulk"]
+  C --> S["Symmetric<br/>shared secret - fast bulk"]
   C --> A["Asymmetric / PKC<br/>public + private key"]
-  C --> CL["Classical PKC<br/>RSA · DH · ECC"]
+  C --> CL["Classical PKC<br/>RSA / DH / ECC"]
   C --> P["PQC<br/>post-quantum public-key"]
-  C --> PR["Protocols / hybrids<br/>TLS · HTTPS · VPN"]
-
-  classDef hub fill:#0f766e,stroke:#115e59,color:#ecfeff,font-weight:700;
-  classDef leaf fill:#f0fdfa,stroke:#0f766e,color:#134e4a;
-  class C hub;
-  class G,S,A,CL,P,PR leaf;
+  C --> PR["Protocols / hybrids<br/>TLS / HTTPS / VPN"]
+  classDef hub fill:#0f766e,stroke:#5eead4,color:#ecfeff
+  classDef leaf fill:#115e59,stroke:#99f6e4,color:#ecfeff
+  class C hub
+  class G,S,A,CL,P,PR leaf
 ```
 
 ### Detail maps (one folder at a time)
@@ -45,88 +43,94 @@ flowchart TB
 
     Confidentiality vs authenticity — you can have one without the other.
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    ```pqc-mermaid
     flowchart TB
       G["Goals"]
       G --> C["Confidentiality<br/>strangers cannot read"]
       G --> A["Authenticity / integrity<br/>strangers cannot forge or silently edit"]
-      G --> B["Often both<br/>HTTPS · chat · banking"]
-      C --> CT["Encryption · AEAD"]
-      A --> AT["Signatures · MACs · AEAD"]
+      G --> B["Often both<br/>HTTPS / chat / banking"]
+      C --> CT["Encryption / AEAD"]
+      A --> AT["Signatures / MACs / AEAD"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class G,C,A,B,CT,AT n
     ```
 
 === "Symmetric"
 
     Same shared secret on both sides — great after a session key exists.
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    ```pqc-mermaid
     flowchart TB
       S["Symmetric"]
       S --> K["Same shared secret both sides"]
       S --> F["Fast bulk crypto"]
-      S --> E["Encryption<br/>AES · ChaCha"]
-      S --> H["Hash / MAC / AEAD<br/>SHA-2 · SHA-3 · HMAC"]
-      S --> Q["Quantum note<br/>Grover → larger keys / digests<br/>not a full throw-away"]
+      S --> E["Encryption<br/>AES / ChaCha"]
+      S --> H["Hash / MAC / AEAD<br/>SHA-2 / SHA-3 / HMAC"]
+      S --> Q["Quantum note<br/>Grover - larger keys / digests<br/>not a full throw-away"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class S,K,F,E,H,Q n
     ```
 
 === "Asymmetric / PKC"
 
     Four jobs — do not mix the APIs.
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 44, "rankSpacing": 60, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    ```pqc-mermaid
     flowchart TB
       A["Asymmetric / PKC<br/>public key + private key"]
-      A --> E["Public-key encryption<br/>encrypt with pk · decrypt with sk"]
-      A --> D["Digital signatures<br/>sign with sk · verify with pk"]
-      A --> K["Key agreement<br/>DH / ECDH → shared secret<br/>not message encryption"]
-      A --> M["KEM<br/>Encaps / Decaps → session key K<br/>modern deploy API"]
+      A --> E["Public-key encryption<br/>encrypt with pk / decrypt with sk"]
+      A --> D["Digital signatures<br/>sign with sk / verify with pk"]
+      A --> K["Key agreement<br/>DH / ECDH - shared secret<br/>not message encryption"]
+      A --> M["KEM<br/>Encaps / Decaps - session key K<br/>modern deploy API"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class A,E,D,K,M n
     ```
 
 === "Classical PKC"
 
     Widely used before the PQC transition — Shor-vulnerable.
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    ```pqc-mermaid
     flowchart TB
       CL["Classical PKC"]
       CL --> R["RSA<br/>encryption and signatures"]
-      CL --> DH["Diffie–Hellman DH<br/>shared secret only"]
-      CL --> ECC["ECC<br/>ECDH agreement · ECDSA signatures"]
+      CL --> DH["Diffie-Hellman DH<br/>shared secret only"]
+      CL --> ECC["ECC<br/>ECDH agreement / ECDSA signatures"]
       CL --> SH["Shor-vulnerable<br/>migrate motivation"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class CL,R,DH,ECC,SH n
     ```
 
 === "PQC"
 
     Algorithms for ordinary computers today; public-key layer meant to resist large quantum computers.
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 44, "rankSpacing": 60, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    ```pqc-mermaid
     flowchart TB
       P["PQC"]
       P --> N["NIST-era standards"]
-      N --> K["ML-KEM · lattices"]
-      N --> D["ML-DSA · lattices"]
-      N --> H["SLH-DSA · hash-based"]
-      P --> R["More KEMs / research<br/>code-based · multivariate · isogeny-adjacent"]
-      P --> F["Hardness families<br/>lattice LWE · codes · hashes"]
+      N --> K["ML-KEM - lattices"]
+      N --> D["ML-DSA - lattices"]
+      N --> H["SLH-DSA - hash-based"]
+      P --> R["More KEMs / research<br/>code-based / multivariate / isogeny-adjacent"]
+      P --> F["Hardness families<br/>lattice LWE / codes / hashes"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class P,N,K,D,H,R,F n
     ```
 
 === "Protocols"
 
     Real apps are bundles, not one algorithm.
 
-    ```mermaid
-    %%{init: {"flowchart": {"nodeSpacing": 48, "rankSpacing": 64, "padding": 20}, "themeVariables": {"fontSize": "15px"}}}%%
+    ```pqc-mermaid
     flowchart TB
-      PR["Protocols / hybrids<br/>TLS · HTTPS · VPN"]
+      PR["Protocols / hybrids<br/>TLS / HTTPS / VPN"]
       PR --> K["KEM or key agreement<br/>session setup"]
       PR --> S["Signatures<br/>authenticity / certificates"]
       PR --> Y["Symmetric<br/>bulk data"]
       PR --> H["Hybrid migration<br/>classical + PQC together"]
+      classDef n fill:#115e59,stroke:#99f6e4,color:#ecfeff
+      class PR,K,S,Y,H n
     ```
 
 ## Branch guide (read with the maps)

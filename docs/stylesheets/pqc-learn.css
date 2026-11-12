@@ -504,3 +504,37 @@
 .tabbed-content .pqc-diagram__viewport {
   height: min(62vh, 30rem);
 }
+
+.pqc-mermaid-host {
+  display: block;
+  min-height: 12rem;
+}
+
+.pqc-mermaid-host svg {
+  display: block;
+  margin: 0 auto;
+  max-width: none !important;
+  height: auto !important;
+}
+
+/* Force readable labels even if a theme tries to invert fills */
+.pqc-mermaid-host .nodeLabel,
+.pqc-mermaid-host .label,
+.pqc-mermaid-host foreignObject div,
+.pqc-mermaid-host foreignObject span {
+  color: #ecfeff !important;
+}
+
+.pqc-diagram__error {
+  margin: 1rem;
+  color: #b45309;
+}
+
+[data-md-color-scheme="slate"] .pqc-diagram__error {
+  color: #fbbf24;
+}
+
+pre.pqc-mermaid {
+  /* Hidden until JS mounts the pan/zoom stage; keep source accessible if JS off */
+  overflow: auto;
+}

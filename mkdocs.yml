@@ -51,6 +51,10 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+        # Self-rendered by docs/javascripts/pqc-learn.js (Material's mermaid host was emptying diagrams).
+        - name: pqc-mermaid
+          class: pqc-mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.arithmatex:
