@@ -283,7 +283,9 @@
           if (out.bindFunctions) out.bindFunctions(host);
           var stage = host.closest(".pqc-diagram");
           window.requestAnimationFrame(function () {
-            if (stage && stage.__pqcFit) stage.__pqcFit();
+            window.requestAnimationFrame(function () {
+              if (stage && stage.__pqcFit) stage.__pqcFit();
+            });
           });
           next();
         })
@@ -333,28 +335,28 @@
         "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
     }
 
-    function naturalSvgSize(svg) {
-      /* Prefer ink bbox (drawn content) over oversized viewBox padding. */
-      if (typeof svg.getBBox === "function") {
-        try {
-          var box = svg.getBBox();
-          if (box && box.width > 1 && box.height > 1) {
-            return { sw: box.width, sh: box.height, ox: box.x, oy: box.y };
-          }
-        } catch (err) {}
-      }
+    function normalizeSvgSizing(svg) {
+      /*
+        Mermaid often emits width="100%". Measuring with viewBox then scaling
+        again double-shrinks the drawing. Pin absolute px from viewBox first.
+      */
       var vb = svg.viewBox && svg.viewBox.baseVal;
-      var sw =
+      var w =
         (vb && vb.width) ||
         parseFloat(svg.getAttribute("width")) ||
-        svg.clientWidth ||
         0;
-      var sh =
+      var h =
         (vb && vb.height) ||
         parseFloat(svg.getAttribute("height")) ||
-        svg.clientHeight ||
         0;
-      return { sw: sw, sh: sh, ox: (vb && vb.x) || 0, oy: (vb && vb.y) || 0 };
+      if (w > 1 && h > 1) {
+        svg.setAttribute("width", String(w));
+        svg.setAttribute("height", String(h));
+        svg.style.width = w + "px";
+        svg.style.height = h + "px";
+        svg.style.maxWidth = "none";
+        svg.style.maxHeight = "none";
+      }
     }
 
     function fitToViewport() {
@@ -368,20 +370,23 @@
         return;
       }
       canvas.style.transform = "translate(0px, 0px) scale(1)";
-      var size = naturalSvgSize(svg);
-      var sw = size.sw;
-      var sh = size.sh;
+      normalizeSvgSizing(svg);
+      /* Force layout after width/height pin. */
+      void svg.getBoundingClientRect();
+      var rect = svg.getBoundingClientRect();
+      var sw = rect.width;
+      var sh = rect.height;
       if (!sw || !sh) {
         stage.dataset.pqcNeedsFit = "1";
         return;
       }
-      var pad = 6;
+      var pad = 8;
       var availW = Math.max(8, vw - pad * 2);
       var availH = Math.max(8, vh - pad * 2);
-      /* Fill the box (contain): use nearly full width/height. */
+      /* Contain: largest scale that still fits the viewport. */
       scale = Math.min(availW / sw, availH / sh);
-      tx = pad + (availW - sw * scale) / 2 - (size.ox || 0) * scale;
-      ty = pad + (availH - sh * scale) / 2 - (size.oy || 0) * scale;
+      tx = pad + (availW - sw * scale) / 2;
+      ty = pad + (availH - sh * scale) / 2;
       stage.dataset.pqcNeedsFit = "0";
       apply();
     }
