@@ -5,7 +5,11 @@
 
 **Learning goals.** After this page you can:
 
-- Recognize common symbols ($=$, $\equiv$, $\oplus$, $\Pr$, vectors)
+- Recognize common symbols ($=$, $\equiv$, $\oplus$, $\Pr$, vectors, $\mathrm{wt}$)
+- Read assignment / sampling arrows ($\leftarrow$, $\gets$)
+- Recognize field and ring letters ($\mathbb{F}_2$, $\mathbb{Z}_q$, $R_q$) without fear
+- Know that hats / tildes / bars are **labels**, not new arithmetic
+- Read floors, ceilings, sums, and $\cdot$ / $\circ$ as English sentences
 - Know that you can skip a formula on first read and come back
 - Practice translating several lines of math into English — slowly, on purpose
 
@@ -18,6 +22,13 @@
 | $\oplus$ | XOR |
 | $\Pr[\ldots]$ | Probability that … |
 | $\mathbf{e}$ | A whole list (vector), not one number |
+| $\mathrm{wt}(e)$ | Weight = number of ones (nonzero entries) in $e$ |
+| $x \leftarrow y$ | Assign: “set $x$ to $y$” |
+| $x \stackrel{\$}{\leftarrow} S$ | Sample: “draw $x$ at random from set $S$” |
+| $\mathbb{F}_2$, $\mathbb{Z}_q$, $R_q$ | Alphabets / wrap-around polynomial rings (see below) |
+| $\hat{a}$, $\tilde{f}$, $\bar{c}$ | Same object in another “costume” (label, not new math) |
+| $\lfloor x\rfloor$, $\lceil x\rceil$ | Floor / ceiling (round down / up to an integer) |
+| $\sum$, $\cdot$, $\circ$ | Sum; multiply; same-index (pointwise) multiply |
 | $2^{10}$ | Two×itself ten times ($1024$), not “twenty” |
 
 Full curriculum dictionary: [Glossary](../glossary.md).
@@ -34,6 +45,8 @@ You are allowed to:
 4. Write your own English under every line until it feels boring.
 
 Feeling slow is normal. Professionals unpack formulas the same way.
+
+Curated paper extracts lean on the same handful of habits below — codes, lattices, and hardware leaves all recycle them.
 
 ## Story first — one noisy message
 
@@ -84,13 +97,15 @@ In $\mathbb{F}_2$ (our bit world), XOR is the same as addition: $1+1=0$.
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |
 
-### 3. Lists of bits (vectors)
+### 3. Lists of bits (vectors) and weight
 
 $(1,0,1)$ is just three bits in a row.  
 Bold letters like $\mathbf{e}$ usually mean “a whole list,” not one number.
 
 Length of $(1,0,1)$ is $3$.  
-Weight (number of ones) of $(1,0,1)$ is $2$.
+**Weight** $\mathrm{wt}(1,0,1)=2$ — count the ones. Papers also write $\mathrm{HW}(e)$ for the same idea (Hamming weight).
+
+You will see weight again with syndromes: a sparse error $\mathbf{e}$ still leaves a fingerprint $H\mathbf{e}^\top=\mathbf{s}$. More practice: [Vectors and matrices](vectors-matrices.md).
 
 ### 4. Probability
 
@@ -120,6 +135,82 @@ You do not compute that number by hand. Hear: “astronomically small.”
 $\{0,1\}$ means “the set containing only $0$ and $1$.”  
 $\mathbf{e}\in\{0,1\}^n$ means “$e$ is a length-$n$ bit list.”  
 Skip set notation on first read if it stresses you; return later.
+
+### 8. Arrows — assign vs sample
+
+Crypto papers love left arrows. Two jobs:
+
+| Writing | English |
+|---------|---------|
+| $x \leftarrow y$ or $x \gets y$ | **Assign:** set $x$ equal to $y$ (deterministic) |
+| $x \stackrel{\$}{\leftarrow} S$ or $x \gets_{\$} S$ | **Sample:** draw $x$ at random from set $S$ |
+| $\tilde{f} \leftarrow \mathrm{NTT}(f)$ | Assign the result of a named recipe |
+
+The dollar sign is a “randomness” badge, not money.  
+**Say it:** “sample $x$ from $S$” vs “set $x$ to $y$.”
+
+### 9. Alphabets — $\mathbb{F}_2$, $\mathbb{Z}_q$, $R_q$
+
+Think **alphabet of legal numbers**, not abstract algebra class.
+
+| Symbol | English (survival level) |
+|--------|--------------------------|
+| $\mathbb{F}_2$ | Bits $\{0,1\}$ with wrap $1+1=0$ |
+| $\mathbb{F}_q$ / $\mathrm{GF}(q)$ | A finite alphabet of size $q$ (codes over larger fields) |
+| $\mathbb{Z}_q$ | Integers mod $q$ — leftovers $0,1,\ldots,q-1$ |
+| $R_q = \mathbb{Z}_q[X]/(X^n\pm 1)$ | Fixed-length polynomials whose coefficients live in $\mathbb{Z}_q$, with wrap-around on $X^n$ |
+
+Kyber-shaped slogan you will meet later:
+
+$$
+R_q = \mathbb{Z}_{3329}[X]/(X^{256}+1).
+$$
+
+**Say it:** “degree-$255$ polynomials, coefficients mod $3329$, wrap with $X^{256}+1$.”  
+Deepen later: [Modular arithmetic](modular-arithmetic.md) · [Polynomials](polynomials-gentle.md) · [Wrap-around](polynomials-wraparound.md).
+
+### 10. Hats, tildes, bars — costumes, not new operators
+
+| Mark | Typical English in PQC papers |
+|------|-------------------------------|
+| $\hat{a}$ | “hat-$a$” — often a transformed / estimated copy |
+| $\tilde{f}$ | “tilde-$f$” — often **NTT-domain** (same poly, different view) |
+| $\bar{c}$ | “bar-$c$” — often compressed / related / average |
+
+$$
+\tilde{f} \leftarrow \mathrm{NTT}(f)
+$$
+
+**Full sentence:** “Set tilde-$f$ to the NTT of $f$.”  
+You do **not** need the butterfly graph yet — only the habit that accents rename a related object. NTT as a concept: later cards such as [NTT butterfly](../concepts/ntt-butterfly.md).
+
+### 11. Floor, ceiling, bit-width
+
+| Symbol | English |
+|--------|---------|
+| $\lfloor x\rfloor$ | Floor: largest integer $\le x$ (round down) |
+| $\lceil x\rceil$ | Ceiling: smallest integer $\ge x$ (round up) |
+
+Examples: $\lfloor 3.7\rfloor=3$, $\lceil 3.2\rceil=4$, $\lceil\log_2 3329\rceil=12$.
+
+Hardware papers write bit-width slogans like $W_q=\lceil\log q\rceil$ — “how many bits to hold leftovers mod $q$.” Compress/Decompress in KEMs also leans on floors; see [Ciphertext compress / encode](../concepts/ciphertext-compress-encode.md) when you get there.
+
+### 12. Sums, dots, and little circles
+
+| Symbol | English |
+|--------|---------|
+| $\sum_{i=0}^{n-1} f_i X^i$ | “Add up term $f_i X^i$ for each $i$” — how papers write a polynomial |
+| $f\cdot g$ | Multiply (for polys: usually “multiply then reduce mod the ring”) |
+| $\tilde{f}\circ\tilde{g}$ | **Same-index** multiply (coefficient-wise / CWM in NTT domain) |
+
+Tiny poly aloud:
+
+$$
+f = \sum_{i=0}^{2} f_i X^i = f_0 + f_1 X + f_2 X^2.
+$$
+
+**Say it:** “$f$ is $f_0$ plus $f_1$ times $X$ plus $f_2$ times $X$ squared.”  
+Treat $\circ$ as “multiply matching slots,” not as a new number system.
 
 ## How to translate a formula (method)
 
@@ -181,6 +272,30 @@ $$
 **Full sentence:** “The session key $K$ is what Decaps returns from the secret key and the ciphertext.”  
 Sans-serif names like $\mathsf{Decaps}$ are just function names — “a recipe with that label.”
 
+### Worked aloud #6 (sample vs assign)
+
+$$
+\mathbf{e} \stackrel{\$}{\leftarrow} \{0,1\}^n,\qquad \mathbf{s} \leftarrow H\mathbf{e}^\top.
+$$
+
+**Full sentence:** “Draw a random length-$n$ bit error $\mathbf{e}$; then set the syndrome $\mathbf{s}$ to $H$ times that error.”
+
+### Worked aloud #7 (weight)
+
+$$
+\mathrm{wt}(1,0,1,1)=3.
+$$
+
+**Full sentence:** “The weight of that bit list is three — three ones.”
+
+### Worked aloud #8 (ring + NTT label)
+
+$$
+\tilde{f} \leftarrow \mathrm{NTT}(f),\quad f\in R_q.
+$$
+
+**Full sentence:** “$f$ lives in the wrap-around polynomial ring $R_q$; set tilde-$f$ to its NTT.”
+
 ## Displayed math vs inline math
 
 - Inline: $1+1=0$ sits inside a sentence.  
@@ -201,6 +316,9 @@ On GitHub or MkDocs with KaTeX, both should render as pretty math. If you see ra
 3. Compute $110 \oplus 101$.  
 4. Write one English sentence for $\Pr[b=1]=\tfrac14$.  
 5. Is $2^3$ equal to $6$ or $8$?  
+6. Translate: $x \stackrel{\$}{\leftarrow}\{0,1\}^8$.  
+7. What is $\mathrm{wt}(1,0,1,0)$?  
+8. What is $\lceil 3.2\rceil$? $\lfloor\log_2 8\rfloor$?  
 
 <details><summary>Answers</summary>
 
@@ -208,7 +326,10 @@ On GitHub or MkDocs with KaTeX, both should render as pretty math. If you see ra
 2. $1$.  
 3. $011$.  
 4. “The probability that bit $b$ is one equals one fourth.”  
-5. $8$.
+5. $8$.  
+6. “Sample an 8-bit string $x$ uniformly at random.”  
+7. $2$.  
+8. $4$; $3$.
 
 </details>
 
@@ -220,6 +341,10 @@ On GitHub or MkDocs with KaTeX, both should render as pretty math. If you see ra
 4. Say out loud what $\Pr[W\ge 3]$ is asking.  
 5. Translate aloud: $K = \mathsf{Decaps}(\mathsf{sk},\mathsf{ct})$.  
 6. True or false: you must understand every symbol on first sight before continuing.  
+7. Assign or sample? $sk \leftarrow \mathsf{KeyGen}()$ vs $e \stackrel{\$}{\leftarrow}\{0,1\}^n$.  
+8. Translate: $R_q=\mathbb{Z}_q[X]/(X^n+1)$ in one sentence.  
+9. What does $\tilde{f}$ usually signal next to $\mathrm{NTT}$?  
+10. $\mathrm{wt}(0,1,1,1)=$?  
 
 <details><summary>Answers</summary>
 
@@ -228,7 +353,11 @@ On GitHub or MkDocs with KaTeX, both should render as pretty math. If you see ra
 3. $100$.  
 4. “Probability that the weight $W$ is at least 3.”  
 5. “The session key $K$ is what Decaps returns from the secret key and ciphertext.”  
-6. False — English first, symbols on the second pass.
+6. False — English first, symbols on the second pass.  
+7. First is assign (deterministic KeyGen output); second is sample.  
+8. “Polynomials with coefficients mod $q$, wrapped so $X^n$ folds with $+1$.”  
+9. NTT-domain / transformed copy of $f$ — a label, not a new field.  
+10. $3$.
 
 </details>
 
@@ -237,6 +366,14 @@ On GitHub or MkDocs with KaTeX, both should render as pretty math. If you see ra
 Feeling slow is normal. Cryptography professionals still unpack formulas line by line. Speed is not the goal — **accurate English meaning** is.
 
 If a later page piles up symbols, open this page in another tab and translate one line at a time.
+
+## What this page deliberately skips
+
+Full NTT butterflies, Module-LWE matrix slogans, and Compress/Decompress bit-packing belong on concept cards — not here. Use this page to **unlock the alphabet**, then follow:
+
+- [NTT butterfly](../concepts/ntt-butterfly.md)  
+- [Module-LWE](../concepts/module-lwe.md)  
+- [Ciphertext compress / encode](../concepts/ciphertext-compress-encode.md)
 
 ## Next steps
 

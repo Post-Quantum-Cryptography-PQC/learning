@@ -156,11 +156,19 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 |--------|-----------|
 | $\oplus$ | XOR |
 | $\equiv\pmod{n}$ | congruent mod $n$ (same leftover) |
-| $\mathrm{wt}(e)$ | weight of $e$ |
+| $\mathrm{wt}(e)$ | weight of $e$ (number of ones) |
 | $H\mathbf{e}^\top=\mathbf{s}$ | $H$ times $e$ equals syndrome $s$ |
 | $\Pr[\ldots]$ | probability that … |
 | $2^{-128}$ | astronomically small probability |
 | $2^{128}$ | enormous attack work (different job!) |
+| $x \leftarrow y$ | set $x$ to $y$ (assign) |
+| $x \stackrel{\$}{\leftarrow} S$ | draw $x$ at random from $S$ (sample) |
+| $\mathbb{F}_2$ / $\mathbb{Z}_q$ | bit alphabet / integers mod $q$ |
+| $R_q$ | wrap-around polynomials over $\mathbb{Z}_q$ |
+| $\tilde{f}$, $\hat{a}$, $\bar{c}$ | labeled copy (often NTT / estimate / compressed) |
+| $\lfloor x\rfloor$, $\lceil x\rceil$ | floor / ceiling |
+| $\sum_i f_i X^i$ | write the polynomial by summing terms |
+| $f\cdot g$ / $\tilde{f}\circ\tilde{g}$ | multiply / same-index multiply |
 
 More symbol practice: [How to read the math](fundamentals/reading-math-notation.md).
 
