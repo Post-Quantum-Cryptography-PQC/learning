@@ -57,6 +57,10 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | <a id="finite-field"></a>**Finite field / $\mathbb{F}_q$ / GF** | Finite number system with $+,-,\times,\div$ (except by zero); also called a Galois field $\mathrm{GF}(q)$ | [Finite fields beyond F₂](bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) · [Modular arithmetic](fundamentals/modular-arithmetic.md) |
 | **Generator matrix $G$** | Builds codewords from short messages | [Generator and parity-check](bridge/generator-and-parity-check.md) |
 | **Galois field ($\mathrm{GF}$)** | Another name for a finite field | [Finite field](#finite-field) · [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) |
+| **$\mathrm{GF}(p^m)\cong\mathrm{GF}(p)[x]/(f(x))$** | Extension field $\cong$ polynomials over $\mathrm{GF}(p)$ modulo an irreducible $f$ of degree $m$ | [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) · [Finite fields beyond F₂](bridge/finite-fields-beyond-f2.md) |
+| **$R_q=\mathbb{Z}_q[x]/(x^n+1)$** | ML-KEM-shaped polynomial **ring** (coeff mod $q$, powers mod $x^n+1$); not generally a field | [From fields to $R_q$](bridge/from-fields-to-rq.md) · [Module-LWE](concepts/module-lwe.md) |
+| **Irreducible (field poly)** | Does not factor into lower-degree non-constants; needed so $\mathrm{GF}(p)[x]/(f)$ is a field | [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) |
+| **Primitive element / poly** | Element whose powers hit every nonzero field element; primitive poly = irreducible with a primitive root | [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) (postcard) |
 | **Goppa code** | Classic algebraic secret code for McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
 | **GRS** | Generalized Reed–Solomon — strong algebra, often unsafe raw in McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
 
@@ -167,6 +171,8 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | $x \stackrel{\$}{\leftarrow} S$ | draw $x$ at random from $S$ (sample) |
 | $\mathbb{F}_2$ / $\mathbb{Z}_q$ | bit alphabet / integers mod $q$ |
 | $\mathbb{F}_q$ / $\mathrm{GF}(q)$ | finite field (Galois field) with $q$ elements — [Finite field](#finite-field) |
+| $\mathrm{GF}(p)[x]/(f)$ | bit- (or $\mathrm{GF}(p)$-) polynomials modulo irreducible $f$ — [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) |
+| $R_q$ / $x^n\equiv -1$ | lattice poly ring / negacyclic wrap — [From fields to $R_q$](bridge/from-fields-to-rq.md) |
 | $R_q$ | wrap-around polynomials over $\mathbb{Z}_q$ |
 | $\tilde{f}$, $\hat{a}$, $\bar{c}$ | labeled copy (often NTT / estimate / compressed) |
 | $\lfloor x\rfloor$, $\lceil x\rceil$ | floor / ceiling |

@@ -132,4 +132,5 @@ Output coordinates can be **dependent** because they share pieces of $R$ — see
 - [Quantum threat](quantum-threat.md)  
 - Concept: [Quasi-cyclic codes](../concepts/quasi-cyclic-codes.md)  
 - Bridge: [From bits to codes](../bridge/from-bits-to-codes.md)  
+- Lattice fork (after GF lab): [From fields to $R_q$](../bridge/from-fields-to-rq.md) — $x^n\equiv -1$, not $X^n\equiv 1$  
 - Lattice packaging later: [Module-LWE](../concepts/module-lwe.md)  

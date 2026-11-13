@@ -1,6 +1,6 @@
 # Module-LWE (gentle)
 
-**Prereqs:** [LWE](lwe.md) · [Polynomials Part A](../fundamentals/polynomials-gentle.md) · [Polynomial wrap-around](../fundamentals/polynomials-wraparound.md) · [Noisy linear equations (LWE story)](../bridge/noisy-linear-equations-lwe.md)  
+**Prereqs:** [LWE](lwe.md) · [Polynomials Part A](../fundamentals/polynomials-gentle.md) · [Polynomial wrap-around](../fundamentals/polynomials-wraparound.md) · [Noisy linear equations (LWE story)](../bridge/noisy-linear-equations-lwe.md) · helpful: [From fields to $R_q$](../bridge/from-fields-to-rq.md)  
 **Next:** [Noise samplers](noise-samplers.md) · [KEM](kem.md) · [Ciphertext compress / encode](ciphertext-compress-encode.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md) · HW fork: [PQC hardware](../tracks/pqc-hardware/ROADMAP.md)  
 **Tracks:** lattice-lwe · pqc-hardware (after theory)
 

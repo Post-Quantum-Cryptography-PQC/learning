@@ -26,7 +26,7 @@ After this track you can:
 2. [Vectors and matrices](../../fundamentals/vectors-matrices.md)  
 3. [Polynomials — Part A](../../fundamentals/polynomials-gentle.md) · [Part B wrap-around](../../fundamentals/polynomials-wraparound.md)  
 4. [Probability (gentle)](../../fundamentals/probability-gentle.md) · [Hard problems](../../fundamentals/hard-problems.md)  
-5. Helpful: [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Security bits](../../bridge/security-bits-and-work.md)
+5. Helpful: [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](../../bridge/building-gf-8.md) · [From fields to $R_q$](../../bridge/from-fields-to-rq.md) · [Security bits](../../bridge/security-bits-and-work.md)
 
 ## Stages
 
@@ -39,8 +39,9 @@ After this track you can:
 ### Stage 2 — Noisy equations → Module-LWE (Intro ch. 06)
 
 1. [Noisy linear equations (LWE story)](../../bridge/noisy-linear-equations-lwe.md)  
-2. [LWE](../../concepts/lwe.md)  
-3. [Module-LWE](../../concepts/module-lwe.md)
+2. [From fields to $R_q$](../../bridge/from-fields-to-rq.md) — field ≠ ring; toy $R_q$ (after GF lab)  
+3. [LWE](../../concepts/lwe.md)  
+4. [Module-LWE](../../concepts/module-lwe.md)
 
 **Checkpoint:** What does the small error $e$ protect, and what breaks if $e=0$?
 

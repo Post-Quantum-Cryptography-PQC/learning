@@ -108,7 +108,15 @@ Remember for now:
 - every nonzero still has an inverse,  
 - papers may say “work in $\mathbb{F}_{2^m}$” or $\mathrm{GF}(2^m)$.
 
-**Next lab:** warm up with $\mathrm{GF}(2^2)$, then build $\mathrm{GF}(2^3)$, and see why $X$/$\alpha$ appear — [Building $\mathrm{GF}(2^3)$](building-gf-8.md). You do not need $\mathbb{F}_{16}$ by hand for most of this curriculum once those toys click.
+Papers often write the whole recipe as one slogan:
+
+$$
+\mathrm{GF}(p^m)\;\cong\;\mathrm{GF}(p)[x]\big/\bigl(f(x)\bigr)
+$$
+
+(“extension field $\cong$ polynomials over the small field, modulo an irreducible $f$”). The lab unpacks every symbol.
+
+**Next lab:** warm up with $\mathrm{GF}(2^2)$, then build $\mathrm{GF}(2^3)$, why $X$/$\alpha$ appear, and that notation — [Building $\mathrm{GF}(2^3)$](building-gf-8.md). You do not need $\mathbb{F}_{16}$ by hand for most of this curriculum once those toys click.
 
 ## Why codes leave $\mathbb{F}_2$
 

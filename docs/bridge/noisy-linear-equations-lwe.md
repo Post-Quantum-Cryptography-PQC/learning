@@ -1,7 +1,7 @@
 # Noisy linear equations (LWE story)
 
 **Prereqs:** [Lattices (gentle)](../fundamentals/lattices-gentle.md) · [Modular arithmetic](../fundamentals/modular-arithmetic.md) · [Vectors and matrices](../fundamentals/vectors-matrices.md) · [Probability](../fundamentals/probability-gentle.md)  
-**Next:** Concept: [LWE](../concepts/lwe.md) · [Module-LWE](../concepts/module-lwe.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md)
+**Next:** [From fields to $R_q$](from-fields-to-rq.md) (after GF lab) · Concept: [LWE](../concepts/lwe.md) · [Module-LWE](../concepts/module-lwe.md) · Track: [Lattice / LWE](../tracks/lattice-lwe/ROADMAP.md)
 
 **Learning goals.** After this page you can:
 

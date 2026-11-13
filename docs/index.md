@@ -21,7 +21,7 @@
 
 <div class="pqc-metrics" markdown="0">
   <div class="pqc-metric"><span class="pqc-metric__n">12</span><span class="pqc-metric__l">Fundamentals</span></div>
-  <div class="pqc-metric"><span class="pqc-metric__n">14</span><span class="pqc-metric__l">Bridge pages</span></div>
+  <div class="pqc-metric"><span class="pqc-metric__n">15</span><span class="pqc-metric__l">Bridge pages</span></div>
   <div class="pqc-metric"><span class="pqc-metric__n">43</span><span class="pqc-metric__l">Concept cards</span></div>
   <div class="pqc-metric"><span class="pqc-metric__n">7</span><span class="pqc-metric__l">Research tracks</span></div>
 </div>
@@ -33,7 +33,7 @@
 
 | Area | What changed |
 |------|----------------|
-| **Bridge** | [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) — $\mathrm{GF}(2^2)$ warm-up, why $X$/$\alpha$, how to choose an irreducible, then $\mathrm{GF}(8)$ |
+| **Bridge** | [From fields to $R_q$](bridge/from-fields-to-rq.md) — field ≠ ring; toy $R_q$; ML-KEM slogan · [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) |
 | **Concepts (+5)** | [Constant-weight](concepts/constant-weight-coding.md), [code-based signatures](concepts/code-based-signatures.md), [crypto-agile SoC](concepts/crypto-agile-soc.md), [ASA / HPC fuzzing](concepts/asa-hpc-fuzzing.md), [CED / composite-field Goppa](concepts/ced-composite-goppa.md) |
 | **Code-based track** | KEM core + Stage 3b signature fork; CED reliability leaves concept-ready |
 | **Family HW leaves** | Primary-subject TCAS/TVLSI/TCAD/JSSC (+ TCHES) rows (`tracks.md` rule 9) |
@@ -111,12 +111,13 @@ Start here: [bridge/README.md](bridge/README.md)
 6. [From KEM API to noise](bridge/from-kem-api-to-noise.md)  
 7. [Finite fields beyond F₂](bridge/finite-fields-beyond-f2.md)  
 8. [Building GF(2³)](bridge/building-gf-8.md) — GF(4) warm-up, $X$/$\alpha$, choose irreducible, then GF(8) lab  
-9. [Security bits and attack work](bridge/security-bits-and-work.md)  
-10. [From Hamming to rank](bridge/from-hamming-to-rank.md) — for the rank-metric track  
-11. [Noisy linear equations (LWE story)](bridge/noisy-linear-equations-lwe.md) — for the lattice / LWE track  
-12. [Clocks, registers, and latency](bridge/clocks-registers-latency.md) — for the PQC hardware track  
-13. [Area, time, power honesty](bridge/area-time-power-honesty.md) — reading HW comparison tables  
-14. [Side-channel threat model (gentle)](bridge/side-channel-threat-model.md) — before masking / TCHES SCA leaves  
+9. [From fields to $R_q$](bridge/from-fields-to-rq.md) — field ≠ ring; toy $R_q$; ML-KEM / Module-LWE bridge  
+10. [Security bits and attack work](bridge/security-bits-and-work.md)  
+11. [From Hamming to rank](bridge/from-hamming-to-rank.md) — for the rank-metric track  
+12. [Noisy linear equations (LWE story)](bridge/noisy-linear-equations-lwe.md) — for the lattice / LWE track  
+13. [Clocks, registers, and latency](bridge/clocks-registers-latency.md) — for the PQC hardware track  
+14. [Area, time, power honesty](bridge/area-time-power-honesty.md) — reading HW comparison tables  
+15. [Side-channel threat model (gentle)](bridge/side-channel-threat-model.md) — before masking / TCHES SCA leaves  
 
 ## 4. Concepts
 
