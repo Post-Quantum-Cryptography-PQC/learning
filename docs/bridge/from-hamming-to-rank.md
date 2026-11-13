@@ -1,6 +1,6 @@
 # From Hamming distance to rank distance
 
-**Prereqs:** [Linear codes](../concepts/linear-codes.md) · [Finite fields beyond F₂](finite-fields-beyond-f2.md) · [Vectors and matrices](../fundamentals/vectors-matrices.md)  
+**Prereqs:** [Linear codes](../concepts/linear-codes.md) · [Finite fields beyond F₂](finite-fields-beyond-f2.md) · helpful: [Building $\mathrm{GF}(2^3)$](building-gf-8.md) · [Vectors and matrices](../fundamentals/vectors-matrices.md)  
 **Next:** Concept: [Rank metric](../concepts/rank-metric.md) · Track: [Rank metric](../tracks/rank-metric/ROADMAP.md)
 
 **Learning goals.** After this page you can:

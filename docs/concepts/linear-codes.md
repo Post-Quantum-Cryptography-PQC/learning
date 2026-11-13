@@ -1,6 +1,6 @@
 # Linear codes over finite fields
 
-**Prereqs:** [Generator and parity-check](../bridge/generator-and-parity-check.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md)  
+**Prereqs:** [Generator and parity-check](../bridge/generator-and-parity-check.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md) · helpful: [Building $\mathrm{GF}(2^3)$](../bridge/building-gf-8.md)  
 **Next:** [Syndrome decoding](syndrome-decoding.md) · [Quasi-cyclic codes](quasi-cyclic-codes.md)  
 **Tracks:** code-based-kems · rank-metric
 

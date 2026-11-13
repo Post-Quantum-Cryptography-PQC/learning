@@ -147,3 +147,4 @@ $1 + X + X^2 + X^3$.
 - **Required next for QC / HQC-shaped reading:** [Polynomial wrap-around (Part B)](polynomials-wraparound.md)  
 - Or continue the main path: [Quantum threat](quantum-threat.md)  
 - Bridge: [From bits to codes](../bridge/from-bits-to-codes.md)  
+- After the $\mathbb{F}_q$ postcard: [Building $\mathrm{GF}(2^3)$](../bridge/building-gf-8.md) (uses Part A multiply + reduce) 

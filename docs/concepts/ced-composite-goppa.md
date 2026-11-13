@@ -1,6 +1,6 @@
 # CED for composite-field Goppa / GF multipliers (McEliece)
 
-**Prereqs:** [Goppa and alternant](goppa-alternant.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md) · helpful: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md)  
+**Prereqs:** [Goppa and alternant](goppa-alternant.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md) · helpful: [Building $\mathrm{GF}(2^3)$](../bridge/building-gf-8.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md) · helpful: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md)  
 **Next:** [Code-based signatures](code-based-signatures.md) (naming trap) · [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) (different code HW) · [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · Track: [Code-based KEMs](../tracks/code-based-kems/ROADMAP.md) · [PQC hardware § code](../tracks/pqc-hardware/ROADMAP.md#family-hw-leaves-code)  
 **Tracks:** code-based-kems · pqc-hardware
 
@@ -129,7 +129,7 @@ $\mathrm{GF}(2^{13})$ with $x^{13}+x^4+x^3+x+1$ [[2]](#ref-2) Table I.
 
 ## Next steps
 
-- [Goppa and alternant](goppa-alternant.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md)  
+- [Goppa and alternant](goppa-alternant.md) · [Finite fields beyond F₂](../bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](../bridge/building-gf-8.md)  
 - Naming trap: [Code-based signatures](code-based-signatures.md) (Sign/Verify, not CED check bits)  
 - Other code HW: [Carryless $\mathbb{F}_2$ polymul](carryless-polymul-f2.md) · [Crypto-agile SoC](crypto-agile-soc.md)  
 - Threat cousins: [Fault attacks on hash sigs](fault-attacks-hash-sigs.md) · [ASA / HPC fuzzing](asa-hpc-fuzzing.md) · [Side-channel threat model](../bridge/side-channel-threat-model.md)  

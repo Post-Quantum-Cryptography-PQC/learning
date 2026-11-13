@@ -21,21 +21,22 @@ The jump can feel steep (codes, syndromes, DFR, independence, LWE). **Bridge** p
 5. [McEliece in plain words](mceliece-in-plain-words.md) — public scramble + intentional error  
 6. [From KEM API to noise](from-kem-api-to-noise.md) — Encaps ↔ noise ↔ DFR  
 7. [Finite fields beyond $\mathbb{F}_2$](finite-fields-beyond-f2.md) — $\mathbb{F}_q$ postcard  
-8. [Security bits and attack work](security-bits-and-work.md) — $2^{128}$ work vs $2^{-128}$ failure  
+8. [Building $\mathrm{GF}(2^3)$](building-gf-8.md) — $\mathrm{GF}(2^2)$ warm-up, why $X$/$\alpha$, choose irreducible, then eight elements  
+9. [Security bits and attack work](security-bits-and-work.md) — $2^{128}$ work vs $2^{-128}$ failure  
 
 **Rank-metric fork** (after finite fields + linear-code intuition):
 
-9. [From Hamming to rank](from-hamming-to-rank.md) → [Rank metric track](../tracks/rank-metric/ROADMAP.md)
+10. [From Hamming to rank](from-hamming-to-rank.md) → [Rank metric track](../tracks/rank-metric/ROADMAP.md)
 
 **Lattice / LWE fork** (after vectors + modular arithmetic + [Lattices (gentle)](../fundamentals/lattices-gentle.md)):
 
-10. [Noisy linear equations (LWE story)](noisy-linear-equations-lwe.md) → [Lattice / LWE track](../tracks/lattice-lwe/ROADMAP.md)
+11. [Noisy linear equations (LWE story)](noisy-linear-equations-lwe.md) → [Lattice / LWE track](../tracks/lattice-lwe/ROADMAP.md)
 
 **PQC hardware fork** (after modular arithmetic + bits; Module-LWE helpful before NTT/accelerator pages):
 
-11. [Clocks, registers, and latency](clocks-registers-latency.md)  
-12. [Area, time, power honesty](area-time-power-honesty.md) → [PQC hardware track](../tracks/pqc-hardware/ROADMAP.md)  
-13. [Side-channel threat model (gentle)](side-channel-threat-model.md) → [Masking shares](../concepts/masking-shares.md) · [Shuffling / hiding](../concepts/shuffling-hiding.md)
+12. [Clocks, registers, and latency](clocks-registers-latency.md)  
+13. [Area, time, power honesty](area-time-power-honesty.md) → [PQC hardware track](../tracks/pqc-hardware/ROADMAP.md)  
+14. [Side-channel threat model (gentle)](side-channel-threat-model.md) → [Masking shares](../concepts/masking-shares.md) · [Shuffling / hiding](../concepts/shuffling-hiding.md)
 
 Then enter Concepts starting at [Error-correcting codes](../concepts/error-correcting-codes.md) (code track), [LWE](../concepts/lwe.md) (lattice track), [Hash-based signatures](../concepts/hash-based-signatures.md) / [Oil–vinegar](../concepts/oil-vinegar-multivariate.md) / [Isogeny](../concepts/isogeny-csidh-sike.md) (other families), or [Modular multiplier](../concepts/modular-multiplier.md) (hardware track) — they should read as summaries of ideas you already met slowly.
 

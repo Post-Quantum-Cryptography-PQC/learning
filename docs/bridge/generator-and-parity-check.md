@@ -188,5 +188,5 @@ The compact vocabulary card is [Linear codes](../concepts/linear-codes.md) — s
 ## Next steps
 
 - [Decoding as a puzzle](decoding-as-a-puzzle.md)  
-- [Finite fields beyond $\mathbb{F}_2$](finite-fields-beyond-f2.md)  
+- [Finite fields beyond $\mathbb{F}_2$](finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](building-gf-8.md)  
 - Concept: [Linear codes](../concepts/linear-codes.md)  

@@ -250,3 +250,4 @@ $15\equiv 3\pmod{12}$.
 - [Vectors and matrices](vectors-matrices.md) after bits  
 - [Polynomials Part A](polynomials-gentle.md) when comfortable with $\mathbb{F}_2$  
 - Then [Polynomial wrap-around](polynomials-wraparound.md) before QC pages  
+- Later (after polynomials): [Finite fields beyond $\mathbb{F}_2$](../bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](../bridge/building-gf-8.md) 

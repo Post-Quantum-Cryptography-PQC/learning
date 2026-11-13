@@ -54,7 +54,9 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | **Encaps / Decaps** | KEM calls that create / recover a session key | [KEM](concepts/kem.md) |
 | **Fault injection (FIA)** | Physical flips/glitches during crypto; distinct from power/EM SCA | [Fault attacks on hash-based signatures](concepts/fault-attacks-hash-sigs.md) · [Side-channel threat model](bridge/side-channel-threat-model.md) |
 | **FORS** | Few-time hash-based signature layer inside SPHINCS+ | [Hash-based signatures](concepts/hash-based-signatures.md) |
+| <a id="finite-field"></a>**Finite field / $\mathbb{F}_q$ / GF** | Finite number system with $+,-,\times,\div$ (except by zero); also called a Galois field $\mathrm{GF}(q)$ | [Finite fields beyond F₂](bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) · [Modular arithmetic](fundamentals/modular-arithmetic.md) |
 | **Generator matrix $G$** | Builds codewords from short messages | [Generator and parity-check](bridge/generator-and-parity-check.md) |
+| **Galois field ($\mathrm{GF}$)** | Another name for a finite field | [Finite field](#finite-field) · [Building $\mathrm{GF}(2^3)$](bridge/building-gf-8.md) |
 | **Goppa code** | Classic algebraic secret code for McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
 | **GRS** | Generalized Reed–Solomon — strong algebra, often unsafe raw in McEliece | [Goppa and alternant](concepts/goppa-alternant.md) |
 
@@ -164,6 +166,7 @@ A quick dictionary for this curriculum. Each entry is one or two sentences plus 
 | $x \leftarrow y$ | set $x$ to $y$ (assign) |
 | $x \stackrel{\$}{\leftarrow} S$ | draw $x$ at random from $S$ (sample) |
 | $\mathbb{F}_2$ / $\mathbb{Z}_q$ | bit alphabet / integers mod $q$ |
+| $\mathbb{F}_q$ / $\mathrm{GF}(q)$ | finite field (Galois field) with $q$ elements — [Finite field](#finite-field) |
 | $R_q$ | wrap-around polynomials over $\mathbb{Z}_q$ |
 | $\tilde{f}$, $\hat{a}$, $\bar{c}$ | labeled copy (often NTT / estimate / compressed) |
 | $\lfloor x\rfloor$, $\lceil x\rceil$ | floor / ceiling |

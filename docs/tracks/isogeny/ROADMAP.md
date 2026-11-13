@@ -23,7 +23,7 @@ After this track you can:
 1. [History](../../orientation/history.md) · [Challenges](../../orientation/challenges.md)  
 2. [Modular arithmetic](../../fundamentals/modular-arithmetic.md)  
 3. [Hard problems](../../fundamentals/hard-problems.md) · [Public-key picture](../../fundamentals/public-key-picture.md)  
-4. Helpful: [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md)
+4. Helpful: [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](../../bridge/building-gf-8.md)
 
 ## Stages
 

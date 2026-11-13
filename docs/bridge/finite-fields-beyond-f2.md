@@ -1,14 +1,14 @@
 # Finite fields beyond $\mathbb{F}_2$
 
 **Prereqs:** [Modular arithmetic](../fundamentals/modular-arithmetic.md) · [Polynomials Part A](../fundamentals/polynomials-gentle.md)  
-**Next:** Concept: [Linear codes](../concepts/linear-codes.md) · Lattice: [Lattices (gentle)](../fundamentals/lattices-gentle.md) · [Quasi-cyclic codes](../concepts/quasi-cyclic-codes.md)
+**Next:** Lab: [Building $\mathrm{GF}(2^3)$](building-gf-8.md) · Concept: [Linear codes](../concepts/linear-codes.md) · Lattice: [Lattices (gentle)](../fundamentals/lattices-gentle.md)
 
 **Learning goals.** After this page you can:
 
 - Explain why $\mathbb{F}_q$ appears
 - Compute addition and multiplication in a tiny prime field with full tables
 - See why mod-$4$ is *not* a field
-- Know that extension fields exist without building them fully yet
+- Know that extension fields exist; build one by hand on [Building $\mathrm{GF}(2^3)$](building-gf-8.md)
 
 ## Why this page exists
 
@@ -28,7 +28,7 @@ A **finite field** $\mathbb{F}_q$ is a finite set with addition and multiplicati
 The simplest family: take a **prime** $p$ and use integers mod $p$. That is $\mathbb{F}_p$.  
 Example: $\mathbb{F}_5=\{0,1,2,3,4\}$ with mod-5 arithmetic.
 
-There are also fields with $q=p^m$ elements (extension fields), built from polynomials mod an irreducible. Classic Goppa codes and many algebraic constructions live there. You do **not** need the full construction to continue — just remember “symbols can be bigger than bits.”
+There are also fields with $q=p^m$ elements (extension fields), built from polynomials mod an irreducible. Classic Goppa codes and many algebraic constructions live there. For the postcard, remember “symbols can be bigger than bits.” For the hands-on construction, continue to [Building $\mathrm{GF}(2^3)$](building-gf-8.md).
 
 ## Worked world — full arithmetic in $\mathbb{F}_5$
 
@@ -97,16 +97,18 @@ Therefore $\mathbb{Z}/4\mathbb{Z}$ is **not** a field.
 
 **Moral:** $\mathbb{F}_4$ (a real field with $4$ elements) is a different object, built from polynomials — **not** “integers mod 4.”
 
-## Extension fields — postcard only
+## Extension fields — postcard, then lab
 
 Sometimes $q=p^m$ (example $q=16=2^4$).  
 Elements behave like small polynomials with bit coefficients, multiplied and reduced mod a fixed irreducible polynomial — similar *spirit* to [Polynomials (gentle)](../fundamentals/polynomials-gentle.md), but with a different modulus polynomial.
 
-You do not need to build $\mathbb{F}_{16}$ by hand to read most of this curriculum. Remember:
+Remember for now:
 
 - symbols can be “bigger than bits,”  
 - every nonzero still has an inverse,  
-- papers may say “work in $\mathbb{F}_{2^m}$.”
+- papers may say “work in $\mathbb{F}_{2^m}$” or $\mathrm{GF}(2^m)$.
+
+**Next lab:** warm up with $\mathrm{GF}(2^2)$, then build $\mathrm{GF}(2^3)$, and see why $X$/$\alpha$ appear — [Building $\mathrm{GF}(2^3)$](building-gf-8.md). You do not need $\mathbb{F}_{16}$ by hand for most of this curriculum once those toys click.
 
 ## Why codes leave $\mathbb{F}_2$
 
@@ -166,6 +168,7 @@ When a lattice page says “mod $q$,” read: wrap-around integers — related h
 
 ## Next steps
 
+- Lab: [Building $\mathrm{GF}(2^3)$](building-gf-8.md) — irreducible + polynomial representation  
 - [Generator and parity-check](generator-and-parity-check.md) (re-read over $\mathbb{F}_2$ first if needed)  
 - Concept: [Linear codes](../concepts/linear-codes.md)  
 - Rank fork: [From Hamming to rank](from-hamming-to-rank.md) · [Rank metric track](../tracks/rank-metric/ROADMAP.md)  

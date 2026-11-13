@@ -115,6 +115,7 @@ nav:
       - McEliece in plain words: bridge/mceliece-in-plain-words.md
       - From KEM API to noise: bridge/from-kem-api-to-noise.md
       - Finite fields beyond F2: bridge/finite-fields-beyond-f2.md
+      - Building GF(2^3): bridge/building-gf-8.md
       - Security bits and work: bridge/security-bits-and-work.md
       - From Hamming to rank: bridge/from-hamming-to-rank.md
       - Noisy linear equations (LWE): bridge/noisy-linear-equations-lwe.md

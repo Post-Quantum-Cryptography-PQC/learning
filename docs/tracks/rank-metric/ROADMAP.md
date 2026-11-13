@@ -20,7 +20,7 @@ After this track you can:
 
 ## Shared entry
 
-1. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md)  
+1. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](../../bridge/building-gf-8.md)  
 2. [Linear codes](../../concepts/linear-codes.md)  
 3. [Syndrome decoding](../../concepts/syndrome-decoding.md) — Hamming twin for contrast  
 4. Helpful: [Vectors and matrices](../../fundamentals/vectors-matrices.md)

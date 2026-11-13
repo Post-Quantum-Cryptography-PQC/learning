@@ -28,7 +28,7 @@ After this track you can:
 2. [Vectors and matrices](../../fundamentals/vectors-matrices.md)  
 3. [Polynomials — Part A](../../fundamentals/polynomials-gentle.md) · [Part B](../../fundamentals/polynomials-wraparound.md)  
 4. [Hard problems](../../fundamentals/hard-problems.md) · [Public-key picture](../../fundamentals/public-key-picture.md)  
-5. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Security bits](../../bridge/security-bits-and-work.md)
+5. [Finite fields beyond F₂](../../bridge/finite-fields-beyond-f2.md) · [Building $\mathrm{GF}(2^3)$](../../bridge/building-gf-8.md) · [Security bits](../../bridge/security-bits-and-work.md)
 
 ## Stages
 
